@@ -1,0 +1,143 @@
+{
+  "log": "2026-11-17-current-velocity-adaptive84-zero-lag-01.log",
+  "config": {
+    "order": 84.0,
+    "learning_rate": 0.2,
+    "correction_bound_nominal_A": 0.03,
+    "response_lag_rad": 0.0,
+    "gate_us": 800000.0,
+    "blend_us": 200000.0,
+    "total_limit_nominal_A": 0.45,
+    "per_run_reset": 1.0
+  },
+  "summary": {
+    "calls": 7950.0,
+    "learned_calls": 5318.0,
+    "clipped_calls": 0.0,
+    "cosine_nominal_A": -0.017422,
+    "sine_nominal_A": 0.008614,
+    "peak_nominal_A": 0.023693,
+    "invalid": 0.0
+  },
+  "bounded_samples": [
+    [
+      11456.0,
+      0.1536,
+      0.0,
+      0.1536
+    ],
+    [
+      184611.0,
+      0.046807,
+      0.0,
+      0.046807
+    ],
+    [
+      357871.0,
+      0.338959,
+      0.0,
+      0.338959
+    ],
+    [
+      531115.0,
+      0.076704,
+      0.0,
+      0.076704
+    ],
+    [
+      704278.0,
+      0.080427,
+      0.0,
+      0.080427
+    ],
+    [
+      877609.0,
+      0.188772,
+      -0.00016,
+      0.188612
+    ],
+    [
+      1050700.0,
+      0.089227,
+      0.001469,
+      0.090696
+    ],
+    [
+      1223909.0,
+      0.226746,
+      -0.00567,
+      0.221076
+    ],
+    [
+      1396937.0,
+      0.13886,
+      0.001787,
+      0.140647
+    ],
+    [
+      1569982.0,
+      0.042975,
+      -0.000973,
+      0.042002
+    ],
+    [
+      1743263.0,
+      0.194946,
+      -0.004285,
+      0.190661
+    ],
+    [
+      1916426.0,
+      0.189444,
+      -0.009463,
+      0.179981
+    ],
+    [
+      2089513.0,
+      0.142923,
+      0.018932,
+      0.161855
+    ],
+    [
+      2262801.0,
+      0.080018,
+      -0.018293,
+      0.061724
+    ],
+    [
+      2435942.0,
+      0.110338,
+      -0.007479,
+      0.10286
+    ],
+    [
+      2609033.0,
+      0.229488,
+      0.012157,
+      0.241645
+    ]
+  ],
+  "learning_intervals": [
+    {
+      "actual_start_us": 803786.0,
+      "actual_end_us": 1496457.0,
+      "window10ms_tracking_rms_rad_s": 0.3225241403401712
+    },
+    {
+      "actual_start_us": 1506517.0,
+      "actual_end_us": 2199189.0,
+      "window10ms_tracking_rms_rad_s": 0.3000075880546934
+    },
+    {
+      "actual_start_us": 2209201.0,
+      "actual_end_us": 2999684.0,
+      "window10ms_tracking_rms_rad_s": 0.2838353675539122
+    },
+    {
+      "actual_start_us": 803786.0,
+      "actual_end_us": 2999684.0,
+      "window10ms_tracking_rms_rad_s": 0.3007301941117532
+    }
+  ],
+  "note": "Intervals diagnose within-run evolution; the primary comparison still uses the common full interval after .8s. Samples are nominal commands, not calibrated current or CV measurements."
+}

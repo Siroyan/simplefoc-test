@@ -1,0 +1,168 @@
+{
+  "log": "2026-11-17-current-phase-pulse-01.log",
+  "pulses": [
+    {
+      "pulse": 0,
+      "excited_phase": "U",
+      "polarity": 1,
+      "complete": true,
+      "hold_samples": 8,
+      "rest_samples": 6,
+      "mean_on_nominal_A": [
+        0.18493347167968224,
+        -0.09590339660644155,
+        -0.07234611511231036
+      ],
+      "mean_off_nominal_A": [
+        -0.0035443623860729433,
+        -0.011455535888668133,
+        -0.018495305379237433
+      ],
+      "delta_nominal_A": [
+        0.1884778340657552,
+        -0.08444786071777342,
+        -0.05385080973307292
+      ],
+      "delta_sum_nominal_A": 0.050179163614908845,
+      "expected_signed_delta_nominal_A": 0.1884778340657552,
+      "largest_abs_response_phase": "U"
+    },
+    {
+      "pulse": 1,
+      "excited_phase": "U",
+      "polarity": -1,
+      "complete": true,
+      "hold_samples": 8,
+      "rest_samples": 6,
+      "mean_on_nominal_A": [
+        -0.18590278625488807,
+        0.10970878601074595,
+        0.08553466796874433
+      ],
+      "mean_off_nominal_A": [
+        0.001351165771479139,
+        -0.011455535888668133,
+        0.001086807250970899
+      ],
+      "delta_nominal_A": [
+        -0.18725395202636722,
+        0.12116432189941408,
+        0.08444786071777344
+      ],
+      "delta_sum_nominal_A": 0.0183582305908203,
+      "expected_signed_delta_nominal_A": 0.18725395202636722,
+      "largest_abs_response_phase": "U"
+    },
+    {
+      "pulse": 2,
+      "excited_phase": "V",
+      "polarity": 1,
+      "complete": true,
+      "hold_samples": 8,
+      "rest_samples": 6,
+      "mean_on_nominal_A": [
+        -0.06841011047363804,
+        0.20517158508301156,
+        -0.08336105346680255
+      ],
+      "mean_off_nominal_A": [
+        0.001351165771479139,
+        -0.011455535888668133,
+        -0.03318188985189368
+      ],
+      "delta_nominal_A": [
+        -0.06976127624511719,
+        0.2166271209716797,
+        -0.050179163614908866
+      ],
+      "delta_sum_nominal_A": 0.09668668111165363,
+      "expected_signed_delta_nominal_A": 0.2166271209716797,
+      "largest_abs_response_phase": "V"
+    },
+    {
+      "pulse": 3,
+      "excited_phase": "V",
+      "polarity": -1,
+      "complete": true,
+      "hold_samples": 8,
+      "rest_samples": 6,
+      "mean_on_nominal_A": [
+        0.0821273803710885,
+        -0.18402290344237907,
+        0.09287796020507245
+      ],
+      "mean_off_nominal_A": [
+        0.006246693929031222,
+        0.013022104899092285,
+        -0.01359977722168535
+      ],
+      "delta_nominal_A": [
+        0.07588068644205727,
+        -0.19704500834147134,
+        0.1064777374267578
+      ],
+      "delta_sum_nominal_A": -0.014686584472656278,
+      "expected_signed_delta_nominal_A": 0.19704500834147134,
+      "largest_abs_response_phase": "V"
+    },
+    {
+      "pulse": 4,
+      "excited_phase": "W",
+      "polarity": 1,
+      "complete": true,
+      "hold_samples": 8,
+      "rest_samples": 6,
+      "mean_on_nominal_A": [
+        -0.06473846435547398,
+        -0.08488845825194936,
+        0.19201240539550213
+      ],
+      "mean_off_nominal_A": [
+        0.016037750244135396,
+        0.027708689371748533,
+        0.001086807250970899
+      ],
+      "delta_nominal_A": [
+        -0.08077621459960938,
+        -0.1125971476236979,
+        0.19092559814453122
+      ],
+      "delta_sum_nominal_A": -0.0024477640787760324,
+      "expected_signed_delta_nominal_A": 0.19092559814453122,
+      "largest_abs_response_phase": "W"
+    },
+    {
+      "pulse": 5,
+      "excited_phase": "W",
+      "polarity": -1,
+      "complete": true,
+      "hold_samples": 8,
+      "rest_samples": 6,
+      "mean_on_nominal_A": [
+        0.08947067260741665,
+        0.11705207824707407,
+        -0.18983879089356034
+      ],
+      "mean_off_nominal_A": [
+        0.025828806559239557,
+        0.008126576741540199,
+        -0.023390833536789512
+      ],
+      "delta_nominal_A": [
+        0.06364186604817709,
+        0.10892550150553387,
+        -0.16644795735677084
+      ],
+      "delta_sum_nominal_A": 0.006119410196940123,
+      "expected_signed_delta_nominal_A": 0.16644795735677084,
+      "largest_abs_response_phase": "W"
+    }
+  ],
+  "max_adc_age_us": 170.0,
+  "vbus_nominal_range_V": [
+    11.17388916015625,
+    11.1989990234375
+  ],
+  "angle_span_rad": 0.050265,
+  "note": "Nominal scaling and on-minus-rest current responses; checks phase/sign, not absolute current calibration or rotor electrical zero."
+}

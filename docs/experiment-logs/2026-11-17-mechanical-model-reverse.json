@@ -1,0 +1,261 @@
+{
+  "log": "2026-11-17-current-velocity-window-age-04.log",
+  "models": [
+    {
+      "orders": [],
+      "iq_lead_us": 0,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.5664881406547075,
+      "within_run_test_R2": 0.5163680342485726,
+      "acceleration_per_nominal_A": 250.26631902093368,
+      "constant_acceleration": -89.4879256940695,
+      "velocity_coefficient": 41.4740856952687,
+      "equivalent_current_terms": [],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-window-age-02.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.46212422816587373
+        }
+      ]
+    },
+    {
+      "orders": [],
+      "iq_lead_us": 2000,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.561943911818539,
+      "within_run_test_R2": 0.5148030984683886,
+      "acceleration_per_nominal_A": 281.4237824434557,
+      "constant_acceleration": -102.66648603991935,
+      "velocity_coefficient": 48.66231655070423,
+      "equivalent_current_terms": [],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-window-age-02.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.4342382632885937
+        }
+      ]
+    },
+    {
+      "orders": [],
+      "iq_lead_us": 4000,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.529188441141731,
+      "within_run_test_R2": 0.4845948362249668,
+      "acceleration_per_nominal_A": 305.87351939965833,
+      "constant_acceleration": -113.8323284047815,
+      "velocity_coefficient": 55.13814654698952,
+      "equivalent_current_terms": [],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-window-age-02.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.37398589085044087
+        }
+      ]
+    },
+    {
+      "orders": [
+        84
+      ],
+      "iq_lead_us": 0,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.6544687193319871,
+      "within_run_test_R2": 0.46210160920889265,
+      "acceleration_per_nominal_A": 209.0185698264703,
+      "constant_acceleration": -75.89124776168016,
+      "velocity_coefficient": 35.63948647278179,
+      "equivalent_current_terms": [
+        {
+          "order": 84,
+          "cos_A": -0.011543322761497077,
+          "sin_A": 0.04163122612624339
+        }
+      ],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-window-age-02.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.6099059128462094
+        }
+      ]
+    },
+    {
+      "orders": [
+        84
+      ],
+      "iq_lead_us": 2000,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.6552465804042127,
+      "within_run_test_R2": 0.4612187276257209,
+      "acceleration_per_nominal_A": 234.06911083280647,
+      "constant_acceleration": -86.11748822251684,
+      "velocity_coefficient": 41.13085668181088,
+      "equivalent_current_terms": [
+        {
+          "order": 84,
+          "cos_A": -0.013303436767962331,
+          "sin_A": 0.03728454912764769
+        }
+      ],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-window-age-02.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.5953615668493465
+        }
+      ]
+    },
+    {
+      "orders": [
+        84
+      ],
+      "iq_lead_us": 4000,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.6393289870211946,
+      "within_run_test_R2": 0.4334411847842323,
+      "acceleration_per_nominal_A": 252.34588671505287,
+      "constant_acceleration": -94.09852929342483,
+      "velocity_coefficient": 45.71047669195576,
+      "equivalent_current_terms": [
+        {
+          "order": 84,
+          "cos_A": -0.016419471360018728,
+          "sin_A": 0.03587622015261919
+        }
+      ],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-window-age-02.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.5640619388016812
+        }
+      ]
+    },
+    {
+      "orders": [
+        14,
+        28,
+        84
+      ],
+      "iq_lead_us": 0,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.6799997317169764,
+      "within_run_test_R2": 0.5058021107086608,
+      "acceleration_per_nominal_A": 236.86969169341637,
+      "constant_acceleration": -81.65885347321738,
+      "velocity_coefficient": 36.70171924394896,
+      "equivalent_current_terms": [
+        {
+          "order": 14,
+          "cos_A": 0.0029477912638161477,
+          "sin_A": 0.023798215440754292
+        },
+        {
+          "order": 28,
+          "cos_A": 0.002633489051585204,
+          "sin_A": 0.0016304984993483465
+        },
+        {
+          "order": 84,
+          "cos_A": -0.010007946376383126,
+          "sin_A": 0.03284007869453675
+        }
+      ],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-window-age-02.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.6203567279571082
+        }
+      ]
+    },
+    {
+      "orders": [
+        14,
+        28,
+        84
+      ],
+      "iq_lead_us": 2000,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.6884892411999172,
+      "within_run_test_R2": 0.5160077251137707,
+      "acceleration_per_nominal_A": 275.50519942790277,
+      "constant_acceleration": -96.88728718023586,
+      "velocity_coefficient": 44.61763554146702,
+      "equivalent_current_terms": [
+        {
+          "order": 14,
+          "cos_A": 0.0015107704255112825,
+          "sin_A": 0.023570261130092352
+        },
+        {
+          "order": 28,
+          "cos_A": 0.0018601103147252633,
+          "sin_A": 0.0029849795826277933
+        },
+        {
+          "order": 84,
+          "cos_A": -0.011043367340255796,
+          "sin_A": 0.027527531224493872
+        }
+      ],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-window-age-02.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.607072856531901
+        }
+      ]
+    },
+    {
+      "orders": [
+        14,
+        28,
+        84
+      ],
+      "iq_lead_us": 4000,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.6769334843904489,
+      "within_run_test_R2": 0.4949613777867562,
+      "acceleration_per_nominal_A": 305.34865247186326,
+      "constant_acceleration": -109.39785340227348,
+      "velocity_coefficient": 51.52783103733388,
+      "equivalent_current_terms": [
+        {
+          "order": 14,
+          "cos_A": 0.0005291901364545018,
+          "sin_A": 0.022934158450216253
+        },
+        {
+          "order": 28,
+          "cos_A": 0.0016513161178160639,
+          "sin_A": 0.0031419520014235583
+        },
+        {
+          "order": 84,
+          "cos_A": -0.013673650383451875,
+          "sin_A": 0.025557733916385723
+        }
+      ],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-window-age-02.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.5704959289295741
+        }
+      ]
+    }
+  ],
+  "note": "Exploratory least squares, local quadratic acceleration over five 10ms samples; nominal current and approximate LPF compensation. Noise, sticking, sampling, sensor nonlinearity, phase calibration and closed-loop correlation bias identification. Negative current gain is nonphysical. No coefficients are approved for drive feedforward."
+}

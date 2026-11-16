@@ -1,0 +1,41 @@
+{
+  "log": "2026-11-17-sense-idle-02.log",
+  "rows": 20,
+  "adc1_frames_per_s": 12501.052631578947,
+  "adc2_frames_per_s": 12501.052631578947,
+  "max_sample_age_us": 1007.0,
+  "adc2_minus_adc1_frame_range": [
+    0.0,
+    0.0
+  ],
+  "all_gates_off": true,
+  "zero_current_nominal_A": [
+    {
+      "mean": 0.0056099999999999995,
+      "min": -0.0649,
+      "max": 0.082
+    },
+    {
+      "mean": 0.003934999999999998,
+      "min": -0.068,
+      "max": 0.0495
+    },
+    {
+      "mean": -0.017525,
+      "min": -0.0865,
+      "max": 0.0603
+    }
+  ],
+  "vbus_nominal_range_V": [
+    11.1823,
+    11.1906
+  ],
+  "temperature_adc_range": [
+    1670.0,
+    1677.0
+  ],
+  "offsets": "SENSE_OFFSETS_ADC 2530.791,2535.684,2541.053",
+  "initialized_gates_off": true,
+  "stop_acknowledged": true,
+  "note": "Nominal 3.3V ADC reference and resistor/gain values; phase mapping/sign and absolute accuracy not validated under drive. VBUS is not a CV-mode flag."
+}

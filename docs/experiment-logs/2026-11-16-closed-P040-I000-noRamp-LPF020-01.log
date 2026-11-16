@@ -1,0 +1,47 @@
+HOST start=2026-11-16T03:34:11.886441+09:00 port=COM10
+HOST supply=11.1V current_limit=0.8A (user specified); load removed, motor fixed
+600,0,0,0,0,0.00000,0.00000,0.0000
+800,0,0,0,0,0.00000,0.00000,0.0000
+1000,0,0,0,0,0.00000,0.00000,0.0000
+HOST sending one command=t at=2026-11-16T03:34:12.408940+09:00
+CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator=window10ms; raw=legacy_shadow
+CONTROL P=0.4000 I=0.0000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0200
+TRACE_CONFIG period_us=10000 capacity=320
+ALIGNING: slow 0.7 V, 3 electrical turns each way, with settling.
+MOT:Init
+MOT:Enable driver.
+ALIGN measured radians forward/reverse: 2.67821/2.65936
+MOT:Align sensor.
+MOT:Skip dir calib.
+MOT:Skip offset calib.
+ERR-MOT:No current sense.
+MOT:Ready.
+RUN: target 1 rad/s for 3 seconds, voltage limited to 0.5 V.
+16153,1,1772,1771,0,0.22934,0.00000,0.0000
+STOP: unexpected velocity
+RUN_SUMMARY elapsed_us,displacement_rad: 50067,-0.081681
+STOP_DETAIL elapsed_us,filtered_rad_s,raw_rad_s,window10ms_rad_s: 50067,-5.051154,7.853982,-14.579248
+TRACE_BEGIN: outputs disabled; velocities use encoder sign except closed-loop filtered velocity.
+trace_us,loop_us,A_edges,B_edges,angle_rad,raw_rad_s,filtered_rad_s,window10ms_rad_s,target_rad_s,Uq_V
+10020,21,1776,1774,0.240332,8.824699,0.000000,1.727876,1.000000,0.4000
+20045,22,1801,1799,0.318872,8.824700,0.680971,7.842220,1.000000,0.1302
+30048,21,1819,1817,0.293739,-13.255665,3.504677,-2.509260,1.000000,-0.5000
+40069,22,1866,1863,0.147655,-15.629815,1.056558,-14.579248,1.000000,-0.0226
+50079,27,1884,1883,0.141372,7.853982,-5.051154,-14.579248,1.000000,0.5000
+TRACE_END
+16353,0,1905,1904,0,0.20106,0.14674,0.0000
+16553,0,1905,1904,0,0.20106,0.00269,0.0000
+16753,0,1905,1905,0,0.19949,-0.00243,0.0000
+HOST completed: STOP + TRACE_END + disabled telemetry confirmed
+HOST sent final s; test_command_sent=True
+STOP: serial stop
+16953,0,1905,1905,0,0.19949,-0.00004,0.0000
+17153,0,1905,1905,0,0.19949,-0.00000,0.0000
+17353,0,1905,1905,0,0.19949,-0.00000,0.0000
+17553,0,1905,1905,0,0.19949,-0.00000,0.0000
+17753,0,1905,1905,0,0.19949,-0.00000,0.0000
+17953,0,1905,1905,0,0.19949,-0.00000,0.0000
+18153,0,1905,1905,0,0.19949,-0.00000,0.0000
+18353,0,1905,1905,0,0.19949,-0.00000,0.0000
+18553,0,1905,1905,0,0.19949,-0.00000,0.0000
+HOST final_stop_acknowledged=True

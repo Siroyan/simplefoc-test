@@ -1,0 +1,88 @@
+[
+  {
+    "log": "2026-11-17-fixedUq020-01.log",
+    "mode": "fixed_uq_sensor_commutation",
+    "limiter": "LIMITER asymmetric: magnitude build-up 3.000V/s, immediate release, reversal via zero, bound +/-0.5V",
+    "output_policy": "OUTPUT_POLICY forward_only=0",
+    "drive": "DRIVE fixed_uq_V=0.2000 speed_PID=off speed_target=none sensor_commutation=on",
+    "pwm": null,
+    "open_field_tracking": null,
+    "control": "CONTROL P=0.2000 I=0.1500 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0500",
+    "stop": "STOP: shaft movement stalled",
+    "duration_s": 1.200011,
+    "displacement_rad": 0.342434,
+    "mean_speed_rad_s": 0.285359050875367,
+    "covered_after_0_8s_metrics": {
+      "covered_start_us": 802083.0,
+      "covered_end_us": 1200022.0,
+      "mean_encoder_velocity_rad_s": 0.0,
+      "filtered_tracking_rmse_rad_s": null,
+      "window_tracking_rmse_rad_s": null,
+      "window_speed_below_0_2_fraction": 1.0,
+      "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+      "negative_voltage_command_fraction": 0.0,
+      "negative_unslewed_pid_request_fraction": null
+    },
+    "captured_filtered_abs_peak_rad_s": 3.686732,
+    "captured_window_abs_peak_rad_s": 7.369478,
+    "Uq_range_V": [
+      0.0,
+      0.2
+    ],
+    "final_stop_acknowledged": true
+  },
+  {
+    "log": "2026-11-17-fixedUq020-02.log",
+    "mode": "fixed_uq_sensor_commutation",
+    "limiter": "LIMITER asymmetric: magnitude build-up 3.000V/s, immediate release, reversal via zero, bound +/-0.5V",
+    "output_policy": "OUTPUT_POLICY forward_only=0",
+    "drive": "DRIVE fixed_uq_V=0.2000 speed_PID=off speed_target=none sensor_commutation=on",
+    "pwm": null,
+    "open_field_tracking": null,
+    "control": "CONTROL P=0.2000 I=0.1500 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0500",
+    "stop": "STOP: shaft movement stalled",
+    "duration_s": 1.200013,
+    "displacement_rad": 0.348717,
+    "mean_speed_rad_s": 0.29059435189452115,
+    "covered_after_0_8s_metrics": {
+      "covered_start_us": 801678.0,
+      "covered_end_us": 1200023.0,
+      "mean_encoder_velocity_rad_s": 0.0,
+      "filtered_tracking_rmse_rad_s": null,
+      "window_tracking_rmse_rad_s": null,
+      "window_speed_below_0_2_fraction": 1.0,
+      "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+      "negative_voltage_command_fraction": 0.0,
+      "negative_unslewed_pid_request_fraction": null
+    },
+    "captured_filtered_abs_peak_rad_s": 3.592152,
+    "captured_window_abs_peak_rad_s": 7.223495,
+    "Uq_range_V": [
+      0.0,
+      0.2
+    ],
+    "final_stop_acknowledged": true
+  },
+  {
+    "log": "2026-11-17-fixedUq020-pwm12500-01.log",
+    "mode": "fixed_uq_sensor_commutation",
+    "limiter": "LIMITER asymmetric: magnitude build-up 3.000V/s, immediate release, reversal via zero, bound +/-0.5V",
+    "output_policy": "OUTPUT_POLICY forward_only=0",
+    "drive": "DRIVE fixed_uq_V=0.2000 speed_PID=off speed_target=none sensor_commutation=on",
+    "pwm": "PWM hz=12500 dead_zone=0.010000 system_clock_Hz=170000000 tim1_cr1=193 tim1_psc=0 tim1_arr=6799 tim1_bdtr=34948 rcc_cfgr=15",
+    "open_field_tracking": null,
+    "control": "CONTROL P=0.2000 I=0.1500 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0500",
+    "stop": "STOP: unexpected velocity",
+    "duration_s": 0.177057,
+    "displacement_rad": 0.738274,
+    "mean_speed_rad_s": 4.169696764318835,
+    "covered_after_0_8s_metrics": null,
+    "captured_filtered_abs_peak_rad_s": 5.005228,
+    "captured_window_abs_peak_rad_s": 8.63679,
+    "Uq_range_V": [
+      0.0,
+      0.2
+    ],
+    "final_stop_acknowledged": true
+  }
+]

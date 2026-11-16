@@ -1,0 +1,526 @@
+{
+  "runs": 30,
+  "reference_mean_phase_rad": 4.348956494317376,
+  "observed_pole_groups": 7,
+  "missing_pole_groups": [],
+  "groups": [
+    {
+      "pole_group": 0,
+      "runs": 1,
+      "mean_residual_rad": 0.007038742643291074,
+      "within_group_std_rad": 0.0,
+      "residual_range_rad": [
+        0.007038742643291074,
+        0.007038742643291074
+      ]
+    },
+    {
+      "pole_group": 1,
+      "runs": 1,
+      "mean_residual_rad": -0.014054114499566062,
+      "within_group_std_rad": 0.0,
+      "residual_range_rad": [
+        -0.014054114499566062,
+        -0.014054114499566062
+      ]
+    },
+    {
+      "pole_group": 2,
+      "runs": 1,
+      "mean_residual_rad": -0.017869729810935375,
+      "within_group_std_rad": 0.0,
+      "residual_range_rad": [
+        -0.017869729810935375,
+        -0.017869729810935375
+      ]
+    },
+    {
+      "pole_group": 3,
+      "runs": 1,
+      "mean_residual_rad": 0.0018781049144243056,
+      "within_group_std_rad": 0.0,
+      "residual_range_rad": [
+        0.0018781049144243056,
+        0.0018781049144243056
+      ]
+    },
+    {
+      "pole_group": 4,
+      "runs": 8,
+      "mean_residual_rad": 0.009255201205605967,
+      "within_group_std_rad": 0.0016542943928873131,
+      "residual_range_rad": [
+        0.005917445720256431,
+        0.012200061031625076
+      ]
+    },
+    {
+      "pole_group": 5,
+      "runs": 7,
+      "mean_residual_rad": -0.015625285771121433,
+      "within_group_std_rad": 0.0016181730306331962,
+      "residual_range_rad": [
+        -0.018318312448255547,
+        -0.013605411422600966
+      ]
+    },
+    {
+      "pole_group": 6,
+      "runs": 11,
+      "mean_residual_rad": 0.005284595710239467,
+      "within_group_std_rad": 0.0026254999279287715,
+      "residual_range_rad": [
+        0.00142864366894635,
+        0.009283258980315345
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "log": "2026-11-17-current-ff84-02.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 6.013008691868217,
+      "zero_electrical_from_index_rad": 4.391949,
+      "run_start_minus_held_rad": 0.0015706153113694832,
+      "index_observations": 3,
+      "pole_group": 6,
+      "mechanical_residual_rad": 0.006141786526089099
+    },
+    {
+      "log": "2026-11-17-current-static-probe10-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 6.0098664061539315,
+      "zero_electrical_from_index_rad": 4.369953000000001,
+      "run_start_minus_held_rad": -9.897434494199331e-08,
+      "index_observations": 2,
+      "pole_group": 6,
+      "mechanical_residual_rad": 0.002999500811803557
+    },
+    {
+      "log": "2026-11-17-current-static-probe20-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 6.013008120439645,
+      "zero_electrical_from_index_rad": 4.391945,
+      "run_start_minus_held_rad": 1.8673994084394963e-07,
+      "index_observations": 2,
+      "pole_group": 6,
+      "mechanical_residual_rad": 0.006141215097517083
+    },
+    {
+      "log": "2026-11-17-current-static-probe20-02.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 6.011437977582503,
+      "zero_electrical_from_index_rad": 4.380954,
+      "run_start_minus_held_rad": 3.295970837369211e-07,
+      "index_observations": 2,
+      "pole_group": 6,
+      "mechanical_residual_rad": 0.004571072240374896
+    },
+    {
+      "log": "2026-11-17-current-static-probe20-reference-fresh-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 6.008295549011074,
+      "zero_electrical_from_index_rad": 4.358957,
+      "run_start_minus_held_rad": 0.006282758168512313,
+      "index_observations": 2,
+      "pole_group": 6,
+      "mechanical_residual_rad": 0.00142864366894635
+    },
+    {
+      "log": "2026-11-17-current-velocity-abi-quality-02.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 6.009866691868217,
+      "zero_electrical_from_index_rad": 4.369955,
+      "run_start_minus_held_rad": 0.0031416153113694723,
+      "index_observations": 3,
+      "pole_group": 6,
+      "mechanical_residual_rad": 0.002999786526088677
+    },
+    {
+      "log": "2026-11-17-current-velocity-coverage-qI200-P015-I480-01.log",
+      "alignment_cycles": 4,
+      "held_angle_from_index_rad": 3.3159513071795863,
+      "zero_electrical_from_index_rad": 4.362103228718343,
+      "run_start_minus_held_rad": 0.0,
+      "index_observations": 2,
+      "pole_group": 3,
+      "mechanical_residual_rad": 0.0018781049144243056
+    },
+    {
+      "log": "2026-11-17-current-velocity-index-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 4.2207301204396455,
+      "zero_electrical_from_index_rad": 4.4123696143591715,
+      "run_start_minus_held_rad": 1.8673994084394963e-07,
+      "index_observations": 3,
+      "pole_group": 4,
+      "mechanical_residual_rad": 0.009059017148827841
+    },
+    {
+      "log": "2026-11-17-current-velocity-LPF002-02.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 5.094092120439646,
+      "zero_electrical_from_index_rad": 4.242718307179586,
+      "run_start_minus_held_rad": 1.8673994084394963e-07,
+      "index_observations": 3,
+      "pole_group": 5,
+      "mechanical_residual_rad": -0.01517688387682714
+    },
+    {
+      "log": "2026-11-17-current-velocity-reverse-qI200-P015-I480-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 0.6283182418314877,
+      "zero_electrical_from_index_rad": 4.398227692820413,
+      "run_start_minus_held_rad": 0.009424758168512293,
+      "index_observations": 1,
+      "pole_group": 0,
+      "mechanical_residual_rad": 0.007038742643291074
+    },
+    {
+      "log": "2026-11-17-current-velocity-reverse-qI200-P015-I480-02.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 4.223871164322443,
+      "zero_electrical_from_index_rad": 4.4343569215387575,
+      "run_start_minus_held_rad": 0.01099514285714287,
+      "index_observations": 2,
+      "pole_group": 4,
+      "mechanical_residual_rad": 0.012200061031625076
+    },
+    {
+      "log": "2026-11-17-current-velocity-reverse-qI200-P015-I480-03.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 1.5048232857142856,
+      "zero_electrical_from_index_rad": 4.250577692820412,
+      "run_start_minus_held_rad": 0.009424714285714286,
+      "index_observations": 1,
+      "pole_group": 1,
+      "mechanical_residual_rad": -0.014054114499566062
+    },
+    {
+      "log": "2026-11-17-current-velocity-reverse-qI200-P015-I480-04.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 5.095663592893872,
+      "zero_electrical_from_index_rad": 4.2537186143591725,
+      "run_start_minus_held_rad": 0.007853714285714325,
+      "index_observations": 2,
+      "pole_group": 5,
+      "mechanical_residual_rad": -0.013605411422600966
+    },
+    {
+      "log": "2026-11-17-current-velocity-reverse-qI200-P015-I480-05.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 2.3986055714285714,
+      "zero_electrical_from_index_rad": 4.223868385640827,
+      "run_start_minus_held_rad": 0.007854428571428568,
+      "index_observations": 1,
+      "pole_group": 2,
+      "mechanical_residual_rad": -0.017869729810935375
+    },
+    {
+      "log": "2026-11-17-current-velocity-reverse-qI200-P015-I480-06.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 6.016150164322443,
+      "zero_electrical_from_index_rad": 4.413939307179586,
+      "run_start_minus_held_rad": 0.010995142857142842,
+      "index_observations": 2,
+      "pole_group": 6,
+      "mechanical_residual_rad": 0.009283258980315345
+    },
+    {
+      "log": "2026-11-17-current-velocity-rise100-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 4.217588549011074,
+      "zero_electrical_from_index_rad": 4.390378614359172,
+      "run_start_minus_held_rad": -2.4183148772394247e-07,
+      "index_observations": 3,
+      "pole_group": 4,
+      "mechanical_residual_rad": 0.005917445720256431
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-02.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 5.092521977582503,
+      "zero_electrical_from_index_rad": 4.231727307179586,
+      "run_start_minus_held_rad": 0.0015703295970836972,
+      "index_observations": 3,
+      "pole_group": 5,
+      "mechanical_residual_rad": -0.016747026733970216
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-actuator-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 4.2207299775825025,
+      "zero_electrical_from_index_rad": 4.412368614359172,
+      "run_start_minus_held_rad": 3.295970837369211e-07,
+      "index_observations": 3,
+      "pole_group": 4,
+      "mechanical_residual_rad": 0.009058874291684837
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-currentLPF001-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 6.014579549011074,
+      "zero_electrical_from_index_rad": 4.402945,
+      "run_start_minus_held_rad": -2.4183148772394247e-07,
+      "index_observations": 3,
+      "pole_group": 6,
+      "mechanical_residual_rad": 0.007712643668946306
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-currentLPF001-actual-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 5.090950691868217,
+      "zero_electrical_from_index_rad": 4.220728307179587,
+      "run_start_minus_held_rad": -3.8468863061691394e-07,
+      "index_observations": 3,
+      "pole_group": 5,
+      "mechanical_residual_rad": -0.018318312448255547
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-P030-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 4.2207301204396455,
+      "zero_electrical_from_index_rad": 4.4123696143591715,
+      "run_start_minus_held_rad": 1.8673994084394963e-07,
+      "index_observations": 3,
+      "pole_group": 4,
+      "mechanical_residual_rad": 0.009059017148827841
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P010-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 5.094092549011074,
+      "zero_electrical_from_index_rad": 4.242721307179586,
+      "run_start_minus_held_rad": 0.004712758168512354,
+      "index_observations": 3,
+      "pole_group": 5,
+      "mechanical_residual_rad": -0.015176455305399017
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I240-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 4.2207299775825025,
+      "zero_electrical_from_index_rad": 4.412368614359172,
+      "run_start_minus_held_rad": 0.007854329597083765,
+      "index_observations": 3,
+      "pole_group": 4,
+      "mechanical_residual_rad": 0.009058874291684837
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I480-04.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 5.095663120439646,
+      "zero_electrical_from_index_rad": 4.253715307179586,
+      "run_start_minus_held_rad": 0.0062831867399408825,
+      "index_observations": 3,
+      "pole_group": 5,
+      "mechanical_residual_rad": -0.01360588387682693
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I480-06.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 4.222300406153931,
+      "zero_electrical_from_index_rad": 4.423361614359173,
+      "run_start_minus_held_rad": 0.009424901025655075,
+      "index_observations": 3,
+      "pole_group": 4,
+      "mechanical_residual_rad": 0.010629302863113033
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-reference-fresh-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 6.008295549011074,
+      "zero_electrical_from_index_rad": 4.358957,
+      "run_start_minus_held_rad": 0.006282758168512313,
+      "index_observations": 3,
+      "pole_group": 6,
+      "mechanical_residual_rad": 0.00142864366894635
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-v70-baseline-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 6.014578691868217,
+      "zero_electrical_from_index_rad": 4.402939,
+      "run_start_minus_held_rad": 0.0109956153113695,
+      "index_observations": 3,
+      "pole_group": 6,
+      "mechanical_residual_rad": 0.0077117865260891705
+    },
+    {
+      "log": "2026-11-17-current-velocity-v52-reference-01.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 6.014579120439645,
+      "zero_electrical_from_index_rad": 4.4029419999999995,
+      "run_start_minus_held_rad": 1.8673994095497193e-07,
+      "index_observations": 3,
+      "pole_group": 6,
+      "mechanical_residual_rad": 0.007712215097517294
+    },
+    {
+      "log": "2026-11-17-current-velocity-window-age-02.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 5.092521977582503,
+      "zero_electrical_from_index_rad": 4.231727307179587,
+      "run_start_minus_held_rad": 3.295970836258988e-07,
+      "index_observations": 3,
+      "pole_group": 5,
+      "mechanical_residual_rad": -0.016747026733970216
+    },
+    {
+      "log": "2026-11-17-current-velocity-window-age-04.log",
+      "alignment_cycles": 3,
+      "held_angle_from_index_rad": 4.2207301204396455,
+      "zero_electrical_from_index_rad": 4.4123696143591715,
+      "run_start_minus_held_rad": 1.8673994084394963e-07,
+      "index_observations": 3,
+      "pole_group": 4,
+      "mechanical_residual_rad": 0.009059017148827841
+    }
+  ],
+  "exploratory_shape_models": [
+    {
+      "mechanical_orders": [
+        1
+      ],
+      "pole_count": 7,
+      "mean_offset_rad": -0.0034417836582945798,
+      "terms": [
+        {
+          "order": 1,
+          "cos_rad": 0.003176923385504057,
+          "sin_rad": -0.004932007734948028,
+          "amplitude_rad": 0.005866646614118643
+        }
+      ],
+      "leave_one_pole_out_error_rms_rad": 0.017800781267962907,
+      "constant_leave_one_pole_out_error_rms_rad": 0.012816130039832199,
+      "folds": [
+        {
+          "pole_group": 0,
+          "prediction_rad": -0.011805369859402205,
+          "observed_rad": 0.007038742643291074,
+          "error_rad": -0.01884411250269328,
+          "constant_error_rad": -0.012227280685183263
+        },
+        {
+          "pole_group": 1,
+          "prediction_rad": -0.0038133992752757717,
+          "observed_rad": -0.014054114499566062,
+          "error_rad": 0.01024071522429029,
+          "constant_error_rad": 0.012381052648150063
+        },
+        {
+          "pole_group": 2,
+          "prediction_rad": -0.002506049743919552,
+          "observed_rad": -0.017869729810935375,
+          "error_rad": 0.015363680067015823,
+          "constant_error_rad": 0.016832603844747596
+        },
+        {
+          "pole_group": 3,
+          "prediction_rad": -0.011427511166074303,
+          "observed_rad": 0.0018781049144243056,
+          "error_rad": -0.013305616080498609,
+          "constant_error_rad": -0.006206536668172033
+        },
+        {
+          "pole_group": 4,
+          "prediction_rad": -0.008061991520988694,
+          "observed_rad": 0.009255201205605967,
+          "error_rad": -0.01731719272659466,
+          "constant_error_rad": -0.014813149007883972
+        },
+        {
+          "pole_group": 5,
+          "prediction_rad": 0.01580500990034652,
+          "observed_rad": -0.015625285771121433,
+          "error_rad": 0.031430295671467955,
+          "constant_error_rad": 0.014214085798297997
+        },
+        {
+          "pole_group": 6,
+          "prediction_rad": -0.0022831739427480457,
+          "observed_rad": 0.005284595710239467,
+          "error_rad": -0.007567769652987512,
+          "constant_error_rad": -0.010180775929956387
+        }
+      ]
+    },
+    {
+      "mechanical_orders": [
+        1,
+        2
+      ],
+      "pole_count": 7,
+      "mean_offset_rad": -0.0034417836582945793,
+      "terms": [
+        {
+          "order": 1,
+          "cos_rad": 0.0031769233855040552,
+          "sin_rad": -0.00493200773494803,
+          "amplitude_rad": 0.005866646614118644
+        },
+        {
+          "order": 2,
+          "cos_rad": 0.007522944169285124,
+          "sin_rad": 0.011355196992112902,
+          "amplitude_rad": 0.013621130191869944
+        }
+      ],
+      "leave_one_pole_out_error_rms_rad": 0.01144850340932067,
+      "constant_leave_one_pole_out_error_rms_rad": 0.012816130039832199,
+      "folds": [
+        {
+          "pole_group": 0,
+          "prediction_rad": 0.015460130888693902,
+          "observed_rad": 0.007038742643291074,
+          "error_rad": 0.008421388245402828,
+          "constant_error_rad": -0.012227280685183263
+        },
+        {
+          "pole_group": 1,
+          "prediction_rad": -0.015641730206842352,
+          "observed_rad": -0.014054114499566062,
+          "error_rad": -0.0015876157072762902,
+          "constant_error_rad": 0.012381052648150063
+        },
+        {
+          "pole_group": 2,
+          "prediction_rad": -0.02343033340344056,
+          "observed_rad": -0.017869729810935375,
+          "error_rad": -0.005560603592505185,
+          "constant_error_rad": 0.016832603844747596
+        },
+        {
+          "pole_group": 3,
+          "prediction_rad": 0.013485582068887635,
+          "observed_rad": 0.0018781049144243056,
+          "error_rad": 0.011607477154463329,
+          "constant_error_rad": -0.006206536668172033
+        },
+        {
+          "pole_group": 4,
+          "prediction_rad": -0.006100146304008887,
+          "observed_rad": 0.009255201205605967,
+          "error_rad": -0.015355347509614856,
+          "constant_error_rad": -0.014813149007883972
+        },
+        {
+          "pole_group": 5,
+          "prediction_rad": 0.00043661719838710127,
+          "observed_rad": -0.015625285771121433,
+          "error_rad": 0.016061902969508535,
+          "constant_error_rad": 0.014214085798297997
+        },
+        {
+          "pole_group": 6,
+          "prediction_rad": -0.008302605849738876,
+          "observed_rad": 0.005284595710239467,
+          "error_rad": -0.013587201559978342,
+          "constant_error_rad": -0.010180775929956387
+        }
+      ]
+    }
+  ],
+  "note": "Pole groups assume the .7V alignment endpoint selects one of seven nearby stable field orientations; the branch is chosen near the run start. Residuals mix encoder nonlinearity, pole placement, friction/load and alignment repeatability. Index visibility can bias the sampled poles. No absolute angle calibration or firmware correction is inferred."
+}

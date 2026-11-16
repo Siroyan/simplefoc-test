@@ -1,0 +1,122 @@
+[
+  {
+    "log": "2026-11-16-signed-AB-A1-recovered.log",
+    "mode": "closed_asymmetric",
+    "limiter": "LIMITER asymmetric: magnitude build-up 3.000V/s, immediate release, reversal via zero, bound +/-0.5V",
+    "output_policy": "OUTPUT_POLICY forward_only=0",
+    "open_field_tracking": null,
+    "control": "CONTROL P=0.2000 I=0.1500 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0500",
+    "stop": "STOP: 3-second test complete",
+    "duration_s": 2.999042,
+    "displacement_rad": 2.045177,
+    "mean_speed_rad_s": 0.6819434339365703,
+    "covered_after_0_8s_metrics": {
+      "covered_start_us": 801011.0,
+      "covered_end_us": 2999053.0,
+      "mean_encoder_velocity_rad_s": 0.7896709889983903,
+      "filtered_tracking_rmse_rad_s": 0.5121453507663435,
+      "window_tracking_rmse_rad_s": 1.1438943381697002,
+      "window_speed_below_0_2_fraction": 0.4100080890174073,
+      "reverse_window_speed_below_minus_0_2_fraction": 0.013658064768553102,
+      "negative_voltage_command_fraction": 0.034225915610347754,
+      "negative_unslewed_pid_request_fraction": 0.034225915610347754
+    },
+    "captured_filtered_abs_peak_rad_s": 2.296251,
+    "captured_window_abs_peak_rad_s": 5.652033,
+    "Uq_range_V": [
+      -0.0476,
+      0.2922
+    ],
+    "final_stop_acknowledged": true
+  },
+  {
+    "log": "2026-11-16-signed-AB-A2.log",
+    "mode": "closed_asymmetric",
+    "limiter": "LIMITER asymmetric: magnitude build-up 3.000V/s, immediate release, reversal via zero, bound +/-0.5V",
+    "output_policy": "OUTPUT_POLICY forward_only=0",
+    "open_field_tracking": null,
+    "control": "CONTROL P=0.2000 I=0.1500 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0500",
+    "stop": "STOP: 3-second test complete",
+    "duration_s": 2.999068,
+    "displacement_rad": 2.125288,
+    "mean_speed_rad_s": 0.708649487107328,
+    "covered_after_0_8s_metrics": {
+      "covered_start_us": 800869.0,
+      "covered_end_us": 2999078.0,
+      "mean_encoder_velocity_rad_s": 0.8403463910847422,
+      "filtered_tracking_rmse_rad_s": 0.44996723357101676,
+      "window_tracking_rmse_rad_s": 1.1919941384149446,
+      "window_speed_below_0_2_fraction": 0.3781291951766188,
+      "reverse_window_speed_below_minus_0_2_fraction": 0.004565534942309853,
+      "negative_voltage_command_fraction": 0.09110462198999277,
+      "negative_unslewed_pid_request_fraction": 0.09110462198999277
+    },
+    "captured_filtered_abs_peak_rad_s": 2.151742,
+    "captured_window_abs_peak_rad_s": 5.811348,
+    "Uq_range_V": [
+      -0.0679,
+      0.267
+    ],
+    "final_stop_acknowledged": true
+  },
+  {
+    "log": "2026-11-16-signed-AB-B1.log",
+    "mode": "closed_forward_only",
+    "limiter": "LIMITER asymmetric: magnitude build-up 3.000V/s, immediate release, reversal via zero, bound 0..0.5V",
+    "output_policy": "OUTPUT_POLICY forward_only=1",
+    "open_field_tracking": null,
+    "control": "CONTROL P=0.2000 I=0.1500 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0500",
+    "stop": "STOP: 3-second test complete",
+    "duration_s": 2.999056,
+    "displacement_rad": 2.024756,
+    "mean_speed_rad_s": 0.6751311079219594,
+    "covered_after_0_8s_metrics": {
+      "covered_start_us": 800944.0,
+      "covered_end_us": 2999067.0,
+      "mean_encoder_velocity_rad_s": 0.8003610353014821,
+      "filtered_tracking_rmse_rad_s": 0.4962241298284581,
+      "window_tracking_rmse_rad_s": 1.206149087859161,
+      "window_speed_below_0_2_fraction": 0.4487123786976434,
+      "reverse_window_speed_below_minus_0_2_fraction": 0.02278534913651329,
+      "negative_voltage_command_fraction": 0.0,
+      "negative_unslewed_pid_request_fraction": 0.06378851410953801
+    },
+    "captured_filtered_abs_peak_rad_s": 2.14193,
+    "captured_window_abs_peak_rad_s": 5.643584,
+    "Uq_range_V": [
+      0.0,
+      0.2883
+    ],
+    "final_stop_acknowledged": true
+  },
+  {
+    "log": "2026-11-16-signed-AB-B2.log",
+    "mode": "closed_forward_only",
+    "limiter": "LIMITER asymmetric: magnitude build-up 3.000V/s, immediate release, reversal via zero, bound 0..0.5V",
+    "output_policy": "OUTPUT_POLICY forward_only=1",
+    "open_field_tracking": null,
+    "control": "CONTROL P=0.2000 I=0.1500 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0500",
+    "stop": "STOP: 3-second test complete",
+    "duration_s": 2.999044,
+    "displacement_rad": 1.856681,
+    "mean_speed_rad_s": 0.6190909503161675,
+    "covered_after_0_8s_metrics": {
+      "covered_start_us": 801151.0,
+      "covered_end_us": 2999055.0,
+      "mean_encoder_velocity_rad_s": 0.7061031783007812,
+      "filtered_tracking_rmse_rad_s": 0.618582033054226,
+      "window_tracking_rmse_rad_s": 1.2401544542094407,
+      "window_speed_below_0_2_fraction": 0.5352053592877578,
+      "reverse_window_speed_below_minus_0_2_fraction": 0.004562528663672299,
+      "negative_voltage_command_fraction": 0.0,
+      "negative_unslewed_pid_request_fraction": 0.054695291514097064
+    },
+    "captured_filtered_abs_peak_rad_s": 2.601944,
+    "captured_window_abs_peak_rad_s": 6.892205,
+    "Uq_range_V": [
+      0.0,
+      0.3278
+    ],
+    "final_stop_acknowledged": true
+  }
+]

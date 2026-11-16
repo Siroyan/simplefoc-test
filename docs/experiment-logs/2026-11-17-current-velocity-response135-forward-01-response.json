@@ -1,0 +1,178 @@
+{
+  "log": "2026-11-17-current-velocity-response135-forward-01.log",
+  "probe": "CURRENT_PROBE frequency_Hz=13.50 phase_rad=0.000000 amplitude_nominal_A=0.0200 start_us=800000 blend_us=200000 total_bound_A=0.4500 stationary_attempt=0 excitation_only=1",
+  "summary": "CURRENT_PROBE_SUMMARY calls=8373 clipped_calls=0 peak_nominal_A=0.020000 invalid=0",
+  "firmware": "FIRMWARE diag_version=82",
+  "current_loop": "CURRENT_LOOP q_P=0.60 q_I=200.0 d_P=.20 d_I=50 D=0 q_voltage_build_up_V_s=100.0 current_LPF_s=0.0020 vector_voltage_limit_V=.5 release=immediate reversal=via_zero; nominal current scaling",
+  "current_active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0020 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=7.2000",
+  "stationary_attempt": false,
+  "settled_angle_span_rad": 1.883385,
+  "logged_probe_samples_checked": 16,
+  "max_logged_wave_error_nominal_A": 4.6592356998248485e-07,
+  "full_settled_fit": {
+    "samples": 190,
+    "start_us": 1104629.0,
+    "end_us": 2999796.0,
+    "coherent_components": {
+      "iq_target_nominal_A": {
+        "amplitude": 0.021518932774411585,
+        "phase_deg": -121.95350741288134,
+        "residual_rms": 0.07971194909229266,
+        "sine_R2_after_removing_linear_trend": 0.03518780038232039
+      },
+      "iq_filtered_nominal_A": {
+        "amplitude": 0.0203458796137614,
+        "phase_deg": -132.28778782323647,
+        "residual_rms": 0.07122312080005233,
+        "sine_R2_after_removing_linear_trend": 0.03933937870024895
+      },
+      "Uq_V": {
+        "amplitude": 0.01246916413925896,
+        "phase_deg": -123.81551423956603,
+        "residual_rms": 0.04482755176475581,
+        "sine_R2_after_removing_linear_trend": 0.03729556320431138
+      }
+    },
+    "target_amplitude_at_least_5mA": true,
+    "current_gain": 0.9454873913614769,
+    "current_phase_deg": -10.334280410355122,
+    "single_frequency_phase_delay_ms": 2.1263951461636053
+  },
+  "split_fits": [
+    {
+      "samples": 95,
+      "start_us": 1104629.0,
+      "end_us": 2048128.0,
+      "coherent_components": {
+        "iq_target_nominal_A": {
+          "amplitude": 0.020927086265651616,
+          "phase_deg": -84.81426872540847,
+          "residual_rms": 0.07864331915787716,
+          "sine_R2_after_removing_linear_trend": 0.03388701667220684
+        },
+        "iq_filtered_nominal_A": {
+          "amplitude": 0.02186599431771401,
+          "phase_deg": -104.1712724762442,
+          "residual_rms": 0.06892797373517712,
+          "sine_R2_after_removing_linear_trend": 0.04743185254479099
+        },
+        "Uq_V": {
+          "amplitude": 0.012559385057356228,
+          "phase_deg": -91.63179263360274,
+          "residual_rms": 0.044666559478150486,
+          "sine_R2_after_removing_linear_trend": 0.03765736544604059
+        }
+      },
+      "target_amplitude_at_least_5mA": true,
+      "current_gain": 1.0448656846033775,
+      "current_phase_deg": -19.357003750835737,
+      "single_frequency_phase_delay_ms": 3.9829225824764896
+    },
+    {
+      "samples": 95,
+      "start_us": 2058138.0,
+      "end_us": 2999796.0,
+      "coherent_components": {
+        "iq_target_nominal_A": {
+          "amplitude": 0.031169534948795666,
+          "phase_deg": -149.38706339453546,
+          "residual_rms": 0.07655035588253808,
+          "sine_R2_after_removing_linear_trend": 0.07723096652049477
+        },
+        "iq_filtered_nominal_A": {
+          "amplitude": 0.02554887911624636,
+          "phase_deg": -159.15123959208162,
+          "residual_rms": 0.07039970141616761,
+          "sine_R2_after_removing_linear_trend": 0.06225559141660808
+        },
+        "Uq_V": {
+          "amplitude": 0.017103616417691293,
+          "phase_deg": -150.61161323105674,
+          "residual_rms": 0.042174837226438874,
+          "sine_R2_after_removing_linear_trend": 0.07665096608285382
+        }
+      },
+      "target_amplitude_at_least_5mA": true,
+      "current_gain": 0.8196746970468843,
+      "current_phase_deg": -9.764176197546163,
+      "single_frequency_phase_delay_ms": 2.0090897525815152
+    }
+  ],
+  "closed_loop_velocity_response": {
+    "filtered_rad_s": {
+      "gain_rad_s_per_nominal_A": 3.1035476508173625,
+      "phase_deg": 113.42569482041704,
+      "coherent_velocity_component": {
+        "amplitude": 0.06207095301634725,
+        "phase_deg": 23.425694820417036,
+        "residual_rms": 0.36291350195969413,
+        "sine_R2_after_removing_linear_trend": 0.014523353249515258
+      },
+      "time_basis": "trace timestamp; current controller LPF velocity"
+    },
+    "window10ms_rad_s": {
+      "gain_rad_s_per_nominal_A": 2.975002666621922,
+      "phase_deg": 144.15767629922692,
+      "coherent_velocity_component": {
+        "amplitude": 0.05950005333243844,
+        "phase_deg": 54.157676299226935,
+        "residual_rms": 0.3239226396097565,
+        "sine_R2_after_removing_linear_trend": 0.016646302491344578
+      },
+      "time_basis": "velocity window midpoint"
+    }
+  },
+  "split_velocity_responses": [
+    {
+      "filtered_rad_s": {
+        "gain_rad_s_per_nominal_A": 1.5624120915801245,
+        "phase_deg": -107.92221333733015,
+        "coherent_velocity_component": {
+          "amplitude": 0.03124824183160249,
+          "phase_deg": 162.07778666266987,
+          "residual_rms": 0.36594226157427306,
+          "sine_R2_after_removing_linear_trend": 0.00365653625863005
+        },
+        "time_basis": "trace timestamp; current controller LPF velocity"
+      },
+      "window10ms_rad_s": {
+        "gain_rad_s_per_nominal_A": 2.934942332651057,
+        "phase_deg": -133.52992726330797,
+        "coherent_velocity_component": {
+          "amplitude": 0.05869884665302114,
+          "phase_deg": 136.47007273669203,
+          "residual_rms": 0.3206309467361439,
+          "sine_R2_after_removing_linear_trend": 0.01632619504221966
+        },
+        "time_basis": "velocity window midpoint"
+      }
+    },
+    {
+      "filtered_rad_s": {
+        "gain_rad_s_per_nominal_A": 7.7950101341755085,
+        "phase_deg": 104.76141094854019,
+        "coherent_velocity_component": {
+          "amplitude": 0.15590020268351018,
+          "phase_deg": 14.761410948540195,
+          "residual_rms": 0.34060968465186264,
+          "sine_R2_after_removing_linear_trend": 0.09538361240819626
+        },
+        "time_basis": "trace timestamp; current controller LPF velocity"
+      },
+      "window10ms_rad_s": {
+        "gain_rad_s_per_nominal_A": 6.4595441268184155,
+        "phase_deg": 118.72501219631972,
+        "coherent_velocity_component": {
+          "amplitude": 0.1291908825363683,
+          "phase_deg": 28.725012196319742,
+          "residual_rms": 0.31315540380990425,
+          "sine_R2_after_removing_linear_trend": 0.07772829475957654
+        },
+        "time_basis": "velocity window midpoint"
+      }
+    }
+  ],
+  "excitation_unclipped": true,
+  "stop_acknowledged": true,
+  "note": "Single-frequency coherent fit with offset and linear trend; rotor motion/disturbances can bias the estimate. Velocity ratios use the known added probe, not total PID current, and include the closed velocity loop. Clipping, split fits and opposite-phase repeats must be checked. These are not independently identified open-loop motor parameters, calibrated current, or a full delay measurement."
+}

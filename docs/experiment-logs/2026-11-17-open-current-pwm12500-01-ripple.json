@@ -1,0 +1,293 @@
+{
+  "analysis_format_version": 2,
+  "log": "2026-11-17-open-current-pwm12500-01.log",
+  "samples": 220,
+  "covered_seconds": 2.1950100000000003,
+  "command_direction": 1,
+  "angle_anchor": "alignment endpoint; cross-boot phase is unverified",
+  "index_angles_rad": [],
+  "index_turn_spacing_within_2_counts": null,
+  "zero_electrical_from_index_rad": null,
+  "fit_formula": "speed_error = offset + amplitude*cos(phase_argument - phase_rad)",
+  "window_timing": "unrecorded window age; approximate midpoint; cross-run phase is uncertain",
+  "temporal_time_basis": "approximate velocity window midpoint: trace_us - 5000; window age unavailable",
+  "abi_quality_metadata": [],
+  "within_run_holdout": [
+    {
+      "orders": [],
+      "train_samples": 110,
+      "test_samples": 110,
+      "train_explained_variance": 0.0,
+      "test_explained_variance": -0.0027529203285101556,
+      "training_coefficients": []
+    },
+    {
+      "orders": [
+        84
+      ],
+      "train_samples": 110,
+      "test_samples": 110,
+      "train_explained_variance": 0.37130754758773976,
+      "test_explained_variance": 0.09584593486916526,
+      "training_coefficients": [
+        {
+          "order": 84,
+          "cos": 0.20339471032798137,
+          "sin": 0.4425418719482557
+        }
+      ]
+    },
+    {
+      "orders": [
+        14,
+        84
+      ],
+      "train_samples": 110,
+      "test_samples": 110,
+      "train_explained_variance": 0.3987860199575147,
+      "test_explained_variance": 0.11779235640322028,
+      "training_coefficients": [
+        {
+          "order": 14,
+          "cos": 0.1314621934621433,
+          "sin": -0.026736081382067553
+        },
+        {
+          "order": 84,
+          "cos": 0.2040996010767524,
+          "sin": 0.44998019051429655
+        }
+      ]
+    },
+    {
+      "orders": [
+        14,
+        28,
+        84
+      ],
+      "train_samples": 110,
+      "test_samples": 110,
+      "train_explained_variance": 0.4697253612279211,
+      "test_explained_variance": 0.1799540601910492,
+      "training_coefficients": [
+        {
+          "order": 14,
+          "cos": 0.14177030080240222,
+          "sin": 0.016284851543152387
+        },
+        {
+          "order": 28,
+          "cos": 0.0620112149659896,
+          "sin": -0.20919255628397443
+        },
+        {
+          "order": 84,
+          "cos": 0.19010303093367253,
+          "sin": 0.4431868350286522
+        }
+      ]
+    }
+  ],
+  "selected_spatial_orders": [
+    {
+      "explained_variance": 0.0010096129984260571,
+      "amplitude_rad_s": 0.02588615696110031,
+      "phase_rad": 3.090444449612159,
+      "fitted_error_offset_rad_s": 0.0048185603381393155,
+      "cycles_per_mechanical_turn": 7,
+      "interval_fraction_over_half_cycle": 0.0
+    },
+    {
+      "explained_variance": 0.01708147800526849,
+      "amplitude_rad_s": 0.1031006939646591,
+      "phase_rad": 0.09117807193028021,
+      "fitted_error_offset_rad_s": 0.0117935660134754,
+      "cycles_per_mechanical_turn": 14,
+      "interval_fraction_over_half_cycle": 0.0
+    },
+    {
+      "explained_variance": 0.0011391425545652645,
+      "amplitude_rad_s": 0.028793411625377772,
+      "phase_rad": 3.0739036703646683,
+      "fitted_error_offset_rad_s": 0.0067507563306614445,
+      "cycles_per_mechanical_turn": 21,
+      "interval_fraction_over_half_cycle": 0.0
+    },
+    {
+      "explained_variance": 0.15150022870679292,
+      "amplitude_rad_s": 0.32174748268679854,
+      "phase_rad": -0.24365294262092657,
+      "fitted_error_offset_rad_s": 0.054278011783954555,
+      "cycles_per_mechanical_turn": 42,
+      "interval_fraction_over_half_cycle": 0.0
+    },
+    {
+      "explained_variance": 0.26651970246473056,
+      "amplitude_rad_s": 0.41717906812851524,
+      "phase_rad": 0.8499062074274129,
+      "fitted_error_offset_rad_s": 0.08498236655930633,
+      "cycles_per_mechanical_turn": 84,
+      "interval_fraction_over_half_cycle": 0.0
+    }
+  ],
+  "spatial_top8": [
+    {
+      "explained_variance": 0.2737057430599247,
+      "amplitude_rad_s": 0.42422315292625906,
+      "phase_rad": 2.271787969905318,
+      "fitted_error_offset_rad_s": 0.08535722196788295,
+      "cycles_per_mechanical_turn": 85,
+      "interval_fraction_over_half_cycle": 0.0
+    },
+    {
+      "explained_variance": 0.26651970246473056,
+      "amplitude_rad_s": 0.41717906812851524,
+      "phase_rad": 0.8499062074274129,
+      "fitted_error_offset_rad_s": 0.08498236655930633,
+      "cycles_per_mechanical_turn": 84,
+      "interval_fraction_over_half_cycle": 0.0
+    },
+    {
+      "explained_variance": 0.15150022870679292,
+      "amplitude_rad_s": 0.32174748268679854,
+      "phase_rad": -0.24365294262092657,
+      "fitted_error_offset_rad_s": 0.054278011783954555,
+      "cycles_per_mechanical_turn": 42,
+      "interval_fraction_over_half_cycle": 0.0
+    },
+    {
+      "explained_variance": 0.10417926923870868,
+      "amplitude_rad_s": 0.2560176485135476,
+      "phase_rad": -2.382811299511745,
+      "fitted_error_offset_rad_s": 0.03515697573829436,
+      "cycles_per_mechanical_turn": 86,
+      "interval_fraction_over_half_cycle": 0.0
+    },
+    {
+      "explained_variance": 0.10161621183075809,
+      "amplitude_rad_s": 0.24945225641598817,
+      "phase_rad": -1.848859566304765,
+      "fitted_error_offset_rad_s": 0.03896674354285729,
+      "cycles_per_mechanical_turn": 41,
+      "interval_fraction_over_half_cycle": 0.0
+    },
+    {
+      "explained_variance": 0.1015455414898998,
+      "amplitude_rad_s": 0.25313300448891557,
+      "phase_rad": -0.3896254507563986,
+      "fitted_error_offset_rad_s": 0.03681521585827283,
+      "cycles_per_mechanical_turn": 83,
+      "interval_fraction_over_half_cycle": 0.0
+    },
+    {
+      "explained_variance": 0.08395772907785404,
+      "amplitude_rad_s": 0.23550411939340155,
+      "phase_rad": 1.3004185012939464,
+      "fitted_error_offset_rad_s": 0.031176631582392023,
+      "cycles_per_mechanical_turn": 43,
+      "interval_fraction_over_half_cycle": 0.0
+    },
+    {
+      "explained_variance": 0.06380435777947602,
+      "amplitude_rad_s": 0.20555948272880412,
+      "phase_rad": -1.2629605006386,
+      "fitted_error_offset_rad_s": 0.024307615431764604,
+      "cycles_per_mechanical_turn": 28,
+      "interval_fraction_over_half_cycle": 0.0
+    }
+  ],
+  "temporal_top8": [
+    {
+      "explained_variance": 0.12125179225045613,
+      "amplitude_rad_s": 0.27528563527831973,
+      "phase_rad": 0.6559255419121078,
+      "fitted_error_offset_rad_s": 0.0043952579814424565,
+      "frequency_Hz": 13.5
+    },
+    {
+      "explained_variance": 0.11951287108970687,
+      "amplitude_rad_s": 0.2736435626011033,
+      "phase_rad": 2.9513352262341424,
+      "fitted_error_offset_rad_s": 0.004747465826847573,
+      "frequency_Hz": 6.5
+    },
+    {
+      "explained_variance": 0.047207603092537354,
+      "amplitude_rad_s": 0.17077105769523,
+      "phase_rad": -1.2305047457024885,
+      "fitted_error_offset_rad_s": 0.007261041685411094,
+      "frequency_Hz": 9.0
+    },
+    {
+      "explained_variance": 0.04296352957079874,
+      "amplitude_rad_s": 0.1626709872323312,
+      "phase_rad": -1.3680519937007647,
+      "fitted_error_offset_rad_s": 0.006785166423727434,
+      "frequency_Hz": 4.5
+    },
+    {
+      "explained_variance": 0.03555463272613435,
+      "amplitude_rad_s": 0.14861506063598975,
+      "phase_rad": 1.4451449311271103,
+      "fitted_error_offset_rad_s": 0.0077284856860268805,
+      "frequency_Hz": 11.0
+    },
+    {
+      "explained_variance": 0.029120796162523055,
+      "amplitude_rad_s": 0.13457434169694182,
+      "phase_rad": -2.0165072506282207,
+      "fitted_error_offset_rad_s": 0.007153221777549914,
+      "frequency_Hz": 20.0
+    },
+    {
+      "explained_variance": 0.02612704570275748,
+      "amplitude_rad_s": 0.12764396812641732,
+      "phase_rad": 2.621419548079975,
+      "fitted_error_offset_rad_s": 0.007116791531108515,
+      "frequency_Hz": 21.0
+    },
+    {
+      "explained_variance": 0.021371198908809785,
+      "amplitude_rad_s": 0.11533354767881043,
+      "phase_rad": 3.129788070615372,
+      "fitted_error_offset_rad_s": 0.007306441338452139,
+      "frequency_Hz": 24.5
+    }
+  ],
+  "temporal_band_peaks": [
+    {
+      "band_Hz": [
+        3,
+        8
+      ],
+      "explained_variance": 0.11951287108970687,
+      "amplitude_rad_s": 0.2736435626011033,
+      "phase_rad": 2.9513352262341424,
+      "fitted_error_offset_rad_s": 0.004747465826847573,
+      "frequency_Hz": 6.5
+    },
+    {
+      "band_Hz": [
+        8,
+        20
+      ],
+      "explained_variance": 0.12125179225045613,
+      "amplitude_rad_s": 0.27528563527831973,
+      "phase_rad": 0.6559255419121078,
+      "fitted_error_offset_rad_s": 0.0043952579814424565,
+      "frequency_Hz": 13.5
+    },
+    {
+      "band_Hz": [
+        20,
+        40
+      ],
+      "explained_variance": 0.029120796162523055,
+      "amplitude_rad_s": 0.13457434169694182,
+      "phase_rad": -2.0165072506282207,
+      "fitted_error_offset_rad_s": 0.007153221777549914,
+      "frequency_Hz": 20.0
+    }
+  ],
+  "note": "Exploratory single-frequency fits, no multiple-search significance claim. Angle is approximate 10ms window midpoint; high orders can alias. A harmonic match alone does not establish cogging, drive distortion, sensor error or control oscillation."
+}

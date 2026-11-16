@@ -1,0 +1,135 @@
+{
+  "mode": "closed_velocity_current_adaptive84_zero_lag",
+  "limiter_metadata": null,
+  "output_policy": null,
+  "drive_metadata": "DRIVE current_velocity=1 speed_target_rad_s=1.000 nominal_iq_limit_A=.45 current_control=on legacy_raw_velocity=not_recorded",
+  "pwm_metadata": "PWM hz=12500 dead_zone=0.010000 system_clock_Hz=170000000 tim1_cr1=209 tim1_psc=0 tim1_arr=6799 tim1_bdtr=34948 rcc_cfgr=15 gate_inputs_low=1",
+  "alignment_profile": "ALIGN_PROFILE cycles=3 step_ms=4 voltage_V=.7 max_alignment_us=0",
+  "current_observation_metadata": "CURRENT_CONFIG observer_only=0 bus_low_V=10.3995 bus_high_V=11.9650 deviation_delay_us=20000 max_age_us=2000 nominal_ADC_ref_V=3.3 shunt_ohm=.003 gain=-64/7",
+  "firmware": "FIRMWARE diag_version=84",
+  "configuration_notes": [],
+  "displacement_count_agreement": {
+    "reported_rad": 2.960951,
+    "count_rad": 2.9609510760083797,
+    "difference_rad": -7.600837959031992e-08
+  },
+  "current_active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0020 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=7.2000",
+  "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199686 calls=28032 q_slew_limited_fraction=0.000620 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.000114 rms_q_error_nominal_A=0.024220 mean_requested_minus_applied_q_V=0.000001 max_requested_applied_q_difference_V=0.004454",
+  "current_probe": null,
+  "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS4ms min_sample_us=150 warmup_span_us=3000 guard=original_window2ms_LPF2ms guard_limit_rad_s=5",
+  "guard_metadata": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.350034 run_abs_peak_rad_s=2.281220",
+  "current_loop": "CURRENT_LOOP q_P=0.60 q_I=200.0 d_P=.20 d_I=50 D=0 q_voltage_build_up_V_s=100.0 current_LPF_s=0.0020 vector_voltage_limit_V=.5 release=immediate reversal=via_zero; nominal current scaling",
+  "current_engine": "CURRENT_ENGINE project_tracking_PI=1 actuator_feedback=applied_dq stock_current_PI=unused",
+  "current_slew": "CURRENT_SLEW positive_q_V_s=100.0 negative_q_V_s=100.0 d_V_s=3 release=immediate reversal=via_zero",
+  "current_telemetry": "CURRENT_TELEMETRY running_stream_CSV=off trace=RAM period_us=10000 stop_and_commands=enabled",
+  "abi_quality_metadata": [
+    "ABI_QUALITY callbacks=5513 invalid=0 duplicate=0 net_signed_count=1715",
+    "ABI_QUALITY_RUN callbacks=1885 invalid=0 duplicate=0 reversals=0 count_delta=1885 encoder_count_delta=1885.000"
+  ],
+  "abi_quality_run": {
+    "callbacks": 1885.0,
+    "invalid": 0.0,
+    "duplicate": 0.0,
+    "reversals": 0.0,
+    "count_delta": 1885.0,
+    "encoder_count_delta": 1885.0
+  },
+  "index_observed_count": 3,
+  "position_correction_requested": false,
+  "position_correction_summary": null,
+  "index_reference_metadata": [
+    "INDEX_REFERENCE pulse=1 boot_us=7643019 encoder_angle_rad=0.942478",
+    "INDEX_REFERENCE pulse=2 boot_us=15027086 encoder_angle_rad=0.942478",
+    "INDEX_REFERENCE pulse=3 boot_us=19585094 encoder_angle_rad=0.942478"
+  ],
+  "encoder_direction_used": 1.0,
+  "encoder_direction_source": "RUN_REFERENCE",
+  "samples": 299,
+  "adaptive_metadata": "ADAPTIVE_CONFIG order=84 learning_rate=0.2000 correction_bound_nominal_A=0.030000 response_lag_rad=0.000000 gate_us=800000 blend_us=200000 total_limit_nominal_A=0.4500 anchor=run_start per_run_reset=1",
+  "adaptive_summary": {
+    "calls": 7950.0,
+    "learned_calls": 5318.0,
+    "clipped_calls": 0.0,
+    "cosine_nominal_A": -0.017422,
+    "sine_nominal_A": 0.008614,
+    "peak_nominal_A": 0.023693,
+    "invalid": 0.0
+  },
+  "metrics_scope": "covered_after_startup",
+  "trace_configuration": "TRACE_CONFIG period_us=10000 capacity=320 loop_us_saturation=65535 window_age_us_saturation=65535 window_span_us_nominal=10000",
+  "trace_span_s": 2.988509,
+  "last_sample": {
+    "trace_us": 2999684.0,
+    "loop_us": 69.0,
+    "A_edges": 2746.0,
+    "B_edges": 2748.0,
+    "angle_rad": 2.720619,
+    "raw_rad_s": 0.0,
+    "filtered_rad_s": 1.369447,
+    "window10ms_rad_s": 1.393933,
+    "target_rad_s": 1.0,
+    "Uq_V": 0.1378,
+    "open_field_mechanical_rad": 0.0,
+    "unslewed_pid_uq_V": 0.0,
+    "adc1_frames": 252924.0,
+    "adc2_frames": 252924.0,
+    "adc_age_us": 101.0,
+    "ia_adc": 2536.0,
+    "ib_adc": 2534.0,
+    "ic_adc": 2535.0,
+    "vbus_adc": 1338.0,
+    "temp_adc": 1711.0,
+    "Ud_V": -0.011172,
+    "iq_target_nominal_A": 0.187749,
+    "iq_filtered_nominal_A": 0.203231,
+    "id_filtered_nominal_A": 0.016767,
+    "window_age_us": 6268.0
+  },
+  "covered_after_0_8s_metrics": {
+    "covered_start_us": 803786.0,
+    "covered_end_us": 2999684.0,
+    "mean_encoder_velocity_rad_s": 0.9986033048893892,
+    "command_direction": 1,
+    "mean_speed_in_command_direction_rad_s": 0.9986033048893892,
+    "filtered_tracking_rmse_rad_s": 0.33297490287998427,
+    "window_tracking_rmse_rad_s": 0.3007301941117532,
+    "window_speed_below_0_2_fraction": 0.0,
+    "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+    "negative_voltage_command_fraction": 0.0,
+    "voltage_command_mean_V": 0.11018945547561865,
+    "negative_unslewed_pid_request_fraction": null
+  },
+  "open_field_tracking": null,
+  "control_metadata": "CONTROL P=0.1500 I=7.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0020",
+  "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 2999671,2.960951",
+  "stop_reason": "STOP: 3-second test complete",
+  "filtered_range_rad_s": [
+    0.0,
+    2.171757
+  ],
+  "filtered_abs_peak_rad_s": 2.171757,
+  "window_abs_peak_rad_s": 1.875945,
+  "max_sampled_loop_us_after_0_8s": 214.0,
+  "window_age_range_us": [
+    43.0,
+    10181.0
+  ],
+  "Uq_range_V": [
+    -0.0043,
+    0.2514
+  ],
+  "raw_range_rad_s": [
+    0.0,
+    0.0
+  ],
+  "window10ms_range_rad_s": [
+    0.0,
+    1.875945
+  ],
+  "trace_angle_difference_range_rad_s": [
+    0.1564585200677223,
+    1.8757090257737077
+  ],
+  "last_about_100ms_mean_rad_s": 0.893680628109776,
+  "host_stop_acknowledged": true
+}

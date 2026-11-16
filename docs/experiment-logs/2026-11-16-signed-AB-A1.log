@@ -1,0 +1,4 @@
+HOST start=2026-11-16T23:44:16.681858+09:00 port=COM10
+HOST supply=11.1V current_limit=0.8A (user specified); load removed, motor fixed
+HOST sent final s; test_command_sent=False
+HOST final_stop_acknowledged=False

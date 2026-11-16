@@ -1,0 +1,91 @@
+{
+  "log": "2026-11-17-current-static-probe10-01.log",
+  "probe": "CURRENT_PROBE frequency_Hz=10.00 amplitude_nominal_A=0.0200 start_us=400000 blend_us=100000 total_bound_A=0.1500 stationary_attempt=1 excitation_only=1",
+  "summary": "CURRENT_PROBE_SUMMARY calls=2866 clipped_calls=0 peak_nominal_A=0.020000 invalid=0",
+  "stationary_attempt": true,
+  "settled_angle_span_rad": 0.0015700000000000002,
+  "logged_probe_samples_checked": 16,
+  "max_logged_wave_error_nominal_A": 4.543336359144612e-07,
+  "full_settled_fit": {
+    "samples": 100,
+    "start_us": 604030.0,
+    "end_us": 1000077.0,
+    "coherent_components": {
+      "iq_target_nominal_A": {
+        "amplitude": 0.01999973857508182,
+        "phase_deg": -90.75801854408144,
+        "residual_rms": 8.732397564152146e-05
+      },
+      "iq_filtered_nominal_A": {
+        "amplitude": 0.01788661536617766,
+        "phase_deg": -109.49702983289713,
+        "residual_rms": 0.00396112534442115
+      },
+      "Uq_V": {
+        "amplitude": 0.011113016570303533,
+        "phase_deg": -96.96681221500377,
+        "residual_rms": 0.0033418140090305795
+      }
+    },
+    "target_amplitude_at_least_5mA": true,
+    "current_gain": 0.8943424584790848,
+    "current_phase_deg": -18.73901128881569,
+    "single_frequency_phase_delay_ms": 5.205280913559913
+  },
+  "split_fits": [
+    {
+      "samples": 50,
+      "start_us": 604030.0,
+      "end_us": 801780.0,
+      "coherent_components": {
+        "iq_target_nominal_A": {
+          "amplitude": 0.020002938076897497,
+          "phase_deg": -90.75897561029927,
+          "residual_rms": 8.749681095742802e-05
+        },
+        "iq_filtered_nominal_A": {
+          "amplitude": 0.018570355014886374,
+          "phase_deg": -109.55628646410932,
+          "residual_rms": 0.003915490435679523
+        },
+        "Uq_V": {
+          "amplitude": 0.011514632068327974,
+          "phase_deg": -89.87042211012155,
+          "residual_rms": 0.002810237548841085
+        }
+      },
+      "target_amplitude_at_least_5mA": true,
+      "current_gain": 0.9283813679518564,
+      "current_phase_deg": -18.79731085381004,
+      "single_frequency_phase_delay_ms": 5.221475237169455
+    },
+    {
+      "samples": 50,
+      "start_us": 805799.0,
+      "end_us": 1000077.0,
+      "coherent_components": {
+        "iq_target_nominal_A": {
+          "amplitude": 0.020000764217216332,
+          "phase_deg": -90.75961209898036,
+          "residual_rms": 8.694804533034098e-05
+        },
+        "iq_filtered_nominal_A": {
+          "amplitude": 0.017369773713741554,
+          "phase_deg": -109.40606916980997,
+          "residual_rms": 0.003942719659468406
+        },
+        "Uq_V": {
+          "amplitude": 0.012232014021049549,
+          "phase_deg": -104.35161965211253,
+          "residual_rms": 0.002993731468504719
+        }
+      },
+      "target_amplitude_at_least_5mA": true,
+      "current_gain": 0.8684555012547939,
+      "current_phase_deg": -18.646457070829612,
+      "single_frequency_phase_delay_ms": 5.179571408563781
+    }
+  ],
+  "stop_acknowledged": true,
+  "note": "Single-frequency coherent fit with offset and linear trend; rotor motion/disturbances can bias the estimate. Filtered nominal Iq includes the current measurement LPF. A stationary attempt requires checking the angle span. Split fits/repeats are needed; this is not an independent physical-current calibration or a full delay measurement."
+}

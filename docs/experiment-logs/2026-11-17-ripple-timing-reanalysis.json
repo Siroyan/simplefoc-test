@@ -1,0 +1,632 @@
+{
+  "reference": "Current analysis code with only temporal times reverted to trace_us; older cached analyses also included earlier code versions.",
+  "results": [
+    {
+      "log": "2026-11-17-current-velocity-abi-quality-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.09497497538545285,
+        "amplitude_rad_s": 0.2253774850396055,
+        "phase_rad": 0.6795507259390061,
+        "fitted_error_offset_rad_s": -0.005435548629089127,
+        "frequency_Hz": 2.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.09497497538545274,
+        "amplitude_rad_s": 0.22537748503960564,
+        "phase_rad": 0.6010109095992616,
+        "fitted_error_offset_rad_s": -0.005435548629089087,
+        "frequency_Hz": 2.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-abi-quality-02.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.10663462928389622,
+        "amplitude_rad_s": 0.23830763153374027,
+        "phase_rad": 0.6403050686408068,
+        "fitted_error_offset_rad_s": -0.038292083011435926,
+        "frequency_Hz": 2.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.10663462928389622,
+        "amplitude_rad_s": 0.23830763153374032,
+        "phase_rad": 0.5774732155690127,
+        "fitted_error_offset_rad_s": -0.038292083011435885,
+        "frequency_Hz": 2.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-fast-I060-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.08496039955638646,
+        "amplitude_rad_s": 0.2067931562671415,
+        "phase_rad": -2.9166425488496834,
+        "fitted_error_offset_rad_s": -0.0237175506912078,
+        "frequency_Hz": 38.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.0849603995563859,
+        "amplitude_rad_s": 0.2067931562671397,
+        "phase_rad": 2.1570295866978317,
+        "fitted_error_offset_rad_s": -0.023717550691207984,
+        "frequency_Hz": 38.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-fast-I120-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.07067556294545485,
+        "amplitude_rad_s": 0.18507045886186696,
+        "phase_rad": 1.4477798622912417,
+        "fitted_error_offset_rad_s": -0.007192190510494176,
+        "frequency_Hz": 2.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.07067556294545485,
+        "amplitude_rad_s": 0.18507045886186688,
+        "phase_rad": 1.384948009219446,
+        "fitted_error_offset_rad_s": -0.007192190510494223,
+        "frequency_Hz": 2.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-index-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.0763917926823584,
+        "amplitude_rad_s": 0.1962139579396075,
+        "phase_rad": 1.218172914576572,
+        "fitted_error_offset_rad_s": 0.003485683692934144,
+        "frequency_Hz": 2.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.07639179268235818,
+        "amplitude_rad_s": 0.19621395793960753,
+        "phase_rad": 1.1553410615047763,
+        "fitted_error_offset_rad_s": 0.0034856836929341075,
+        "frequency_Hz": 2.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-index-02.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.1561406377597525,
+        "amplitude_rad_s": 0.28010458663112725,
+        "phase_rad": 1.0899657850986764,
+        "fitted_error_offset_rad_s": -0.009320762112785892,
+        "frequency_Hz": 2.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.15614063775975195,
+        "amplitude_rad_s": 0.28010458663112725,
+        "phase_rad": 1.0271339320268806,
+        "fitted_error_offset_rad_s": -0.009320762112785864,
+        "frequency_Hz": 2.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-reverse-qI200-P015-I720-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.14646880706388654,
+        "amplitude_rad_s": 0.1790362414276329,
+        "phase_rad": 0.9602420236876258,
+        "fitted_error_offset_rad_s": -0.00551667613317203,
+        "frequency_Hz": 13.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.1465203384532574,
+        "amplitude_rad_s": 0.17907398060442486,
+        "phase_rad": -0.3140434700072391,
+        "fitted_error_offset_rad_s": -0.005531939937377493,
+        "frequency_Hz": 13.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-reverse-qI200-P015-I720-02.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.17835516363048864,
+        "amplitude_rad_s": 0.18744978838737056,
+        "phase_rad": 2.7812846655265746,
+        "fitted_error_offset_rad_s": 0.0068143824250831405,
+        "frequency_Hz": 13.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.17824343349676874,
+        "amplitude_rad_s": 0.18739471123294585,
+        "phase_rad": 1.5082905292240902,
+        "fitted_error_offset_rad_s": 0.006808327389649091,
+        "frequency_Hz": 13.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-reverse-qI200-P015-I720-03.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.08039566177871027,
+        "amplitude_rad_s": 0.13565911197493954,
+        "phase_rad": -2.534986860728485,
+        "fitted_error_offset_rad_s": 0.003122578513477922,
+        "frequency_Hz": 13.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.0804506952174805,
+        "amplitude_rad_s": 0.13571089473743872,
+        "phase_rad": 2.475061315790109,
+        "fitted_error_offset_rad_s": 0.0031183336209441395,
+        "frequency_Hz": 13.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rise30-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.15873871751569257,
+        "amplitude_rad_s": 0.26737018038750193,
+        "phase_rad": 2.1888828675951824,
+        "fitted_error_offset_rad_s": -0.13120294846425415,
+        "frequency_Hz": 2.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.15873871751569224,
+        "amplitude_rad_s": 0.26737018038750193,
+        "phase_rad": 2.126051014523386,
+        "fitted_error_offset_rad_s": -0.1312029484642541,
+        "frequency_Hz": 2.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rise30-02.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.1356911006355226,
+        "amplitude_rad_s": 0.263148058532744,
+        "phase_rad": 2.5596433001219667,
+        "fitted_error_offset_rad_s": -0.09935949003156888,
+        "frequency_Hz": 2.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.13569110063552192,
+        "amplitude_rad_s": 0.2631480585327439,
+        "phase_rad": 2.481103483782221,
+        "fitted_error_offset_rad_s": -0.0993594900315689,
+        "frequency_Hz": 2.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.12993973203688347,
+        "amplitude_rad_s": 0.19857360197528,
+        "phase_rad": 1.1668753542118169,
+        "fitted_error_offset_rad_s": -0.014400386189318052,
+        "frequency_Hz": 2.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.13229500431481533,
+        "amplitude_rad_s": 0.19979437312435533,
+        "phase_rad": 1.0295933992264923,
+        "fitted_error_offset_rad_s": -0.014291356364400765,
+        "frequency_Hz": 2.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-02.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.07918470203843742,
+        "amplitude_rad_s": 0.15778175690070698,
+        "phase_rad": 0.57642344152752,
+        "fitted_error_offset_rad_s": -0.00754150416027553,
+        "frequency_Hz": 2.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.07925312428466103,
+        "amplitude_rad_s": 0.15784906908157287,
+        "phase_rad": 0.34074613032640444,
+        "fitted_error_offset_rad_s": -0.007532688376837157,
+        "frequency_Hz": 2.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-LPF001-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.31106925202464164,
+        "amplitude_rad_s": 0.3265553790506216,
+        "phase_rad": 1.115582515999873,
+        "fitted_error_offset_rad_s": -0.010518236629339248,
+        "frequency_Hz": 2.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.31107497989951494,
+        "amplitude_rad_s": 0.32655456343885214,
+        "phase_rad": 0.9269611314562638,
+        "fitted_error_offset_rad_s": -0.01051691784227261,
+        "frequency_Hz": 2.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-P030-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.12358601335944586,
+        "amplitude_rad_s": 0.23420855639793242,
+        "phase_rad": 0.023663845793263222,
+        "fitted_error_offset_rad_s": -0.011944104427725864,
+        "frequency_Hz": 40.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.12371584680138792,
+        "amplitude_rad_s": 0.23437802943318356,
+        "phase_rad": 2.535267590081338,
+        "fitted_error_offset_rad_s": -0.011965381850164238,
+        "frequency_Hz": 40.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.022683132781628257,
+        "amplitude_rad_s": 0.1758779353180998,
+        "phase_rad": 1.2605757490106082,
+        "fitted_error_offset_rad_s": 0.01732620476505694,
+        "frequency_Hz": 2.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.02256535266335058,
+        "amplitude_rad_s": 0.17543667954960382,
+        "phase_rad": 1.030848767158881,
+        "fitted_error_offset_rad_s": 0.017386476280043486,
+        "frequency_Hz": 2.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P010-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.09486634046426179,
+        "amplitude_rad_s": 0.2759336955853053,
+        "phase_rad": -2.1943225948651133,
+        "fitted_error_offset_rad_s": -0.01833659065518155,
+        "frequency_Hz": 4.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.09487231540935404,
+        "amplitude_rad_s": 0.27593304435638494,
+        "phase_rad": -2.570937991142717,
+        "fitted_error_offset_rad_s": -0.018299591211241546,
+        "frequency_Hz": 4.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.15022719825540132,
+        "amplitude_rad_s": 0.2738403092242051,
+        "phase_rad": 1.2998980074320416,
+        "fitted_error_offset_rad_s": -0.0033645053104575245,
+        "frequency_Hz": 2.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.15023366991117626,
+        "amplitude_rad_s": 0.27384114564423695,
+        "phase_rad": 1.111152376786075,
+        "fitted_error_offset_rad_s": -0.003362534932099537,
+        "frequency_Hz": 2.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I240-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.08997891477867204,
+        "amplitude_rad_s": 0.19515719218551075,
+        "phase_rad": -0.6162526882107972,
+        "fitted_error_offset_rad_s": 0.007876137985842706,
+        "frequency_Hz": 2.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.08772461033118684,
+        "amplitude_rad_s": 0.191763226976988,
+        "phase_rad": -0.7992944199923296,
+        "fitted_error_offset_rad_s": 0.008988473582689128,
+        "frequency_Hz": 2.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I480-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.10023087462465197,
+        "amplitude_rad_s": 0.1705055799081523,
+        "phase_rad": -0.9216079386803948,
+        "fitted_error_offset_rad_s": -0.0013554596584659739,
+        "frequency_Hz": 7.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.09732490107679337,
+        "amplitude_rad_s": 0.16797743720008462,
+        "phase_rad": -1.6146066247076083,
+        "fitted_error_offset_rad_s": -0.0014258972741513789,
+        "frequency_Hz": 7.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I480-02.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.09539329894165771,
+        "amplitude_rad_s": 0.17491427529352344,
+        "phase_rad": -0.7422079753827063,
+        "fitted_error_offset_rad_s": 0.004811947720608851,
+        "frequency_Hz": 4.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.09535723570340982,
+        "amplitude_rad_s": 0.17487216787485466,
+        "phase_rad": -1.1191830210109928,
+        "fitted_error_offset_rad_s": 0.004808117152665527,
+        "frequency_Hz": 4.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I480-03.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.08864501869707708,
+        "amplitude_rad_s": 0.15227674219372625,
+        "phase_rad": 0.6879542446576559,
+        "fitted_error_offset_rad_s": 0.00724666469304022,
+        "frequency_Hz": 13.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.08511449073724142,
+        "amplitude_rad_s": 0.14903455703299082,
+        "phase_rad": 0.6996424185426111,
+        "fitted_error_offset_rad_s": 0.007448607234258153,
+        "frequency_Hz": 4.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I480-04.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.08373340671939933,
+        "amplitude_rad_s": 0.14903977140197217,
+        "phase_rad": -0.6658826819718294,
+        "fitted_error_offset_rad_s": -0.002309945650483209,
+        "frequency_Hz": 13.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.08373793089131909,
+        "amplitude_rad_s": 0.149032678086168,
+        "phase_rad": -1.9396967429028285,
+        "fitted_error_offset_rad_s": -0.0022947456220941617,
+        "frequency_Hz": 13.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I720-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.09173107113131673,
+        "amplitude_rad_s": 0.14459415022025945,
+        "phase_rad": -0.8877250823279657,
+        "fitted_error_offset_rad_s": 0.004217023849790933,
+        "frequency_Hz": 4.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.10772278787316436,
+        "amplitude_rad_s": 0.15677434954170677,
+        "phase_rad": -1.258207859921075,
+        "fitted_error_offset_rad_s": 0.00416984352890681,
+        "frequency_Hz": 4.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I720-v79-baseline-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.10988749706278356,
+        "amplitude_rad_s": 0.1617789593115379,
+        "phase_rad": -2.5754107756264757,
+        "fitted_error_offset_rad_s": 0.004736501179517584,
+        "frequency_Hz": 13.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.10988139530273355,
+        "amplitude_rad_s": 0.16175972877550537,
+        "phase_rad": 2.434044952460813,
+        "fitted_error_offset_rad_s": 0.004721502249448317,
+        "frequency_Hz": 13.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I960-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.1009703541554714,
+        "amplitude_rad_s": 0.14620547884784962,
+        "phase_rad": 1.2856718027412024,
+        "fitted_error_offset_rad_s": 0.005955846883627854,
+        "frequency_Hz": 13.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.09933233789510476,
+        "amplitude_rad_s": 0.14499624644448325,
+        "phase_rad": 0.8605754118861094,
+        "fitted_error_offset_rad_s": 0.005946284085263233,
+        "frequency_Hz": 13.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I960-02.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.15039692136611515,
+        "amplitude_rad_s": 0.19487775586894326,
+        "phase_rad": 1.791253532546266,
+        "fitted_error_offset_rad_s": 0.00042190882512608435,
+        "frequency_Hz": 13.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.15019794193768976,
+        "amplitude_rad_s": 0.19471093035627,
+        "phase_rad": 0.5654504384263268,
+        "fitted_error_offset_rad_s": 0.0004362069420395144,
+        "frequency_Hz": 13.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-rolling-qI200-P015-I960-03.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.16014862695537657,
+        "amplitude_rad_s": 0.19171236875023098,
+        "phase_rad": 0.41625522225077494,
+        "fitted_error_offset_rad_s": 3.588318423835451e-05,
+        "frequency_Hz": 13.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.16042242177612864,
+        "amplitude_rad_s": 0.1918796012077707,
+        "phase_rad": -0.037578348494793315,
+        "fitted_error_offset_rad_s": 3.702234440202683e-05,
+        "frequency_Hz": 13.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-window-age-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.1111495241544107,
+        "amplitude_rad_s": 0.2306600355555774,
+        "phase_rad": 1.3451820032574697,
+        "fitted_error_offset_rad_s": -0.008035870523254298,
+        "frequency_Hz": 2.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.11117415675905751,
+        "amplitude_rad_s": 0.23068637159986272,
+        "phase_rad": 1.1093562616088475,
+        "fitted_error_offset_rad_s": -0.008027866071363455,
+        "frequency_Hz": 2.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-window-age-02.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.05494157272073097,
+        "amplitude_rad_s": 0.16444944937276618,
+        "phase_rad": 0.6915378733541773,
+        "fitted_error_offset_rad_s": -0.023132464998584294,
+        "frequency_Hz": 2.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.05493860277911489,
+        "amplitude_rad_s": 0.164452058686425,
+        "phase_rad": 0.45628703844419055,
+        "fitted_error_offset_rad_s": -0.023122055115498762,
+        "frequency_Hz": 2.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-window-age-03.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.07680751450326095,
+        "amplitude_rad_s": 0.19474523953579792,
+        "phase_rad": 1.7926293985989945,
+        "fitted_error_offset_rad_s": -0.0012917265825056253,
+        "frequency_Hz": 2.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.07668430662730041,
+        "amplitude_rad_s": 0.1945941626959788,
+        "phase_rad": 1.6073100822129807,
+        "fitted_error_offset_rad_s": -0.0013306007521898793,
+        "frequency_Hz": 2.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-current-velocity-window-age-04.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.10063909822588601,
+        "amplitude_rad_s": 0.22172121336853792,
+        "phase_rad": 1.3810267445445081,
+        "fitted_error_offset_rad_s": 0.008677914259285689,
+        "frequency_Hz": 2.0
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.10063112697592247,
+        "amplitude_rad_s": 0.2217114393860442,
+        "phase_rad": 1.1923044703128705,
+        "fitted_error_offset_rad_s": 0.008675414653108764,
+        "frequency_Hz": 2.0
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    },
+    {
+      "log": "2026-11-17-open-current-pwm12500-01.log",
+      "corrected_format": 2,
+      "log_time_reference_temporal_best": {
+        "explained_variance": 0.12125179225045724,
+        "amplitude_rad_s": 0.27528563527832123,
+        "phase_rad": 1.080040550146731,
+        "fitted_error_offset_rad_s": 0.004395257981442334,
+        "frequency_Hz": 13.5
+      },
+      "window_time_temporal_best": {
+        "explained_variance": 0.12125179225045613,
+        "amplitude_rad_s": 0.27528563527831973,
+        "phase_rad": 0.6559255419121078,
+        "fitted_error_offset_rad_s": 0.0043952579814424565,
+        "frequency_Hz": 13.5
+      },
+      "spatial_and_holdout_match_log_time_reference": true
+    }
+  ]
+}

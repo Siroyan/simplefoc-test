@@ -1,0 +1,184 @@
+{
+  "groups": [
+    {
+      "profile": "zero_lag",
+      "trials": [
+        {
+          "log": "2026-11-17-current-velocity-adaptive84-zero-lag-01.log",
+          "mean_rad_s": 0.9986033048893892,
+          "rms_rad_s": 0.3007301941117532,
+          "slow_fraction": 0.0,
+          "against_command_fraction": 0.0,
+          "independent_guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.350034 run_abs_peak_rad_s=2.281220",
+          "adaptive_summary": {
+            "calls": 7950.0,
+            "learned_calls": 5318.0,
+            "clipped_calls": 0.0,
+            "cosine_nominal_A": -0.017422,
+            "sine_nominal_A": 0.008614,
+            "peak_nominal_A": 0.023693,
+            "invalid": 0.0
+          },
+          "spatial84_amplitude_rad_s": 0.1371735976806488,
+          "bus_nominal_V": {
+            "min": 11.17388916015625,
+            "max": 11.1989990234375,
+            "mean": 11.18899312337237,
+            "rms": 11.188994213319635
+          },
+          "max_adc_age_us": 272.0,
+          "voltage_vector_max_V": 0.25140167240692735
+        },
+        {
+          "log": "2026-11-17-current-velocity-adaptive84-zero-lag-02.log",
+          "mean_rad_s": 1.006711620183747,
+          "rms_rad_s": 0.3340809109832352,
+          "slow_fraction": 0.0,
+          "against_command_fraction": 0.0,
+          "independent_guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.604550 run_abs_peak_rad_s=2.491317",
+          "adaptive_summary": {
+            "calls": 7957.0,
+            "learned_calls": 5257.0,
+            "clipped_calls": 0.0,
+            "cosine_nominal_A": 0.015632,
+            "sine_nominal_A": 0.019314,
+            "peak_nominal_A": 0.025415,
+            "invalid": 0.0
+          },
+          "spatial84_amplitude_rad_s": 0.17315363894663624,
+          "bus_nominal_V": {
+            "min": 11.17388916015625,
+            "max": 11.1989990234375,
+            "mean": 11.184922281901022,
+            "rms": 11.184923331416117
+          },
+          "max_adc_age_us": 1068.0,
+          "voltage_vector_max_V": 0.24013253117601538
+        },
+        {
+          "log": "2026-11-17-current-velocity-adaptive84-zero-lag-03.log",
+          "mean_rad_s": 1.0018232059289474,
+          "rms_rad_s": 0.35202892096961264,
+          "slow_fraction": 0.0,
+          "against_command_fraction": 0.0,
+          "independent_guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.492556 run_abs_peak_rad_s=2.492564",
+          "adaptive_summary": {
+            "calls": 7969.0,
+            "learned_calls": 5070.0,
+            "clipped_calls": 3.0,
+            "cosine_nominal_A": -0.007236,
+            "sine_nominal_A": 0.022246,
+            "peak_nominal_A": 0.022741,
+            "invalid": 0.0
+          },
+          "spatial84_amplitude_rad_s": 0.17527589223237505,
+          "bus_nominal_V": {
+            "min": 11.17388916015625,
+            "max": 11.1989990234375,
+            "mean": 11.186748453776023,
+            "rms": 11.186749801749295
+          },
+          "max_adc_age_us": 322.0,
+          "voltage_vector_max_V": 0.25931024473591474
+        }
+      ],
+      "mean_run_rms_rad_s": 0.32894667535486705
+    },
+    {
+      "profile": "zero_correction",
+      "trials": [
+        {
+          "log": "2026-11-17-current-velocity-adaptive84-zero-v84-01.log",
+          "mean_rad_s": 0.9951714897153505,
+          "rms_rad_s": 0.3575699394919544,
+          "slow_fraction": 0.0045631675100288645,
+          "against_command_fraction": 0.0,
+          "independent_guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.577641 run_abs_peak_rad_s=2.708767",
+          "adaptive_summary": {
+            "calls": 8008.0,
+            "learned_calls": 5148.0,
+            "clipped_calls": 0.0,
+            "cosine_nominal_A": 0.0,
+            "sine_nominal_A": 0.0,
+            "peak_nominal_A": 0.0,
+            "invalid": 0.0
+          },
+          "spatial84_amplitude_rad_s": 0.1317553381869447,
+          "bus_nominal_V": {
+            "min": 11.17388916015625,
+            "max": 11.1989990234375,
+            "mean": 11.18808003743487,
+            "rms": 11.188081212857576
+          },
+          "max_adc_age_us": 327.0,
+          "voltage_vector_max_V": 0.2512568489892365
+        },
+        {
+          "log": "2026-11-17-current-velocity-adaptive84-zero-v84-02.log",
+          "mean_rad_s": 1.001862884931346,
+          "rms_rad_s": 0.35458735768623373,
+          "slow_fraction": 0.004575722493880295,
+          "against_command_fraction": 0.0,
+          "independent_guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.795237 run_abs_peak_rad_s=2.576296",
+          "adaptive_summary": {
+            "calls": 8010.0,
+            "learned_calls": 5137.0,
+            "clipped_calls": 0.0,
+            "cosine_nominal_A": 0.0,
+            "sine_nominal_A": 0.0,
+            "peak_nominal_A": 0.0,
+            "invalid": 0.0
+          },
+          "spatial84_amplitude_rad_s": 0.18275019225720218,
+          "bus_nominal_V": {
+            "min": 11.17388916015625,
+            "max": 11.1989990234375,
+            "mean": 11.187357177734354,
+            "rms": 11.187358577904542
+          },
+          "max_adc_age_us": 259.0,
+          "voltage_vector_max_V": 0.25212370497238057
+        }
+      ],
+      "mean_run_rms_rad_s": 0.3560786485890941
+    },
+    {
+      "profile": "lag_45",
+      "trials": [
+        {
+          "log": "2026-11-17-current-velocity-adaptive84-default-lag-v84-01.log",
+          "mean_rad_s": 1.0052668016708475,
+          "rms_rad_s": 0.36053647154724944,
+          "slow_fraction": 0.009124389101530336,
+          "against_command_fraction": 0.0,
+          "independent_guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.723571 run_abs_peak_rad_s=2.486040",
+          "adaptive_summary": {
+            "calls": 7983.0,
+            "learned_calls": 5045.0,
+            "clipped_calls": 14.0,
+            "cosine_nominal_A": -0.021264,
+            "sine_nominal_A": 0.010733,
+            "peak_nominal_A": 0.02283,
+            "invalid": 0.0
+          },
+          "spatial84_amplitude_rad_s": 0.18824253246420114,
+          "bus_nominal_V": {
+            "min": 11.17388916015625,
+            "max": 11.1989990234375,
+            "mean": 11.188764851887996,
+            "rms": 11.18876624767765
+          },
+          "max_adc_age_us": 1109.0,
+          "voltage_vector_max_V": 0.25906330988582693
+        }
+      ],
+      "mean_run_rms_rad_s": 0.36053647154724944
+    }
+  ],
+  "audit": {
+    "new_completed_trials": 12,
+    "final_stop_all_acknowledged": true,
+    "existing_bounds_and_adc_checks_all_passed": true
+  },
+  "note": "Whole common interval after .8s, 10ms ABI angle differences. Small exploratory groups; comparison does not establish causality, constant-speed success, CV state or calibrated phase current."
+}

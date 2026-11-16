@@ -1,0 +1,111 @@
+{
+  "log": "2026-11-17-alignment-survey-dense-01.log",
+  "common_frame_angle_rad": -0.15108249535324617,
+  "models": [
+    {
+      "orders": [
+        84
+      ],
+      "legs": [
+        {
+          "leg": 0,
+          "samples": 146,
+          "mean_q_nominal_A": 0.2108929158403043,
+          "mean_d_nominal_A": 1.6550224853577409,
+          "fitted_harmonics": [
+            {
+              "order": 84,
+              "cos_nominal_A": 0.017437207824240665,
+              "sin_nominal_A": 0.0036482221375466173,
+              "amplitude_nominal_A": 0.017814761897669167
+            }
+          ],
+          "opposite_leg_shape_explained_variance": -0.016262043414631444,
+          "opposite_leg_shape_error_rms_nominal_A": 0.1241224024099202
+        },
+        {
+          "leg": 1,
+          "samples": 146,
+          "mean_q_nominal_A": -0.21089291584030415,
+          "mean_d_nominal_A": 1.6493057930379886,
+          "fitted_harmonics": [
+            {
+              "order": 84,
+              "cos_nominal_A": 0.009641529307838528,
+              "sin_nominal_A": 0.03061763248985921,
+              "amplitude_nominal_A": 0.03209982097579349
+            }
+          ],
+          "opposite_leg_shape_explained_variance": 0.008873229895624002,
+          "opposite_leg_shape_error_rms_nominal_A": 0.12010992550164303
+        }
+      ]
+    },
+    {
+      "orders": [
+        14,
+        42,
+        84
+      ],
+      "legs": [
+        {
+          "leg": 0,
+          "samples": 146,
+          "mean_q_nominal_A": 0.2108929158403043,
+          "mean_d_nominal_A": 1.6550224853577409,
+          "fitted_harmonics": [
+            {
+              "order": 14,
+              "cos_nominal_A": 0.012914864066387567,
+              "sin_nominal_A": -0.02540591938123355,
+              "amplitude_nominal_A": 0.028500078130752685
+            },
+            {
+              "order": 42,
+              "cos_nominal_A": 0.014675795691307707,
+              "sin_nominal_A": -0.007727552439723586,
+              "amplitude_nominal_A": 0.016585959299409963
+            },
+            {
+              "order": 84,
+              "cos_nominal_A": 0.01980816332201803,
+              "sin_nominal_A": 0.004074253062355885,
+              "amplitude_nominal_A": 0.0202228304697403
+            }
+          ],
+          "opposite_leg_shape_explained_variance": 0.008352133698266928,
+          "opposite_leg_shape_error_rms_nominal_A": 0.1226100476053222
+        },
+        {
+          "leg": 1,
+          "samples": 146,
+          "mean_q_nominal_A": -0.21089291584030415,
+          "mean_d_nominal_A": 1.6493057930379886,
+          "fitted_harmonics": [
+            {
+              "order": 14,
+              "cos_nominal_A": 0.008354914636432282,
+              "sin_nominal_A": -0.03607491536448489,
+              "amplitude_nominal_A": 0.03702977338759743
+            },
+            {
+              "order": 42,
+              "cos_nominal_A": 0.007022737306898603,
+              "sin_nominal_A": -0.016564192965123518,
+              "amplitude_nominal_A": 0.017991423730976737
+            },
+            {
+              "order": 84,
+              "cos_nominal_A": 0.012178397011238226,
+              "sin_nominal_A": 0.030328722064069974,
+              "amplitude_nominal_A": 0.032682483623539704
+            }
+          ],
+          "opposite_leg_shape_explained_variance": 0.056531246335008056,
+          "opposite_leg_shape_error_rms_nominal_A": 0.11718662728116729
+        }
+      ]
+    }
+  ],
+  "note": "Exploratory nominal current in a frame derived from the bidirectional mean; not calibrated rotor torque. Opposite-leg shape evaluation removes each leg's DC and is not absolute prediction. Sensor nonlinearity, rotor dynamics, ADC/drive distortion and friction remain confounded. No firmware correction is exported."
+}

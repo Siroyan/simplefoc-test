@@ -1,0 +1,306 @@
+{
+  "log": "2026-11-17-current-velocity-rolling-qI200-P015-I480-04.log",
+  "models": [
+    {
+      "orders": [],
+      "iq_lead_us": 0,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.37274228489479533,
+      "within_run_test_R2": 0.3233120572614754,
+      "acceleration_per_nominal_A": 143.64279336861603,
+      "constant_acceleration": -42.788481654536604,
+      "velocity_coefficient": 17.44807514150162,
+      "equivalent_current_terms": [],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-rolling-v70-baseline-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.2473044948712142
+        },
+        {
+          "log": "2026-11-17-current-velocity-rolling-qI200-P015-I240-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.3806712639466965
+        }
+      ]
+    },
+    {
+      "orders": [],
+      "iq_lead_us": 2000,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.3269081057256358,
+      "within_run_test_R2": 0.28110749619055975,
+      "acceleration_per_nominal_A": 142.60034107702938,
+      "constant_acceleration": -44.184301563211974,
+      "velocity_coefficient": 19.0304337680043,
+      "equivalent_current_terms": [],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-rolling-v70-baseline-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.18268586621234018
+        },
+        {
+          "log": "2026-11-17-current-velocity-rolling-qI200-P015-I240-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.32038542810899473
+        }
+      ]
+    },
+    {
+      "orders": [],
+      "iq_lead_us": 4000,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.27218854819211213,
+      "within_run_test_R2": 0.23361355914533644,
+      "acceleration_per_nominal_A": 136.77600870238194,
+      "constant_acceleration": -44.02450287640564,
+      "velocity_coefficient": 19.896255700386877,
+      "equivalent_current_terms": [],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-rolling-v70-baseline-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.1113503800512653
+        },
+        {
+          "log": "2026-11-17-current-velocity-rolling-qI200-P015-I240-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.24726720727987372
+        }
+      ]
+    },
+    {
+      "orders": [
+        84
+      ],
+      "iq_lead_us": 0,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.5716328205388264,
+      "within_run_test_R2": 0.29099455456884826,
+      "acceleration_per_nominal_A": 116.46192130614929,
+      "constant_acceleration": -32.5015977294166,
+      "velocity_coefficient": 12.169918580872114,
+      "equivalent_current_terms": [
+        {
+          "order": 84,
+          "cos_A": -0.07053897794293965,
+          "sin_A": 0.0601741519560159
+        }
+      ],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-rolling-v70-baseline-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.30802602618472674
+        },
+        {
+          "log": "2026-11-17-current-velocity-rolling-qI200-P015-I240-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.53389106229281
+        }
+      ]
+    },
+    {
+      "orders": [
+        84
+      ],
+      "iq_lead_us": 2000,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.5502373681238625,
+      "within_run_test_R2": 0.24998788442960207,
+      "acceleration_per_nominal_A": 116.60830596817152,
+      "constant_acceleration": -33.76758875457239,
+      "velocity_coefficient": 13.431682354103394,
+      "equivalent_current_terms": [
+        {
+          "order": 84,
+          "cos_A": -0.0743528536511496,
+          "sin_A": 0.06274960462414213
+        }
+      ],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-rolling-v70-baseline-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.2505557377272406
+        },
+        {
+          "log": "2026-11-17-current-velocity-rolling-qI200-P015-I240-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.5024471664324099
+        }
+      ]
+    },
+    {
+      "orders": [
+        84
+      ],
+      "iq_lead_us": 4000,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.5237888309895962,
+      "within_run_test_R2": 0.19946767198769777,
+      "acceleration_per_nominal_A": 113.60290111906755,
+      "constant_acceleration": -34.04724537962281,
+      "velocity_coefficient": 14.25799303023176,
+      "equivalent_current_terms": [
+        {
+          "order": 84,
+          "cos_A": -0.0804826142602657,
+          "sin_A": 0.06761599978864102
+        }
+      ],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-rolling-v70-baseline-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.1854891439823294
+        },
+        {
+          "log": "2026-11-17-current-velocity-rolling-qI200-P015-I240-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.46391312715751853
+        }
+      ]
+    },
+    {
+      "orders": [
+        14,
+        28,
+        84
+      ],
+      "iq_lead_us": 0,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.6239693493859817,
+      "within_run_test_R2": 0.36280335004836406,
+      "acceleration_per_nominal_A": 157.71286184691996,
+      "constant_acceleration": -44.26539371098876,
+      "velocity_coefficient": 16.679141660312112,
+      "equivalent_current_terms": [
+        {
+          "order": 14,
+          "cos_A": 0.012955653980981058,
+          "sin_A": 0.04016730378822668
+        },
+        {
+          "order": 28,
+          "cos_A": 0.006386153094790744,
+          "sin_A": 0.0011497345958721172
+        },
+        {
+          "order": 84,
+          "cos_A": -0.04778604351934229,
+          "sin_A": 0.03949283251234288
+        }
+      ],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-rolling-v70-baseline-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.3127864940262206
+        },
+        {
+          "log": "2026-11-17-current-velocity-rolling-qI200-P015-I240-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.5842190956781124
+        }
+      ]
+    },
+    {
+      "orders": [
+        14,
+        28,
+        84
+      ],
+      "iq_lead_us": 2000,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.6031270482811922,
+      "within_run_test_R2": 0.3203563439404502,
+      "acceleration_per_nominal_A": 162.4947232536726,
+      "constant_acceleration": -47.50688728292688,
+      "velocity_coefficient": 19.102914618645677,
+      "equivalent_current_terms": [
+        {
+          "order": 14,
+          "cos_A": 0.012449498847456808,
+          "sin_A": 0.040175357762504055
+        },
+        {
+          "order": 28,
+          "cos_A": 0.006168414117572729,
+          "sin_A": 0.0005784949181719589
+        },
+        {
+          "order": 84,
+          "cos_A": -0.049811548740152645,
+          "sin_A": 0.040434762723737576
+        }
+      ],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-rolling-v70-baseline-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.24012014927821534
+        },
+        {
+          "log": "2026-11-17-current-velocity-rolling-qI200-P015-I240-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.5500025839933124
+        }
+      ]
+    },
+    {
+      "orders": [
+        14,
+        28,
+        84
+      ],
+      "iq_lead_us": 4000,
+      "samples": 218,
+      "has_index": true,
+      "whole_fit_R2": 0.5727326597543636,
+      "within_run_test_R2": 0.2612293511037499,
+      "acceleration_per_nominal_A": 160.03088774393598,
+      "constant_acceleration": -48.49930139310342,
+      "velocity_coefficient": 20.55132710361096,
+      "equivalent_current_terms": [
+        {
+          "order": 14,
+          "cos_A": 0.01170889035817038,
+          "sin_A": 0.039606445582728037
+        },
+        {
+          "order": 28,
+          "cos_A": 0.006483399170268551,
+          "sin_A": -0.001235245971722352
+        },
+        {
+          "order": 84,
+          "cos_A": -0.05465482136489716,
+          "sin_A": 0.04401285657512962
+        }
+      ],
+      "other_logs": [
+        {
+          "log": "2026-11-17-current-velocity-rolling-v70-baseline-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.16046522634556715
+        },
+        {
+          "log": "2026-11-17-current-velocity-rolling-qI200-P015-I240-01.log",
+          "has_index": true,
+          "whole_reference_model_R2": 0.5026899600329198
+        }
+      ]
+    }
+  ],
+  "note": "Exploratory least squares, local quadratic acceleration over five 10ms samples; nominal current and approximate LPF compensation. Noise, sticking, sampling, sensor nonlinearity, phase calibration and closed-loop correlation bias identification. Negative current gain is nonphysical. No coefficients are approved for drive feedforward."
+}

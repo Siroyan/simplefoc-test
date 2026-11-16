@@ -1,0 +1,23 @@
+HOST start=2026-11-17T07:40:31.367474+09:00 port=COM10
+HOST supply=11.1V current_limit=0.8A (user specified); load removed, motor fixed; CV unmeasured
+241351,0,2775,2775,0,2.70805,0.00000,0.0000
+241551,0,2775,2775,0,2.70805,0.00000,0.0000
+241751,0,2775,2775,0,2.70805,0.00000,0.0000
+PWM hz=12500 dead_zone=0.010000 system_clock_Hz=170000000 tim1_cr1=209 tim1_psc=0 tim1_arr=6799 tim1_bdtr=34948 rcc_cfgr=15 gate_inputs_low=1
+HOST verified PWM period/clock and unchanged DTG=0x84 (800ns nominal); gates remain OFF
+HOST sending one command=U at=2026-11-17T07:40:31.863933+09:00
+FIRMWARE diag_version=82
+Rejected: unavailable or already attempted; reset for another test.
+HOST sent final s; test_command_sent=True
+STOP: serial stop
+241951,0,2775,2775,0,2.70805,0.00000,0.0000
+242151,0,2775,2775,0,2.70805,0.00000,0.0000
+242351,0,2775,2775,0,2.70805,0.00000,0.0000
+242551,0,2775,2775,0,2.70805,0.00000,0.0000
+242751,0,2775,2775,0,2.70805,0.00000,0.0000
+242951,0,2775,2775,0,2.70805,0.00000,0.0000
+243151,0,2775,2775,0,2.70805,0.00000,0.0000
+243351,0,2775,2775,0,2.70805,0.00000,0.0000
+243551,0,2775,2775,0,2.70805,0.00000,0.0000
+243751,0,2775,2775,0,2.70805,0.00000,0.0000
+HOST final_stop_acknowledged=True

@@ -1,0 +1,126 @@
+{
+  "log": "2026-11-17-alignment-survey-01.log",
+  "samples": 125,
+  "direction": 1,
+  "by_leg": {
+    "forward": {
+      "encoder_field_error_electrical_rad": {
+        "min": -0.5717739999999996,
+        "max": -0.10995299999999997,
+        "mean": -0.31429286440677967,
+        "rms": 0.3347328818230684
+      },
+      "field_current_angle_error_rad": {
+        "min": -0.08309416650989299,
+        "max": 0.07878140160838587,
+        "mean": -0.007478713301704142,
+        "rms": 0.03967938362616294
+      },
+      "encoder_current_error_electrical_rad": {
+        "min": -0.5032740814003027,
+        "max": -0.14372908883858404,
+        "mean": -0.3068141511050755,
+        "rms": 0.32482462716219807
+      },
+      "nominal_current_vector_A": {
+        "min": 1.5813002120125528,
+        "max": 1.774163230877758,
+        "mean": 1.6824366342273742,
+        "rms": 1.6829214779588133
+      }
+    },
+    "reverse": {
+      "encoder_field_error_electrical_rad": {
+        "min": -0.26703799999999767,
+        "max": 0.13194600000000012,
+        "mean": -0.05300825423728783,
+        "rms": 0.12362135660378115
+      },
+      "field_current_angle_error_rad": {
+        "min": -0.06991061343393135,
+        "max": 0.09967723734399314,
+        "mean": 0.013492438235727993,
+        "rms": 0.04372787049564775
+      },
+      "encoder_current_error_electrical_rad": {
+        "min": -0.3197595264550319,
+        "max": 0.13706480898793316,
+        "mean": -0.06650069247301582,
+        "rms": 0.12543858164486688
+      },
+      "nominal_current_vector_A": {
+        "min": 1.566716294881545,
+        "max": 1.7638810622191143,
+        "mean": 1.672771022883941,
+        "rms": 1.6733782581583065
+      }
+    }
+  },
+  "paired_midpoint_field_error_electrical_rad": {
+    "min": -0.4123384999999997,
+    "max": 0.010996500000000076,
+    "mean": -0.18365055932203375,
+    "rms": 0.21383761305965504
+  },
+  "paired_hysteresis_electrical_rad": {
+    "min": 0.15393700000000088,
+    "max": 0.3958429999999993,
+    "mean": 0.26128461016949184,
+    "rms": 0.26786299656366863
+  },
+  "vbus_nominal_V": {
+    "min": 11.17388916015625,
+    "max": 11.190629069010416,
+    "mean": 11.183598307291668,
+    "rms": 11.183599329606736
+  },
+  "settled_endpoints": [
+    {
+      "align_us": 0.0,
+      "leg": 2.0,
+      "field_displacement_rad": 0.0,
+      "encoder_angle_rad": 0.193208,
+      "ia_adc": 2475.0,
+      "ib_adc": 2566.0,
+      "ic_adc": 2569.0,
+      "vbus_adc": 1336.0,
+      "nominal_current_vector_A": 1.6575551585636252,
+      "field_current_angle_error_rad": -0.021405088669557815,
+      "encoder_field_error_electrical_rad": 0.0,
+      "encoder_current_error_electrical_rad": 0.021405088669557815,
+      "vbus_nominal_V": 11.182259114583335
+    },
+    {
+      "align_us": 6704000.0,
+      "leg": 2.0,
+      "field_displacement_rad": 18.849555,
+      "encoder_angle_rad": 2.830575,
+      "ia_adc": 2474.0,
+      "ib_adc": 2563.0,
+      "ic_adc": 2569.0,
+      "vbus_adc": 1336.0,
+      "nominal_current_vector_A": 1.6474563536269904,
+      "field_current_angle_error_rad": 0.00934783949235296,
+      "encoder_field_error_electrical_rad": -0.38798599999999794,
+      "encoder_current_error_electrical_rad": -0.3973338394923509,
+      "vbus_nominal_V": 11.182259114583335
+    },
+    {
+      "align_us": 13408000.0,
+      "leg": 3.0,
+      "field_displacement_rad": 0.0,
+      "encoder_angle_rad": 0.204204,
+      "ia_adc": 2475.0,
+      "ib_adc": 2565.0,
+      "ic_adc": 2569.0,
+      "vbus_adc": 1336.0,
+      "nominal_current_vector_A": 1.6474884739588367,
+      "field_current_angle_error_rad": -0.011240860944572167,
+      "encoder_field_error_electrical_rad": 0.07697200000000004,
+      "encoder_current_error_electrical_rad": 0.0882128609445722,
+      "vbus_nominal_V": 11.182259114583335
+    }
+  ],
+  "stop_acknowledged": true,
+  "note": "ABI and nominal current observations; field tracking includes drive distortion, rotor lag/cogging and sensor error. No absolute angle calibration inferred."
+}

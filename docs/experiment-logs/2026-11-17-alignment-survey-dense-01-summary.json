@@ -1,0 +1,131 @@
+{
+  "log": "2026-11-17-alignment-survey-dense-01.log",
+  "samples": 305,
+  "sampling_configuration": {
+    "sample_step_stride": 10,
+    "moving_samples_per_leg": 151,
+    "expected_samples": 305
+  },
+  "direction": 1,
+  "by_leg": {
+    "forward": {
+      "encoder_field_error_electrical_rad": {
+        "min": -0.20262699999999967,
+        "max": 0.2042079999999995,
+        "mean": 0.014300513698630097,
+        "rms": 0.08599111427155942
+      },
+      "field_current_angle_error_rad": {
+        "min": -0.10898320217544111,
+        "max": 0.08351986983196724,
+        "mean": -0.010108308072868858,
+        "rms": 0.04003942710791918
+      },
+      "encoder_current_error_electrical_rad": {
+        "min": -0.16409810012130355,
+        "max": 0.22386437782714985,
+        "mean": 0.024408821771498956,
+        "rms": 0.07785709693129984
+      },
+      "nominal_current_vector_A": {
+        "min": 1.5780591995938607,
+        "max": 1.8167430385306602,
+        "mean": 1.6729878429913618,
+        "rms": 1.6734977607438242
+      }
+    },
+    "reverse": {
+      "encoder_field_error_electrical_rad": {
+        "min": 0.08168500000000001,
+        "max": 0.46495700000000006,
+        "mean": 0.28813514383561645,
+        "rms": 0.30034843734166855
+      },
+      "field_current_angle_error_rad": {
+        "min": -0.08928341869044232,
+        "max": 0.09894921854964678,
+        "mean": 0.009484326314966953,
+        "rms": 0.04016788990494869
+      },
+      "encoder_current_error_electrical_rad": {
+        "min": 0.11461516500999913,
+        "max": 0.44731900496572674,
+        "mean": 0.2786508175206495,
+        "rms": 0.28822722952707786
+      },
+      "nominal_current_vector_A": {
+        "min": 1.5691198831196982,
+        "max": 1.773304854502618,
+        "mean": 1.667251058776932,
+        "rms": 1.6677284642145427
+      }
+    }
+  },
+  "paired_midpoint_field_error_electrical_rad": {
+    "min": -0.04319149999999894,
+    "max": 0.328300500000001,
+    "mean": 0.15121782876712328,
+    "rms": 0.17081073021849058
+  },
+  "paired_hysteresis_electrical_rad": {
+    "min": 0.1759240000000002,
+    "max": 0.4398169999999999,
+    "mean": 0.27383463013698633,
+    "rms": 0.28018224223422383
+  },
+  "vbus_nominal_V": {
+    "min": 11.17388916015625,
+    "max": 11.1989990234375,
+    "mean": 11.187637839395492,
+    "rms": 11.187638722695278
+  },
+  "settled_endpoints": [
+    {
+      "align_us": 1.0,
+      "leg": 2.0,
+      "field_displacement_rad": 0.0,
+      "encoder_angle_rad": -0.125664,
+      "ia_adc": 2474.0,
+      "ib_adc": 2565.0,
+      "ic_adc": 2566.0,
+      "vbus_adc": 1336.0,
+      "nominal_current_vector_A": 1.6357163195258642,
+      "field_current_angle_error_rad": -0.0428420502223506,
+      "encoder_field_error_electrical_rad": 0.0,
+      "encoder_current_error_electrical_rad": 0.0428420502223506,
+      "vbus_nominal_V": 11.182259114583335
+    },
+    {
+      "align_us": 6704001.0,
+      "leg": 2.0,
+      "field_displacement_rad": 18.849555,
+      "encoder_angle_rad": 2.56511,
+      "ia_adc": 2474.0,
+      "ib_adc": 2564.0,
+      "ic_adc": 2567.0,
+      "vbus_adc": 1337.0,
+      "nominal_current_vector_A": 1.6346149535311365,
+      "field_current_angle_error_rad": -0.02210932288754819,
+      "encoder_field_error_electrical_rad": -0.01413700000000162,
+      "encoder_current_error_electrical_rad": 0.007972322887546568,
+      "vbus_nominal_V": 11.190629069010416
+    },
+    {
+      "align_us": 13408001.0,
+      "leg": 3.0,
+      "field_displacement_rad": 0.0,
+      "encoder_angle_rad": -0.105243,
+      "ia_adc": 2476.0,
+      "ib_adc": 2564.0,
+      "ic_adc": 2568.0,
+      "vbus_adc": 1337.0,
+      "nominal_current_vector_A": 1.6049568609238143,
+      "field_current_angle_error_rad": -0.011950876408055963,
+      "encoder_field_error_electrical_rad": 0.14294699999999996,
+      "encoder_current_error_electrical_rad": 0.1548978764080559,
+      "vbus_nominal_V": 11.190629069010416
+    }
+  ],
+  "stop_acknowledged": true,
+  "note": "ABI and nominal current observations; field tracking includes drive distortion, rotor lag/cogging and sensor error. No absolute angle calibration inferred."
+}

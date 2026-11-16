@@ -1,0 +1,99 @@
+{
+  "reference": "2026-11-17-alignment-survey-01.log",
+  "factors_mean_normalized": [
+    0.9995128774290973,
+    0.9972495849865727,
+    1.0032375375843299
+  ],
+  "fitted_sum_offset_A": -0.0030801575183932836,
+  "reference_balance": {
+    "samples": 125,
+    "unadjusted_sum": {
+      "mean_A": 0.003172302246090092,
+      "rms_A": 0.05929190790235882,
+      "std_A": 0.05920698304390498
+    },
+    "gain_only_sum": {
+      "mean_A": 0.0030801575183932502,
+      "rms_A": 0.059163265696792415,
+      "std_A": 0.059083031722916346
+    }
+  },
+  "direction_holdouts": [
+    {
+      "training_leg": 0,
+      "factors_mean_normalized": [
+        1.0042239548393934,
+        0.9981052807585715,
+        0.9976707644020351
+      ],
+      "fitted_sum_offset_A": -0.009106536846842636,
+      "other_leg": {
+        "samples": 61,
+        "unadjusted_sum": {
+          "mean_A": -0.0021476120245297876,
+          "rms_A": 0.05685672221912003,
+          "std_A": 0.05681614756470446
+        },
+        "gain_only_sum": {
+          "mean_A": -0.0018914361328162958,
+          "rms_A": 0.058526540748127964,
+          "std_A": 0.05849596944489219
+        }
+      }
+    },
+    {
+      "training_leg": 1,
+      "factors_mean_normalized": [
+        0.9943906270190599,
+        0.9966565693325469,
+        1.0089528036483935
+      ],
+      "fitted_sum_offset_A": 0.002553801835994826,
+      "other_leg": {
+        "samples": 61,
+        "unadjusted_sum": {
+          "mean_A": 0.008927517249932309,
+          "rms_A": 0.06202500743851307,
+          "std_A": 0.061379157565901496
+        },
+        "gain_only_sum": {
+          "mean_A": 0.008592753148233807,
+          "rms_A": 0.0656694822492544,
+          "std_A": 0.0651048807096569
+        }
+      }
+    }
+  ],
+  "other_logs": [
+    {
+      "log": "2026-11-17-current-velocity-window-age-02.log",
+      "samples": 300,
+      "unadjusted_sum": {
+        "mean_A": -0.020022710164391222,
+        "rms_A": 0.07110061573431178,
+        "std_A": 0.06822307993246163
+      },
+      "gain_only_sum": {
+        "mean_A": -0.020184532807902736,
+        "rms_A": 0.07106350610037902,
+        "std_A": 0.06813667540029601
+      }
+    },
+    {
+      "log": "2026-11-17-open-current-pwm12500-01.log",
+      "samples": 300,
+      "unadjusted_sum": {
+        "mean_A": -0.014627838134767012,
+        "rms_A": 0.06518375869178282,
+        "std_A": 0.06352124643528044
+      },
+      "gain_only_sum": {
+        "mean_A": -0.015012834883247103,
+        "rms_A": 0.06496217071484109,
+        "std_A": 0.06320362657911739
+      }
+    }
+  ],
+  "note": "Exploratory relative scales, mean fixed to one; no absolute current calibration. ADC sampling skew, common-mode shunt paths and offset drift can bias current-sum fitting. No firmware changes are made."
+}

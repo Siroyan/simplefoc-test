@@ -1,0 +1,134 @@
+[
+  {
+    "log": "2026-11-17-closed-pwm12500-P010-01.log",
+    "mode": "closed_asymmetric",
+    "limiter": "LIMITER asymmetric: magnitude build-up 3.000V/s, immediate release, reversal via zero, bound +/-0.5V",
+    "output_policy": "OUTPUT_POLICY forward_only=0",
+    "drive": null,
+    "pwm": "PWM hz=12500 dead_zone=0.010000 system_clock_Hz=170000000 tim1_cr1=209 tim1_psc=0 tim1_arr=6799 tim1_bdtr=34948 rcc_cfgr=15",
+    "open_field_tracking": null,
+    "control": "CONTROL P=0.1000 I=0.1500 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0500",
+    "stop": "STOP: 3-second test complete",
+    "duration_s": 2.999034,
+    "displacement_rad": 2.244668,
+    "mean_speed_rad_s": 0.7484636719690406,
+    "covered_after_0_8s_metrics": {
+      "covered_start_us": 803178.0,
+      "covered_end_us": 2999045.0,
+      "mean_encoder_velocity_rad_s": 0.9020468908180687,
+      "filtered_tracking_rmse_rad_s": 0.4608534659209266,
+      "window_tracking_rmse_rad_s": 1.0251890322731072,
+      "window_speed_below_0_2_fraction": 0.2963717747932821,
+      "reverse_window_speed_below_minus_0_2_fraction": 0.004564484096714418,
+      "negative_voltage_command_fraction": 0.004557653081903412,
+      "voltage_command_mean_V": 0.12495027025771602,
+      "negative_unslewed_pid_request_fraction": 0.004557653081903412
+    },
+    "captured_filtered_abs_peak_rad_s": 2.459194,
+    "captured_window_abs_peak_rad_s": 6.279408,
+    "Uq_range_V": [
+      -0.0226,
+      0.1969
+    ],
+    "final_stop_acknowledged": true
+  },
+  {
+    "log": "2026-11-17-closed-pwm12500-P010-02.log",
+    "mode": "closed_asymmetric",
+    "limiter": "LIMITER asymmetric: magnitude build-up 3.000V/s, immediate release, reversal via zero, bound +/-0.5V",
+    "output_policy": "OUTPUT_POLICY forward_only=0",
+    "drive": null,
+    "pwm": "PWM hz=12500 dead_zone=0.010000 system_clock_Hz=170000000 tim1_cr1=193 tim1_psc=0 tim1_arr=6799 tim1_bdtr=34948 rcc_cfgr=15",
+    "open_field_tracking": null,
+    "control": "CONTROL P=0.1000 I=0.1500 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0500",
+    "stop": "STOP: 3-second test complete",
+    "duration_s": 2.999034,
+    "displacement_rad": 2.078164,
+    "mean_speed_rad_s": 0.6929444614499203,
+    "covered_after_0_8s_metrics": {
+      "covered_start_us": 802809.0,
+      "covered_end_us": 2999045.0,
+      "mean_encoder_velocity_rad_s": 0.8296576506349955,
+      "filtered_tracking_rmse_rad_s": 0.5291693432577406,
+      "window_tracking_rmse_rad_s": 1.089579169370997,
+      "window_speed_below_0_2_fraction": 0.37842608899954283,
+      "reverse_window_speed_below_minus_0_2_fraction": 0.00455415538220847,
+      "negative_voltage_command_fraction": 0.0,
+      "voltage_command_mean_V": 0.14371380111244875,
+      "negative_unslewed_pid_request_fraction": 0.0
+    },
+    "captured_filtered_abs_peak_rad_s": 2.229973,
+    "captured_window_abs_peak_rad_s": 5.960086,
+    "Uq_range_V": [
+      -0.016,
+      0.223
+    ],
+    "final_stop_acknowledged": true
+  },
+  {
+    "log": "2026-11-17-closed-pwm12500-P010-LPF020-01.log",
+    "mode": "closed_asymmetric",
+    "limiter": "LIMITER asymmetric: magnitude build-up 3.000V/s, immediate release, reversal via zero, bound +/-0.5V",
+    "output_policy": "OUTPUT_POLICY forward_only=0",
+    "drive": null,
+    "pwm": "PWM hz=12500 dead_zone=0.010000 system_clock_Hz=170000000 tim1_cr1=193 tim1_psc=0 tim1_arr=6799 tim1_bdtr=34948 rcc_cfgr=15",
+    "open_field_tracking": null,
+    "control": "CONTROL P=0.1000 I=0.1500 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0200",
+    "stop": "STOP: 3-second test complete",
+    "duration_s": 2.999183,
+    "displacement_rad": 2.045177,
+    "mean_speed_rad_s": 0.6819113738641489,
+    "covered_after_0_8s_metrics": {
+      "covered_start_us": 802216.0,
+      "covered_end_us": 2999194.0,
+      "mean_encoder_velocity_rad_s": 0.7950584848824156,
+      "filtered_tracking_rmse_rad_s": 0.6682961774146049,
+      "window_tracking_rmse_rad_s": 1.014947160136189,
+      "window_speed_below_0_2_fraction": 0.4011646907706859,
+      "reverse_window_speed_below_minus_0_2_fraction": 0.004551706935617926,
+      "negative_voltage_command_fraction": 0.03192294142226276,
+      "voltage_command_mean_V": 0.13847468545429226,
+      "negative_unslewed_pid_request_fraction": 0.03192294142226276
+    },
+    "captured_filtered_abs_peak_rad_s": 2.733666,
+    "captured_window_abs_peak_rad_s": 5.018526,
+    "Uq_range_V": [
+      -0.0324,
+      0.2217
+    ],
+    "final_stop_acknowledged": true
+  },
+  {
+    "log": "2026-11-17-closed-pwm12500-P010-pulldown-01.log",
+    "mode": "closed_asymmetric",
+    "limiter": "LIMITER asymmetric: magnitude build-up 3.000V/s, immediate release, reversal via zero, bound +/-0.5V",
+    "output_policy": "OUTPUT_POLICY forward_only=0",
+    "drive": null,
+    "pwm": "PWM hz=12500 dead_zone=0.010000 system_clock_Hz=170000000 tim1_cr1=193 tim1_psc=0 tim1_arr=6799 tim1_bdtr=34948 rcc_cfgr=15 gate_inputs_low=1",
+    "open_field_tracking": null,
+    "control": "CONTROL P=0.1000 I=0.1500 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0500",
+    "stop": "STOP: 3-second test complete",
+    "duration_s": 2.999049,
+    "displacement_rad": 2.22896,
+    "mean_speed_rad_s": 0.7432222681256625,
+    "covered_after_0_8s_metrics": {
+      "covered_start_us": 803550.0,
+      "covered_end_us": 2999060.0,
+      "mean_encoder_velocity_rad_s": 0.9029086635906919,
+      "filtered_tracking_rmse_rad_s": 0.47086544816512094,
+      "window_tracking_rmse_rad_s": 1.0354077485669124,
+      "window_speed_below_0_2_fraction": 0.2554440653879964,
+      "reverse_window_speed_below_minus_0_2_fraction": 0.004555661326980975,
+      "negative_voltage_command_fraction": 0.004568870103074001,
+      "voltage_command_mean_V": 0.12715201998624465,
+      "negative_unslewed_pid_request_fraction": 0.004568870103074001
+    },
+    "captured_filtered_abs_peak_rad_s": 2.310455,
+    "captured_window_abs_peak_rad_s": 5.804408,
+    "Uq_range_V": [
+      -0.0084,
+      0.1933
+    ],
+    "final_stop_acknowledged": true
+  }
+]
