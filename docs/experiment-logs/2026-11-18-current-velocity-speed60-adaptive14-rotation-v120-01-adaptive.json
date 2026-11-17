@@ -1,0 +1,54 @@
+{
+  "log": "2026-11-18-current-velocity-speed60-adaptive14-rotation-v120-01.log",
+  "config": {
+    "order": 14.0,
+    "learning_rate": 0.2,
+    "correction_bound_nominal_A": 0.01,
+    "response_lag_rad": 0.785398,
+    "gate_us": 800000.0,
+    "blend_us": 200000.0,
+    "total_limit_nominal_A": 0.45,
+    "learning_reference_rad_s": 6.2832,
+    "learning_min_velocity_rad_s": 1.885,
+    "learning_max_velocity_rad_s": 10.6814,
+    "per_run_reset": 1.0
+  },
+  "summary": {
+    "calls": 1736.0,
+    "learned_calls": 0.0,
+    "clipped_calls": 0.0,
+    "cosine_nominal_A": 0.0,
+    "sine_nominal_A": 0.0,
+    "peak_nominal_A": 0.0,
+    "invalid": 0.0
+  },
+  "bounded_samples": [
+    [
+      5944.0,
+      0.005569,
+      0.0,
+      0.005569
+    ],
+    [
+      179183.0,
+      0.021561,
+      0.0,
+      0.021561
+    ],
+    [
+      352435.0,
+      0.261824,
+      0.0,
+      0.261824
+    ],
+    [
+      525612.0,
+      0.286433,
+      0.0,
+      0.286433
+    ]
+  ],
+  "metrics_start_us": 800000,
+  "learning_intervals": [],
+  "note": "Intervals diagnose within-run evolution; comparisons must use a common interval after the reference ramp. Samples are nominal commands, not calibrated current or CV measurements."
+}

@@ -1,0 +1,39 @@
+{
+  "firmware_version": 109,
+  "RAM_bytes": 30616,
+  "Flash_bytes": 105356,
+  "PWM_Hz": 12500,
+  "nominal_dead_time_ns": 800,
+  "build_flags": [
+    "-DDIAG_PWM_HZ=12500",
+    "-DHAL_OPAMP_MODULE_ENABLED"
+  ],
+  "supply_set_V": 11.1,
+  "current_limit_A": 0.8,
+  "fixture": "Previously changed fixture and gap reduced .5mm; absolute gap unknown. No further mechanical change reported.",
+  "CV_measured": false,
+  "motor_temperature_measured": false,
+  "latest_idle_log": "2026-11-18-profile-v109-idle-01.log",
+  "hash_scope": "Snapshot after v109; mutable source and build-output paths matched at capture time.",
+  "SHA256": {
+    "src/main.cpp": "964fe3e32dbdfdd966974983ca381331e4d75a6a09a70895f6c7ffe279a0e1d2",
+    "include/EdgeVelocity.h": "6b3b1f55fd754e3fd72c6ea3a150da59245aca5eb2b48e0d3005c41569cbb667",
+    "include/ShortRunClock.h": "629aa27bce5c91949039102867893965798b72b6223719d7881c8443a368ea16",
+    "include/WindowVelocity.h": "8c4410fcdb1e50370662ca32456baf26daf82710c630ac1afa4df2460310ee45",
+    "include/RollingVelocity.h": "bb87f8d06a91d46776f3f6dd8a7503da6cc9ba038040bc105281b6014d6388c3",
+    "include/TrackingCurrentPI.h": "eb168ca66167d0113211a2b268841eb7dc0f8e16dc3cc2e7187056c1ea8b8b8a",
+    "include/BoundedBLDCMotor.h": "026da2382f51a62cf71165be126a7fd2f2389b25fdf1090801b5f387e0deae92",
+    "include/ReferenceSpeedGuard.h": "e8f4b69df3a06712cb5ae57bf339174ae5d3512d8e1c9934e70222fb3b7e331e",
+    "include/IntervalVelocityStats.h": "c6a1cbee8d78ea31c3577444ce60216886822eb955ed20dc230e0ebf9221e46b",
+    "tools/capture_test.py": "ab735080aadc2efaf98e54fd83d7589d37f127ce4e1ade2201fd34a1079b75a4",
+    "tools/edge_estimator.py": "72feda3a685385aaf70001c62e996f12c72d33957a09f7380ba8c795f84c628c",
+    "tools/analyze_trace.py": "ad5df965e30e755f30efd12207149c74de50337449683ab96b23cab92df5d4d4",
+    "tools/compare_runs.py": "b8025ef718d8e59fb1a5a8511e4935ac20ef6d2c99385b70e0a2c45145d66d46",
+    "test/edge_velocity.cpp": "df02e115495a382e2d8421535917ed7ed40e4967e6218482e0ce4e536c1a7bd1",
+    "test/edge_estimator_metadata.py": "e00639639aca15b70ff7414d4425b7e34a45f3b9dcfb7a604a5af9e95730faae",
+    "test/trace_speed_metrics.py": "34e82bde7e4b5e418e0dc67d34d9550b5d432a517718daeed1df868f342df6dc",
+    ".pio/observer-build/disco_b_g431b_esc1/firmware.elf": "1d7031245c889fbb8f379d8facb355a8326d0181313c6040d150bd5d09fb2acd",
+    "C:/Users/siroy/.platformio/packages/framework-arduinoststm32/libraries/SrcWrapper/src/stm32/clock.c": "b54633e40480a7aee039bfbbdb0d1c68c61bb44cd84ac6c8103daebb725d7b7e"
+  },
+  "goal_complete": false
+}

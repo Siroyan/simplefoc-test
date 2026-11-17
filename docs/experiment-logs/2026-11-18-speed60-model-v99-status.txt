@@ -1,0 +1,2 @@
+target60rpm I=4.8 ramp_us=2000000 cases=64 inside_reference_envelope=64 physical_peak=6.69526 shadow_guard_peak=6.75299 max_envelope_excess=0; exploratory model, not bench validation
+target60rpm I=7.2 ramp_us=2000000 cases=64 inside_reference_envelope=64 physical_peak=6.66376 shadow_guard_peak=6.75299 max_envelope_excess=0; exploratory model, not bench validation

@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <SimpleFOC.h>
 #include <ManualDiagnostics.h>
+#include <RunEdgeCapture.h>
 #include <WindowVelocity.h>
 #include <MotionWatchdog.h>
 #include <MagnitudeSlew.h>
@@ -12,12 +13,18 @@
 #include <AbiQuality.h>
 #include <PositionFeedforward.h>
 #include <RollingVelocity.h>
+#include <EdgeVelocity.h>
+#include <ShortRunClock.h>
 #include <CurrentProbe.h>
 #include <AlignmentPlan.h>
 #include <AdaptiveHarmonic.h>
+#include <VelocityReference.h>
+#include <GuardPeak.h>
+#include <ReferenceSpeedGuard.h>
+#include <IntervalVelocityStats.h>
 
-constexpr int kDiagVersion = 84;
-enum class CurrentTrial { none, fixed015, fixed025, velocity, velocityCompensated, velocityRolling, velocityProbe, staticProbe, staticProbe10, velocityFastIntegral, velocityReverse, velocityCoverage, velocityLongWindow, velocityLowerFilter, velocityDense, velocityDenseLowerP, velocityHigherI, velocityHigherIReverse, velocityStrongerI, velocityStrongerIReverse, velocityHigherIDense, velocityStrongerIDense, velocityAdaptive, velocityAdaptiveZero, velocityResponseProbe, velocityResponseProbeInverse, velocityAdaptiveFlat };
+constexpr int kDiagVersion = 120;
+enum class CurrentTrial { none, fixed015, fixed025, velocity, velocityCompensated, velocityRolling, velocityProbe, staticProbe, staticProbe10, velocityFastIntegral, velocityReverse, velocityCoverage, velocityLongWindow, velocityLowerFilter, velocityDense, velocityDenseLowerP, velocityHigherI, velocityHigherIReverse, velocityStrongerI, velocityStrongerIReverse, velocityHigherIDense, velocityStrongerIDense, velocityAdaptive, velocityAdaptiveZero, velocityResponseProbe, velocityResponseProbeInverse, velocityAdaptiveFlat, velocityHigherP, velocitySpeed2, velocitySpeed2LowerI, velocitySpeed2LowerP, velocitySpeed3LowerP, velocitySpeed2LowerFilter, velocitySpeed25LowerFilter, velocitySpeed3LowerFilter, velocitySpeed25HalfFilter, velocitySpeed25Dense, velocitySpeed2Dense, velocitySpeed25Adaptive, velocitySpeed25AdaptiveZero, velocitySpeed3Adaptive, velocitySpeed25SlowRamp, velocitySpeed60, velocitySpeed60CurrentFilter, velocitySpeed60LowGain, velocitySpeed60ModerateI, velocitySpeed60Balanced, velocitySpeed60Damped, velocitySpeed60HalfCurrent, velocitySpeed60MidP, velocitySpeed60Edge, velocitySpeed60EdgeCycles, velocitySpeed60EdgeLowerP, velocitySpeed60EdgeFast, velocitySpeed60EdgeTracking, velocitySpeed60EdgeTrackingLowerP, velocitySpeed60EdgeTracking5, velocitySpeed60EdgeTracking5CurrentI, velocitySpeed60Response, velocitySpeed60ResponseInverse, velocitySpeed60Adaptive14 };
 constexpr int kEncoderPpr = 1000; // Two measured index intervals: 4000 signed counts each.
 constexpr int kMotorPolePairs = 7; // Motor datasheet: 12N14P.
 constexpr float kBusVoltage = 11.1f;
@@ -48,17 +55,31 @@ class DiagnosticEncoder : public Encoder {
   float correctedVelocity = 0;
   WindowVelocity window;
   RollingVelocity rolling;
+  EdgeVelocity edgeVelocity;
+  bool useEdge=false,edgeDwtClock=false;
+  uint32_t edgeClockOrigin=0;
+  uint32_t edgeTimestamp() const {return edgeDwtClock ? ShortRunClock::elapsedUs(edgeClockOrigin,DWT->CYCCNT) : micros();}
+  volatile bool edgeControlActive=false;
   bool useRolling = false;
   float guardVelocity = 0;
+  uint32_t velocitySampleUs=0;
+  bool velocitySampleValid=false;
   LowPassFilter guardFilter{.002f};
   LowPassFilter legacyFilter{0.05f};
   float getVelocity() override {
     rawVelocity = Encoder::getVelocity();
     legacyFilteredVelocity = legacyFilter(rawVelocity); // Diagnostic shadow only.
     const float angle = getAngle(); const uint32_t now = micros();
+    velocitySampleUs=now;velocitySampleValid=true;
     const float windowValue = window.update(angle, now);
     if (!useRolling) return correctedVelocity = windowValue;
     guardVelocity = guardFilter(windowValue); // Original 2ms-window/2ms-LPF overspeed channel.
+    if (useEdge && edgeControlActive) {
+      const uint32_t mask=__get_PRIMASK();__disable_irq();
+      const auto sample=edgeVelocity.snapshot();const uint32_t edgeNow=edgeTimestamp();
+      __set_PRIMASK(mask);
+      return correctedVelocity=edgeVelocity.update(sample,edgeNow);
+    }
     return correctedVelocity = rolling.update(angle, now);
   }
 };
@@ -77,6 +98,10 @@ bool openTest = false;
 bool phasePulseTest = false;
 bool currentIqTest = false;
 bool currentVelocityTest = false;
+bool currentHighSpeedTest=false,rawHighOpenTest=false;
+float openVelocityGoal=kOpenTargetVelocity;
+bool referenceSpeedGuardActive() {return currentHighSpeedTest || rawHighOpenTest;}
+IntervalVelocityStats intervalVelocityStats;
 bool currentFeedforwardTest = false;
 bool currentProbeTest = false;
 bool currentResponseProbeTest=false,currentResponseProbeInverseTest=false;
@@ -85,11 +110,15 @@ bool currentStaticProbe10Test = false;
 bool currentFastIntegralTest = false;
 bool currentReverseTest = false;
 bool currentCoverageTest = false;
-bool currentAdaptiveTest=false,currentAdaptiveZeroTest=false,currentAdaptiveFlatTest=false;
+bool currentAdaptiveTest=false,currentAdaptiveZeroTest=false,currentAdaptiveFlatTest=false,currentSpeed25AdaptiveTest=false,currentSpeed3AdaptiveTest=false,currentSpeed60Adaptive14Test=false;
 AdaptiveHarmonic adaptiveHarmonic,adaptiveHarmonicZero{0},adaptiveHarmonicFlat{.2f,.03f,0};
-AdaptiveHarmonic& activeAdaptive() {return currentAdaptiveZeroTest ? adaptiveHarmonicZero : currentAdaptiveFlatTest ? adaptiveHarmonicFlat : adaptiveHarmonic;}
+AdaptiveHarmonic adaptiveSpeed25{.2f,.03f,.7853981634f,2.5f},adaptiveSpeed25Zero{0,.03f,.7853981634f,2.5f};
+AdaptiveHarmonic adaptiveSpeed3{.2f,.03f,.7853981634f,3};
+AdaptiveHarmonic adaptiveSpeed60Order14{.2f,.01f,.7853981634f,6.2831853f,14};
+AdaptiveHarmonic& activeAdaptive() {return currentSpeed60Adaptive14Test ? adaptiveSpeed60Order14 : currentSpeed3AdaptiveTest ? adaptiveSpeed3 : currentSpeed25AdaptiveTest ? (currentAdaptiveZeroTest ? adaptiveSpeed25Zero : adaptiveSpeed25) : currentAdaptiveZeroTest ? adaptiveHarmonicZero : currentAdaptiveFlatTest ? adaptiveHarmonicFlat : adaptiveHarmonic;}
 const char* alignmentFailure=nullptr;
 float currentVelocityGoal=kTargetVelocity;
+uint32_t currentSpeedRampUs=0;
 CurrentProbe currentProbe{20,.02f};
 CurrentProbe responseCurrentProbe{17.5f,.02f};
 CurrentProbe responseCurrentProbeInverse{17.5f,.02f,800000,200000,3.14159265f};
@@ -114,6 +143,7 @@ MagnitudeSlew magnitudeSlew{3.0f}; // Retain the tested low-reversal comparison 
 float unslewedPidUq = 0;
 float measuredVelocity = 0;
 float lastGuardVelocity = 0, runGuardAbsPeak = 0;
+GuardPeakTracker guardPeaks;
 LowPassFilter observedVelocity(0.05f);
 uint32_t runStart = 0;
 float startAngle = 0;
@@ -154,6 +184,8 @@ bool senseIdle = false;
 bool senseAttempted = false;
 uint32_t senseLastReport = 0;
 ManualDiagnostics manual;
+RunEdgeCapture<ManualDiagnostics::Edge,ManualDiagnostics::capacity> runEdges{manual.edges};
+bool rawEdgeTest=false;
 bool manualLocked = false;
 uint32_t manualLastReport = 0, manualWindowUs = 0;
 float manualWindowAngle = 0, manualWindowVelocity = 0;
@@ -171,19 +203,32 @@ AbiSnapshot readAbiSnapshot() {
 
 void beginTrace() {
   traceNext = traceCount = 0;
+  if (rawEdgeTest) encoder.edgeClockOrigin=DWT->CYCCNT;
   traceStartUs = lastTraceUs = lastLoopUs = windowStartUs = micros();
   windowAngle = encoder.getAngle();
   windowVelocity = commandedVelocity = 0;
   encoder.window.reset(encoder.getAngle(), micros());
   encoder.rolling.reset(encoder.getAngle(), micros());
+  if (encoder.useEdge) {
+    const uint32_t mask=__get_PRIMASK();__disable_irq();
+    encoder.edgeClockOrigin=DWT->CYCCNT;
+    encoder.edgeVelocity.reset(static_cast<uint32_t>(abiQuality.count));encoder.edgeControlActive=true;
+    __set_PRIMASK(mask);
+  }
   if (currentAdaptiveTest) activeAdaptive().reset(static_cast<int>(motor.sensor_direction)*encoder.getAngle(),micros());
   encoder.guardVelocity = lastGuardVelocity = runGuardAbsPeak = 0;
+  encoder.velocitySampleValid=false;guardPeaks.reset(currentSpeedRampUs>800000 ? currentSpeedRampUs : 800000);
+  if (referenceSpeedGuardActive()) intervalVelocityStats.reset(traceStartUs,currentVelocityGoal,currentSpeedRampUs);
   motionWatchdog.reset(encoder.getAngle(), micros());
   magnitudeSlew.reset(micros());
   unslewedPidUq = 0;
   currentControlTrace = {};
   if (currentVelocityTest || currentStaticProbeTest) motor.actuatorStats.reset(micros(),currentStaticProbeTest ? 500000 : 800000);
-  runAbiStart = readAbiSnapshot();
+  if (rawEdgeTest) {
+    const uint32_t mask=__get_PRIMASK();__disable_irq();
+    runAbiStart=readAbiSnapshot();runEdges.begin(runAbiStart.count,abiQuality.currentState());
+    __set_PRIMASK(mask);
+  } else runAbiStart = readAbiSnapshot();
   loopUs = 0;
 }
 
@@ -200,7 +245,7 @@ void recordTrace(bool force, float uq) {
       static_cast<uint16_t>(loopUs > 65535 ? 65535 : loopUs),
       static_cast<uint16_t>(windowAge > 65535 ? 65535 : windowAge), a, b,
       encoder.getAngle(), {encoder.rawVelocity}, measuredVelocity,
-      windowVelocity, {commandedVelocity}, uq, {openTest ? motor.shaft_angle : 0.0f},
+      windowVelocity, {rawHighOpenTest ? openVelocityGoal : commandedVelocity}, uq, {openTest ? motor.shaft_angle : 0.0f},
       {asymmetricTest ? unslewedPidUq : 0.0f},
       observeCurrents ? observedFrame.adc1Frames : 0, observeCurrents ? observedFrame.adc2Frames : 0,
       static_cast<uint16_t>(adcAge > 65535 ? 65535 : adcAge),
@@ -325,12 +370,16 @@ uint8_t abiState() { return AbiQuality::stateFromPort(GPIOB->IDR); }
 void onA() {
   ++edgesA;
   const uint8_t state = abiState(); abiQuality.edge(state);
+  if (encoder.edgeControlActive) encoder.edgeVelocity.edge(static_cast<uint32_t>(abiQuality.count),encoder.edgeTimestamp());
+  if (runEdges.active) runEdges.edge(encoder.edgeTimestamp(),abiQuality.count,state);
   if (manual.active) manual.edge(state);
   encoder.handleA();
 }
 void onB() {
   ++edgesB;
   const uint8_t state = abiState(); abiQuality.edge(state);
+  if (encoder.edgeControlActive) encoder.edgeVelocity.edge(static_cast<uint32_t>(abiQuality.count),encoder.edgeTimestamp());
+  if (runEdges.active) runEdges.edge(encoder.edgeTimestamp(),abiQuality.count,state);
   if (manual.active) manual.edge(state);
   encoder.handleB();
 }
@@ -363,7 +412,7 @@ void endManual() {
 }
 
 void startManual() {
-  if (running || manual.active) {
+  if (running || manual.active || runEdges.busy()) {
     Serial.println("Rejected: stop current operation before manual capture.");
     return;
   }
@@ -465,13 +514,75 @@ void reportManual() {
   Serial.print(b); Serial.print(','); Serial.println(index);
 }
 
+void reportGuardPeak(const char* scope,const GuardPeakState& state,bool valid) {
+  Serial.print("GUARD_PEAK scope=");Serial.print(scope);
+  Serial.print(" valid=");Serial.print(valid ? 1 : 0);
+  if (!valid) {Serial.println();return;}
+  Serial.print(" elapsed_us=");Serial.print(state.elapsedUs);
+  Serial.print(" sample_age_us=");Serial.print(state.sampleAgeUs);
+  Serial.print(" adc_age_us=");Serial.print(state.adcAgeUs);
+  Serial.print(" guard_rad_s=");Serial.print(state.guard,6);
+  Serial.print(" control_rad_s=");Serial.print(state.control,6);
+  Serial.print(" reference_rad_s=");Serial.print(state.reference,6);
+  Serial.print(" iq_applied_nominal_A=");Serial.print(state.iqApplied,6);
+  Serial.print(" iq_next_nominal_A=");Serial.print(state.iqNext,6);
+  Serial.print(" iq_filtered_nominal_A=");Serial.print(state.iqFiltered,6);
+  Serial.print(" Uq_V=");Serial.print(state.uq,6);
+  Serial.print(" Ud_V=");Serial.print(state.ud,6);
+  Serial.print(" correction_nominal_A=");Serial.println(state.correction,6);
+}
+
+void reportIntervalVelocityStats() {
+  const auto& stats=intervalVelocityStats;
+  const bool valid=!stats.invalid && stats.samples>0 && stats.coveredUs>0;
+  Serial.print("VELOCITY_STATS valid=");Serial.print(valid ? 1 : 0);
+  Serial.print(" invalid=");Serial.print(stats.invalid ? 1 : 0);
+  Serial.print(" samples=");Serial.print(stats.samples);
+  if (!valid) {Serial.println();return;}
+  Serial.print(" first_elapsed_us=");Serial.print(stats.firstUs-stats.startUs);
+  Serial.print(" last_elapsed_us=");Serial.print(stats.lastUs-stats.startUs);
+  Serial.print(" covered_us=");Serial.print(stats.coveredUs);
+  Serial.print(" displacement_rad=");Serial.print(stats.lastAngle-stats.firstAngle,6);
+  Serial.print(" mean_motor_rad_s=");Serial.print(stats.mean(),6);
+  Serial.print(" rms_error_rad_s=");Serial.print(stats.rmsError(),6);
+  Serial.print(" minimum_rad_s=");Serial.print(stats.minimum,6);
+  Serial.print(" maximum_rad_s=");Serial.print(stats.maximum,6);
+  Serial.print(" slow_fraction=");Serial.print(stats.slowUs/static_cast<float>(stats.coveredUs),6);
+  Serial.print(" reverse_fraction=");Serial.println(stats.reverseUs/static_cast<float>(stats.coveredUs),6);
+}
+
+void dumpRunEdges() {
+  if (!runEdges.pending) return;
+  if (running || !BoardCurrentObserver::gatesOff()) {Serial.println("ERROR: raw edge dump requires gates OFF");return;}
+  Serial.print("RUN_EDGE_SUMMARY total_edges=");Serial.print(runEdges.total);
+  Serial.print(" retained=");Serial.print(runEdges.size);
+  Serial.print(" origin_count=");Serial.print(runEdges.originCount);
+  Serial.print(" origin_AB=");Serial.print(runEdges.originState);
+  Serial.print(" end_count=");Serial.print(runEdges.endCount);
+  Serial.print(" end_us=");Serial.println(runEdges.endUs);
+  Serial.println("RUN_EDGES_BEGIN: gates OFF; frozen manual storage; elapsed DWT microseconds");
+  Serial.println("edge_us,signed_count,AB_state");
+  ManualDiagnostics::Edge row{};
+  for (uint16_t n=0;n<runEdges.size;++n) {
+    if (!runEdges.read(n,row)) {Serial.println("ERROR: frozen raw edge unavailable");return;}
+    Serial.print(row.us);Serial.print(',');Serial.print(row.count);Serial.print(',');Serial.println(row.state);
+  }
+  Serial.println("RUN_EDGES_END");
+  runEdges.release();
+}
+
 void stopMotor(const char* reason) {
   const bool wasRunning = running;
   const uint32_t stoppedElapsedUs = micros() - traceStartUs;
   const float stoppedDisplacement = encoder.getAngle() - startAngle;
   const float stoppedUq = motor.voltage.q;
   motor.actuatorStats.armed = false;
-  if (wasRunning) runAbiEnd = readAbiSnapshot();
+  if (wasRunning && runEdges.active) {
+    const uint32_t mask=__get_PRIMASK();__disable_irq();
+    runEdges.freeze(encoder.edgeTimestamp(),abiQuality.count);runAbiEnd=readAbiSnapshot();
+    __set_PRIMASK(mask);
+  } else if (wasRunning) runAbiEnd = readAbiSnapshot();
+  encoder.edgeControlActive=false;
   if (ready) motor.disable();
   running = false;
   if (wasRunning) {
@@ -495,6 +606,21 @@ void stopMotor(const char* reason) {
       Serial.print("STOP_GUARD source="); Serial.print(encoder.useRolling ? "original_window2ms_LPF2ms_shadow" : "controller_filtered_velocity");
       Serial.print(" last_observed_rad_s="); Serial.print(lastGuardVelocity, 6);
       Serial.print(" run_abs_peak_rad_s="); Serial.println(runGuardAbsPeak, 6);
+      reportGuardPeak("whole",guardPeaks.whole,guardPeaks.wholeValid);
+      reportGuardPeak("after_ramp",guardPeaks.steady,guardPeaks.steadyValid);
+      if (encoder.useEdge) {
+        const auto sample=encoder.edgeVelocity.snapshot();
+        Serial.print("EDGE_ESTIMATOR_SUMMARY invalid=");Serial.print(sample.invalid ? 1:0);
+        Serial.print(" samples=");Serial.print(sample.size);
+        Serial.print(" signed_count=");Serial.print(static_cast<int32_t>(sample.count));
+        Serial.print(" span_us=");Serial.println(sample.size>1 ? sample.times[sample.size-1]-sample.times[0] : 0);
+        Serial.print("EDGE_CLOCK_FAULT reason=");Serial.print(static_cast<int>(encoder.edgeVelocity.fault));
+        Serial.print(" now_us=");Serial.print(encoder.edgeVelocity.diagnosticNow);
+        Serial.print(" edge_us=");Serial.print(encoder.edgeVelocity.diagnosticEdge);
+        Serial.print(" age_us=");Serial.print(encoder.edgeVelocity.diagnosticAge);
+        Serial.print(" update_gap_us=");Serial.println(encoder.edgeVelocity.diagnosticGap);
+      }
+      if (currentHighSpeedTest) reportIntervalVelocityStats();
       const auto& stats=motor.actuatorStats;
       Serial.print("CURRENT_ACTUATOR_STATS start_us="); Serial.print(stats.ignoreStartupUs);
       Serial.print(" covered_us="); Serial.print(stats.coveredUs);
@@ -508,6 +634,12 @@ void stopMotor(const char* reason) {
       Serial.print(" max_requested_applied_q_difference_V="); Serial.println(stats.maxDifference, 6);
     }
   }
+  if (wasRunning && rawHighOpenTest) {
+    Serial.print("STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=");Serial.print(lastGuardVelocity,6);
+    Serial.print(" run_abs_peak_rad_s=");Serial.println(runGuardAbsPeak,6);
+    reportIntervalVelocityStats();
+  }
+  dumpRunEdges();
 }
 
 bool updateObservedFrame() {
@@ -658,12 +790,18 @@ float compensatedCurrentVelocityControl(FOCMotor* controlled) {
   return total;
 }
 
-void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly = false, float fixedUq = 0, float pGain = 0.20f, float velocityFilter = 0.05f, bool currentCapture = false, bool phasePulse = false, CurrentTrial currentTrial = CurrentTrial::none, bool alignmentSurvey = false) {
-  if (!ready || attempted || manualLocked) {
+void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly = false, float fixedUq = 0, float pGain = 0.20f, float velocityFilter = 0.05f, bool currentCapture = false, bool phasePulse = false, CurrentTrial currentTrial = CurrentTrial::none, bool alignmentSurvey = false, bool edgeCapture = false, float rawOpenGoal = kOpenTargetVelocity, uint32_t rawOpenRampUs=2000000u) {
+  if (!ready || attempted || manualLocked || runEdges.busy()) {
     Serial.println("Rejected: unavailable or already attempted; reset for another test.");
     return;
   }
   attempted = true;
+  rawEdgeTest=edgeCapture;
+  rawHighOpenTest=rawEdgeTest && rawOpenGoal==ReferenceSpeedGuard::maximumGoal;
+  openVelocityGoal=rawHighOpenTest ? ReferenceSpeedGuard::maximumGoal : kOpenTargetVelocity;
+  if (rawHighOpenTest && rawOpenRampUs!=800000u && rawOpenRampUs!=2000000u) {stopMotor("invalid raw open-loop ramp");return;}
+  if (rawEdgeTest && rawOpenGoal!=kOpenTargetVelocity && !rawHighOpenTest) {stopMotor("invalid raw open-loop speed");return;}
+  if (rawEdgeTest && (!openLoop || alignmentSurvey || currentTrial!=CurrentTrial::none || !currentCapture)) {stopMotor("invalid raw edge observation profile");return;}
   switch (currentTrial) {
     case CurrentTrial::none: fixedIqGoal = 0; break;
     case CurrentTrial::fixed015: fixedIqGoal = .15f; break;
@@ -692,38 +830,123 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
     case CurrentTrial::velocityResponseProbe: fixedIqGoal = 0; break;
     case CurrentTrial::velocityResponseProbeInverse: fixedIqGoal = 0; break;
     case CurrentTrial::velocityAdaptiveFlat: fixedIqGoal = 0; break;
+    case CurrentTrial::velocityHigherP: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed2: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed2LowerI: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed2LowerP: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed3LowerP: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed2LowerFilter: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed25LowerFilter: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed3LowerFilter: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed25HalfFilter: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed25Dense: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed2Dense: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed25Adaptive: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed25AdaptiveZero: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed3Adaptive: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed25SlowRamp: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60CurrentFilter: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60LowGain: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60ModerateI: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60Balanced: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60Damped: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60HalfCurrent: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60MidP: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60Edge: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60EdgeCycles: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60EdgeLowerP: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60EdgeFast: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60EdgeTracking: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60EdgeTrackingLowerP: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60EdgeTracking5: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60EdgeTracking5CurrentI: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60Response: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60ResponseInverse: fixedIqGoal = 0; break;
+    case CurrentTrial::velocitySpeed60Adaptive14: fixedIqGoal = 0; break;
     default: stopMotor("invalid nominal current profile"); return;
   }
   currentIqTest = currentTrial != CurrentTrial::none;
-  currentResponseProbeInverseTest=currentTrial == CurrentTrial::velocityResponseProbeInverse;
-  currentResponseProbeTest=currentTrial == CurrentTrial::velocityResponseProbe || currentResponseProbeInverseTest;
-  currentAdaptiveZeroTest=currentTrial == CurrentTrial::velocityAdaptiveZero;
+  const bool highResponseTrial=currentTrial == CurrentTrial::velocitySpeed60Response || currentTrial == CurrentTrial::velocitySpeed60ResponseInverse;
+  currentResponseProbeInverseTest=currentTrial == CurrentTrial::velocityResponseProbeInverse || currentTrial == CurrentTrial::velocitySpeed60ResponseInverse;
+  currentResponseProbeTest=currentTrial == CurrentTrial::velocityResponseProbe || currentResponseProbeInverseTest || highResponseTrial;
+  const bool halfHighCurrentTrial=currentTrial == CurrentTrial::velocitySpeed60HalfCurrent;
+  const bool softerEdgeTrial=currentTrial == CurrentTrial::velocitySpeed60EdgeLowerP;
+  const bool trackingLowerPTrial=currentTrial == CurrentTrial::velocitySpeed60EdgeTrackingLowerP;
+  currentSpeed60Adaptive14Test=currentTrial == CurrentTrial::velocitySpeed60Adaptive14;
+  const bool trackingCurrentITrial=currentTrial == CurrentTrial::velocitySpeed60EdgeTracking5CurrentI || highResponseTrial || currentSpeed60Adaptive14Test;
+  const bool tracking5Trial=currentTrial == CurrentTrial::velocitySpeed60EdgeTracking5 || trackingCurrentITrial;
+  const bool trackingTimeTrial=currentTrial == CurrentTrial::velocitySpeed60EdgeTracking || trackingLowerPTrial || tracking5Trial;
+  const bool fastEdgeTrial=currentTrial == CurrentTrial::velocitySpeed60EdgeFast || trackingTimeTrial;
+  const bool edgeCycleTrial=currentTrial == CurrentTrial::velocitySpeed60EdgeCycles || softerEdgeTrial || fastEdgeTrial;
+  const bool edgeHighTrial=currentTrial == CurrentTrial::velocitySpeed60Edge || edgeCycleTrial;
+  const bool middleHighTrial=currentTrial == CurrentTrial::velocitySpeed60MidP || edgeHighTrial;
+  const bool dampedHighTrial=currentTrial == CurrentTrial::velocitySpeed60Damped || halfHighCurrentTrial || middleHighTrial;
+  const bool balancedHighTrial=currentTrial == CurrentTrial::velocitySpeed60Balanced || dampedHighTrial;
+  const bool moderateHighITrial=currentTrial == CurrentTrial::velocitySpeed60ModerateI || balancedHighTrial;
+  const bool reducedHighTrial=currentTrial == CurrentTrial::velocitySpeed60LowGain || moderateHighITrial;
+  const bool fastCurrentTrial=currentTrial == CurrentTrial::velocitySpeed60CurrentFilter || reducedHighTrial;
+  currentHighSpeedTest=currentTrial == CurrentTrial::velocitySpeed60 || fastCurrentTrial;
+  const bool slowRampTrial=currentTrial == CurrentTrial::velocitySpeed25SlowRamp;
+  currentSpeed3AdaptiveTest=currentTrial == CurrentTrial::velocitySpeed3Adaptive;
+  currentSpeed25AdaptiveTest=currentTrial == CurrentTrial::velocitySpeed25Adaptive || currentTrial == CurrentTrial::velocitySpeed25AdaptiveZero || slowRampTrial;
+  currentAdaptiveZeroTest=currentTrial == CurrentTrial::velocityAdaptiveZero || currentTrial == CurrentTrial::velocitySpeed25AdaptiveZero || slowRampTrial;
   currentAdaptiveFlatTest=currentTrial == CurrentTrial::velocityAdaptiveFlat;
-  currentAdaptiveTest=currentTrial == CurrentTrial::velocityAdaptive || currentAdaptiveZeroTest || currentAdaptiveFlatTest;
+  currentAdaptiveTest=currentTrial == CurrentTrial::velocityAdaptive || currentAdaptiveZeroTest || currentAdaptiveFlatTest || currentSpeed25AdaptiveTest || currentSpeed3AdaptiveTest || currentSpeed60Adaptive14Test;
   const bool higherIReverseTrial=currentTrial == CurrentTrial::velocityHigherIReverse;
   const bool strongerIReverseTrial=currentTrial == CurrentTrial::velocityStrongerIReverse;
   const bool strongerITrial=currentTrial == CurrentTrial::velocityStrongerI || strongerIReverseTrial || currentTrial == CurrentTrial::velocityStrongerIDense;
-  const bool higherITrial=currentTrial == CurrentTrial::velocityHigherI || higherIReverseTrial || strongerITrial || currentTrial == CurrentTrial::velocityHigherIDense || currentAdaptiveTest || currentResponseProbeTest;
+  const bool higherPTrial=currentTrial == CurrentTrial::velocityHigherP;
+  const bool speed3LowerFilterTrial=currentTrial == CurrentTrial::velocitySpeed3LowerFilter || currentSpeed3AdaptiveTest;
+  const bool speed3Trial=currentTrial == CurrentTrial::velocitySpeed3LowerP || speed3LowerFilterTrial;
+  const bool speedLowerPTrial=currentTrial == CurrentTrial::velocitySpeed2LowerP || currentTrial == CurrentTrial::velocitySpeed3LowerP;
+  const bool speed2LowerITrial=currentTrial == CurrentTrial::velocitySpeed2LowerI || speedLowerPTrial;
+  const bool halfFilterTrial=currentTrial == CurrentTrial::velocitySpeed25HalfFilter;
+  const bool speed2DenseTrial=currentTrial == CurrentTrial::velocitySpeed2Dense;
+  const bool speed25DenseTrial=currentTrial == CurrentTrial::velocitySpeed25Dense;
+  const bool speed25Trial=currentTrial == CurrentTrial::velocitySpeed25LowerFilter || halfFilterTrial || speed25DenseTrial || currentSpeed25AdaptiveTest;
+  const bool speed2LowerFilterTrial=currentTrial == CurrentTrial::velocitySpeed2LowerFilter || speed2DenseTrial || speed25Trial || speed3LowerFilterTrial;
+  const bool speed2Trial=currentTrial == CurrentTrial::velocitySpeed2 || (speed2LowerFilterTrial && !speed25Trial && !speed3Trial) || (speed2LowerITrial && !speed3Trial);
+  const bool higherITrial=currentTrial == CurrentTrial::velocityHigherI || higherIReverseTrial || strongerITrial || currentTrial == CurrentTrial::velocityHigherIDense || currentAdaptiveTest || currentResponseProbeTest || currentHighSpeedTest || higherPTrial || ((speed2Trial || speed25Trial || speed3LowerFilterTrial) && !speed2LowerITrial);
   currentCoverageTest = currentTrial == CurrentTrial::velocityCoverage;
   currentReverseTest = currentTrial == CurrentTrial::velocityReverse || currentCoverageTest || higherIReverseTrial || strongerIReverseTrial;
-  currentVelocityGoal=currentReverseTest ? -kTargetVelocity : kTargetVelocity;
+  currentVelocityGoal=referenceSpeedGuardActive() ? ReferenceSpeedGuard::maximumGoal : speed3Trial ? 3.0f : speed25Trial ? 2.5f : speed2Trial ? 2.0f : currentReverseTest ? -kTargetVelocity : kTargetVelocity;
+  currentSpeedRampUs=rawHighOpenTest ? rawOpenRampUs : fastEdgeTrial ? 800000u : currentHighSpeedTest ? 2000000u : slowRampTrial ? 1500000u : (speed2Trial || speed25Trial || speed3Trial) ? 800000u : 0u;
   const bool lowerPTrial=currentTrial == CurrentTrial::velocityDenseLowerP;
-  const bool denseTrial=currentTrial == CurrentTrial::velocityDense || lowerPTrial || currentTrial == CurrentTrial::velocityHigherIDense || currentTrial == CurrentTrial::velocityStrongerIDense;
-  currentFastIntegralTest = currentTrial == CurrentTrial::velocityFastIntegral || currentReverseTest || currentTrial == CurrentTrial::velocityLongWindow || currentTrial == CurrentTrial::velocityLowerFilter || denseTrial || higherITrial;
+  const bool denseTrial=currentHighSpeedTest || currentTrial == CurrentTrial::velocityDense || speed25DenseTrial || speed2DenseTrial || lowerPTrial || currentTrial == CurrentTrial::velocityHigherIDense || currentTrial == CurrentTrial::velocityStrongerIDense;
+  currentFastIntegralTest = currentTrial == CurrentTrial::velocityFastIntegral || currentReverseTest || currentTrial == CurrentTrial::velocityLongWindow || currentTrial == CurrentTrial::velocityLowerFilter || denseTrial || higherITrial || speed2LowerITrial;
   currentVelocityTest = currentTrial == CurrentTrial::velocity || currentTrial == CurrentTrial::velocityCompensated || currentTrial == CurrentTrial::velocityRolling || currentTrial == CurrentTrial::velocityProbe || currentFastIntegralTest;
-  encoder.useRolling = currentTrial == CurrentTrial::velocityRolling || currentTrial == CurrentTrial::velocityProbe || currentFastIntegralTest;
+  encoder.useRolling = rawHighOpenTest || currentTrial == CurrentTrial::velocityRolling || currentTrial == CurrentTrial::velocityProbe || currentFastIntegralTest;
   encoder.rolling.longWindow = currentTrial == CurrentTrial::velocityLongWindow;
+  encoder.rolling.shortWindow=reducedHighTrial;
+  encoder.useEdge=edgeHighTrial;encoder.edgeControlActive=false;encoder.edgeDwtClock=edgeCycleTrial || rawEdgeTest;
+  if (edgeCycleTrial || rawEdgeTest) {
+    if (SystemCoreClock!=170000000u || !BoardCurrentObserver::gatesOff() || (DWT->CTRL&DWT_CTRL_NOCYCCNT_Msk)) {stopMotor("DWT clock unavailable while disabled");return;}
+    CoreDebug->DEMCR|=CoreDebug_DEMCR_TRCENA_Msk;DWT->CTRL|=DWT_CTRL_CYCCNTENA_Msk;__DSB();__ISB();
+    const uint32_t clockBefore=DWT->CYCCNT;delayMicroseconds(20);
+    const uint32_t clockElapsed=DWT->CYCCNT-clockBefore;
+    if (clockElapsed<1700 || clockElapsed>170000) {stopMotor("DWT clock did not advance at expected rate");return;}
+    uint32_t regressions=0,maximumBackstep=0,previousCore=micros();
+    const uint32_t auditStart=DWT->CYCCNT;
+    for (uint32_t audit=0;audit<100000 && DWT->CYCCNT-auditStart<8500000u;++audit) {
+      const uint32_t mask=__get_PRIMASK();__disable_irq();const uint32_t coreNow=micros();__set_PRIMASK(mask);
+      if (coreNow-previousCore>0x7fffffffu) {++regressions;maximumBackstep=fmax(maximumBackstep,previousCore-coreNow);}
+      previousCore=coreNow;
+    }
+    Serial.print("EDGE_CLOCK_CHECK advancing=1 gates_off=1 cycles_per_us=170 core_regressions=");Serial.print(regressions);
+    Serial.print(" maximum_core_backstep_us=");Serial.println(maximumBackstep);
+  }
   encoder.guardFilter = LowPassFilter(.002f); // Age through alignment, matching the first-call reset of the controller LPF.
   currentFeedforwardTest = currentTrial == CurrentTrial::velocityCompensated;
   currentStaticProbe10Test = currentTrial == CurrentTrial::staticProbe10;
   currentStaticProbeTest = currentTrial == CurrentTrial::staticProbe || currentStaticProbe10Test;
   currentProbeTest = currentTrial == CurrentTrial::velocityProbe || currentStaticProbeTest || currentResponseProbeTest;
   const bool projectTracking=currentVelocityTest || currentStaticProbeTest;
-  tracePeriodUs=currentStaticProbeTest ? 4000 : denseTrial ? 2000 : kTracePeriodUs;
+  tracePeriodUs=currentStaticProbeTest ? 4000 : (denseTrial || rawHighOpenTest) ? 2000 : kTracePeriodUs;
   currentProbe.reset();staticCurrentProbe.reset();staticCurrentProbe10.reset();
   responseCurrentProbe.reset();responseCurrentProbeInverse.reset();
   positionFeedforward.reset(); feedforwardCount = 0; lastFeedforwardUs = 0;
-  encoder.window.periodUs = currentVelocityTest ? 2000 : 10000;
+  encoder.window.periodUs = currentVelocityTest || rawHighOpenTest ? 2000 : 10000;
   alignmentOnlyTest = alignmentSurvey;
   phasePulseTest = phasePulse;
   observeCurrents = currentCapture || currentIqTest;
@@ -756,11 +979,11 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
     motor.updateCurrentLimit(currentVelocityTest ? .45f : currentStaticProbeTest ? .15f : fixedIqGoal); // Nominal setpoint bound only.
     if (currentVelocityTest) {
       // Explicit current-mode gains; CONTROL records the actual trial settings.
-      motor.PID_velocity.P = lowerPTrial ? .10f : currentFastIntegralTest ? .15f : .20f;
-      motor.PID_velocity.I = strongerITrial ? 9.60f : higherITrial ? 7.20f : currentFastIntegralTest ? 4.80f : 1.20f;
+      motor.PID_velocity.P = (softerEdgeTrial || trackingLowerPTrial) ? .075f : middleHighTrial ? .12f : dampedHighTrial ? .15f : balancedHighTrial ? .075f : reducedHighTrial ? .025f : higherPTrial ? .20f : (lowerPTrial || speedLowerPTrial) ? .10f : currentFastIntegralTest ? .15f : .20f;
+      motor.PID_velocity.I = moderateHighITrial ? 1.20f : reducedHighTrial ? .30f : strongerITrial ? 9.60f : higherITrial ? 7.20f : currentFastIntegralTest ? 4.80f : 1.20f;
       motor.PID_velocity.D = 0;
       motor.PID_velocity.output_ramp = 0; // Project d/q voltage limits remain active.
-      motor.LPF_velocity.Tf = currentFeedforwardTest ? .005f : currentTrial == CurrentTrial::velocityLowerFilter ? .001f : .002f; // Freeze rejected f at its measured reference profile.
+      motor.LPF_velocity.Tf = reducedHighTrial ? .0005f : halfFilterTrial ? .0005f : currentFeedforwardTest ? .005f : (currentTrial == CurrentTrial::velocityLowerFilter || speed2LowerFilterTrial || currentHighSpeedTest) ? .001f : .002f; // Freeze rejected f at its measured reference profile.
     }
     motor.PID_current_q.P = motor.PID_current_d.P = .20f;
     motor.PID_current_q.I = motor.PID_current_d.I = 50.0f;
@@ -770,7 +993,8 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
     motor.asymmetricCurrentVoltage = projectTracking;
     motor.trackingCurrentControl = projectTracking;
     if (projectTracking) {
-      motor.qPI.P = .60f; motor.qPI.I = currentStaticProbeTest || currentFastIntegralTest ? 200.0f : 100.0f;
+      motor.qPI.P = .60f; motor.qPI.I = trackingCurrentITrial ? 400.0f : currentStaticProbeTest || currentFastIntegralTest ? 200.0f : 100.0f;
+      motor.qPI.trackingTimeS=tracking5Trial ? .005f : trackingTimeTrial ? .002f:0;motor.dPI.trackingTimeS=0;
       motor.qSlew.riseRateVPerS = motor.qSlew.negativeRiseRateVPerS = currentFeedforwardTest ? 30.0f : 100.0f;
     }
     if (projectTracking) {
@@ -779,7 +1003,7 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
       motor.PID_current_q.P = motor.PID_current_d.P = 0;
       motor.PID_current_q.I = motor.PID_current_d.I = 0;
     }
-    motor.LPF_current_q.Tf = motor.LPF_current_d.Tf = .002f;
+    motor.LPF_current_q.Tf = motor.LPF_current_d.Tf = halfHighCurrentTrial ? .0005f : fastCurrentTrial ? .001f : .002f;
     if (currentFeedforwardTest) {
       motor.controller = MotionControlType::custom;
       motor.linkCustomMotionControl(compensatedCurrentVelocityControl);
@@ -801,14 +1025,22 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
   }
   Serial.print("CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=");
   Serial.print(encoder.window.periodUs); Serial.println(" trace_window_us=10000 raw=legacy_shadow");
-  if (encoder.useRolling) {
-    Serial.print("ESTIMATOR controller=rolling_LS");Serial.print(encoder.rolling.horizonUs()/1000);Serial.print("ms min_sample_us=");Serial.print(encoder.rolling.minimumSampleUs());
-    Serial.print(" warmup_span_us=");Serial.print(encoder.rolling.warmupUs());Serial.println(" guard=original_window2ms_LPF2ms guard_limit_rad_s=5");
+  if (encoder.useEdge) {
+    Serial.println("ESTIMATOR controller=edge_period4_phase guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope");
+    Serial.print("EDGE_ESTIMATOR_CONFIG counts_per_turn=4000 period_intervals=4 phase_gain_s_inv=");Serial.print(static_cast<int>(EdgeVelocity::phaseGain));
+    Serial.print(" prediction_count_bound=1 sample_gap_limit_us=");Serial.print(EdgeVelocity::sampleGapLimitUs);
+    Serial.print(" no_edge_decay=gap_to_2gap isr=integer_only");
+    Serial.println(encoder.edgeDwtClock ? " clock=DWT_elapsed cycles_per_us=170" : "");
+  } else if (encoder.useRolling) {
+    Serial.print(rawHighOpenTest ? "ESTIMATOR observer=rolling_LS" : "ESTIMATOR controller=rolling_LS");Serial.print(encoder.rolling.horizonUs()/1000);Serial.print("ms min_sample_us=");Serial.print(encoder.rolling.minimumSampleUs());
+    Serial.print(" warmup_span_us=");Serial.print(encoder.rolling.warmupUs());Serial.println(referenceSpeedGuardActive() ? " guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope" : " guard=original_window2ms_LPF2ms guard_limit_rad_s=5");
   }
+  if (rawEdgeTest) Serial.println("RUN_EDGE_CONFIG capacity=256 clock=DWT_elapsed origin=beginTrace storage=manual_edges raw=us,count,AB UART=after_stop");
+  if (rawHighOpenTest) {Serial.print("RUN_EDGE_DRIVE speed_PID=off current_PI=off voltage_cap_V=.5 reference_ramp_us=");Serial.print(currentSpeedRampUs);Serial.println(" running_UART=off");}
   reportPwm();
   if (currentIqTest) {
     if (currentVelocityTest) {
-      Serial.print("DRIVE current_velocity=1 speed_target_rad_s=");Serial.print(currentVelocityGoal,3);
+      Serial.print("DRIVE current_velocity=1 speed_target_rad_s=");Serial.print(currentVelocityGoal,6);
       Serial.println(" nominal_iq_limit_A=.45 current_control=on legacy_raw_velocity=not_recorded");
     }
     else {
@@ -825,6 +1057,10 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
     Serial.print(" vector_voltage_limit_V=.5 release=");
     Serial.println(projectTracking ? "immediate reversal=via_zero; nominal current scaling" : "symmetric; nominal current scaling");
     if (projectTracking) Serial.println("CURRENT_ENGINE project_tracking_PI=1 actuator_feedback=applied_dq stock_current_PI=unused");
+    if (trackingTimeTrial) {
+      Serial.print("CURRENT_TRACKING q_backcalc_s=");Serial.print(motor.qPI.trackingTimeS,4);
+      Serial.print(" d_backcalc_s=");Serial.println(motor.dPI.trackingTimeS,4);
+    }
     if (projectTracking) {
       Serial.print("CURRENT_SLEW positive_q_V_s="); Serial.print(motor.qSlew.riseRateVPerS, 1);
       Serial.print(" negative_q_V_s="); Serial.print(motor.qSlew.negativeRiseRateVPerS, 1);
@@ -854,20 +1090,37 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
     Serial.print("OUTPUT_POLICY forward_only="); Serial.println(forwardOnlyTest ? 1 : 0);
   }
   if (currentAdaptiveTest) {
-    Serial.print("ADAPTIVE_CONFIG order=84 learning_rate=");Serial.print(activeAdaptive().learningRate,4);
+    Serial.print("ADAPTIVE_CONFIG order=");Serial.print(activeAdaptive().order);Serial.print(" learning_rate=");Serial.print(activeAdaptive().learningRate,4);
     Serial.print(" correction_bound_nominal_A=");Serial.print(activeAdaptive().boundA,6);
     Serial.print(" response_lag_rad=");Serial.print(activeAdaptive().responseLagRad,6);
     Serial.print(" gate_us=800000 blend_us=200000 total_limit_nominal_A=");Serial.print(motor.current_limit,4);
-    Serial.println(" anchor=run_start per_run_reset=1");
+    Serial.print(" learning_reference_rad_s=");Serial.print(activeAdaptive().referenceMagnitude,4);
+    Serial.print(" learning_min_velocity_rad_s=");Serial.print(.3f*activeAdaptive().referenceMagnitude,4);
+    Serial.print(" learning_max_velocity_rad_s=");Serial.print(1.7f*activeAdaptive().referenceMagnitude,4);
+    Serial.print(" anchor=run_start per_run_reset=1");
+    Serial.println(currentSpeed60Adaptive14Test ? " trig=phase_rotation" : "");
+  }
+  if (currentVelocityTest || currentStaticProbeTest) {
+    Serial.print("GUARD_PEAK_CONFIG steady_start_us=");Serial.print(currentSpeedRampUs>800000 ? currentSpeedRampUs : 800000);
+    Serial.println(" observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop");
+  }
+  if (referenceSpeedGuardActive()) {
+    Serial.println("SPEED_GUARD_CONFIG mode=reference_envelope deviation_rad_s=2 hard_abs_rad_s=8.5 max_target_rad_s=6.283185 source=original_window2ms_LPF2ms signed_motor_velocity=1");
+    Serial.print("VELOCITY_STATS_CONFIG period_us=2000 start_us=");Serial.print(currentSpeedRampUs);Serial.println(" source=ABI_interval frame=motor_signed samples=post_ramp_only UART=after_stop");
   }
   Serial.print("CONTROL P="); Serial.print(motor.PID_velocity.P, 4);
   Serial.print(" I="); Serial.print(motor.PID_velocity.I, 4);
   Serial.print(" D="); Serial.print(motor.PID_velocity.D, 4);
   Serial.print(" output_ramp_V_s="); Serial.print(motor.PID_velocity.output_ramp, 4);
   Serial.print(" velocity_LPF_s="); Serial.println(motor.LPF_velocity.Tf, 4);
+  if (currentSpeedRampUs) {
+    Serial.print("REFERENCE_RAMP duration_us=");Serial.print(currentSpeedRampUs);
+    Serial.print(" target_rad_s=");Serial.print(currentVelocityGoal,6);
+    Serial.println(" trace_target=final_goal origin=trace_start");
+  }
   Serial.print("TRACE_CONFIG period_us=");Serial.print(tracePeriodUs);
   Serial.println(" capacity=320 loop_us_saturation=65535 window_age_us_saturation=65535 window_span_us_nominal=10000");
-  if (denseTrial) Serial.println("TRACE_SCOPE retained_tail_only=1 nominal_span_us=640000 whole_run_guard_stats=1 velocity_window_us=10000");
+  if (denseTrial || rawHighOpenTest) Serial.println("TRACE_SCOPE retained_tail_only=1 nominal_span_us=640000 whole_run_guard_stats=1 velocity_window_us=10000");
   if (phasePulseTest) {
     Serial.println("DRIVE phase_pulse=1 amplitude_V=.10 rise_V_s=3 pulse_us=150000 rest_us=100000 count=6 total_us=1500000 speed_PID=off speed_target=none Uq_column=unused");
     if (!motor.init()) { stopMotor("motor init failed"); return; }
@@ -881,7 +1134,7 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
   }
   if (openTest) {
     motor.controller = MotionControlType::velocity_openloop;
-    motor.velocity_limit = kOpenTargetVelocity;
+    motor.velocity_limit = openVelocityGoal;
     motor.motion_downsample = 0;
     if (!motor.init()) { stopMotor("motor init failed"); return; }
     Serial.println("ALIGN OPEN: establish starting field before speed ramp.");
@@ -893,8 +1146,16 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
     startAngle = encoder.getAngle();
     runStart = millis();
     beginTrace();
+    if (rawEdgeTest && !runEdges.active) {stopMotor("raw edge storage unavailable");return;}
     running = true;
-    Serial.print("RUN OPEN: ramp speed to "); Serial.print(kOpenTargetVelocity, 3);
+    if (rawEdgeTest) {
+      Serial.print("RUN_EDGE_ACTIVE window_us=");Serial.print(encoder.window.periodUs);
+      Serial.print(" guard_LPF_s=");Serial.print(rawHighOpenTest ? encoder.guardFilter.Tf : observedVelocity.Tf,4);
+      Serial.print(rawHighOpenTest ? " guard_limit_rad_s=8.5 voltage_limit_V=" : " guard_limit_rad_s=5 voltage_limit_V=");Serial.print(motor.voltage_limit,3);
+      Serial.print(" target_rad_s=");Serial.print(motor.velocity_limit,rawHighOpenTest ? 6:3);
+      Serial.println(motor.controller==MotionControlType::velocity_openloop ? " mode=open_loop" : " mode=unexpected");
+    }
+    Serial.print("RUN OPEN: ramp speed to "); Serial.print(openVelocityGoal, rawHighOpenTest ? 6:3);
     Serial.print(" rad/s at "); Serial.print(kOpenVoltageLimit, 3);
     Serial.println(" V; stop after 3 seconds.");
     return;
@@ -930,6 +1191,10 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
     Serial.print(" q_I=");Serial.print(motor.trackingCurrentControl ? motor.qPI.I : motor.PID_current_q.I,4);
     Serial.print(" velocity_P=");Serial.print(motor.PID_velocity.P,4);
     Serial.print(" velocity_I=");Serial.println(motor.PID_velocity.I,4);
+    if (trackingTimeTrial) {
+      Serial.print("CURRENT_TRACKING_ACTIVE q_backcalc_s=");Serial.print(motor.qPI.trackingTimeS,4);
+      Serial.print(" d_backcalc_s=");Serial.println(motor.dPI.trackingTimeS,4);
+    }
   }
   // initFOC's cached angle can age while UART metadata is emitted. Refresh
   // before the reference and velocity-window reset, without reading velocity.
@@ -940,8 +1205,8 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
   running = true;
   if (currentStaticProbeTest) Serial.println("RUN CURRENT: 1-second stationary attempt, nominal Iq .10A plus .02A probe, setpoint cap .15A; .03rad displacement stop; all existing guards retained.");
   else if (currentVelocityTest) {
-    Serial.print("RUN CURRENT VELOCITY: target ");Serial.print(currentVelocityGoal,3);
-    Serial.println("rad/s, nominal Iq limit +/-.45A, vector cap .5V; existing speed/stall/3s guards.");
+    Serial.print("RUN CURRENT VELOCITY: target ");Serial.print(currentVelocityGoal,6);
+    Serial.println(currentHighSpeedTest ? "rad/s, nominal Iq limit +/-.45A, vector cap .5V; reference envelope/stall/3s guards." : "rad/s, nominal Iq limit +/-.45A, vector cap .5V; existing speed/stall/3s guards.");
   }
   else if (currentIqTest) Serial.println("RUN CURRENT: 300ms ramp to nominal Iq target; vector cap .5V; existing speed/stall/3s guards.");
   else if (fixedUqTest > 0) Serial.println("RUN FIXED: ramp to fixed Uq at 3V/s; no speed target; same 5rad/s and stall guards; max 3 seconds.");
@@ -999,6 +1264,17 @@ void setup() {
   Serial.println("S=B with target -1rad/s; M/N=forward I7.20/I9.60 with 2ms RAM tails; same bounds/guards.");
   Serial.println("A/Z=I7.20 with bounded per-run adaptive order84 correction / zero-learning comparison; .03A correction and existing total/voltage/velocity limits.");
   Serial.println("T/U=I7.20 with 17.5Hz/.02A known probe at phase 0/pi; adaptive correction off, existing bounds/guards.");
+  Serial.println("V=I with velocity P .20 instead of .15; I7.20, target 1rad/s, existing bounds/guards.");
+  Serial.println("W=I at 2rad/s with 800ms reference ramp; trace target column is final goal; existing bounds/guards.");
+  Serial.println("J=W with velocity I4.80 instead of 7.20; same reference, P .15, bounds and guards.");
+  Serial.println("K=J with velocity P .10; X is not cleared and is rejected. Original 5rad/s/3s/current/voltage/ADC guards remain.");
+  Serial.println("Y=W with velocity LPF 1ms instead of 2ms; rolling4ms and independent window2ms/LPF2ms guard unchanged.");
+  Serial.println("3=60rpm lower velocity gains P.025/I.30, LS2ms/velocityLPF.5ms/currentLPF1ms; G/1 disabled after envelope faults. Same 2s ramp, +/-2 envelope, absolute8.5 ceiling; legacy profiles retain fixed5.");
+  Serial.println("0=8 at 2.5rad/s with reference ramp1.5s instead of .8s; zero learning, same bounds/guards.");
+  Serial.println("9 disabled after near-limit speed3 peaks; P/X remain disabled; independent guard remains 5rad/s.");
+  Serial.println("7/8=O with bounded adaptive order84 / zero-learning comparison, lag45deg and learning reference2.5; .03A correction and existing bounds/guards.");
+  Serial.println("5=O at 2.5rad/s, 6=Y at 2rad/s; 2ms RAM tails, last ~.65s only; same 3s drive and all guards.");
+  Serial.println("O=Y at 2.5rad/s; 2=O with velocity LPF .5ms; same 800ms ramp and original bounds/guards. P disabled after overspeed.");
   Serial.println("F=A with the adaptive response-lag hypothesis 0rad instead of .785398rad; same correction and total bounds.");
   reportPwm();
   Serial.println("ms,running,A_edges,B_edges,index,angle_rad,velocity_rad_s,Uq_V");
@@ -1040,6 +1316,44 @@ void loop() {
     else if (command == 'T') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocityResponseProbe);
     else if (command == 'U') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocityResponseProbeInverse);
     else if (command == 'F') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocityAdaptiveFlat);
+    else if (command == 'V') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocityHigherP);
+    else if (command == 'W') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed2);
+    else if (command == 'J') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed2LowerI);
+    else if (command == 'K') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed2LowerP);
+    else if (command == 'X') { stopMotor("unapproved X profile"); Serial.println("Rejected: X has not been cleared by bench evidence; output disabled."); }
+    else if (command == 'Y') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed2LowerFilter);
+    else if (command == 'O') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed25LowerFilter);
+    else if (command == 'P') { stopMotor("faulted P profile disabled"); Serial.println("Rejected: P exceeded the independent speed guard; output disabled."); }
+    else if (command == 'G') { stopMotor("faulted G profile disabled"); Serial.println("Rejected: G exceeded its reference envelope; output disabled."); }
+    else if (command == '1') { stopMotor("faulted currentLPF1 profile disabled"); Serial.println("Rejected: 1 exceeded its reference envelope; output disabled."); }
+    else if (command == '3') { stopMotor("faulted lowgain profile disabled"); Serial.println("Rejected: 3 exceeded its reference envelope; output disabled."); }
+    else if (command == '4') { stopMotor("faulted moderateI profile disabled"); Serial.println("Rejected: 4 exceeded its reference envelope; output disabled."); }
+    else if (command == '=') { stopMotor("faulted balanced profile disabled"); Serial.println("Rejected: = exceeded its reference envelope; output disabled."); }
+    else if (command == '>') { stopMotor("faulted damped profile disabled"); Serial.println("Rejected: > exceeded its reference envelope; output disabled."); }
+    else if (command == '<') { stopMotor("faulted half-current-filter profile disabled"); Serial.println("Rejected: < exceeded its reference envelope; output disabled."); }
+    else if (command == '~') { stopMotor("faulted middle-P profile disabled"); Serial.println("Rejected: ~ exceeded its reference envelope; output disabled."); }
+    else if (command == '[') { stopMotor("faulted edge-micros profile disabled"); Serial.println("Rejected: [ produced a nonfinite estimate; output disabled."); }
+    else if (command == ']') { stopMotor("faulted edge-DWT profile disabled"); Serial.println("Rejected: ] exceeded its reference envelope; output disabled."); }
+    else if (command == '{') { stopMotor("faulted edge-lowerP profile disabled"); Serial.println("Rejected: { exceeded its reference envelope; output disabled."); }
+    else if (command == '}') startTest(true, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::none, false, true);
+    else if (command == '!') { stopMotor("faulted slow-open profile disabled"); Serial.println("Rejected: ! exceeded its reference envelope; output disabled."); }
+    else if (command == '+') { stopMotor("faulted fast-open profile disabled"); Serial.println("Rejected: + exceeded its reference envelope; output disabled."); }
+    else if (command == '_') { stopMotor("faulted fast-edge profile disabled"); Serial.println("Rejected: _ exceeded its reference envelope; output disabled."); }
+    else if (command == '@') { stopMotor("faulted tracking profile disabled"); Serial.println("Rejected: @ exceeded its reference envelope; output disabled."); }
+    else if (command == '%') { stopMotor("faulted tracking-lowerP profile disabled"); Serial.println("Rejected: % exceeded its reference envelope; output disabled."); }
+    else if (command == ':') { stopMotor("faulted tracking-5ms profile disabled"); Serial.println("Rejected: : exceeded its reference envelope; output disabled."); }
+    else if (command == ';') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed60EdgeTracking5CurrentI);
+    else if (command == '(') { stopMotor("faulted high-response probe disabled"); Serial.println("Rejected: ( exceeded its reference envelope; output disabled."); }
+    else if (command == ')') { stopMotor("unpaired high-response inverse disabled"); Serial.println("Rejected: forward trial did not complete; inverse probe not tested."); }
+    else if (command == '?') { stopMotor("marginal adaptive14 profile disabled"); Serial.println("Rejected: ? approached the reference guard without reducing whole-run ripple."); }
+    else if (command == '^') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed60Adaptive14);
+    else if (command == '0') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed25SlowRamp);
+    else if (command == '9') { stopMotor("marginal speed3 profile disabled"); Serial.println("Rejected: 9 approached the independent speed guard; output disabled."); }
+    else if (command == '7') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed25Adaptive);
+    else if (command == '8') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed25AdaptiveZero);
+    else if (command == '6') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed2Dense);
+    else if (command == '5') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed25Dense);
+    else if (command == '2') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::velocitySpeed25HalfFilter);
     else if (command == 'e') startTest(false, false, false, 0, 0.20f, 0.05f, true, false, CurrentTrial::none, true);
     else if (command == 'l') startTest(true, false, false, 0, 0.20f, 0.05f, true);
     else if (command == 't') startTest();
@@ -1077,15 +1391,15 @@ void loop() {
       const float center = kBusVoltage / 2;
       driver.setPwm(center + voltage.a, center + voltage.b, center + voltage.c);
     } else if (openTest) {
-      commandedVelocity = kOpenTargetVelocity * _constrain(elapsed / 800.0f, 0.0f, 1.0f);
+      commandedVelocity = rawHighOpenTest ? velocityReference(openVelocityGoal,micros()-traceStartUs,currentSpeedRampUs) : kOpenTargetVelocity * _constrain(elapsed / 800.0f, 0.0f, 1.0f);
       motor.move(commandedVelocity);
       motor.loopFOC();
     } else if (currentIqTest) {
-      commandedVelocity = currentVelocityTest ? currentVelocityGoal : 0;
+      commandedVelocity = currentVelocityTest ? velocityReference(currentVelocityGoal,micros()-traceStartUs,currentSpeedRampUs) : 0;
       const float appliedTarget = motor.current_sp;
       motor.loopFOC();
       currentControlTrace = {motor.current.q, motor.current.d, motor.voltage.d, appliedTarget};
-      motor.move(currentVelocityTest ? currentVelocityGoal : nominalIqRamp(fixedIqGoal, micros() - traceStartUs));
+      motor.move(currentVelocityTest ? commandedVelocity : nominalIqRamp(fixedIqGoal, micros() - traceStartUs));
       measuredVelocity = motor.shaft_velocity;
     } else {
       commandedVelocity = fixedUqTest > 0 ? 0.0f : kTargetVelocity;
@@ -1096,6 +1410,19 @@ void loop() {
     recordTrace(false, motor.voltage.q);
     const float monitoredVelocity = encoder.useRolling ? encoder.guardVelocity : openTest || phasePulseTest ? measuredVelocity : motor.shaft_velocity;
     lastGuardVelocity = monitoredVelocity;
+    const uint32_t peakNow=micros(),peakElapsed=peakNow-traceStartUs;
+    if ((currentVelocityTest || currentStaticProbeTest) && encoder.velocitySampleValid && guardPeaks.wants(monitoredVelocity,peakElapsed)) {
+      guardPeaks.observe({peakElapsed,peakNow-encoder.velocitySampleUs,peakNow-observedFrame.us,
+          monitoredVelocity,motor.shaft_velocity,commandedVelocity,currentControlTrace.target,motor.current_sp,
+          currentControlTrace.iq,motor.voltage.q,motor.voltage.d,currentAdaptiveTest ? activeAdaptive().correction : 0});
+    }
+    if (referenceSpeedGuardActive()) intervalVelocityStats.update(peakNow,static_cast<int>(motor.sensor_direction)*encoder.getAngle());
+    const bool invalidVelocity=!isfinite(monitoredVelocity) || !isfinite(measuredVelocity);
+    bool speedGuardExceeded=fabs(monitoredVelocity)>5.0f;
+    if (referenceSpeedGuardActive()) {
+      const auto envelope=ReferenceSpeedGuard::evaluate(monitoredVelocity*static_cast<int>(motor.sensor_direction),commandedVelocity,currentVelocityGoal);
+      speedGuardExceeded=!envelope.valid || envelope.outside;
+    }
     if (isfinite(monitoredVelocity)) runGuardAbsPeak = fmax(runGuardAbsPeak, fabs(monitoredVelocity));
     const bool stalled = !phasePulseTest && motionWatchdog.stalled(encoder.getAngle(), micros());
     if (currentAdaptiveTest && activeAdaptive().invalid) stopMotor("invalid adaptive correction or unexpected adaptive control gap");
@@ -1103,8 +1430,10 @@ void loop() {
     else if (currentFeedforwardTest && positionFeedforward.invalid) stopMotor("invalid position correction or inconsistent Index");
     else if (currentIqTest && motor.vectorBound.invalid) stopMotor("non-finite current voltage vector");
     else if (asymmetricTest && magnitudeSlew.invalid) stopMotor("non-finite PID output");
-    else if (!isfinite(monitoredVelocity) || !isfinite(measuredVelocity) || fabs(monitoredVelocity) > 5.0f)
-      stopMotor("unexpected velocity");
+    else if (encoder.useEdge && !isfinite(measuredVelocity)) stopMotor("invalid edge velocity estimate or control sample gap");
+    else if (invalidVelocity || speedGuardExceeded)
+      stopMotor(referenceSpeedGuardActive() ? "reference speed envelope exceeded" : "unexpected velocity");
+    else if (referenceSpeedGuardActive() && intervalVelocityStats.invalid) stopMotor("invalid high-rate velocity statistics");
     else if (stalled) stopMotor("shaft movement stalled");
     else if (currentStaticProbeTest && fabs(encoder.getAngle()-startAngle)>.03f) stopMotor("movement during stationary current probe");
     else if (currentStaticProbeTest && micros()-traceStartUs>=1000000) stopMotor("1-second current probe complete");
@@ -1116,7 +1445,7 @@ void loop() {
   } else encoder.update();
   if (tracePending) dumpTrace();
   reportSenseIdle();
-  if (running && currentIqTest) return; // Stop polling and RAM trace remain active; avoid UART stalls in current control.
+  if (running && (currentIqTest || rawHighOpenTest)) return; // Stop polling and RAM trace remain active; avoid UART stalls in current control.
   static uint32_t lastReport = 0;
   const uint32_t now = millis();
   if (now - lastReport < 200) return;

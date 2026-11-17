@@ -12,6 +12,7 @@ int main() {
   const uint8_t cycle[4]={0,2,3,1};
   for (int offset=0;offset<4;++offset) {
     q.reset(cycle[offset]);
+    require(q.currentState()==cycle[offset],"capture origin uses last processed ISR state");
     for (int n=1;n<=4000;++n) q.edge(cycle[(offset+n)%4]);
     require(q.count==4000 && q.invalid==0 && q.duplicate==0 && q.reversals==0,"positive turn from every phase");
     for (int n=1;n<=4000;++n) q.edge(cycle[(offset+4000-n)%4]);
@@ -20,7 +21,7 @@ int main() {
   }
   for (uint8_t s=0;s<4;++s) {
     q.reset(s); q.edge(s^3);
-    require(q.invalid==1 && q.count==0,"two-bit changes flagged without inventing motion");
+    require(q.invalid==1 && q.count==0 && q.currentState()==(s^3),"two-bit changes flagged without inventing motion");
     q.edge(s^3); require(q.duplicate==1 && q.count==0,"duplicate callback flagged");
   }
   std::cout << "PASS: atomic port mapping, all valid transitions, 4000-count turns/reversal, invalid and duplicate transitions\n";

@@ -1,0 +1,205 @@
+{
+  "groups": [
+    {
+      "condition": "LPF1ms",
+      "trials": [
+        {
+          "log": "2026-11-18-current-velocity-speed2-LPF1-v89-01.log",
+          "metrics": {
+            "covered_start_us": 803546.0,
+            "covered_end_us": 2999711.0,
+            "mean_encoder_velocity_rad_s": 2.0055473973950044,
+            "command_direction": 1,
+            "mean_speed_in_command_direction_rad_s": 2.0055473973950044,
+            "target_magnitude_rad_s": 2.0,
+            "filtered_tracking_rmse_rad_s": 0.4651291468108639,
+            "window_tracking_rmse_rad_s": 0.42151734906774596,
+            "window_speed_below_0_2_fraction": 0.0,
+            "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+            "negative_voltage_command_fraction": 0.0,
+            "voltage_command_mean_V": 0.13068216650388295,
+            "negative_unslewed_pid_request_fraction": null,
+            "relative_window_tracking_rmse": 0.21075867453387298
+          },
+          "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.624153 run_abs_peak_rad_s=3.532065",
+          "abi": {
+            "callbacks": 3297.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 1.0,
+            "count_delta": 3297.0,
+            "encoder_count_delta": 3297.0
+          },
+          "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199692 calls=31162 q_slew_limited_fraction=0.011710 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.001432 rms_q_error_nominal_A=0.031433 mean_requested_minus_applied_q_V=0.000026 max_requested_applied_q_difference_V=0.009654",
+          "voltage_vector_max_V": 0.2471139425953137,
+          "adc_age_max_us": 1153.0,
+          "vbus_nominal_V": {
+            "min": 11.190629069010416,
+            "max": 11.207368977864583,
+            "mean": 11.198656616210899,
+            "rms": 11.19865739294657
+          }
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed2-LPF1-v89-02.log",
+          "metrics": {
+            "covered_start_us": 802540.0,
+            "covered_end_us": 2999586.0,
+            "mean_encoder_velocity_rad_s": 2.007602935942169,
+            "command_direction": 1,
+            "mean_speed_in_command_direction_rad_s": 2.007602935942169,
+            "target_magnitude_rad_s": 2.0,
+            "filtered_tracking_rmse_rad_s": 0.47388635117256167,
+            "window_tracking_rmse_rad_s": 0.43351643999146866,
+            "window_speed_below_0_2_fraction": 0.0,
+            "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+            "negative_voltage_command_fraction": 0.0,
+            "voltage_command_mean_V": 0.1381997528954787,
+            "negative_unslewed_pid_request_fraction": null,
+            "relative_window_tracking_rmse": 0.21675821999573433
+          },
+          "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.993705 run_abs_peak_rad_s=3.552884",
+          "abi": {
+            "callbacks": 3295.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 3295.0,
+            "encoder_count_delta": 3295.0
+          },
+          "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199574 calls=31161 q_slew_limited_fraction=0.011396 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.001442 rms_q_error_nominal_A=0.032542 mean_requested_minus_applied_q_V=0.000028 max_requested_applied_q_difference_V=0.011852",
+          "voltage_vector_max_V": 0.2724852752443699,
+          "adc_age_max_us": 1097.0,
+          "vbus_nominal_V": {
+            "min": 11.190629069010416,
+            "max": 11.215738932291668,
+            "mean": 11.200482788085903,
+            "rms": 11.200483642233054
+          }
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed2-LPF1-v89-03.log",
+          "metrics": {
+            "covered_start_us": 803839.0,
+            "covered_end_us": 2999942.0,
+            "mean_encoder_velocity_rad_s": 2.002027682672443,
+            "command_direction": 1,
+            "mean_speed_in_command_direction_rad_s": 2.002027682672443,
+            "target_magnitude_rad_s": 2.0,
+            "filtered_tracking_rmse_rad_s": 0.47165577460640085,
+            "window_tracking_rmse_rad_s": 0.42959947589578956,
+            "window_speed_below_0_2_fraction": 0.0,
+            "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+            "negative_voltage_command_fraction": 0.0,
+            "voltage_command_mean_V": 0.13954777289589798,
+            "negative_unslewed_pid_request_fraction": null,
+            "relative_window_tracking_rmse": 0.21479973794789478
+          },
+          "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.567600 run_abs_peak_rad_s=4.007534",
+          "abi": {
+            "callbacks": 3293.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 3293.0,
+            "encoder_count_delta": 3293.0
+          },
+          "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199895 calls=31170 q_slew_limited_fraction=0.011740 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.001519 rms_q_error_nominal_A=0.032209 mean_requested_minus_applied_q_V=0.000026 max_requested_applied_q_difference_V=0.010114",
+          "voltage_vector_max_V": 0.2502937742114254,
+          "adc_age_max_us": 1128.0,
+          "vbus_nominal_V": {
+            "min": 11.190629069010416,
+            "max": 11.207368977864583,
+            "mean": 11.200558878580699,
+            "rms": 11.200559722383696
+          }
+        }
+      ],
+      "mean_run_RMS_rad_s": 0.4282110883183347
+    },
+    {
+      "condition": "LPF2ms",
+      "trials": [
+        {
+          "log": "2026-11-18-current-velocity-speed2-LPF2-v89-01.log",
+          "metrics": {
+            "covered_start_us": 802921.0,
+            "covered_end_us": 2999526.0,
+            "mean_encoder_velocity_rad_s": 2.0065760571427265,
+            "command_direction": 1,
+            "mean_speed_in_command_direction_rad_s": 2.0065760571427265,
+            "target_magnitude_rad_s": 2.0,
+            "filtered_tracking_rmse_rad_s": 0.4972718264780081,
+            "window_tracking_rmse_rad_s": 0.4548015229002231,
+            "window_speed_below_0_2_fraction": 0.0,
+            "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+            "negative_voltage_command_fraction": 0.0,
+            "voltage_command_mean_V": 0.13268704409759594,
+            "negative_unslewed_pid_request_fraction": null,
+            "relative_window_tracking_rmse": 0.22740076145011154
+          },
+          "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.928264 run_abs_peak_rad_s=4.051948",
+          "abi": {
+            "callbacks": 3301.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 3301.0,
+            "encoder_count_delta": 3301.0
+          },
+          "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199478 calls=31160 q_slew_limited_fraction=0.003951 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.000245 rms_q_error_nominal_A=0.030193 mean_requested_minus_applied_q_V=0.000006 max_requested_applied_q_difference_V=0.005680",
+          "voltage_vector_max_V": 0.25440053759573705,
+          "adc_age_max_us": 1126.0,
+          "vbus_nominal_V": {
+            "min": 11.190629069010416,
+            "max": 11.207368977864583,
+            "mean": 11.199645792643198,
+            "rms": 11.199646641167625
+          }
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed2-LPF2-v89-02.log",
+          "metrics": {
+            "covered_start_us": 803923.0,
+            "covered_end_us": 2999958.0,
+            "mean_encoder_velocity_rad_s": 2.005666120986232,
+            "command_direction": 1,
+            "mean_speed_in_command_direction_rad_s": 2.005666120986232,
+            "target_magnitude_rad_s": 2.0,
+            "filtered_tracking_rmse_rad_s": 0.5234415743401005,
+            "window_tracking_rmse_rad_s": 0.46911315204300347,
+            "window_speed_below_0_2_fraction": 0.0,
+            "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+            "negative_voltage_command_fraction": 0.0,
+            "voltage_command_mean_V": 0.1403141530075796,
+            "negative_unslewed_pid_request_fraction": null,
+            "relative_window_tracking_rmse": 0.23455657602150173
+          },
+          "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.885351 run_abs_peak_rad_s=3.992548",
+          "abi": {
+            "callbacks": 3300.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 3300.0,
+            "encoder_count_delta": 3300.0
+          },
+          "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199894 calls=31163 q_slew_limited_fraction=0.004967 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.000305 rms_q_error_nominal_A=0.032494 mean_requested_minus_applied_q_V=0.000008 max_requested_applied_q_difference_V=0.007783",
+          "voltage_vector_max_V": 0.2799452465911861,
+          "adc_age_max_us": 272.0,
+          "vbus_nominal_V": {
+            "min": 11.190629069010416,
+            "max": 11.215738932291668,
+            "mean": 11.200482788085912,
+            "rms": 11.200483841247577
+          }
+        }
+      ],
+      "mean_run_RMS_rad_s": 0.46195733747161327
+    }
+  ],
+  "RMS_mean_reduction_fraction": 0.07305057505521761,
+  "audit": "Same v89 and P/I/current-loop/ramp; actual velocity LPF checked, original independent 2ms/2ms guard retained. Five final stop acknowledgements present.",
+  "decision": "Modest consistent 10ms RMS improvement; guard peak not lower in every run. Provisional LPF1ms candidate, not smooth constant-speed success. Next guarded step 2.5rad/s with same settings.",
+  "limitations": "Only 3 vs 2 trials. ABI is not an independent true-angle reference; nominal currents and VBUS; motor temperature and CV unmeasured."
+}

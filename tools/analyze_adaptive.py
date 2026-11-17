@@ -6,6 +6,7 @@ import json
 import math
 from pathlib import Path
 import re
+from reference_window import comparison_start_us
 
 
 def metadata(line):
@@ -19,14 +20,16 @@ def main():
     if 'HOST final_stop_acknowledged=True' not in lines:raise ValueError('Completed final stop acknowledgement required')
     config=metadata(next(l for l in lines if l.startswith('ADAPTIVE_CONFIG ')))
     summary=metadata(next(l for l in lines if l.startswith('ADAPTIVE_SUMMARY ')))
-    if summary['invalid'] or summary['peak_nominal_A']>.030001 or math.hypot(summary['cosine_nominal_A'],summary['sine_nominal_A'])>.030001:
+    bound=config['correction_bound_nominal_A']
+    if not math.isfinite(bound) or not 0<bound<=.03:raise ValueError('Invalid configured correction bound')
+    if summary['invalid'] or summary['peak_nominal_A']>bound+1e-6 or math.hypot(summary['cosine_nominal_A'],summary['sine_nominal_A'])>bound+1e-6:
         raise ValueError('Invalid adaptive state or excessive correction')
     a=next(n for n,l in enumerate(lines) if l.startswith('ADAPTIVE_SAMPLES '));samples=[]
     for line in lines[a+1:]:
         parts=line.split(',')
         if len(parts)!=4 or not parts[0].isdigit():break
         elapsed,pid,correction,total=map(float,parts)
-        if not all(math.isfinite(v) for v in (elapsed,pid,correction,total)) or abs(correction)>.030001 or abs(total)>.450001:
+        if not all(math.isfinite(v) for v in (elapsed,pid,correction,total)) or abs(correction)>bound+1e-6 or abs(total)>.450001:
             raise ValueError('Invalid or unbounded adaptive sample')
         if elapsed<=800000 and abs(correction)>1e-6:raise ValueError('Correction before gate')
         if abs(total-max(-.45,min(.45,pid+correction)))>3e-6:raise ValueError('Correction/mix telemetry does not agree')
@@ -37,15 +40,16 @@ def main():
     a=next(n for n,l in enumerate(lines) if l.startswith('trace_us,'));b=lines.index('TRACE_END',a)
     rows=[{k:float(v) for k,v in r.items()} for r in csv.DictReader(io.StringIO('\n'.join(lines[a:b])))]
     intervals=[]
+    metrics_start_us=comparison_start_us(lines)
     for start,end in ((.8,1.5),(1.5,2.2),(2.2,3.01),(.8,3.01)):
-        selected=[r for r in rows if start*1e6<=r['trace_us']<=end*1e6]
+        selected=[r for r in rows if max(start*1e6,metrics_start_us)<=r['trace_us']<=end*1e6]
         if len(selected)<2:continue
         duration=selected[-1]['trace_us']-selected[0]['trace_us']
         square=sum((y['trace_us']-x['trace_us'])*(x['window10ms_rad_s']-x['target_rad_s'])**2 for x,y in zip(selected,selected[1:]))
         intervals.append({'actual_start_us':selected[0]['trace_us'],'actual_end_us':selected[-1]['trace_us'],
                           'window10ms_tracking_rms_rad_s':math.sqrt(square/duration)})
     output=json.dumps({'log':args.log.name,'config':config,'summary':summary,'bounded_samples':samples,
-                       'learning_intervals':intervals,'note':'Intervals diagnose within-run evolution; the primary comparison still uses the common full interval after .8s. Samples are nominal commands, not calibrated current or CV measurements.'},indent=2)+'\n'
+                       'metrics_start_us':metrics_start_us,'learning_intervals':intervals,'note':'Intervals diagnose within-run evolution; comparisons must use a common interval after the reference ramp. Samples are nominal commands, not calibrated current or CV measurements.'},indent=2)+'\n'
     if args.output:args.output.write_text(output,encoding='utf-8')
     print(output)
 

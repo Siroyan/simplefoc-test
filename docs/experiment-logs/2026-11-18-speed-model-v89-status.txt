@@ -1,0 +1,16 @@
+model_cases_improved=12/12 mean_late_ratio=0.626198; not bench validation
+stress_cases_improved=12/16; physical response remains unverified
+zero_lag_cases_improved=16/16 mean_late_ratio=0.646557; not a universal phase identification
+P020_cases_improved=16/16 mean_RMS_ratio=0.810642 peak_velocity=1.29593; bounded model envelope, not bench validation
+ramped_speed=2 cases=16 safe_cases=16 mean_RMS=0.232251 peak_velocity=2.68122; candidate for guarded bench test; uncertain mechanical model
+ramped_speed=3 cases=16 safe_cases=14 mean_RMS=0.320192 peak_velocity=5.65315; exploratory only, not cleared for bench; uncertain mechanical model
+ramped_speed=2 velocity_I=4.8 cases=16 safe_cases=16 mean_RMS=0.214083 peak_velocity=2.59689; exploratory only, no bench result
+ramped_speed=3 velocity_I=4.8 cases=16 safe_cases=14 mean_RMS=0.291774 peak_velocity=5.31327; exploratory only, no bench result
+ramped_speed=2 velocity_P=.10 velocity_I=4.8 cases=16 safe_cases=16 mean_RMS=0.263774 peak_velocity=2.85255; exploratory only, no bench result
+ramped_speed=3 velocity_P=.10 velocity_I=4.8 cases=16 safe_cases=16 mean_RMS=0.198658 peak_velocity=4.09951; exploratory only, no bench result
+expanded_ramped_speed=2 velocity_P=.10 velocity_I=4.8 cases=64 within_original_guard=64 mean_RMS=0.26549 physical_peak=2.94734 shadow_guard_peak=3.04472; exploratory parameter envelope, not bench validation
+expanded_ramped_speed=3 velocity_P=.10 velocity_I=4.8 cases=64 within_original_guard=64 mean_RMS=0.191164 physical_peak=4.08612 shadow_guard_peak=4.27992; exploratory parameter envelope, not bench validation
+LPF1ms_ramped_speed=2 velocity_P=.15 velocity_I=7.2 cases=64 within_original_guard=64 mean_RMS=0.197888 physical_peak=2.63935 shadow_guard_peak=2.82474; exploratory parameter envelope, not bench validation
+LPF1ms_ramped_speed=2.5 velocity_P=.15 velocity_I=7.2 cases=64 within_original_guard=64 mean_RMS=0.19028 physical_peak=3.26915 shadow_guard_peak=3.1378; exploratory parameter envelope, not bench validation
+LPF1ms_ramped_speed=3 velocity_P=.15 velocity_I=7.2 cases=64 within_original_guard=64 mean_RMS=0.193388 physical_peak=4.57701 shadow_guard_peak=4.55087; exploratory parameter envelope, not bench validation
+PASS: limits, projection, sum clipping, invalid inputs, control gap, clock wrap and coupled model checks

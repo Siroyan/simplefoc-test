@@ -1,0 +1,77 @@
+{
+  "firmware": 120,
+  "RAM_bytes": 30816,
+  "Flash_bytes": 110484,
+  "PWM_hz": 12500,
+  "nominal_dead_time_ns": 800,
+  "supply_V": 11.1,
+  "supply_limit_A": 0.8,
+  "CV_measured": false,
+  "temperature_measured": false,
+  "final_command": ";",
+  "final_mode": "baseline without adaptation",
+  "final_baseline_mean_rad_s": 6.263353,
+  "final_baseline_RMS_rad_s": 0.809716,
+  "smooth_operation_achieved": false,
+  "faulted_do_not_repeat": [
+    "(",
+    "^"
+  ],
+  "marginal_rejected": [
+    "?"
+  ],
+  "untested_rejected": [
+    ")"
+  ],
+  "q_PI": {
+    "P": 0.6,
+    "I": 400,
+    "tracking_s": 0.005
+  },
+  "d_PI": {
+    "P": 0.2,
+    "I": 50,
+    "tracking_s": 0
+  },
+  "velocity_PI": {
+    "P": 0.12,
+    "I": 1.2,
+    "LPF_s": 0.0005
+  },
+  "current_LPF_s": 0.001,
+  "reference_ramp_us": 800000,
+  "command_bounds": {
+    "nominal_Iq_setpoint_A": 0.45,
+    "voltage_vector_V": 0.5,
+    "q_slew_V_per_s": 100,
+    "time_s": 3,
+    "guard_reference_deviation_rad_s": 2,
+    "filtered_absolute_guard_rad_s": 8.5,
+    "independent_window_us": 2000,
+    "independent_LPF_s": 0.002
+  },
+  "idle_log": "2026-11-18-profile-v120-idle-02.log",
+  "sha256": {
+    "src/main.cpp": "9bf35daab37d54e91430a5d2ca2a3e98e86b0a39b1be69f3969e59589d957196",
+    "include/AdaptiveHarmonic.h": "03fe6c0e6273ee03a610241f31288effe9b9a73a264edec5f768811697405844",
+    "include/TrackingCurrentPI.h": "27c33cfc806cb85dce5ebf33997451444c7d26eab20acbf3a16cf4829398e231",
+    "include/BoundedBLDCMotor.h": "026da2382f51a62cf71165be126a7fd2f2389b25fdf1090801b5f387e0deae92",
+    "include/EdgeVelocity.h": "6b3b1f55fd754e3fd72c6ea3a150da59245aca5eb2b48e0d3005c41569cbb667",
+    "tools/capture_test.py": "6a66122214b267ec3cbfc93e3bbf7d8fb3664d5c053a03f211ce7993600a76ed",
+    "tools/analyze_trace.py": "17a5e69404513fc93e7bf67e784f915cfc730ce1dbe2603c7e9e037da8bf95a7",
+    "tools/analyze_adaptive.py": "09d7c9a65723e6e965d701fa3f81f2e8d3d4501379c9db5b8a6609a7cf2d8048",
+    "test/adaptive_order14.cpp": "cb99bd6252611b7c309fa9fbf1a77404c803f4066aba73b450f87a6bed5bd59c",
+    "test/adaptive_phase_rotation.cpp": "9163aaceefdf9d7350c62c696be7f17d5feb9dff5c42eb91e07a248cf592c019",
+    "test/adaptive14_metadata.py": "f0825a43e9d9655f3f1707816e2f3e11d88dd5efd1539069cd9d57a5ca8ae6e0",
+    "test/speed60_response_metadata.py": "43ba4f858e22ffd7187e893aed83650f83486578dbf82684bb508cff6022220b",
+    ".pio/observer-build/disco_b_g431b_esc1/firmware.elf": "564dabb061e9e11b60f798cfcb0110ea98a322be5815b6df197866585609f465",
+    ".pio/observer-build/disco_b_g431b_esc1/firmware.bin": "f8654787d70650ac51e814c464fdac7d7d6aff054949fdffddde284b28aa555a",
+    ".pio/main-v119.cpp": "e21aaa31097ae4ff4182fe93020215800b1c32982dbe5bc8c046851fb891c558",
+    ".pio/AdaptiveHarmonic-v119.h": "1dccca262b6cf8b018244e597aabdee3287cd3e51594cd0613e248211e051775",
+    ".pio/firmware-v119.elf": "0fbf05d107776be4d9b8b8baddf5d91da640a9b7911f195335b2d849d4520dbf",
+    ".pio/build-v120.log": "e8eebec1f052dbd331dbc18e4203d90b0a654dee10a11af62c208d315a0dd7b2",
+    ".pio/upload-v120.log": "f4c9b8fafb6909cf150cc7da76a369b846a6c3efaa7b72d7c81c1306f256bb35",
+    "docs\\experiment-logs\\2026-11-18-profile-v120-idle-02.log": "9f28ca8c11dd79fb497b085be07471c0d7239b66b0930838751429adad9466f5"
+  },
+  "note": "The ^ handler remains in installed v120, but all drive is locked; reject it when implementing the next candidate. Archived v119 sources/ELF are listed separately from v120."
+}

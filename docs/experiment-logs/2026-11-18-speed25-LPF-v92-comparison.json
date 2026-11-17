@@ -1,0 +1,104 @@
+{
+  "scope": "Same v92, 2.5rad/s P.15/I7.20 reference ramp800ms; only controller velocity LPF differs. Current LPF2ms, rolling4ms and independent window2ms/LPF2ms guard unchanged. Common 10ms ABI metrics after .8s. CV unmeasured.",
+  "runs": [
+    {
+      "log": "2026-11-18-current-velocity-speed25-LPF05-v92-01.log",
+      "velocity_LPF_s": 0.0005,
+      "metrics": {
+        "covered_start_us": 803613.0,
+        "covered_end_us": 2999150.0,
+        "mean_encoder_velocity_rad_s": 2.4990660599206476,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.4990660599206476,
+        "target_magnitude_rad_s": 2.5,
+        "filtered_tracking_rmse_rad_s": 0.5340863863450785,
+        "window_tracking_rmse_rad_s": 0.45931657984723245,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.14581044660144638,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.183726631938893
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=2.736644 run_abs_peak_rad_s=4.272159",
+      "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199119 calls=31151 q_slew_limited_fraction=0.023418 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.004290 rms_q_error_nominal_A=0.038348 mean_requested_minus_applied_q_V=0.000075 max_requested_applied_q_difference_V=0.014587",
+      "all_bounds_ADC_ABI_and_stop_checks_pass": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed25-LPF05-v92-02.log",
+      "velocity_LPF_s": 0.0005,
+      "metrics": {
+        "covered_start_us": 803893.0,
+        "covered_end_us": 2999201.0,
+        "mean_encoder_velocity_rad_s": 2.500041907559212,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.500041907559212,
+        "target_magnitude_rad_s": 2.5,
+        "filtered_tracking_rmse_rad_s": 0.5479757569924091,
+        "window_tracking_rmse_rad_s": 0.462627524582844,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.14601206878488124,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.1850510098331376
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=2.891779 run_abs_peak_rad_s=4.211905",
+      "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199181 calls=31116 q_slew_limited_fraction=0.023055 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.003779 rms_q_error_nominal_A=0.037862 mean_requested_minus_applied_q_V=0.000067 max_requested_applied_q_difference_V=0.011706",
+      "all_bounds_ADC_ABI_and_stop_checks_pass": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed25-LPF1-v92-01.log",
+      "velocity_LPF_s": 0.001,
+      "metrics": {
+        "covered_start_us": 803799.0,
+        "covered_end_us": 3000113.0,
+        "mean_encoder_velocity_rad_s": 2.5010426560136665,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.5010426560136665,
+        "target_magnitude_rad_s": 2.5,
+        "filtered_tracking_rmse_rad_s": 0.5234162899599827,
+        "window_tracking_rmse_rad_s": 0.46418836294773275,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.14557616292570189,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.1856753451790931
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=3.156173 run_abs_peak_rad_s=4.291688",
+      "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2200072 calls=31142 q_slew_limited_fraction=0.011902 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.001683 rms_q_error_nominal_A=0.035438 mean_requested_minus_applied_q_V=0.000030 max_requested_applied_q_difference_V=0.012675",
+      "all_bounds_ADC_ABI_and_stop_checks_pass": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed25-LPF1-v92-02.log",
+      "velocity_LPF_s": 0.001,
+      "metrics": {
+        "covered_start_us": 803968.0,
+        "covered_end_us": 3000121.0,
+        "mean_encoder_velocity_rad_s": 2.5019413492593636,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.5019413492593636,
+        "target_magnitude_rad_s": 2.5,
+        "filtered_tracking_rmse_rad_s": 0.5394467523602283,
+        "window_tracking_rmse_rad_s": 0.4687397007293179,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.14561420064995476,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.18749588029172717
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=3.380226 run_abs_peak_rad_s=4.204729",
+      "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2200058 calls=31137 q_slew_limited_fraction=0.011500 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.001493 rms_q_error_nominal_A=0.034590 mean_requested_minus_applied_q_V=0.000027 max_requested_applied_q_difference_V=0.009168",
+      "all_bounds_ADC_ABI_and_stop_checks_pass": true
+    }
+  ],
+  "mean_RMS_rad_s_by_velocity_LPF_s": {
+    "0.001": 0.46646403183852536,
+    "0.0005": 0.46097205221503823
+  },
+  "candidate_reduction_fraction": 0.011773640085047887,
+  "adopted": false,
+  "interpretation": "Roughly one percent difference, too small to establish useful improvement from two replicates each; do not progress to 3rad/s on this evidence."
+}

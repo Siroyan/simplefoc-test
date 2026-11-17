@@ -1,0 +1,319 @@
+{
+  "master_records": 195,
+  "previous_records": 188,
+  "previous_fields_unchanged": true,
+  "csv_rows_and_columns_consistent": true,
+  "all_final_stop_acknowledged": true,
+  "added": [
+    {
+      "log": "2026-11-18-current-velocity-speed60-edge-ramp800-v113-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "duration_s": 0.468233,
+      "nominal_current_control": true,
+      "voltage_vector_peak_V": 0.22780034072845456,
+      "max_adc_age_us": 226.0,
+      "max_frame_difference": 0.0,
+      "ABI": {
+        "callbacks": 433.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 433.0,
+        "encoder_count_delta": 433.0
+      },
+      "interval_velocity_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "raw_edge_summary": null,
+      "current_tracking": null,
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-tracking2-lowerP-v115-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "duration_s": 0.355249,
+      "nominal_current_control": true,
+      "voltage_vector_peak_V": 0.23260052670834605,
+      "max_adc_age_us": 196.0,
+      "max_frame_difference": 0.0,
+      "ABI": {
+        "callbacks": 211.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 211.0,
+        "encoder_count_delta": 211.0
+      },
+      "interval_velocity_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "raw_edge_summary": null,
+      "current_tracking": {
+        "configuration": "CURRENT_TRACKING q_backcalc_s=0.0020 d_backcalc_s=0.0000",
+        "active": "CURRENT_TRACKING_ACTIVE q_backcalc_s=0.0020 d_backcalc_s=0.0000"
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-tracking2-v114-01.log",
+      "stop": "STOP: 3-second test complete",
+      "duration_s": 2.999294,
+      "nominal_current_control": true,
+      "voltage_vector_peak_V": 0.32300571834566644,
+      "max_adc_age_us": 314.0,
+      "max_frame_difference": 0.0,
+      "ABI": {
+        "callbacks": 10262.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 10262.0,
+        "encoder_count_delta": 10262.0
+      },
+      "interval_velocity_stats": {
+        "available": true,
+        "complete_run": true,
+        "scope": "full_post_ramp_interval",
+        "configuration": "VELOCITY_STATS_CONFIG period_us=2000 start_us=800000 source=ABI_interval frame=motor_signed samples=post_ramp_only UART=after_stop",
+        "guard_configuration": "SPEED_GUARD_CONFIG mode=reference_envelope deviation_rad_s=2 hard_abs_rad_s=8.5 max_target_rad_s=6.283185 source=original_window2ms_LPF2ms signed_motor_velocity=1",
+        "valid": 1.0,
+        "invalid": 0.0,
+        "samples": 1067.0,
+        "first_elapsed_us": 800016.0,
+        "last_elapsed_us": 2998786.0,
+        "covered_us": 2198770.0,
+        "displacement_rad": 13.788452,
+        "mean_motor_rad_s": 6.270984,
+        "rms_error_rad_s": 0.827917,
+        "minimum_rad_s": 3.795799,
+        "maximum_rad_s": 9.350124,
+        "slow_fraction": 0.0,
+        "reverse_fraction": 0.0,
+        "relative_rms_error": 0.13176708946179366
+      },
+      "raw_edge_summary": null,
+      "current_tracking": {
+        "configuration": "CURRENT_TRACKING q_backcalc_s=0.0020 d_backcalc_s=0.0000",
+        "active": "CURRENT_TRACKING_ACTIVE q_backcalc_s=0.0020 d_backcalc_s=0.0000"
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-tracking2-v114-02.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "duration_s": 0.827918,
+      "nominal_current_control": true,
+      "voltage_vector_peak_V": 0.3121020863820042,
+      "max_adc_age_us": 1108.0,
+      "max_frame_difference": 0.0,
+      "ABI": {
+        "callbacks": 1597.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 1597.0,
+        "encoder_count_delta": 1597.0
+      },
+      "interval_velocity_stats": {
+        "available": true,
+        "complete_run": false,
+        "scope": "partial_post_ramp_until_stop",
+        "configuration": "VELOCITY_STATS_CONFIG period_us=2000 start_us=800000 source=ABI_interval frame=motor_signed samples=post_ramp_only UART=after_stop",
+        "guard_configuration": "SPEED_GUARD_CONFIG mode=reference_envelope deviation_rad_s=2 hard_abs_rad_s=8.5 max_target_rad_s=6.283185 source=original_window2ms_LPF2ms signed_motor_velocity=1",
+        "valid": 1.0,
+        "invalid": 0.0,
+        "samples": 13.0,
+        "first_elapsed_us": 800023.0,
+        "last_elapsed_us": 826673.0,
+        "covered_us": 26650.0,
+        "displacement_rad": 0.166504,
+        "mean_motor_rad_s": 6.247819,
+        "rms_error_rad_s": 1.313763,
+        "minimum_rad_s": 3.844339,
+        "maximum_rad_s": 8.558035,
+        "slow_fraction": 0.0,
+        "reverse_fraction": 0.0,
+        "relative_rms_error": 0.2090918857235622
+      },
+      "raw_edge_summary": null,
+      "current_tracking": {
+        "configuration": "CURRENT_TRACKING q_backcalc_s=0.0020 d_backcalc_s=0.0000",
+        "active": "CURRENT_TRACKING_ACTIVE q_backcalc_s=0.0020 d_backcalc_s=0.0000"
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-open-current-raw-edge-v110-01.log",
+      "stop": "STOP: 3-second test complete",
+      "duration_s": 2.999978,
+      "nominal_current_control": false,
+      "voltage_vector_peak_V": 0.5,
+      "max_adc_age_us": 165.0,
+      "max_frame_difference": 0.0,
+      "ABI": {
+        "callbacks": 1635.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 3.0,
+        "count_delta": 1633.0,
+        "encoder_count_delta": 1633.0
+      },
+      "interval_velocity_stats": null,
+      "raw_edge_summary": {
+        "configuration": "RUN_EDGE_CONFIG capacity=256 clock=DWT_elapsed origin=beginTrace storage=manual_edges raw=us,count,AB UART=after_stop",
+        "active": "RUN_EDGE_ACTIVE window_us=10000 guard_LPF_s=0.0500 guard_limit_rad_s=5 voltage_limit_V=0.500 target_rad_s=1.000 mode=open_loop",
+        "clock_check": "EDGE_CLOCK_CHECK advancing=1 gates_off=1 cycles_per_us=170 core_regressions=11 maximum_core_backstep_us=999",
+        "target_rad_s": 1,
+        "summary": {
+          "total_edges": 1635,
+          "retained": 256,
+          "origin_count": -141,
+          "origin_AB": 3,
+          "end_count": 1492,
+          "end_us": 2999979
+        },
+        "tail_invalid_transitions": 0,
+        "tail_duplicate_callbacks": 0,
+        "interval_us_range": [
+          71,
+          8279
+        ],
+        "mean_interval_us_by_previous_AB": {
+          "0": 1361.5625,
+          "1": 1603.4920634920634,
+          "2": 1471.296875,
+          "3": 1318.84375
+        },
+        "tail_speed": {
+          "span_s": 0.366729,
+          "mean_encoder_rad_s": 1.0922317660525855,
+          "one_edge_RMS_about_mean_rad_s": 1.0701873031740086
+        },
+        "note": "Only the retained 256 ISR observations, with the same ABI signal. IRQ latency is included. Interval noise and real shaft/angle ripple are not separated; no independent speed or angle calibration."
+      },
+      "current_tracking": null,
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-open-speed60-ramp800-raw-edge-v112-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "duration_s": 0.321149,
+      "nominal_current_control": false,
+      "voltage_vector_peak_V": 0.5,
+      "max_adc_age_us": 183.0,
+      "max_frame_difference": 0.0,
+      "ABI": {
+        "callbacks": 213.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 3.0,
+        "count_delta": 207.0,
+        "encoder_count_delta": 207.0
+      },
+      "interval_velocity_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "raw_edge_summary": {
+        "configuration": "RUN_EDGE_CONFIG capacity=256 clock=DWT_elapsed origin=beginTrace storage=manual_edges raw=us,count,AB UART=after_stop",
+        "active": "RUN_EDGE_ACTIVE window_us=2000 guard_LPF_s=0.0020 guard_limit_rad_s=8.5 voltage_limit_V=0.500 target_rad_s=6.283185 mode=open_loop",
+        "clock_check": "EDGE_CLOCK_CHECK advancing=1 gates_off=1 cycles_per_us=170 core_regressions=18 maximum_core_backstep_us=999",
+        "target_rad_s": 6.283185,
+        "summary": {
+          "total_edges": 213,
+          "retained": 213,
+          "origin_count": -104,
+          "origin_AB": 3,
+          "end_count": 103,
+          "end_us": 321150
+        },
+        "tail_invalid_transitions": 0,
+        "tail_duplicate_callbacks": 0,
+        "interval_us_range": [
+          81,
+          51542
+        ],
+        "mean_interval_us_by_previous_AB": {
+          "0": 1427.9056603773586,
+          "1": 1120.7037037037037,
+          "2": 2088.5576923076924,
+          "3": 1284.9056603773586
+        },
+        "tail_speed": {
+          "span_s": 0.312902,
+          "mean_encoder_rad_s": 1.034138622698956,
+          "one_edge_RMS_about_mean_rad_s": 1.3524137021181355
+        },
+        "note": "Only the retained 256 ISR observations, with the same ABI signal. IRQ latency is included. Interval noise and real shaft/angle ripple are not separated; no independent speed or angle calibration."
+      },
+      "current_tracking": null,
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-open-speed60-raw-edge-v111-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "duration_s": 0.342983,
+      "nominal_current_control": false,
+      "voltage_vector_peak_V": 0.5,
+      "max_adc_age_us": 176.0,
+      "max_frame_difference": 0.0,
+      "ABI": {
+        "callbacks": 101.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 3.0,
+        "count_delta": 91.0,
+        "encoder_count_delta": 91.0
+      },
+      "interval_velocity_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "raw_edge_summary": {
+        "configuration": "RUN_EDGE_CONFIG capacity=256 clock=DWT_elapsed origin=beginTrace storage=manual_edges raw=us,count,AB UART=after_stop",
+        "active": "RUN_EDGE_ACTIVE window_us=2000 guard_LPF_s=0.0020 guard_limit_rad_s=8.5 voltage_limit_V=0.500 target_rad_s=6.283185 mode=open_loop",
+        "clock_check": "EDGE_CLOCK_CHECK advancing=1 gates_off=1 cycles_per_us=170 core_regressions=21 maximum_core_backstep_us=999",
+        "target_rad_s": 6.283185,
+        "summary": {
+          "total_edges": 101,
+          "retained": 101,
+          "origin_count": 93,
+          "origin_AB": 0,
+          "end_count": 184,
+          "end_us": 342984
+        },
+        "tail_invalid_transitions": 0,
+        "tail_duplicate_callbacks": 0,
+        "interval_us_range": [
+          71,
+          91339
+        ],
+        "mean_interval_us_by_previous_AB": {
+          "0": 2525.6666666666665,
+          "1": 3376.48,
+          "2": 2568.4,
+          "3": 4911.038461538462
+        },
+        "tail_speed": {
+          "span_s": 0.336925,
+          "mean_encoder_rad_s": 0.41959388413308807,
+          "one_edge_RMS_about_mean_rad_s": 0.7887626487745096
+        },
+        "note": "Only the retained 256 ISR observations, with the same ABI signal. IRQ latency is included. Interval noise and real shaft/angle ripple are not separated; no independent speed or angle calibration."
+      },
+      "current_tracking": null,
+      "final_stop_acknowledged": true
+    }
+  ],
+  "note": "Nominal current scaling and voltage commands; sensor-derived velocities. CV and real motor temperature unmeasured. A protection-stop interval is not completed steady operation."
+}

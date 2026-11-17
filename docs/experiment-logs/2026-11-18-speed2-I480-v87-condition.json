@@ -1,0 +1,21 @@
+{
+  "recorded_at": "2026-11-18T03:13:34.648658+09:00",
+  "hardware": "same updated fixture and gap reduced by 0.5mm; user readiness confirmed earlier this session",
+  "supply_V": 11.1,
+  "current_limit_A": 0.8,
+  "firmware": 87,
+  "pwm_Hz": 12500,
+  "reference_rad_s": 2,
+  "reference_ramp_us": 800000,
+  "velocity_P": 0.15,
+  "candidate_command": "J",
+  "candidate_velocity_I": 4.8,
+  "reference_command": "W",
+  "reference_velocity_I": 7.2,
+  "nominal_iq_command_bound_A": 0.45,
+  "vector_voltage_bound_V": 0.5,
+  "independent_velocity_guard_rad_s": 5,
+  "run_limit_s": 3,
+  "source_main_SHA256": "8e08a7ff069d417359de7356f396893f09e0f7bef958ba0f88af8ef3ab28c191",
+  "note": "No CV flag/physical motor temperature measurement. Only velocity I changes between J and W; existing bounds and guards retained."
+}

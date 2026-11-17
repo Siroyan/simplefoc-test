@@ -1,0 +1,139 @@
+{
+  "groups": [
+    {
+      "group": "before",
+      "trials": [
+        {
+          "log": "2026-11-17-current-velocity-adaptive84-zero-v84-01.log",
+          "mean_rad_s": 0.9951714897153505,
+          "rms_rad_s": 0.3575699394919544,
+          "slow_fraction": 0.0045631675100288645,
+          "against_command_fraction": 0.0,
+          "independent_guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.577641 run_abs_peak_rad_s=2.708767",
+          "abi": {
+            "callbacks": 1881.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 1881.0,
+            "encoder_count_delta": 1881.0
+          },
+          "vbus_nominal_V": {
+            "min": 11.17388916015625,
+            "max": 11.1989990234375,
+            "mean": 11.18808003743487,
+            "rms": 11.188081212857576
+          },
+          "voltage_vector_max_V": 0.2512568489892365,
+          "max_adc_age_us": 327.0
+        },
+        {
+          "log": "2026-11-17-current-velocity-adaptive84-zero-v84-02.log",
+          "mean_rad_s": 1.001862884931346,
+          "rms_rad_s": 0.35458735768623373,
+          "slow_fraction": 0.004575722493880295,
+          "against_command_fraction": 0.0,
+          "independent_guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.795237 run_abs_peak_rad_s=2.576296",
+          "abi": {
+            "callbacks": 1890.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 1890.0,
+            "encoder_count_delta": 1890.0
+          },
+          "vbus_nominal_V": {
+            "min": 11.17388916015625,
+            "max": 11.1989990234375,
+            "mean": 11.187357177734354,
+            "rms": 11.187358577904542
+          },
+          "voltage_vector_max_V": 0.25212370497238057,
+          "max_adc_age_us": 259.0
+        }
+      ],
+      "mean_run_rms_rad_s": 0.3560786485890941
+    },
+    {
+      "group": "after",
+      "trials": [
+        {
+          "log": "2026-11-18-fixture-gap-Z-01.log",
+          "mean_rad_s": 0.9973737272590725,
+          "rms_rad_s": 0.3289289357677602,
+          "slow_fraction": 0.004554330163903087,
+          "against_command_fraction": 0.0,
+          "independent_guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.955049 run_abs_peak_rad_s=2.389866",
+          "abi": {
+            "callbacks": 1886.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 1886.0,
+            "encoder_count_delta": 1886.0
+          },
+          "vbus_nominal_V": {
+            "min": 11.165519205729167,
+            "max": 11.190629069010416,
+            "mean": 11.173280436197919,
+            "rms": 11.173281103612918
+          },
+          "voltage_vector_max_V": 0.24490018374839984,
+          "max_adc_age_us": 327.0
+        },
+        {
+          "log": "2026-11-18-fixture-gap-Z-02.log",
+          "mean_rad_s": 1.0009827233681512,
+          "rms_rad_s": 0.3334333266217121,
+          "slow_fraction": 0.00912717414458915,
+          "against_command_fraction": 0.0,
+          "independent_guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.367896 run_abs_peak_rad_s=2.268610",
+          "abi": {
+            "callbacks": 1889.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 1889.0,
+            "encoder_count_delta": 1889.0
+          },
+          "vbus_nominal_V": {
+            "min": 11.165519205729167,
+            "max": 11.190629069010416,
+            "mean": 11.178530680338532,
+            "rms": 11.178531767745097
+          },
+          "voltage_vector_max_V": 0.24542979235618484,
+          "max_adc_age_us": 327.0
+        },
+        {
+          "log": "2026-11-18-fixture-gap-Z-03.log",
+          "mean_rad_s": 1.0031896104369042,
+          "rms_rad_s": 0.3743861270187301,
+          "slow_fraction": 0.013703899272584918,
+          "against_command_fraction": 0.0,
+          "independent_guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.686197 run_abs_peak_rad_s=2.500092",
+          "abi": {
+            "callbacks": 1886.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 1886.0,
+            "encoder_count_delta": 1886.0
+          },
+          "vbus_nominal_V": {
+            "min": 11.17388916015625,
+            "max": 11.1989990234375,
+            "mean": 11.184770100911438,
+            "rms": 11.184771271052568
+          },
+          "voltage_vector_max_V": 0.27662068738436757,
+          "max_adc_age_us": 273.0
+        }
+      ],
+      "mean_run_rms_rad_s": 0.3455827964694008
+    }
+  ],
+  "rms_mean_reduction_fraction": 0.029476218698541556,
+  "configuration_match_verified": true,
+  "note": "Exploratory before/after comparison; fixture and gap both changed, only 2 baseline/3 new trials, and initial positions/temperature/day may differ. Same 10ms ABI speed after .8s; no independent speed, CV flag or calibrated phase-current measurement. No constant-speed success inferred."
+}

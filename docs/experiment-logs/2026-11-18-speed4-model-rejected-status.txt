@@ -1,0 +1,6 @@
+target4 I=4.8 ramp_us=2000000 cases=64 inside_original5=56 physical_peak=5.31836 guard_peak=5.19431
+target4 I=4.8 ramp_us=2500000 cases=64 inside_original5=56 physical_peak=5.24399 guard_peak=5.14199
+target4 I=7.2 ramp_us=2000000 cases=64 inside_original5=56 physical_peak=5.58672 guard_peak=5.36917
+target4 I=7.2 ramp_us=2500000 cases=64 inside_original5=56 physical_peak=5.53788 guard_peak=5.33574
+target4 I=9.6 ramp_us=2000000 cases=64 inside_original5=56 physical_peak=5.75003 guard_peak=5.54632
+target4 I=9.6 ramp_us=2500000 cases=64 inside_original5=56 physical_peak=5.69262 guard_peak=5.72744

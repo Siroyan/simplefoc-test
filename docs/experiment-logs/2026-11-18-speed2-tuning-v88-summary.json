@@ -1,0 +1,287 @@
+{
+  "trials": [
+    {
+      "log": "2026-11-18-current-velocity-speed2-I480-v87-01.log",
+      "firmware": "FIRMWARE diag_version=87",
+      "control": "CONTROL P=0.1500 I=4.8000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0020",
+      "active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0020 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=4.8000",
+      "reference_ramp": "REFERENCE_RAMP duration_us=800000 target_rad_s=2.000 trace_target=final_goal origin=trace_start",
+      "metrics": {
+        "covered_start_us": 803986.0,
+        "covered_end_us": 2999547.0,
+        "mean_encoder_velocity_rad_s": 2.008245273075993,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.008245273075993,
+        "target_magnitude_rad_s": 2.0,
+        "filtered_tracking_rmse_rad_s": 0.503905736532409,
+        "window_tracking_rmse_rad_s": 0.4846142182359558,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.1312203846306252,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.2423071091179779
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.684528 run_abs_peak_rad_s=3.950418",
+      "abi": {
+        "callbacks": 3295.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 1.0,
+        "count_delta": 3295.0,
+        "encoder_count_delta": 3295.0
+      },
+      "voltage_vector_max_V": 0.25124240775792606,
+      "adc_age_max_us": 210.0,
+      "vbus_nominal_V": {
+        "min": 11.190629069010416,
+        "max": 11.215738932291668,
+        "mean": 11.20158610026039,
+        "rms": 11.201587052334867
+      }
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed2-I480-v87-02.log",
+      "firmware": "FIRMWARE diag_version=87",
+      "control": "CONTROL P=0.1500 I=4.8000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0020",
+      "active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0020 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=4.8000",
+      "reference_ramp": "REFERENCE_RAMP duration_us=800000 target_rad_s=2.000 trace_target=final_goal origin=trace_start",
+      "metrics": {
+        "covered_start_us": 803816.0,
+        "covered_end_us": 2999857.0,
+        "mean_encoder_velocity_rad_s": 2.0120981347798153,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.0120981347798153,
+        "target_magnitude_rad_s": 2.0,
+        "filtered_tracking_rmse_rad_s": 0.5139934287801188,
+        "window_tracking_rmse_rad_s": 0.49501260829639077,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.1396258283429136,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.24750630414819538
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.455132 run_abs_peak_rad_s=3.957855",
+      "abi": {
+        "callbacks": 3294.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 3294.0,
+        "encoder_count_delta": 3294.0
+      },
+      "voltage_vector_max_V": 0.2582007759264096,
+      "adc_age_max_us": 273.0,
+      "vbus_nominal_V": {
+        "min": 11.1989990234375,
+        "max": 11.215738932291668,
+        "mean": 11.206531982421888,
+        "rms": 11.206532689962877
+      }
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed2-I480-v87-03.log",
+      "firmware": "FIRMWARE diag_version=87",
+      "control": "CONTROL P=0.1500 I=4.8000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0020",
+      "active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0020 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=4.8000",
+      "reference_ramp": "REFERENCE_RAMP duration_us=800000 target_rad_s=2.000 trace_target=final_goal origin=trace_start",
+      "metrics": {
+        "covered_start_us": 804033.0,
+        "covered_end_us": 2999832.0,
+        "mean_encoder_velocity_rad_s": 2.0051662287850567,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.0051662287850567,
+        "target_magnitude_rad_s": 2.0,
+        "filtered_tracking_rmse_rad_s": 0.5296333960479365,
+        "window_tracking_rmse_rad_s": 0.4878691161651186,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.14247820428919034,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.2439345580825593
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.135594 run_abs_peak_rad_s=3.885402",
+      "abi": {
+        "callbacks": 3289.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 3289.0,
+        "encoder_count_delta": 3289.0
+      },
+      "voltage_vector_max_V": 0.26712303544247173,
+      "adc_age_max_us": 212.0,
+      "vbus_nominal_V": {
+        "min": 11.190629069010416,
+        "max": 11.207368977864583,
+        "mean": 11.199721883137988,
+        "rms": 11.19972272700405
+      }
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed2-I720-v87-01.log",
+      "firmware": "FIRMWARE diag_version=87",
+      "control": "CONTROL P=0.1500 I=7.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0020",
+      "active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0020 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=7.2000",
+      "reference_ramp": "REFERENCE_RAMP duration_us=800000 target_rad_s=2.000 trace_target=final_goal origin=trace_start",
+      "metrics": {
+        "covered_start_us": 803920.0,
+        "covered_end_us": 2999829.0,
+        "mean_encoder_velocity_rad_s": 2.005781660351135,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.005781660351135,
+        "target_magnitude_rad_s": 2.0,
+        "filtered_tracking_rmse_rad_s": 0.5032309616125666,
+        "window_tracking_rmse_rad_s": 0.4572658772253084,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.13174114642273427,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.2286329386126542
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.721697 run_abs_peak_rad_s=4.080694",
+      "abi": {
+        "callbacks": 3299.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 3299.0,
+        "encoder_count_delta": 3299.0
+      },
+      "voltage_vector_max_V": 0.26098565592001416,
+      "adc_age_max_us": 272.0,
+      "vbus_nominal_V": {
+        "min": 11.1989990234375,
+        "max": 11.215738932291668,
+        "mean": 11.204667765299469,
+        "rms": 11.204668704387652
+      }
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed2-I720-v87-02.log",
+      "firmware": "FIRMWARE diag_version=87",
+      "control": "CONTROL P=0.1500 I=7.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0020",
+      "active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0020 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=7.2000",
+      "reference_ramp": "REFERENCE_RAMP duration_us=800000 target_rad_s=2.000 trace_target=final_goal origin=trace_start",
+      "metrics": {
+        "covered_start_us": 803652.0,
+        "covered_end_us": 2999855.0,
+        "mean_encoder_velocity_rad_s": 2.005513151562037,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.005513151562037,
+        "target_magnitude_rad_s": 2.0,
+        "filtered_tracking_rmse_rad_s": 0.4919707850762698,
+        "window_tracking_rmse_rad_s": 0.45843885632481607,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.14115215975025985,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.22921942816240803
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.351080 run_abs_peak_rad_s=4.000114",
+      "abi": {
+        "callbacks": 3302.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 3302.0,
+        "encoder_count_delta": 3302.0
+      },
+      "voltage_vector_max_V": 0.2580025009491187,
+      "adc_age_max_us": 272.0,
+      "vbus_nominal_V": {
+        "min": 11.190629069010416,
+        "max": 11.207368977864583,
+        "mean": 11.202232869466124,
+        "rms": 11.20223375293971
+      }
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed2-P010-I480-v88-01.log",
+      "firmware": "FIRMWARE diag_version=88",
+      "control": "CONTROL P=0.1000 I=4.8000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0020",
+      "active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0020 q_P=0.6000 q_I=200.0000 velocity_P=0.1000 velocity_I=4.8000",
+      "reference_ramp": "REFERENCE_RAMP duration_us=800000 target_rad_s=2.000 trace_target=final_goal origin=trace_start",
+      "metrics": {
+        "covered_start_us": 803007.0,
+        "covered_end_us": 2999630.0,
+        "mean_encoder_velocity_rad_s": 2.0051287817709276,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.0051287817709276,
+        "target_magnitude_rad_s": 2.0,
+        "filtered_tracking_rmse_rad_s": 0.6819696497115577,
+        "window_tracking_rmse_rad_s": 0.6535516628072113,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.1403429464227591,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.32677583140360567
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=2.488877 run_abs_peak_rad_s=4.746975",
+      "abi": {
+        "callbacks": 3293.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 3293.0,
+        "encoder_count_delta": 3293.0
+      },
+      "voltage_vector_max_V": 0.25640004505459824,
+      "adc_age_max_us": 270.0,
+      "vbus_nominal_V": {
+        "min": 11.190629069010416,
+        "max": 11.207368977864583,
+        "mean": 11.198580525716109,
+        "rms": 11.198581413613915
+      }
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed2-P015-I480-v88-01.log",
+      "firmware": "FIRMWARE diag_version=88",
+      "control": "CONTROL P=0.1500 I=4.8000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0020",
+      "active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0020 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=4.8000",
+      "reference_ramp": "REFERENCE_RAMP duration_us=800000 target_rad_s=2.000 trace_target=final_goal origin=trace_start",
+      "metrics": {
+        "covered_start_us": 803934.0,
+        "covered_end_us": 2999997.0,
+        "mean_encoder_velocity_rad_s": 2.0070712907598733,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.0070712907598733,
+        "target_magnitude_rad_s": 2.0,
+        "filtered_tracking_rmse_rad_s": 0.5302263303953082,
+        "window_tracking_rmse_rad_s": 0.504678762009537,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.13756982190401643,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.2523393810047685
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.428446 run_abs_peak_rad_s=3.890579",
+      "abi": {
+        "callbacks": 3290.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 2.0,
+        "count_delta": 3288.0,
+        "encoder_count_delta": 3288.0
+      },
+      "voltage_vector_max_V": 0.2428000759143209,
+      "adc_age_max_us": 271.0,
+      "vbus_nominal_V": {
+        "min": 11.190629069010416,
+        "max": 11.215738932291668,
+        "mean": 11.198009847005173,
+        "rms": 11.198010883918931
+      }
+    }
+  ],
+  "recorded_bounds_and_final_stops_verified": true,
+  "decision": "I4.8 alone did not improve speed ripple; P.10/I4.8 at 2rad/s worsened RMS and guard peak. Do not run X (3rad/s P.10/I4.8) merely because the model passed. Keep W as provisional reference. Next assess velocity LPF1ms at 2rad/s with original independent 2ms/2ms guard unchanged.",
+  "caveat": "Nominal current/voltage, same ABI angle source; temperature and CV unmeasured; models repeatedly underpredict bench ripple/peaks."
+}

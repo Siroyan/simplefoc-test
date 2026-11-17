@@ -1,0 +1,223 @@
+{
+  "master_records": 203,
+  "previous_records": 199,
+  "previous_fields_unchanged": true,
+  "csv_rows_and_columns_consistent": true,
+  "all_final_stop_acknowledged": true,
+  "added": [
+    {
+      "log": "2026-11-18-current-velocity-speed60-adaptive14-rotation-v120-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "duration_s": 0.685508,
+      "voltage_vector_peak_V": 0.3012,
+      "max_adc_age_us": 1110.0,
+      "max_frame_difference": 0.0,
+      "ABI": {
+        "callbacks": 1072.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 1072.0,
+        "encoder_count_delta": 1072.0
+      },
+      "interval_velocity_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "adaptive_summary": {
+        "calls": 1736.0,
+        "learned_calls": 0.0,
+        "clipped_calls": 0.0,
+        "cosine_nominal_A": 0.0,
+        "sine_nominal_A": 0.0,
+        "peak_nominal_A": 0.0,
+        "invalid": 0.0
+      },
+      "current_probe": null,
+      "current_tracking": {
+        "configuration": "CURRENT_TRACKING q_backcalc_s=0.0050 d_backcalc_s=0.0000",
+        "active": "CURRENT_TRACKING_ACTIVE q_backcalc_s=0.0050 d_backcalc_s=0.0000"
+      },
+      "edge_estimator": {
+        "configuration": "EDGE_ESTIMATOR_CONFIG counts_per_turn=4000 period_intervals=4 phase_gain_s_inv=200 prediction_count_bound=1 sample_gap_limit_us=5000 no_edge_decay=gap_to_2gap isr=integer_only clock=DWT_elapsed cycles_per_us=170",
+        "clock_check": "EDGE_CLOCK_CHECK advancing=1 gates_off=1 cycles_per_us=170 core_regressions=9 maximum_core_backstep_us=999",
+        "clock_fault": "EDGE_CLOCK_FAULT reason=0 now_us=685475 edge_us=685156 age_us=319 update_gap_us=401",
+        "invalid": 0.0,
+        "samples": 5.0,
+        "signed_count": 1073.0,
+        "span_us": 1512.0
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-adaptive14-v119-01.log",
+      "stop": "STOP: 3-second test complete",
+      "duration_s": 3.000072,
+      "voltage_vector_peak_V": 0.386217973527903,
+      "max_adc_age_us": 1064.0,
+      "max_frame_difference": 0.0,
+      "ABI": {
+        "callbacks": 10260.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 10260.0,
+        "encoder_count_delta": 10260.0
+      },
+      "interval_velocity_stats": {
+        "available": true,
+        "complete_run": true,
+        "scope": "full_post_ramp_interval",
+        "configuration": "VELOCITY_STATS_CONFIG period_us=2000 start_us=800000 source=ABI_interval frame=motor_signed samples=post_ramp_only UART=after_stop",
+        "guard_configuration": "SPEED_GUARD_CONFIG mode=reference_envelope deviation_rad_s=2 hard_abs_rad_s=8.5 max_target_rad_s=6.283185 source=original_window2ms_LPF2ms signed_motor_velocity=1",
+        "valid": 1.0,
+        "invalid": 0.0,
+        "samples": 1078.0,
+        "first_elapsed_us": 800058.0,
+        "last_elapsed_us": 2999456.0,
+        "covered_us": 2199398.0,
+        "displacement_rad": 13.777455,
+        "mean_motor_rad_s": 6.264193,
+        "rms_error_rad_s": 0.830164,
+        "minimum_rad_s": 3.093924,
+        "maximum_rad_s": 9.075518,
+        "slow_fraction": 0.0,
+        "reverse_fraction": 0.0,
+        "relative_rms_error": 0.13212471063640496
+      },
+      "adaptive_summary": {
+        "calls": 6971.0,
+        "learned_calls": 4457.0,
+        "clipped_calls": 65.0,
+        "cosine_nominal_A": -0.006383,
+        "sine_nominal_A": -0.007228,
+        "peak_nominal_A": 0.01,
+        "invalid": 0.0
+      },
+      "current_probe": null,
+      "current_tracking": {
+        "configuration": "CURRENT_TRACKING q_backcalc_s=0.0050 d_backcalc_s=0.0000",
+        "active": "CURRENT_TRACKING_ACTIVE q_backcalc_s=0.0050 d_backcalc_s=0.0000"
+      },
+      "edge_estimator": {
+        "configuration": "EDGE_ESTIMATOR_CONFIG counts_per_turn=4000 period_intervals=4 phase_gain_s_inv=200 prediction_count_bound=1 sample_gap_limit_us=5000 no_edge_decay=gap_to_2gap isr=integer_only clock=DWT_elapsed cycles_per_us=170",
+        "clock_check": "EDGE_CLOCK_CHECK advancing=1 gates_off=1 cycles_per_us=170 core_regressions=9 maximum_core_backstep_us=999",
+        "clock_fault": "EDGE_CLOCK_FAULT reason=0 now_us=2999777 edge_us=2999688 age_us=89 update_gap_us=461",
+        "invalid": 0.0,
+        "samples": 5.0,
+        "signed_count": 10037.0,
+        "span_us": 1153.0
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-baseline-v120-01.log",
+      "stop": "STOP: 3-second test complete",
+      "duration_s": 2.999397,
+      "voltage_vector_peak_V": 0.34980673078144164,
+      "max_adc_age_us": 1134.0,
+      "max_frame_difference": 0.0,
+      "ABI": {
+        "callbacks": 10263.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 2.0,
+        "count_delta": 10261.0,
+        "encoder_count_delta": 10261.0
+      },
+      "interval_velocity_stats": {
+        "available": true,
+        "complete_run": true,
+        "scope": "full_post_ramp_interval",
+        "configuration": "VELOCITY_STATS_CONFIG period_us=2000 start_us=800000 source=ABI_interval frame=motor_signed samples=post_ramp_only UART=after_stop",
+        "guard_configuration": "SPEED_GUARD_CONFIG mode=reference_envelope deviation_rad_s=2 hard_abs_rad_s=8.5 max_target_rad_s=6.283185 source=original_window2ms_LPF2ms signed_motor_velocity=1",
+        "valid": 1.0,
+        "invalid": 0.0,
+        "samples": 1068.0,
+        "first_elapsed_us": 800023.0,
+        "last_elapsed_us": 2998713.0,
+        "covered_us": 2198690.0,
+        "displacement_rad": 13.771172,
+        "mean_motor_rad_s": 6.263353,
+        "rms_error_rad_s": 0.809716,
+        "minimum_rad_s": 3.761715,
+        "maximum_rad_s": 8.635019,
+        "slow_fraction": 0.0,
+        "reverse_fraction": 0.0,
+        "relative_rms_error": 0.12887031020095702
+      },
+      "adaptive_summary": null,
+      "current_probe": null,
+      "current_tracking": {
+        "configuration": "CURRENT_TRACKING q_backcalc_s=0.0050 d_backcalc_s=0.0000",
+        "active": "CURRENT_TRACKING_ACTIVE q_backcalc_s=0.0050 d_backcalc_s=0.0000"
+      },
+      "edge_estimator": {
+        "configuration": "EDGE_ESTIMATOR_CONFIG counts_per_turn=4000 period_intervals=4 phase_gain_s_inv=200 prediction_count_bound=1 sample_gap_limit_us=5000 no_edge_decay=gap_to_2gap isr=integer_only clock=DWT_elapsed cycles_per_us=170",
+        "clock_check": "EDGE_CLOCK_CHECK advancing=1 gates_off=1 cycles_per_us=170 core_regressions=8 maximum_core_backstep_us=999",
+        "clock_fault": "EDGE_CLOCK_FAULT reason=0 now_us=2999278 edge_us=2999029 age_us=249 update_gap_us=414",
+        "invalid": 0.0,
+        "samples": 5.0,
+        "signed_count": 10356.0,
+        "span_us": 1126.0
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-response17-forward-v118-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "duration_s": 1.195893,
+      "voltage_vector_peak_V": 0.3541260953403463,
+      "max_adc_age_us": 256.0,
+      "max_frame_difference": 0.0,
+      "ABI": {
+        "callbacks": 3076.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 3076.0,
+        "encoder_count_delta": 3076.0
+      },
+      "interval_velocity_stats": {
+        "available": true,
+        "complete_run": false,
+        "scope": "partial_post_ramp_until_stop",
+        "configuration": "VELOCITY_STATS_CONFIG period_us=2000 start_us=800000 source=ABI_interval frame=motor_signed samples=post_ramp_only UART=after_stop",
+        "guard_configuration": "SPEED_GUARD_CONFIG mode=reference_envelope deviation_rad_s=2 hard_abs_rad_s=8.5 max_target_rad_s=6.283185 source=original_window2ms_LPF2ms signed_motor_velocity=1",
+        "valid": 1.0,
+        "invalid": 0.0,
+        "samples": 193.0,
+        "first_elapsed_us": 800043.0,
+        "last_elapsed_us": 1195032.0,
+        "covered_us": 394989.0,
+        "displacement_rad": 2.488142,
+        "mean_motor_rad_s": 6.299268,
+        "rms_error_rad_s": 0.845405,
+        "minimum_rad_s": 3.823751,
+        "maximum_rad_s": 8.453596,
+        "slow_fraction": 0.0,
+        "reverse_fraction": 0.0,
+        "relative_rms_error": 0.134550391242658
+      },
+      "adaptive_summary": null,
+      "current_probe": "CURRENT_PROBE frequency_Hz=17.50 phase_rad=0.000000 amplitude_nominal_A=0.0200 start_us=800000 blend_us=200000 total_bound_A=0.4500 stationary_attempt=0 excitation_only=1",
+      "current_tracking": {
+        "configuration": "CURRENT_TRACKING q_backcalc_s=0.0050 d_backcalc_s=0.0000",
+        "active": "CURRENT_TRACKING_ACTIVE q_backcalc_s=0.0050 d_backcalc_s=0.0000"
+      },
+      "edge_estimator": {
+        "configuration": "EDGE_ESTIMATOR_CONFIG counts_per_turn=4000 period_intervals=4 phase_gain_s_inv=200 prediction_count_bound=1 sample_gap_limit_us=5000 no_edge_decay=gap_to_2gap isr=integer_only clock=DWT_elapsed cycles_per_us=170",
+        "clock_check": "EDGE_CLOCK_CHECK advancing=1 gates_off=1 cycles_per_us=170 core_regressions=19 maximum_core_backstep_us=999",
+        "clock_fault": "EDGE_CLOCK_FAULT reason=0 now_us=1195847 edge_us=1195635 age_us=212 update_gap_us=411",
+        "invalid": 0.0,
+        "samples": 5.0,
+        "signed_count": 3092.0,
+        "span_us": 1127.0
+      },
+      "final_stop_acknowledged": true
+    }
+  ],
+  "note": "Nominal current scaling and commanded voltage, same ABI sensor. CV and actual motor temperature unmeasured. Probe phase unavailable; pre-gate stop has no active adaptive interval."
+}

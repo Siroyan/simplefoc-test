@@ -1,0 +1,25 @@
+{
+  "firmware_version": 96,
+  "PWM_Hz": 12500,
+  "RAM_bytes": 30356,
+  "Flash_bytes": 96600,
+  "build_flags": [
+    "-DDIAG_PWM_HZ=12500",
+    "-DHAL_OPAMP_MODULE_ENABLED"
+  ],
+  "supply_set_V": 11.1,
+  "supply_current_limit_A": 0.8,
+  "fixture": "Same changed fixture and gap reduced by .5mm; absolute gap unknown.",
+  "SHA256": {
+    "src/main.cpp": "191635055a5ee7c2c06f21609dfb732de6c0641873855701fda0621e974b04ca",
+    "include/AdaptiveHarmonic.h": "7298f360ea7c8968ea4a3b403e35da2150df4ca32a8f946741d0d6940ca2d83d",
+    "tools/capture_test.py": "927f139f07541de645b75c0ed8862931e088146586a6db5dd0505d7bf689b1e2",
+    "tools/analyze_dense_dynamics.py": "b60e59938f6218fefccc70c0ab038a98731b33b90022fec3b4e12fac1fe87232",
+    "test/dense_dynamics.py": "6b04b9a0e1bcf29854bbb9c0c64c3e7699ee7040ddeda9b32c26a5b7aea0952f",
+    "test/trace_speed_metrics.py": "1785b2b751ae34a3fa16a51ea15c82cb9a5a5520d1629c2d43db5a1866cd3d7c",
+    "test/adaptive_harmonic.cpp": "d1f48e22872d2101fd2fc02d2b8ac093582d0ced3145cd2fc41a6c2287dfc78b",
+    ".pio/observer-build/disco_b_g431b_esc1/firmware.elf": "5c7afd2a8f50f65f898a23378a2c39b253222153554edac3a49a5737c02a6a4c"
+  },
+  "latest_idle_log": "2026-11-18-profile-v96-idle-01.log",
+  "goal_complete": false
+}

@@ -22,7 +22,7 @@ void replay(const std::vector<Event>& events, bool jitter, uint32_t clockOffset,
   require(events.size() > 1, "fixture has enough edges");
   Estimator estimator;
   if constexpr (std::is_same_v<Estimator,WindowVelocity>) estimator.periodUs = windowUs;
-  if constexpr (std::is_same_v<Estimator,RollingVelocity>) estimator.longWindow = windowUs == 8000;
+  if constexpr (std::is_same_v<Estimator,RollingVelocity>) {estimator.longWindow = windowUs == 8000;estimator.shortWindow=windowUs==2000;}
   const uint32_t origin = events.front().us;
   estimator.reset(float(events.front().count * radiansPerCount), clockOffset);
   size_t next = 1;
@@ -67,6 +67,8 @@ int main(int argc, char** argv) {
   replay(saved, true, UINT32_MAX - 50000);
   replay(saved, false, 0, 2000);
   replay(saved, true, UINT32_MAX - 50000, 2000);
+  replay<RollingVelocity>(saved,false,0,2000);
+  replay<RollingVelocity>(saved,true,UINT32_MAX-50000,2000);
   replay<RollingVelocity>(saved,false,0,4000);
   replay<RollingVelocity>(saved,true,UINT32_MAX-50000,4000);
   replay<RollingVelocity>(saved,false,0,8000);
@@ -85,6 +87,7 @@ int main(int argc, char** argv) {
   replay(uneven, false, 0);
   replay(uneven, true, UINT32_MAX - 50000);
   replay(uneven, true, UINT32_MAX - 50000, 2000);
+  replay<RollingVelocity>(uneven,true,UINT32_MAX-50000,2000);
   replay<RollingVelocity>(uneven,true,UINT32_MAX-50000,4000);
   replay<RollingVelocity>(uneven,true,UINT32_MAX-50000,8000);
 

@@ -1,0 +1,323 @@
+{
+  "reference": "Recorded ABI Index, normalized modulo one mechanical revolution",
+  "profile": [
+    "CONTROL P=0.1200 I=1.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0005",
+    "CURRENT_LOOP q_P=0.60 q_I=400.0 d_P=.20 d_I=50 D=0 q_voltage_build_up_V_s=100.0 current_LPF_s=0.0010 vector_voltage_limit_V=.5 release=immediate reversal=via_zero; nominal current scaling",
+    "CURRENT_ACTIVE q_LPF_s=0.0010 d_LPF_s=0.0010 velocity_LPF_s=0.0005 q_P=0.6000 q_I=400.0000 velocity_P=0.1200 velocity_I=1.2000",
+    "CURRENT_TRACKING_ACTIVE q_backcalc_s=0.0050 d_backcalc_s=0.0000",
+    "REFERENCE_RAMP duration_us=800000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+    "ESTIMATOR controller=edge_period4_phase guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+    "EDGE_ESTIMATOR_CONFIG counts_per_turn=4000 period_intervals=4 phase_gain_s_inv=200 prediction_count_bound=1 sample_gap_limit_us=5000 no_edge_decay=gap_to_2gap isr=integer_only clock=DWT_elapsed cycles_per_us=170"
+  ],
+  "models": [
+    {
+      "mechanical_orders": [
+        14
+      ],
+      "per_run": [
+        {
+          "log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+          "Index_angle_rad": 2.224247,
+          "within_run_R2": 0.1770479166419472,
+          "harmonics": [
+            {
+              "mechanical_order": 14,
+              "amplitude_rad_s": 0.4524116483891571,
+              "phase_rad": -2.2819527654458622
+            }
+          ]
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log",
+          "Index_angle_rad": 4.731239,
+          "within_run_R2": 0.13878162811522576,
+          "harmonics": [
+            {
+              "mechanical_order": 14,
+              "amplitude_rad_s": 0.4305307776129898,
+              "phase_rad": -2.26585131967217
+            }
+          ]
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log",
+          "Index_angle_rad": 1.162389,
+          "within_run_R2": 0.1621032405853019,
+          "harmonics": [
+            {
+              "mechanical_order": 14,
+              "amplitude_rad_s": 0.45339556872159553,
+              "phase_rad": -2.241589459934802
+            }
+          ]
+        }
+      ],
+      "leave_one_run_out": [
+        {
+          "held_out_log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+          "training_logs": [
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log",
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log"
+          ],
+          "held_out_R2": 0.17345526753439522
+        },
+        {
+          "held_out_log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log",
+          "training_logs": [
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log"
+          ],
+          "held_out_R2": 0.13593068601600855
+        },
+        {
+          "held_out_log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log",
+          "training_logs": [
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log"
+          ],
+          "held_out_R2": 0.16180775728001717
+        }
+      ]
+    },
+    {
+      "mechanical_orders": [
+        28
+      ],
+      "per_run": [
+        {
+          "log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+          "Index_angle_rad": 2.224247,
+          "within_run_R2": 0.10278507969033279,
+          "harmonics": [
+            {
+              "mechanical_order": 28,
+              "amplitude_rad_s": 0.3482903014934589,
+              "phase_rad": -1.709545146268664
+            }
+          ]
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log",
+          "Index_angle_rad": 4.731239,
+          "within_run_R2": 0.07953941470755921,
+          "harmonics": [
+            {
+              "mechanical_order": 28,
+              "amplitude_rad_s": 0.32860877538703176,
+              "phase_rad": -1.966122151048181
+            }
+          ]
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log",
+          "Index_angle_rad": 1.162389,
+          "within_run_R2": 0.09002781426045303,
+          "harmonics": [
+            {
+              "mechanical_order": 28,
+              "amplitude_rad_s": 0.34303324682842584,
+              "phase_rad": -2.089997756983298
+            }
+          ]
+        }
+      ],
+      "leave_one_run_out": [
+        {
+          "held_out_log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+          "training_logs": [
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log",
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log"
+          ],
+          "held_out_R2": 0.0896578504974721
+        },
+        {
+          "held_out_log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log",
+          "training_logs": [
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log"
+          ],
+          "held_out_R2": 0.07691773203408625
+        },
+        {
+          "held_out_log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log",
+          "training_logs": [
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log"
+          ],
+          "held_out_R2": 0.08413681046170574
+        }
+      ]
+    },
+    {
+      "mechanical_orders": [
+        84
+      ],
+      "per_run": [
+        {
+          "log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+          "Index_angle_rad": 2.224247,
+          "within_run_R2": 0.07852887820968613,
+          "harmonics": [
+            {
+              "mechanical_order": 84,
+              "amplitude_rad_s": 0.30338830566189745,
+              "phase_rad": 2.1246784486192207
+            }
+          ]
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log",
+          "Index_angle_rad": 4.731239,
+          "within_run_R2": 0.09046853175310021,
+          "harmonics": [
+            {
+              "mechanical_order": 84,
+              "amplitude_rad_s": 0.35077415791906635,
+              "phase_rad": 2.4604706565919185
+            }
+          ]
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log",
+          "Index_angle_rad": 1.162389,
+          "within_run_R2": 0.07305808937143221,
+          "harmonics": [
+            {
+              "mechanical_order": 84,
+              "amplitude_rad_s": 0.30774693550656024,
+              "phase_rad": 2.2239178044580497
+            }
+          ]
+        }
+      ],
+      "leave_one_run_out": [
+        {
+          "held_out_log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+          "training_logs": [
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log",
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log"
+          ],
+          "held_out_R2": 0.07080810047618147
+        },
+        {
+          "held_out_log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log",
+          "training_logs": [
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log"
+          ],
+          "held_out_R2": 0.0806659241570481
+        },
+        {
+          "held_out_log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log",
+          "training_logs": [
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log"
+          ],
+          "held_out_R2": 0.07229935032663326
+        }
+      ]
+    },
+    {
+      "mechanical_orders": [
+        14,
+        28,
+        84
+      ],
+      "per_run": [
+        {
+          "log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+          "Index_angle_rad": 2.224247,
+          "within_run_R2": 0.352406000205037,
+          "harmonics": [
+            {
+              "mechanical_order": 14,
+              "amplitude_rad_s": 0.4430252231913202,
+              "phase_rad": -2.2590458683716337
+            },
+            {
+              "mechanical_order": 28,
+              "amplitude_rad_s": 0.3383298120081097,
+              "phase_rad": -1.7446612380029236
+            },
+            {
+              "mechanical_order": 84,
+              "amplitude_rad_s": 0.3062614553226678,
+              "phase_rad": 2.142207658652705
+            }
+          ]
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log",
+          "Index_angle_rad": 4.731239,
+          "within_run_R2": 0.3064630864476561,
+          "harmonics": [
+            {
+              "mechanical_order": 14,
+              "amplitude_rad_s": 0.4249852815882585,
+              "phase_rad": -2.242987354715357
+            },
+            {
+              "mechanical_order": 28,
+              "amplitude_rad_s": 0.3227369084800298,
+              "phase_rad": -2.0042842829597745
+            },
+            {
+              "mechanical_order": 84,
+              "amplitude_rad_s": 0.3545284034643209,
+              "phase_rad": 2.4573107330441397
+            }
+          ]
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log",
+          "Index_angle_rad": 1.162389,
+          "within_run_R2": 0.32215707101523106,
+          "harmonics": [
+            {
+              "mechanical_order": 14,
+              "amplitude_rad_s": 0.45024459838636355,
+              "phase_rad": -2.2158608823648973
+            },
+            {
+              "mechanical_order": 28,
+              "amplitude_rad_s": 0.3359111116700235,
+              "phase_rad": -2.153321152180278
+            },
+            {
+              "mechanical_order": 84,
+              "amplitude_rad_s": 0.3085884490875703,
+              "phase_rad": 2.219750079639671
+            }
+          ]
+        }
+      ],
+      "leave_one_run_out": [
+        {
+          "held_out_log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+          "training_logs": [
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log",
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log"
+          ],
+          "held_out_R2": 0.33469239783369087
+        },
+        {
+          "held_out_log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log",
+          "training_logs": [
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log"
+          ],
+          "held_out_R2": 0.2958327257601697
+        },
+        {
+          "held_out_log": "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-03.log",
+          "training_logs": [
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-01.log",
+            "2026-11-18-current-velocity-speed60-tracking5-currentI400-v117-02.log"
+          ],
+          "held_out_R2": 0.3142231359769033
+        }
+      ]
+    }
+  ],
+  "note": "Exploratory fits of retained post-ramp tails. Training excludes the held-out capture. Index and speed use the same ABI sensor. Cross-run predictability does not identify sensor angle error, motor torque, ADC/drive distortion, or causation. No drive compensation is exported."
+}

@@ -53,12 +53,14 @@ int main() {
   CurrentProbe early{20,.02f,100000,100000};require(early.invalid,"unapproved early activation refused");
   CurrentProbe probe{20,.02f};
   require(probe.mix(.2f,1200000,.46f)==0 && probe.invalid,"existing .45A total ceiling cannot be raised");
-  CurrentProbe straight{13.5f,.02f},inverse{13.5f,.02f,800000,200000,3.14159265f};
+  for(float frequency:{13.5f,17.5f}) {
+  CurrentProbe straight{frequency,.02f},inverse{frequency,.02f,800000,200000,3.14159265f};
   for (uint32_t us=0;us<=3000000;us+=137) {
     const float forward=straight.mix(.15f,us,.45f),backward=inverse.mix(.15f,us,.45f);
     require(std::abs(straight.value+inverse.value)<1e-6f,"inverse-phase probe cancels at the same timestamp");
     require(std::abs(forward+backward-.30f)<1e-6f,"inverse-phase comparison preserves mean current request");
     require(std::abs(inverse.value)<=.020001f && !inverse.invalid,"inverse probe retains existing amplitude bound");
+  }
   }
   CurrentProbe excessivePhase{13.5f,.02f,800000,200000,3.15f};require(excessivePhase.invalid,"unbounded phase configuration refused");
   std::cout<<"PASS: startup/blend, bounded probe/total, zero DC, clock wrap, invalid input and latch\n";

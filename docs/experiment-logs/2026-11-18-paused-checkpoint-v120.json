@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-18",
+  "goal_status": "paused",
+  "reason": "Explicit user request to pause, summarize, commit and push",
+  "firmware": 120,
+  "drive_state": "OFF and locked until reset",
+  "stop_log": "2026-11-18-profile-v120-paused-idle-01.log",
+  "stop_log_sha256": "444ac6ce50116b7aff7dbb6c5176b3de6cd28278f54cfdfb63790899b6ab5f87",
+  "summary": "docs/experiment-status.md",
+  "comparison_records": 203,
+  "all_final_stop_acknowledged": true,
+  "source_and_ELF_match_last_condition": true,
+  "implemented_but_faulted_command_do_not_repeat": "^",
+  "next_work": "Compare standard/custom startup PID inputs, outputs and timing before new drive experiments",
+  "base_commit": "e6bec510cd980411bf0f0bbba3084049c016680f"
+}

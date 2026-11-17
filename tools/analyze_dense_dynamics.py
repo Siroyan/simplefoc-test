@@ -65,11 +65,35 @@ def spectrum(rows):
             null_amplitudes.append(abs(value))
         peak['constant_speed_quantization_null_amplitude_max_rad_s']=max(null_amplitudes)
     target_speed=statistics.mean(r['target_rad_s'] for r in rows)
+    # Separate exploratory fits against measured mechanical angle. Keep their
+    # phases local to this tail; no cross-boot phase or independent angle claim.
+    center_angles=[(a['angle_rad']+b['angle_rad'])/2 for a,b in zip(rows,rows[1:])]
+    spatial=[]
+    for order in (7,14,28,42,84,168):
+        try:
+            v,r2=harmonic(center_angles,velocity,weights,order/math.tau)
+            measured,_=harmonic(center_angles,iq,weights,order/math.tau)
+            requested,_=harmonic(center_angles,target,weights,order/math.tau)
+        except ValueError:
+            spatial.append({'cycles_per_mechanical_turn':order,'available':False,'reason':'degenerate angle basis'})
+            continue
+        ratio=measured/requested if abs(requested)>=.005 else None
+        spatial.append({'cycles_per_mechanical_turn':order,
+                        'velocity_single_order_R2':r2,
+                        'interval_velocity_amplitude_rad_s':abs(v),
+                        'equivalent_frequency_at_tail_mean_Hz':order*abs(speed)/math.tau,
+                        'iq_target_amplitude_nominal_A':abs(requested),
+                        'iq_filtered_amplitude_nominal_A':abs(measured),
+                        'closed_loop_current_component_ratio':abs(ratio) if ratio is not None else None,
+                        'current_component_phase_in_angle_basis_deg':math.degrees(cmath.phase(ratio)) if ratio is not None else None,
+                        'interval_fraction_over_half_spatial_cycle':sum(step for a,b,step in zip(rows,rows[1:],dt) if order*abs(b['angle_rad']-a['angle_rad'])>math.pi)/sum(dt)})
     return {'covered_start_us':rows[0]['trace_us'],'covered_end_us':rows[-1]['trace_us'],
             'intervals':len(dt),'interval_us_range':[min(dt)*1e6,max(dt)*1e6],
             'elapsed_s':sum(dt),'signed_mean_velocity_rad_s':speed,
             'interval_velocity_tracking_rms_rad_s':math.sqrt(sum(step*(v-target_speed)**2 for step,v in zip(dt,velocity))/sum(dt)),
             'frequency_resolution_scale_Hz':1/span,'peak_components':peaks,
+            'spatial_components':spatial,
+            'spatial_fit_basis':'Hann-weighted single-order fits at interval midpoint ABI angle; local phase only, no absolute angle or cause identification',
             'dominant_components_in_bands':[
                 {'band_Hz':[low,high],**max((f for f in fits if low<=f['frequency_Hz']<=high),key=lambda f:f['velocity_single_frequency_R2'])}
                 for low,high in ((3,20),(40,100))],
@@ -96,7 +120,7 @@ def main():
     parser.add_argument('--output',type=Path)
     args=parser.parse_args()
     rows,lines=load(args.log)
-    result={'log':args.log.name,'samples':len(rows),
+    result={'analysis_format_version':2,'log':args.log.name,'samples':len(rows),
             'control':next((l for l in lines if l.startswith('CONTROL ')),None),
             'trace_configuration':[l for l in lines if l.startswith(('TRACE_CONFIG ','TRACE_SCOPE '))],
             'whole_run_guard':next((l for l in lines if l.startswith('STOP_GUARD ')),None),

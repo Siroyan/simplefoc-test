@@ -1,0 +1,11 @@
+replay count=256 wrap=0 jitter=0 integral=0.400554 displacement=0.400553 error=1.0045e-06
+replay count=256 wrap=1 jitter=1 integral=0.400554 displacement=0.400553 error=8.85219e-07
+replay count=2001 wrap=0 jitter=0 integral=1.5708 displacement=1.5708 error=9.74647e-07
+replay count=2001 wrap=1 jitter=1 integral=1.5708 displacement=1.5708 error=8.21666e-07
+ramp sign=1 equivalent_lag_s=-0.000231246
+ramp sign=-1 equivalent_lag_s=-0.000231246
+84Hz sign=1 RMS_error=0.115794 amplitude=0.567094 phase_deg=-15.9238
+84Hz sign=-1 RMS_error=0.115794 amplitude=0.567094 phase_deg=-15.9238
+60rpm sign=-1 edge_RMS=0.0225587 LS2_RMS=0.11705
+60rpm sign=1 edge_RMS=0.0225587 LS2_RMS=0.11705
+PASS: saved edges, uneven intervals, both signs, quarter-edge errors, read jitter, reversal, stop, count/time wrap and invalid state

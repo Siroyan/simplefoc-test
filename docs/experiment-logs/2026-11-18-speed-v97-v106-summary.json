@@ -1,0 +1,1015 @@
+{
+  "scope": "Fourteen v97-v106 captures: six completed 2.5rad/s comparisons and eight protected higher-range attempts. No higher-range attempt completed 3s. Nominal current commands are not calibrated physical phase-current limits.",
+  "runs": [
+    {
+      "log": "2026-11-18-current-velocity-speed25-peak-adaptive84-v97-01.log",
+      "stop": "STOP: 3-second test complete",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 2999962,6.490530",
+      "control": "CONTROL P=0.1500 I=7.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0010",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0010 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=7.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS4ms min_sample_us=150 warmup_span_us=3000 guard=original_window2ms_LPF2ms guard_limit_rad_s=5",
+      "reference": "REFERENCE_RAMP duration_us=800000 target_rad_s=2.500 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 800000,
+      "RAM_metrics_scope": "covered_after_startup",
+      "RAM_metrics": {
+        "covered_start_us": 803644.0,
+        "covered_end_us": 2999974.0,
+        "mean_encoder_velocity_rad_s": 2.5053156857120737,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.5053156857120737,
+        "target_magnitude_rad_s": 2.5,
+        "filtered_tracking_rmse_rad_s": 0.48536178591411594,
+        "window_tracking_rmse_rad_s": 0.45649268561566386,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.14539187358001748,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.18259707424626553
+      },
+      "post_ramp_2ms_stats": null,
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=3.156678 run_abs_peak_rad_s=4.421199",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=800000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 800000,
+        "whole": {
+          "elapsed_us": 1124544.0,
+          "sample_age_us": 45.0,
+          "adc_age_us": 167.0,
+          "guard_rad_s": 4.421199,
+          "control_rad_s": 3.855371,
+          "reference_rad_s": 2.5,
+          "iq_applied_nominal_A": -0.012467,
+          "iq_next_nominal_A": 0.003192,
+          "iq_filtered_nominal_A": 0.024891,
+          "Uq_V": 0.043003,
+          "Ud_V": -0.007073,
+          "correction_nominal_A": 0.003209
+        },
+        "after_ramp": {
+          "elapsed_us": 1124544.0,
+          "sample_age_us": 45.0,
+          "adc_age_us": 167.0,
+          "guard_rad_s": 4.421199,
+          "control_rad_s": 3.855371,
+          "reference_rad_s": 2.5,
+          "iq_applied_nominal_A": -0.012467,
+          "iq_next_nominal_A": 0.003192,
+          "iq_filtered_nominal_A": 0.024891,
+          "Uq_V": 0.043003,
+          "Ud_V": -0.007073,
+          "correction_nominal_A": 0.003209
+        }
+      },
+      "ABI": {
+        "callbacks": 4134.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 2.0,
+        "count_delta": 4132.0,
+        "encoder_count_delta": 4132.0
+      },
+      "max_adc_age_us": 1270.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.418357,
+      "voltage_vector_max_V": 0.26561292212541165,
+      "VBUS_nominal_V": {
+        "min": 11.17388916015625,
+        "max": 11.207368977864583,
+        "mean": 11.189639892578102,
+        "rms": 11.189640958725642
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed25-peak-zero-v97-01.log",
+      "stop": "STOP: 3-second test complete",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 2999339,6.490530",
+      "control": "CONTROL P=0.1500 I=7.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0010",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0010 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=7.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS4ms min_sample_us=150 warmup_span_us=3000 guard=original_window2ms_LPF2ms guard_limit_rad_s=5",
+      "reference": "REFERENCE_RAMP duration_us=800000 target_rad_s=2.500 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 800000,
+      "RAM_metrics_scope": "covered_after_startup",
+      "RAM_metrics": {
+        "covered_start_us": 803918.0,
+        "covered_end_us": 2999351.0,
+        "mean_encoder_velocity_rad_s": 2.5056237197855724,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.5056237197855724,
+        "target_magnitude_rad_s": 2.5,
+        "filtered_tracking_rmse_rad_s": 0.5509370748215698,
+        "window_tracking_rmse_rad_s": 0.4642857914305746,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.14613208305605307,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.18571431657222984
+      },
+      "post_ramp_2ms_stats": null,
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=2.977450 run_abs_peak_rad_s=4.448488",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=800000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 800000,
+        "whole": {
+          "elapsed_us": 1126206.0,
+          "sample_age_us": 38.0,
+          "adc_age_us": 138.0,
+          "guard_rad_s": 4.448488,
+          "control_rad_s": 3.888242,
+          "reference_rad_s": 2.5,
+          "iq_applied_nominal_A": -0.007585,
+          "iq_next_nominal_A": 0.000236,
+          "iq_filtered_nominal_A": 0.046803,
+          "Uq_V": 0.045462,
+          "Ud_V": -0.013082,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": {
+          "elapsed_us": 1126206.0,
+          "sample_age_us": 38.0,
+          "adc_age_us": 138.0,
+          "guard_rad_s": 4.448488,
+          "control_rad_s": 3.888242,
+          "reference_rad_s": 2.5,
+          "iq_applied_nominal_A": -0.007585,
+          "iq_next_nominal_A": 0.000236,
+          "iq_filtered_nominal_A": 0.046803,
+          "Uq_V": 0.045462,
+          "Ud_V": -0.013082,
+          "correction_nominal_A": 0.0
+        }
+      },
+      "ABI": {
+        "callbacks": 4132.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 4132.0,
+        "encoder_count_delta": 4132.0
+      },
+      "max_adc_age_us": 334.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.431649,
+      "voltage_vector_max_V": 0.2715159719519277,
+      "VBUS_nominal_V": {
+        "min": 11.182259114583335,
+        "max": 11.1989990234375,
+        "mean": 11.190058390299454,
+        "rms": 11.190059300604332
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed25-ramp1500-v98-01.log",
+      "stop": "STOP: 3-second test complete",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 2999822,5.612456",
+      "control": "CONTROL P=0.1500 I=7.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0010",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0010 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=7.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS4ms min_sample_us=150 warmup_span_us=3000 guard=original_window2ms_LPF2ms guard_limit_rad_s=5",
+      "reference": "REFERENCE_RAMP duration_us=1500000 target_rad_s=2.500 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 1500000,
+      "RAM_metrics_scope": "covered_after_startup",
+      "RAM_metrics": {
+        "covered_start_us": 1507527.0,
+        "covered_end_us": 2999835.0,
+        "mean_encoder_velocity_rad_s": 2.502019020202264,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.502019020202264,
+        "target_magnitude_rad_s": 2.5,
+        "filtered_tracking_rmse_rad_s": 0.5207331484543154,
+        "window_tracking_rmse_rad_s": 0.47761900778520744,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.15001297131691305,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.19104760311408298
+      },
+      "post_ramp_2ms_stats": null,
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.525566 run_abs_peak_rad_s=4.441910",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=1500000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 1500000,
+        "whole": {
+          "elapsed_us": 1473614.0,
+          "sample_age_us": 32.0,
+          "adc_age_us": 129.0,
+          "guard_rad_s": 4.44191,
+          "control_rad_s": 4.316824,
+          "reference_rad_s": 2.455873,
+          "iq_applied_nominal_A": -0.059177,
+          "iq_next_nominal_A": -0.066984,
+          "iq_filtered_nominal_A": 0.022058,
+          "Uq_V": 0.022887,
+          "Ud_V": -0.021002,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": {
+          "elapsed_us": 2369613.0,
+          "sample_age_us": 44.0,
+          "adc_age_us": 180.0,
+          "guard_rad_s": 4.159015,
+          "control_rad_s": 3.521835,
+          "reference_rad_s": 2.5,
+          "iq_applied_nominal_A": -0.029864,
+          "iq_next_nominal_A": -0.01251,
+          "iq_filtered_nominal_A": 0.017375,
+          "Uq_V": 0.032106,
+          "Ud_V": 0.000891,
+          "correction_nominal_A": 0.0
+        }
+      },
+      "ABI": {
+        "callbacks": 3573.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 3573.0,
+        "encoder_count_delta": 3573.0
+      },
+      "max_adc_age_us": 1128.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.43643,
+      "voltage_vector_max_V": 0.2703028626115528,
+      "VBUS_nominal_V": {
+        "min": 11.17388916015625,
+        "max": 11.1989990234375,
+        "mean": 11.188346354166638,
+        "rms": 11.188347629758734
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed25-ramp1500-v98-02.log",
+      "stop": "STOP: 3-second test complete",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 2999403,5.612455",
+      "control": "CONTROL P=0.1500 I=7.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0010",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0010 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=7.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS4ms min_sample_us=150 warmup_span_us=3000 guard=original_window2ms_LPF2ms guard_limit_rad_s=5",
+      "reference": "REFERENCE_RAMP duration_us=1500000 target_rad_s=2.500 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 1500000,
+      "RAM_metrics_scope": "covered_after_startup",
+      "RAM_metrics": {
+        "covered_start_us": 1506915.0,
+        "covered_end_us": 2999416.0,
+        "mean_encoder_velocity_rad_s": 2.50590518867324,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.50590518867324,
+        "target_magnitude_rad_s": 2.5,
+        "filtered_tracking_rmse_rad_s": 0.5181936086517571,
+        "window_tracking_rmse_rad_s": 0.44093886081860034,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.14812485901181982,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.17637554432744013
+      },
+      "post_ramp_2ms_stats": null,
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=3.257558 run_abs_peak_rad_s=4.304723",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=1500000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 1500000,
+        "whole": {
+          "elapsed_us": 1473324.0,
+          "sample_age_us": 32.0,
+          "adc_age_us": 117.0,
+          "guard_rad_s": 4.304723,
+          "control_rad_s": 4.204528,
+          "reference_rad_s": 2.45539,
+          "iq_applied_nominal_A": -0.150902,
+          "iq_next_nominal_A": -0.148335,
+          "iq_filtered_nominal_A": -0.057357,
+          "Uq_V": -0.006924,
+          "Ud_V": -0.01098,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": {
+          "elapsed_us": 2045592.0,
+          "sample_age_us": 131.0,
+          "adc_age_us": 229.0,
+          "guard_rad_s": 4.120595,
+          "control_rad_s": 3.658835,
+          "reference_rad_s": 2.5,
+          "iq_applied_nominal_A": 0.02035,
+          "iq_next_nominal_A": 0.026013,
+          "iq_filtered_nominal_A": 0.081527,
+          "Uq_V": 0.060149,
+          "Ud_V": -0.000575,
+          "correction_nominal_A": 0.0
+        }
+      },
+      "ABI": {
+        "callbacks": 3573.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 3573.0,
+        "encoder_count_delta": 3573.0
+      },
+      "max_adc_age_us": 1125.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.400746,
+      "voltage_vector_max_V": 0.2661273028909285,
+      "VBUS_nominal_V": {
+        "min": 11.17388916015625,
+        "max": 11.1989990234375,
+        "mean": 11.188536580403621,
+        "rms": 11.18853773663187
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed25-ramp800-v98-01.log",
+      "stop": "STOP: 3-second test complete",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 2999239,6.493672",
+      "control": "CONTROL P=0.1500 I=7.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0010",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0010 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=7.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS4ms min_sample_us=150 warmup_span_us=3000 guard=original_window2ms_LPF2ms guard_limit_rad_s=5",
+      "reference": "REFERENCE_RAMP duration_us=800000 target_rad_s=2.500 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 800000,
+      "RAM_metrics_scope": "covered_after_startup",
+      "RAM_metrics": {
+        "covered_start_us": 804126.0,
+        "covered_end_us": 2999255.0,
+        "mean_encoder_velocity_rad_s": 2.5031084733516797,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.5031084733516797,
+        "target_magnitude_rad_s": 2.5,
+        "filtered_tracking_rmse_rad_s": 0.5464308098152272,
+        "window_tracking_rmse_rad_s": 0.4635938096535916,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.14382823738377104,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.18543752386143664
+      },
+      "post_ramp_2ms_stats": null,
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=3.403335 run_abs_peak_rad_s=4.281270",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=800000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 800000,
+        "whole": {
+          "elapsed_us": 1909190.0,
+          "sample_age_us": 141.0,
+          "adc_age_us": 248.0,
+          "guard_rad_s": 4.28127,
+          "control_rad_s": 3.800603,
+          "reference_rad_s": 2.5,
+          "iq_applied_nominal_A": -0.066514,
+          "iq_next_nominal_A": -0.039384,
+          "iq_filtered_nominal_A": -0.015345,
+          "Uq_V": 0.01883,
+          "Ud_V": -0.00031,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": {
+          "elapsed_us": 1909190.0,
+          "sample_age_us": 141.0,
+          "adc_age_us": 248.0,
+          "guard_rad_s": 4.28127,
+          "control_rad_s": 3.800603,
+          "reference_rad_s": 2.5,
+          "iq_applied_nominal_A": -0.066514,
+          "iq_next_nominal_A": -0.039384,
+          "iq_filtered_nominal_A": -0.015345,
+          "Uq_V": 0.01883,
+          "Ud_V": -0.00031,
+          "correction_nominal_A": 0.0
+        }
+      },
+      "ABI": {
+        "callbacks": 4134.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 4134.0,
+        "encoder_count_delta": 4134.0
+      },
+      "max_adc_age_us": 1093.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.428117,
+      "voltage_vector_max_V": 0.2651754192529919,
+      "VBUS_nominal_V": {
+        "min": 11.17388916015625,
+        "max": 11.1989990234375,
+        "mean": 11.188955078124975,
+        "rms": 11.188956347438229
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed25-ramp800-v98-02.log",
+      "stop": "STOP: 3-second test complete",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 2999324,6.482677",
+      "control": "CONTROL P=0.1500 I=7.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0010",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0010 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=7.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS4ms min_sample_us=150 warmup_span_us=3000 guard=original_window2ms_LPF2ms guard_limit_rad_s=5",
+      "reference": "REFERENCE_RAMP duration_us=800000 target_rad_s=2.500 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 800000,
+      "RAM_metrics_scope": "covered_after_startup",
+      "RAM_metrics": {
+        "covered_start_us": 804286.0,
+        "covered_end_us": 2999337.0,
+        "mean_encoder_velocity_rad_s": 2.499619371030559,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 2.499619371030559,
+        "target_magnitude_rad_s": 2.5,
+        "filtered_tracking_rmse_rad_s": 0.5464432562133392,
+        "window_tracking_rmse_rad_s": 0.47077395662865507,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.14542948068177,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.18830958265146203
+      },
+      "post_ramp_2ms_stats": null,
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=3.136696 run_abs_peak_rad_s=4.217217",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=800000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 800000,
+        "whole": {
+          "elapsed_us": 2374895.0,
+          "sample_age_us": 45.0,
+          "adc_age_us": 147.0,
+          "guard_rad_s": 4.217217,
+          "control_rad_s": 3.859262,
+          "reference_rad_s": 2.5,
+          "iq_applied_nominal_A": 0.042357,
+          "iq_next_nominal_A": 0.034328,
+          "iq_filtered_nominal_A": 0.103825,
+          "Uq_V": 0.085487,
+          "Ud_V": -0.002423,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": {
+          "elapsed_us": 2374895.0,
+          "sample_age_us": 45.0,
+          "adc_age_us": 147.0,
+          "guard_rad_s": 4.217217,
+          "control_rad_s": 3.859262,
+          "reference_rad_s": 2.5,
+          "iq_applied_nominal_A": 0.042357,
+          "iq_next_nominal_A": 0.034328,
+          "iq_filtered_nominal_A": 0.103825,
+          "Uq_V": 0.085487,
+          "Ud_V": -0.002423,
+          "correction_nominal_A": 0.0
+        }
+      },
+      "ABI": {
+        "callbacks": 4128.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 4128.0,
+        "encoder_count_delta": 4128.0
+      },
+      "max_adc_age_us": 335.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.45,
+      "voltage_vector_max_V": 0.2776476306561971,
+      "VBUS_nominal_V": {
+        "min": 11.182259114583335,
+        "max": 11.207368977864583,
+        "mean": 11.189335530598933,
+        "rms": 11.189336622647266
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-currentLPF05-v105-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 1439273,3.023783",
+      "control": "CONTROL P=0.1500 I=1.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0005",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0005 d_LPF_s=0.0005 velocity_LPF_s=0.0005 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=1.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS2ms min_sample_us=75 warmup_span_us=1500 guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+      "reference": "REFERENCE_RAMP duration_us=2000000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 2000000,
+      "RAM_metrics_scope": "covered_after_startup",
+      "RAM_metrics": null,
+      "post_ramp_2ms_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=2.493811 run_abs_peak_rad_s=6.058659",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=2000000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 2000000,
+        "whole": {
+          "elapsed_us": 1365023.0,
+          "sample_age_us": 14.0,
+          "adc_age_us": 136.0,
+          "guard_rad_s": 6.058659,
+          "control_rad_s": 4.896188,
+          "reference_rad_s": 4.288129,
+          "iq_applied_nominal_A": 0.125628,
+          "iq_next_nominal_A": 0.180657,
+          "iq_filtered_nominal_A": 0.074719,
+          "Uq_V": 0.117387,
+          "Ud_V": -0.000873,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": null
+      },
+      "ABI": {
+        "callbacks": 1925.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 1925.0,
+        "encoder_count_delta": 1925.0
+      },
+      "max_adc_age_us": 230.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.45,
+      "voltage_vector_max_V": 0.28880029961203296,
+      "VBUS_nominal_V": {
+        "min": 11.182259114583335,
+        "max": 11.207368977864583,
+        "mean": 11.18999135819689,
+        "rms": 11.1899924132724
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-currentLPF1-v100-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 1143703,2.031039",
+      "control": "CONTROL P=0.1500 I=7.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0010",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0010 d_LPF_s=0.0010 velocity_LPF_s=0.0010 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=7.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS4ms min_sample_us=150 warmup_span_us=3000 guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+      "reference": "REFERENCE_RAMP duration_us=2000000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 2000000,
+      "RAM_metrics_scope": "covered_after_startup",
+      "RAM_metrics": null,
+      "post_ramp_2ms_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.513684 run_abs_peak_rad_s=5.101173",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=2000000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 2000000,
+        "whole": {
+          "elapsed_us": 1117180.0,
+          "sample_age_us": 14.0,
+          "adc_age_us": 119.0,
+          "guard_rad_s": 5.101173,
+          "control_rad_s": 5.158291,
+          "reference_rad_s": 3.509498,
+          "iq_applied_nominal_A": -0.030844,
+          "iq_next_nominal_A": -0.037148,
+          "iq_filtered_nominal_A": 0.049471,
+          "Uq_V": 0.094435,
+          "Ud_V": -0.00077,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": null
+      },
+      "ABI": {
+        "callbacks": 1293.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 1293.0,
+        "encoder_count_delta": 1293.0
+      },
+      "max_adc_age_us": 195.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.45,
+      "voltage_vector_max_V": 0.2687020398303667,
+      "VBUS_nominal_V": {
+        "min": 11.17388916015625,
+        "max": 11.1989990234375,
+        "mean": 11.186567907690753,
+        "rms": 11.18656924566604
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-I120-v102-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 413370,0.092677",
+      "control": "CONTROL P=0.0250 I=1.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0005",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0010 d_LPF_s=0.0010 velocity_LPF_s=0.0005 q_P=0.6000 q_I=200.0000 velocity_P=0.0250 velocity_I=1.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS2ms min_sample_us=75 warmup_span_us=1500 guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+      "reference": "REFERENCE_RAMP duration_us=2000000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 2000000,
+      "RAM_metrics_scope": "covered_after_startup",
+      "RAM_metrics": null,
+      "post_ramp_2ms_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=3.331703 run_abs_peak_rad_s=3.331703",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=2000000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 2000000,
+        "whole": {
+          "elapsed_us": 413359.0,
+          "sample_age_us": 17.0,
+          "adc_age_us": 87.0,
+          "guard_rad_s": 3.331703,
+          "control_rad_s": 3.521851,
+          "reference_rad_s": 1.298386,
+          "iq_applied_nominal_A": 0.155586,
+          "iq_next_nominal_A": 0.1608,
+          "iq_filtered_nominal_A": 0.153357,
+          "Uq_V": 0.138331,
+          "Ud_V": 0.000201,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": null
+      },
+      "ABI": {
+        "callbacks": 59.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 1.0,
+        "count_delta": 59.0,
+        "encoder_count_delta": 59.0
+      },
+      "max_adc_age_us": 195.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.265233,
+      "voltage_vector_max_V": 0.15050236094161445,
+      "VBUS_nominal_V": null,
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-lowgain-v101-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 661092,0.036128",
+      "control": "CONTROL P=0.0250 I=0.3000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0005",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0010 d_LPF_s=0.0010 velocity_LPF_s=0.0005 q_P=0.6000 q_I=200.0000 velocity_P=0.0250 velocity_I=0.3000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS2ms min_sample_us=75 warmup_span_us=1500 guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+      "reference": "REFERENCE_RAMP duration_us=2000000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 2000000,
+      "RAM_metrics_scope": "covered_after_startup",
+      "RAM_metrics": null,
+      "post_ramp_2ms_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.068647 run_abs_peak_rad_s=0.915073",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=2000000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 2000000,
+        "whole": {
+          "elapsed_us": 376477.0,
+          "sample_age_us": 14.0,
+          "adc_age_us": 104.0,
+          "guard_rad_s": 0.915073,
+          "control_rad_s": 0.107706,
+          "reference_rad_s": 1.182524,
+          "iq_applied_nominal_A": 0.088223,
+          "iq_next_nominal_A": 0.090301,
+          "iq_filtered_nominal_A": 0.078835,
+          "Uq_V": 0.056806,
+          "Ud_V": -0.000254,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": null
+      },
+      "ABI": {
+        "callbacks": 23.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 1.0,
+        "count_delta": 23.0,
+        "encoder_count_delta": 23.0
+      },
+      "max_adc_age_us": 1099.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.24665,
+      "voltage_vector_max_V": 0.15220122641095898,
+      "VBUS_nominal_V": null,
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-P075-I120-v103-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 639390,0.464956",
+      "control": "CONTROL P=0.0750 I=1.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0005",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0010 d_LPF_s=0.0010 velocity_LPF_s=0.0005 q_P=0.6000 q_I=200.0000 velocity_P=0.0750 velocity_I=1.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS2ms min_sample_us=75 warmup_span_us=1500 guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+      "reference": "REFERENCE_RAMP duration_us=2000000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 2000000,
+      "RAM_metrics_scope": "covered_after_startup",
+      "RAM_metrics": null,
+      "post_ramp_2ms_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=4.018341 run_abs_peak_rad_s=4.018341",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=2000000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 2000000,
+        "whole": {
+          "elapsed_us": 639376.0,
+          "sample_age_us": 14.0,
+          "adc_age_us": 214.0,
+          "guard_rad_s": 4.018341,
+          "control_rad_s": 4.155622,
+          "reference_rad_s": 2.008448,
+          "iq_applied_nominal_A": 0.062523,
+          "iq_next_nominal_A": 0.058145,
+          "iq_filtered_nominal_A": 0.08522,
+          "Uq_V": 0.093648,
+          "Ud_V": 0.000627,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": null
+      },
+      "ABI": {
+        "callbacks": 296.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 1.0,
+        "count_delta": 296.0,
+        "encoder_count_delta": 296.0
+      },
+      "max_adc_age_us": 247.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.361123,
+      "voltage_vector_max_V": 0.2190005753508424,
+      "VBUS_nominal_V": null,
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-P150-I120-v104-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 2300075,7.962367",
+      "control": "CONTROL P=0.1500 I=1.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0005",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0010 d_LPF_s=0.0010 velocity_LPF_s=0.0005 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=1.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS2ms min_sample_us=75 warmup_span_us=1500 guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+      "reference": "REFERENCE_RAMP duration_us=2000000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 2000000,
+      "RAM_metrics_scope": "retained_tail_only",
+      "RAM_metrics": {
+        "covered_start_us": 2001111.0,
+        "covered_end_us": 2300091.0,
+        "mean_encoder_velocity_rad_s": 6.315128102214196,
+        "command_direction": 1,
+        "mean_speed_in_command_direction_rad_s": 6.315128102214196,
+        "target_magnitude_rad_s": 6.283185,
+        "filtered_tracking_rmse_rad_s": 0.784786290459963,
+        "window_tracking_rmse_rad_s": 0.598993531910777,
+        "window_speed_below_0_2_fraction": 0.0,
+        "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+        "negative_voltage_command_fraction": 0.0,
+        "voltage_command_mean_V": 0.20675652986821857,
+        "negative_unslewed_pid_request_fraction": null,
+        "relative_window_tracking_rmse": 0.09533278614441196
+      },
+      "post_ramp_2ms_stats": {
+        "available": true,
+        "complete_run": false,
+        "scope": "partial_post_ramp_until_stop",
+        "configuration": "VELOCITY_STATS_CONFIG period_us=2000 start_us=2000000 source=ABI_interval frame=motor_signed samples=post_ramp_only UART=after_stop",
+        "guard_configuration": "SPEED_GUARD_CONFIG mode=reference_envelope deviation_rad_s=2 hard_abs_rad_s=8.5 max_target_rad_s=6.283185 source=original_window2ms_LPF2ms signed_motor_velocity=1",
+        "valid": 1.0,
+        "invalid": 0.0,
+        "samples": 147.0,
+        "first_elapsed_us": 2000037.0,
+        "last_elapsed_us": 2299574.0,
+        "covered_us": 299537.0,
+        "displacement_rad": 1.889668,
+        "mean_motor_rad_s": 6.308629,
+        "rms_error_rad_s": 0.932824,
+        "minimum_rad_s": 3.864915,
+        "maximum_rad_s": 8.511661,
+        "slow_fraction": 0.0,
+        "reverse_fraction": 0.0,
+        "relative_rms_error": 0.14846355789301127
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=4.230149 run_abs_peak_rad_s=8.113194",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=2000000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 2000000,
+        "whole": {
+          "elapsed_us": 2199660.0,
+          "sample_age_us": 14.0,
+          "adc_age_us": 101.0,
+          "guard_rad_s": 8.113194,
+          "control_rad_s": 7.087424,
+          "reference_rad_s": 6.283185,
+          "iq_applied_nominal_A": 0.08512,
+          "iq_next_nominal_A": 0.132244,
+          "iq_filtered_nominal_A": 0.043633,
+          "Uq_V": 0.126557,
+          "Ud_V": -0.018584,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": {
+          "elapsed_us": 2199660.0,
+          "sample_age_us": 14.0,
+          "adc_age_us": 101.0,
+          "guard_rad_s": 8.113194,
+          "control_rad_s": 7.087424,
+          "reference_rad_s": 6.283185,
+          "iq_applied_nominal_A": 0.08512,
+          "iq_next_nominal_A": 0.132244,
+          "iq_filtered_nominal_A": 0.043633,
+          "Uq_V": 0.126557,
+          "Ud_V": -0.018584,
+          "correction_nominal_A": 0.0
+        }
+      },
+      "ABI": {
+        "callbacks": 5069.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 5069.0,
+        "encoder_count_delta": 5069.0
+      },
+      "max_adc_age_us": 1139.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.45,
+      "voltage_vector_max_V": 0.3228039635196569,
+      "VBUS_nominal_V": {
+        "min": 11.17388916015625,
+        "max": 11.1989990234375,
+        "mean": 11.18777805328366,
+        "rms": 11.187779186989532
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-v99-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 1472643,3.386637",
+      "control": "CONTROL P=0.1500 I=7.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0010",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0020 d_LPF_s=0.0020 velocity_LPF_s=0.0010 q_P=0.6000 q_I=200.0000 velocity_P=0.1500 velocity_I=7.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS4ms min_sample_us=150 warmup_span_us=3000 guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+      "reference": "REFERENCE_RAMP duration_us=2000000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 2000000,
+      "RAM_metrics_scope": "retained_tail_only",
+      "RAM_metrics": null,
+      "post_ramp_2ms_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=2.462339 run_abs_peak_rad_s=6.407195",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=2000000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 2000000,
+        "whole": {
+          "elapsed_us": 1450249.0,
+          "sample_age_us": 14.0,
+          "adc_age_us": 130.0,
+          "guard_rad_s": 6.407195,
+          "control_rad_s": 6.100637,
+          "reference_rad_s": 4.555862,
+          "iq_applied_nominal_A": -0.059673,
+          "iq_next_nominal_A": -0.057181,
+          "iq_filtered_nominal_A": 0.023902,
+          "Uq_V": 0.065284,
+          "Ud_V": -0.016557,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": null
+      },
+      "ABI": {
+        "callbacks": 2156.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 2156.0,
+        "encoder_count_delta": 2156.0
+      },
+      "max_adc_age_us": 1111.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.45,
+      "voltage_vector_max_V": 0.2930913463342103,
+      "VBUS_nominal_V": {
+        "min": 11.17388916015625,
+        "max": 11.1989990234375,
+        "mean": 11.185973281860324,
+        "rms": 11.185974485380552
+      },
+      "final_stop_acknowledged": true
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-P120-I120-v106-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 1941387,5.730266",
+      "control": "CONTROL P=0.1200 I=1.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0005",
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0010 d_LPF_s=0.0010 velocity_LPF_s=0.0005 q_P=0.6000 q_I=200.0000 velocity_P=0.1200 velocity_I=1.2000",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=rolling_LS2ms min_sample_us=75 warmup_span_us=1500 guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+      "reference": "REFERENCE_RAMP duration_us=2000000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+      "analysis_start_us": 2000000,
+      "RAM_metrics_scope": "retained_tail_only",
+      "RAM_metrics": null,
+      "post_ramp_2ms_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=4.029601 run_abs_peak_rad_s=7.081979",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=2000000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 2000000,
+        "whole": {
+          "elapsed_us": 1755430.0,
+          "sample_age_us": 14.0,
+          "adc_age_us": 107.0,
+          "guard_rad_s": 7.081979,
+          "control_rad_s": 6.136182,
+          "reference_rad_s": 5.51462,
+          "iq_applied_nominal_A": 0.111048,
+          "iq_next_nominal_A": 0.13045,
+          "iq_filtered_nominal_A": 0.082737,
+          "Uq_V": 0.148996,
+          "Ud_V": -0.000481,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": null
+      },
+      "ABI": {
+        "callbacks": 3649.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 3649.0,
+        "encoder_count_delta": 3649.0
+      },
+      "max_adc_age_us": 236.0,
+      "ADC_frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "max_nominal_Iq_command_A": 0.45,
+      "voltage_vector_max_V": 0.2882018945548416,
+      "final_stop_acknowledged": true
+    }
+  ],
+  "new_capture_count": 14,
+  "total_comparison_records": 185,
+  "unchanged_prior_records": 171,
+  "all_prior_fields_identical": true,
+  "csv_rows_and_columns_consistent": true,
+  "all_final_stop_acknowledged": true,
+  "CV_measured": false,
+  "motor_temperature_measured": false,
+  "higher_range_goal_achieved": false,
+  "next_step": "Offline verification of an ABI edge-timing velocity estimate; no further drive of unchanged faulted profiles, no weakened guard. The running logs do not contain individual edge timestamps."
+}

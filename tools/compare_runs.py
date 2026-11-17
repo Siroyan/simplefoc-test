@@ -31,6 +31,7 @@ def main():
             "output_policy": result["output_policy"],
             "drive": result["drive_metadata"],
             "alignment_profile": result["alignment_profile"],
+            "reference_ramp": result["reference_ramp_metadata"],
             "adaptive_config":result["adaptive_metadata"],
             "adaptive_summary":result["adaptive_summary"],
             "metrics_scope":result["metrics_scope"],
@@ -43,6 +44,11 @@ def main():
             "position_correction_requested": result["position_correction_requested"],
             "position_correction_summary": result["position_correction_summary"],
             "guard_metadata":result["guard_metadata"],
+            "guard_peak_snapshots":result["guard_peak_snapshots"],
+            "interval_velocity_stats":result["interval_velocity_stats"],
+            "edge_estimator":result["edge_estimator"],
+            "run_edges":{key:value for key,value in result["run_edges"].items() if key!='rows'} if result["run_edges"] else None,
+            "current_tracking":result["current_tracking"],
             "current_active":result["current_active"],
             "current_actuator":result["current_actuator"],
             "current_probe":result["current_probe"],
@@ -56,6 +62,8 @@ def main():
             "displacement_rad": angle,
             "mean_speed_rad_s": angle / (elapsed / 1e6),
             "covered_after_0_8s_metrics": result["covered_after_0_8s_metrics"],
+            "analysis_start_us": result["analysis_start_us"],
+            "covered_after_startup_metrics": result["covered_after_startup_metrics"],
             "captured_filtered_abs_peak_rad_s": result["filtered_abs_peak_rad_s"],
             "captured_window_abs_peak_rad_s": result["window_abs_peak_rad_s"],
             "Uq_range_V": result["Uq_range_V"],
@@ -69,7 +77,7 @@ def main():
                          "window_tracking_rmse_rad_s", "slow_fraction", "reverse_fraction", "window_abs_peak_rad_s",
                          "negative_voltage_fraction", "negative_requested_voltage_fraction",
                          "stop_reason", "final_stop_acknowledged", "firmware", "estimator", "current_loop", "current_engine", "current_slew", "current_telemetry", "max_sampled_loop_us_after_0_8s",
-                         "abi_run_invalid", "abi_run_duplicate", "abi_net_counts", "encoder_net_counts", "index_references", "correction_requested", "correction_active_calls", "correction_peak_A", "correction_invalid", "guard", "current_active", "configuration_notes", "current_actuator", "current_probe", "run_reference_minus_ABI_displacement_rad", "command_direction", "mean_speed_in_command_direction_rad_s", "alignment_profile", "metrics_scope", "trace_span_s", "trace_configuration", "adaptive_config", "adaptive_summary"])
+                         "abi_run_invalid", "abi_run_duplicate", "abi_net_counts", "encoder_net_counts", "index_references", "correction_requested", "correction_active_calls", "correction_peak_A", "correction_invalid", "guard", "current_active", "configuration_notes", "current_actuator", "current_probe", "run_reference_minus_ABI_displacement_rad", "command_direction", "mean_speed_in_command_direction_rad_s", "alignment_profile", "metrics_scope", "trace_span_s", "trace_configuration", "adaptive_config", "adaptive_summary", "target_magnitude_rad_s", "relative_window_tracking_rmse", "reference_ramp", "guard_peak_snapshots", "interval_velocity_stats", "edge_estimator", "run_edges", "current_tracking"])
         for row in results:
             metrics = row["covered_after_0_8s_metrics"] or {}
             abi = row["abi_quality_run"] or {}
@@ -88,7 +96,7 @@ def main():
                              row["stop"], row["final_stop_acknowledged"],
                              *[row[key] for key in ("firmware", "estimator", "current_loop", "current_engine", "current_slew", "current_telemetry", "max_sampled_loop_us_after_0_8s")],
                              *[abi.get(key, "") for key in ("invalid", "duplicate", "count_delta", "encoder_count_delta")], row["index_observed_count"],
-                             row["position_correction_requested"], *[correction.get(key, "") for key in ("active_calls", "peak_requested_A", "invalid")],row["guard_metadata"],row["current_active"]," | ".join(row["configuration_notes"]),row["current_actuator"],row["current_probe"],(row["displacement_count_agreement"] or {}).get("difference_rad", ""),metrics.get("command_direction", ""),metrics.get("mean_speed_in_command_direction_rad_s", ""),row["alignment_profile"],row["metrics_scope"],row["trace_span_s"],row["trace_configuration"],row["adaptive_config"],json.dumps(row["adaptive_summary"],sort_keys=True) if row["adaptive_summary"] else ""])
+                             row["position_correction_requested"], *[correction.get(key, "") for key in ("active_calls", "peak_requested_A", "invalid")],row["guard_metadata"],row["current_active"]," | ".join(row["configuration_notes"]),row["current_actuator"],row["current_probe"],(row["displacement_count_agreement"] or {}).get("difference_rad", ""),metrics.get("command_direction", ""),metrics.get("mean_speed_in_command_direction_rad_s", ""),row["alignment_profile"],row["metrics_scope"],row["trace_span_s"],row["trace_configuration"],row["adaptive_config"],json.dumps(row["adaptive_summary"],sort_keys=True) if row["adaptive_summary"] else "",metrics.get("target_magnitude_rad_s", ""),metrics.get("relative_window_tracking_rmse", ""),row["reference_ramp"],json.dumps(row["guard_peak_snapshots"],sort_keys=True) if row["guard_peak_snapshots"] else "",json.dumps(row["interval_velocity_stats"],sort_keys=True) if row["interval_velocity_stats"] else "",json.dumps(row["edge_estimator"],sort_keys=True) if row["edge_estimator"] else "",json.dumps(row["run_edges"],sort_keys=True) if row["run_edges"] else "",json.dumps(row["current_tracking"],sort_keys=True) if row["current_tracking"] else ""])
         output = buffer.getvalue()
     else:
         output = json.dumps(results, indent=2) + "\n"

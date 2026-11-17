@@ -1,0 +1,24 @@
+{
+  "recorded_at": "2026-11-18T02:41:11.412796+09:00",
+  "user_changes": [
+    "sensor mounting fixture changed",
+    "magnet-to-sensor gap reduced by 0.5mm"
+  ],
+  "absolute_old_gap_mm": null,
+  "absolute_new_gap_mm": null,
+  "user_readiness_confirmed": true,
+  "supply_V": 11.1,
+  "supply_current_limit_A": 0.8,
+  "load_and_propeller_removed": true,
+  "motor_and_fixture_fixed": true,
+  "usb_connected": true,
+  "hands_off_and_no_contact_confirmed": true,
+  "planned_firmware": 84,
+  "planned_command": "Z",
+  "planned_pwm_Hz": 12500,
+  "baseline_logs": [
+    "2026-11-17-current-velocity-adaptive84-zero-v84-01.log",
+    "2026-11-17-current-velocity-adaptive84-zero-v84-02.log"
+  ],
+  "note": "Fixture and gap changed together; effects cannot be separated. CV and physical motor temperature are not measured. No control-parameter change planned."
+}

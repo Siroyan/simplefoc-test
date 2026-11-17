@@ -9,6 +9,7 @@ class AbiQuality {
   static uint8_t stateFromPort(uint32_t portB) {
     return uint8_t(((portB >> 5) & 2) | ((portB >> 7) & 1)); // A=PB6, B=PB7.
   }
+  uint8_t currentState() const {return previous;}
   void reset(uint8_t state) {
     previous = state & 3; direction = 0;
     count = 0; callbacks = invalid = duplicate = reversals = 0;
@@ -28,6 +29,6 @@ class AbiQuality {
     previous = state;
   }
  private:
-  uint8_t previous = 0;
+  volatile uint8_t previous = 0;
   int8_t direction = 0;
 };

@@ -1,0 +1,1228 @@
+{
+  "mode": "open_loop",
+  "limiter_metadata": null,
+  "output_policy": null,
+  "drive_metadata": null,
+  "pwm_metadata": "PWM hz=12500 dead_zone=0.010000 system_clock_Hz=170000000 tim1_cr1=209 tim1_psc=0 tim1_arr=6799 tim1_bdtr=34948 rcc_cfgr=15 gate_inputs_low=1",
+  "alignment_profile": "ALIGN_PROFILE cycles=3 step_ms=4 voltage_V=.7 max_alignment_us=0",
+  "reference_ramp_metadata": "REFERENCE_RAMP duration_us=800000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+  "current_observation_metadata": "CURRENT_CONFIG observer_only=1 bus_low_V=10.3995 bus_high_V=11.9650 deviation_delay_us=20000 max_age_us=2000 nominal_ADC_ref_V=3.3 shunt_ohm=.003 gain=-64/7",
+  "firmware": "FIRMWARE diag_version=112",
+  "configuration_notes": [],
+  "displacement_count_agreement": {
+    "reported_rad": 0.325155,
+    "count_rad": 0.32515483964654357,
+    "difference_rad": 1.603534564575959e-07
+  },
+  "current_active": null,
+  "current_actuator": null,
+  "current_probe": null,
+  "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR observer=rolling_LS4ms min_sample_us=150 warmup_span_us=3000 guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+  "guard_metadata": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.510151 run_abs_peak_rad_s=4.137123",
+  "guard_peak_snapshots": null,
+  "analysis_start_us": 800000,
+  "interval_velocity_stats": {
+    "available": false,
+    "complete_run": false,
+    "scope": "no_post_ramp_samples",
+    "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+  },
+  "edge_estimator": null,
+  "run_edges": {
+    "configuration": "RUN_EDGE_CONFIG capacity=256 clock=DWT_elapsed origin=beginTrace storage=manual_edges raw=us,count,AB UART=after_stop",
+    "active": "RUN_EDGE_ACTIVE window_us=2000 guard_LPF_s=0.0020 guard_limit_rad_s=8.5 voltage_limit_V=0.500 target_rad_s=6.283185 mode=open_loop",
+    "clock_check": "EDGE_CLOCK_CHECK advancing=1 gates_off=1 cycles_per_us=170 core_regressions=18 maximum_core_backstep_us=999",
+    "target_rad_s": 6.283185,
+    "summary": {
+      "total_edges": 213,
+      "retained": 213,
+      "origin_count": -104,
+      "origin_AB": 3,
+      "end_count": 103,
+      "end_us": 321150
+    },
+    "tail_invalid_transitions": 0,
+    "tail_duplicate_callbacks": 0,
+    "interval_us_range": [
+      81,
+      51542
+    ],
+    "mean_interval_us_by_previous_AB": {
+      "0": 1427.9056603773586,
+      "1": 1120.7037037037037,
+      "2": 2088.5576923076924,
+      "3": 1284.9056603773586
+    },
+    "tail_speed": {
+      "span_s": 0.312902,
+      "mean_encoder_rad_s": 1.034138622698956,
+      "one_edge_RMS_about_mean_rad_s": 1.3524137021181355
+    },
+    "rows": [
+      {
+        "edge_us": 6747,
+        "signed_count": -103,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 7549,
+        "signed_count": -102,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 8171,
+        "signed_count": -101,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 9833,
+        "signed_count": -100,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 11020,
+        "signed_count": -99,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 12534,
+        "signed_count": -98,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 27697,
+        "signed_count": -99,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 28646,
+        "signed_count": -100,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 29893,
+        "signed_count": -101,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 81435,
+        "signed_count": -100,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 88024,
+        "signed_count": -99,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 91143,
+        "signed_count": -98,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 98291,
+        "signed_count": -97,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 103960,
+        "signed_count": -96,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 106541,
+        "signed_count": -95,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 114287,
+        "signed_count": -94,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 116316,
+        "signed_count": -93,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 117759,
+        "signed_count": -92,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 123189,
+        "signed_count": -91,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 126038,
+        "signed_count": -90,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 129332,
+        "signed_count": -89,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 132359,
+        "signed_count": -88,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 135386,
+        "signed_count": -87,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 137968,
+        "signed_count": -86,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 140461,
+        "signed_count": -85,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 143577,
+        "signed_count": -84,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 145713,
+        "signed_count": -83,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 148206,
+        "signed_count": -82,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 150610,
+        "signed_count": -81,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 152213,
+        "signed_count": -80,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 154839,
+        "signed_count": -79,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 156577,
+        "signed_count": -78,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 158712,
+        "signed_count": -77,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 160048,
+        "signed_count": -76,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 160938,
+        "signed_count": -75,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 162363,
+        "signed_count": -74,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 163789,
+        "signed_count": -73,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 164945,
+        "signed_count": -72,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 165924,
+        "signed_count": -71,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 166458,
+        "signed_count": -70,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 167749,
+        "signed_count": -69,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 168862,
+        "signed_count": -68,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 169456,
+        "signed_count": -67,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 170020,
+        "signed_count": -66,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 171266,
+        "signed_count": -65,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 172290,
+        "signed_count": -64,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 173049,
+        "signed_count": -63,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 173937,
+        "signed_count": -62,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 174738,
+        "signed_count": -61,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 175362,
+        "signed_count": -60,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 176163,
+        "signed_count": -59,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 176497,
+        "signed_count": -58,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 177768,
+        "signed_count": -57,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 178834,
+        "signed_count": -56,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 179546,
+        "signed_count": -55,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 180971,
+        "signed_count": -54,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 181950,
+        "signed_count": -53,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 183419,
+        "signed_count": -52,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 184220,
+        "signed_count": -51,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 185690,
+        "signed_count": -50,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 187559,
+        "signed_count": -49,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 189117,
+        "signed_count": -48,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 191594,
+        "signed_count": -47,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 192544,
+        "signed_count": -46,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 194505,
+        "signed_count": -45,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 195465,
+        "signed_count": -44,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 197795,
+        "signed_count": -43,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 200199,
+        "signed_count": -42,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 201356,
+        "signed_count": -41,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 201890,
+        "signed_count": -40,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 203492,
+        "signed_count": -39,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 204828,
+        "signed_count": -38,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 206073,
+        "signed_count": -37,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 206786,
+        "signed_count": -36,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 208121,
+        "signed_count": -35,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 208967,
+        "signed_count": -34,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 209188,
+        "signed_count": -33,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 210260,
+        "signed_count": -32,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 211283,
+        "signed_count": -31,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 211948,
+        "signed_count": -30,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 212994,
+        "signed_count": -29,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 213372,
+        "signed_count": -28,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 213973,
+        "signed_count": -27,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 214440,
+        "signed_count": -26,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 215389,
+        "signed_count": -25,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 215932,
+        "signed_count": -24,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 216399,
+        "signed_count": -23,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 216488,
+        "signed_count": -22,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 217288,
+        "signed_count": -21,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 218156,
+        "signed_count": -20,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 218668,
+        "signed_count": -19,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 219158,
+        "signed_count": -18,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 219781,
+        "signed_count": -17,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 219958,
+        "signed_count": -16,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 220463,
+        "signed_count": -15,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 221060,
+        "signed_count": -14,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 221427,
+        "signed_count": -13,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 221827,
+        "signed_count": -12,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 222272,
+        "signed_count": -11,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 222806,
+        "signed_count": -10,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 223141,
+        "signed_count": -9,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 223667,
+        "signed_count": -8,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 223964,
+        "signed_count": -7,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 224453,
+        "signed_count": -6,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 224853,
+        "signed_count": -5,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 225210,
+        "signed_count": -4,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 225539,
+        "signed_count": -3,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 225655,
+        "signed_count": -2,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 226367,
+        "signed_count": -1,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 226723,
+        "signed_count": 0,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 227613,
+        "signed_count": 1,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 228147,
+        "signed_count": 2,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 228592,
+        "signed_count": 3,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 229126,
+        "signed_count": 4,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 229660,
+        "signed_count": 5,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 230906,
+        "signed_count": 6,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 231128,
+        "signed_count": 7,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 232419,
+        "signed_count": 8,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 233264,
+        "signed_count": 9,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 235356,
+        "signed_count": 10,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 235445,
+        "signed_count": 11,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 240073,
+        "signed_count": 12,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 245297,
+        "signed_count": 13,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 247788,
+        "signed_count": 14,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 249241,
+        "signed_count": 15,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 250710,
+        "signed_count": 16,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 251645,
+        "signed_count": 17,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 253247,
+        "signed_count": 18,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 253573,
+        "signed_count": 19,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 255250,
+        "signed_count": 20,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 256273,
+        "signed_count": 21,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 256629,
+        "signed_count": 22,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 258275,
+        "signed_count": 23,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 259279,
+        "signed_count": 24,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 260014,
+        "signed_count": 25,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 260101,
+        "signed_count": 26,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 261838,
+        "signed_count": 27,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 262112,
+        "signed_count": 28,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 263482,
+        "signed_count": 29,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 263932,
+        "signed_count": 30,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 264862,
+        "signed_count": 31,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 265934,
+        "signed_count": 32,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 266686,
+        "signed_count": 33,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 267666,
+        "signed_count": 34,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 267934,
+        "signed_count": 35,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 269090,
+        "signed_count": 36,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 270113,
+        "signed_count": 37,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 271108,
+        "signed_count": 38,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 271938,
+        "signed_count": 39,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 272654,
+        "signed_count": 40,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 273540,
+        "signed_count": 41,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 274412,
+        "signed_count": 42,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 276626,
+        "signed_count": 43,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 277372,
+        "signed_count": 44,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 278347,
+        "signed_count": 45,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 279415,
+        "signed_count": 46,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 281136,
+        "signed_count": 47,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 281463,
+        "signed_count": 48,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 283154,
+        "signed_count": 49,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 284133,
+        "signed_count": 50,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 285379,
+        "signed_count": 51,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 286737,
+        "signed_count": 52,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 287783,
+        "signed_count": 53,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 288495,
+        "signed_count": 54,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 289385,
+        "signed_count": 55,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 289833,
+        "signed_count": 56,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 291254,
+        "signed_count": 57,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 291521,
+        "signed_count": 58,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 292500,
+        "signed_count": 59,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 293451,
+        "signed_count": 60,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 294014,
+        "signed_count": 61,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 295082,
+        "signed_count": 62,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 295305,
+        "signed_count": 63,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 296391,
+        "signed_count": 64,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 296640,
+        "signed_count": 65,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 297486,
+        "signed_count": 66,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 297708,
+        "signed_count": 67,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 298340,
+        "signed_count": 68,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 299118,
+        "signed_count": 69,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 299533,
+        "signed_count": 70,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 299770,
+        "signed_count": 71,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 300632,
+        "signed_count": 72,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 300779,
+        "signed_count": 73,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 301358,
+        "signed_count": 74,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 301714,
+        "signed_count": 75,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 302115,
+        "signed_count": 76,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 302872,
+        "signed_count": 77,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 303361,
+        "signed_count": 78,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 303583,
+        "signed_count": 79,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 304165,
+        "signed_count": 80,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 304393,
+        "signed_count": 81,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 304474,
+        "signed_count": 82,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 305031,
+        "signed_count": 83,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 305588,
+        "signed_count": 84,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 305971,
+        "signed_count": 85,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 306120,
+        "signed_count": 86,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 306565,
+        "signed_count": 87,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 307099,
+        "signed_count": 88,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 307455,
+        "signed_count": 89,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 307945,
+        "signed_count": 90,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 308256,
+        "signed_count": 91,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 308791,
+        "signed_count": 92,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 309621,
+        "signed_count": 93,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 309740,
+        "signed_count": 94,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 310503,
+        "signed_count": 95,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 310885,
+        "signed_count": 96,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 311638,
+        "signed_count": 97,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 312261,
+        "signed_count": 98,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 312506,
+        "signed_count": 99,
+        "AB_state": 2
+      },
+      {
+        "edge_us": 313597,
+        "signed_count": 100,
+        "AB_state": 3
+      },
+      {
+        "edge_us": 315021,
+        "signed_count": 101,
+        "AB_state": 1
+      },
+      {
+        "edge_us": 316534,
+        "signed_count": 102,
+        "AB_state": 0
+      },
+      {
+        "edge_us": 319649,
+        "signed_count": 103,
+        "AB_state": 2
+      }
+    ],
+    "note": "Only the retained 256 ISR observations, with the same ABI signal. IRQ latency is included. Interval noise and real shaft/angle ripple are not separated; no independent speed or angle calibration."
+  },
+  "current_loop": null,
+  "current_engine": null,
+  "current_slew": null,
+  "current_telemetry": null,
+  "abi_quality_metadata": [
+    "ABI_QUALITY callbacks=3786 invalid=0 duplicate=0 net_signed_count=86",
+    "ABI_QUALITY_RUN callbacks=213 invalid=0 duplicate=0 reversals=3 count_delta=207 encoder_count_delta=207.000"
+  ],
+  "abi_quality_run": {
+    "callbacks": 213.0,
+    "invalid": 0.0,
+    "duplicate": 0.0,
+    "reversals": 3.0,
+    "count_delta": 207.0,
+    "encoder_count_delta": 207.0
+  },
+  "index_observed_count": 0,
+  "position_correction_requested": false,
+  "position_correction_summary": null,
+  "index_reference_metadata": [
+    "INDEX_REFERENCE none_observed=1"
+  ],
+  "encoder_direction_used": 1.0,
+  "encoder_direction_source": "RUN_REFERENCE",
+  "samples": 149,
+  "adaptive_metadata": null,
+  "adaptive_summary": null,
+  "metrics_scope": "covered_after_startup",
+  "trace_configuration": "TRACE_CONFIG period_us=2000 capacity=320 loop_us_saturation=65535 window_age_us_saturation=65535 window_span_us_nominal=10000 | TRACE_SCOPE retained_tail_only=1 nominal_span_us=640000 whole_run_guard_stats=1 velocity_window_us=10000",
+  "trace_span_s": 0.300017,
+  "last_sample": {
+    "trace_us": 321163.0,
+    "loop_us": 53.0,
+    "A_edges": 1884.0,
+    "B_edges": 1885.0,
+    "angle_rad": 0.164934,
+    "raw_rad_s": 0.504268,
+    "filtered_rad_s": 1.916783,
+    "window10ms_rad_s": 3.443356,
+    "target_rad_s": 6.283185,
+    "Uq_V": 0.5,
+    "open_field_mechanical_rad": 1.07662,
+    "unslewed_pid_uq_V": 0.0,
+    "adc1_frames": 220155.0,
+    "adc2_frames": 220155.0,
+    "adc_age_us": 122.0,
+    "ia_adc": 2567.0,
+    "ib_adc": 2506.0,
+    "ic_adc": 2535.0,
+    "vbus_adc": 1336.0,
+    "temp_adc": 1685.0,
+    "Ud_V": 0.0,
+    "iq_target_nominal_A": 0.0,
+    "iq_filtered_nominal_A": 0.0,
+    "id_filtered_nominal_A": 0.0,
+    "window_age_us": 9168.0
+  },
+  "covered_after_0_8s_metrics": null,
+  "covered_after_startup_metrics": null,
+  "open_field_tracking": {
+    "field_displacement_rad": 0.40342199999999995,
+    "rotor_displacement_in_field_direction_rad": 0.32515499999999997,
+    "final_field_minus_rotor_rad": 0.07826699999999998,
+    "after_0_8s_field_minus_rotor_range_rad": null,
+    "note": "Displacements relative to alignment endpoint; not an independent angle measurement"
+  },
+  "control_metadata": "CONTROL P=0.2000 I=0.1500 D=0.0000 output_ramp_V_s=3.0000 velocity_LPF_s=0.0500",
+  "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 321149,0.325155",
+  "stop_reason": "STOP: reference speed envelope exceeded",
+  "filtered_range_rad_s": [
+    0.100167,
+    2.043152
+  ],
+  "filtered_abs_peak_rad_s": 2.043152,
+  "window_abs_peak_rad_s": 3.443356,
+  "max_sampled_loop_us_after_0_8s": null,
+  "window_age_range_us": [
+    23.0,
+    9963.0
+  ],
+  "Uq_range_V": [
+    0.5,
+    0.5
+  ],
+  "raw_range_rad_s": [
+    -1.655212,
+    18.265075
+  ],
+  "window10ms_range_rad_s": [
+    -0.468894,
+    3.443356
+  ],
+  "trace_angle_difference_range_rad_s": [
+    -1.5334309419228787,
+    4.577464788732396
+  ],
+  "last_about_100ms_mean_rad_s": 1.8247035293642295,
+  "host_stop_acknowledged": true
+}

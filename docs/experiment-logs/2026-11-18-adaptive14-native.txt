@@ -1,0 +1,2 @@
+cases=72 improved=72 mean_RMS_before=0.323777 after=0.266683; synthetic response only
+PASS: order/reference selection, original restrictions, signed synthetic responses, startup/blend, total/correction bounds, clipping/freeze, clock wrap/reset/faults; not bench validation

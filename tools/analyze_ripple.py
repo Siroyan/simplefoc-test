@@ -5,6 +5,7 @@ import csv
 import io
 import json
 import math
+from reference_window import comparison_start_us
 from pathlib import Path
 import re
 
@@ -80,7 +81,8 @@ def main():
     last=lines.index("TRACE_END",first)
     rows=[{k:float(v) for k,v in r.items()} for r in csv.DictReader(io.StringIO("\n".join(lines[first:last])))]
     reference=next(line for line in lines if line.startswith("RUN_REFERENCE "))
-    command_direction=-1 if sum(r["target_rad_s"] for r in rows if r["trace_us"]>=800000)<0 else 1
+    metrics_start_us=comparison_start_us(lines)
+    command_direction=-1 if sum(r["target_rad_s"] for r in rows if r["trace_us"]>=metrics_start_us)<0 else 1
     direction=float(re.search(r"sensor_direction=(-?[0-9.]+)",reference)[1])
     start_angle=float(re.search(r"start_angle_rad=(-?[0-9.]+)",reference)[1])
     index_angles=[float(re.search(r"encoder_angle_rad=(-?[0-9.]+)",line)[1]) for line in lines
@@ -92,7 +94,7 @@ def main():
     zero=float(re.search(r"zero_electric_angle_rad=(-?[0-9.]+)",reference)[1])
     sample_times=[r["trace_us"] for r in rows]; sample_angles=[r["angle_rad"] for r in rows]
     has_window_age="window_age_us" in rows[0]
-    rows=[r for r in rows if r["trace_us"]>=800000]
+    rows=[r for r in rows if r["trace_us"]>=metrics_start_us]
     values=[];angles=[];times=[];weights=[];angle_steps=[]
     for a,b in zip(rows,rows[1:]):
         weight=(b["trace_us"]-a["trace_us"])/1e6
@@ -101,12 +103,12 @@ def main():
         next_center_angle=window_midpoint_angle(b,sample_times,sample_angles)
         if not math.isfinite(center_angle) or not math.isfinite(next_center_angle): continue
         velocity=command_direction*direction*a["window10ms_rad_s"]
-        values.append(velocity-1)
+        values.append(velocity-abs(a["target_rad_s"]))
         angles.append(direction*(center_angle-start_angle))
         times.append(window_midpoint_us(a)/1e6)
         weights.append(weight)
         angle_steps.append(abs(next_center_angle-center_angle))
-    if len(values)<30: raise ValueError("Need at least 30 covered samples after .8s")
+    if len(values)<30: raise ValueError("Need at least 30 covered samples after the reference ramp")
     spatial=[];temporal=[]
     for order in range(1,101):
         fit=fit_sinusoid([order*a for a in angles],values,weights)
@@ -118,7 +120,7 @@ def main():
         freq=half_hz/2
         fit=fit_sinusoid([2*math.pi*freq*t for t in times],values,weights)
         if fit: fit["frequency_Hz"]=freq; temporal.append(fit)
-    result={"analysis_format_version":2,"log":args.log.name,"samples":len(values),"covered_seconds":sum(weights),
+    result={"analysis_format_version":2,"log":args.log.name,"samples":len(values),"analysis_start_us":metrics_start_us,"covered_seconds":sum(weights),
             "command_direction":command_direction,
             "angle_anchor":"Index rising edge (+/-1 ABI count uncertainty)" if index_angles and index_consistent else "alignment endpoint; cross-boot phase is unverified",
             "index_angles_rad":index_angles,"index_turn_spacing_within_2_counts":index_consistent,

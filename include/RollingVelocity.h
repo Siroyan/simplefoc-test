@@ -2,15 +2,16 @@
 #include <cmath>
 #include <cstdint>
 
-// Experimental least-squares slope over 4ms, or 8ms for a separate comparison.
+// Experimental least-squares slope over 4ms, or a separate 2/8ms comparison.
 // Decimation scales with the horizon so both retain it in the same buffer.
 class RollingVelocity {
  public:
   float value = 0;
   bool longWindow = false;
-  uint32_t horizonUs() const { return longWindow ? 8000u : 4000u; }
-  uint32_t minimumSampleUs() const { return longWindow ? 300u : 150u; }
-  uint32_t warmupUs() const { return longWindow ? 6000u : 3000u; }
+  bool shortWindow = false;
+  uint32_t horizonUs() const { return shortWindow ? 2000u : longWindow ? 8000u : 4000u; }
+  uint32_t minimumSampleUs() const { return shortWindow ? 75u : longWindow ? 300u : 150u; }
+  uint32_t warmupUs() const { return shortWindow ? 1500u : longWindow ? 6000u : 3000u; }
   void reset(float angle,uint32_t now) {
     next=1;size=1;initialized=true;samples[0]={now,angle};value=0;
   }

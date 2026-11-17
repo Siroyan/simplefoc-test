@@ -1,0 +1,205 @@
+{
+  "groups": [
+    {
+      "condition": "I4.8",
+      "trials": [
+        {
+          "log": "2026-11-18-current-velocity-speed2-I480-v87-01.log",
+          "metrics": {
+            "covered_start_us": 803986.0,
+            "covered_end_us": 2999547.0,
+            "mean_encoder_velocity_rad_s": 2.008245273075993,
+            "command_direction": 1,
+            "mean_speed_in_command_direction_rad_s": 2.008245273075993,
+            "target_magnitude_rad_s": 2.0,
+            "filtered_tracking_rmse_rad_s": 0.503905736532409,
+            "window_tracking_rmse_rad_s": 0.4846142182359558,
+            "window_speed_below_0_2_fraction": 0.0,
+            "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+            "negative_voltage_command_fraction": 0.0,
+            "voltage_command_mean_V": 0.1312203846306252,
+            "negative_unslewed_pid_request_fraction": null,
+            "relative_window_tracking_rmse": 0.2423071091179779
+          },
+          "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.684528 run_abs_peak_rad_s=3.950418",
+          "abi": {
+            "callbacks": 3295.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 1.0,
+            "count_delta": 3295.0,
+            "encoder_count_delta": 3295.0
+          },
+          "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199543 calls=31170 q_slew_limited_fraction=0.002043 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.000058 rms_q_error_nominal_A=0.026581 mean_requested_minus_applied_q_V=0.000002 max_requested_applied_q_difference_V=0.003662",
+          "voltage_vector_max_V": 0.25124240775792606,
+          "max_adc_age_us": 210.0,
+          "vbus_nominal_V": {
+            "min": 11.190629069010416,
+            "max": 11.215738932291668,
+            "mean": 11.20158610026039,
+            "rms": 11.201587052334867
+          }
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed2-I480-v87-02.log",
+          "metrics": {
+            "covered_start_us": 803816.0,
+            "covered_end_us": 2999857.0,
+            "mean_encoder_velocity_rad_s": 2.0120981347798153,
+            "command_direction": 1,
+            "mean_speed_in_command_direction_rad_s": 2.0120981347798153,
+            "target_magnitude_rad_s": 2.0,
+            "filtered_tracking_rmse_rad_s": 0.5139934287801188,
+            "window_tracking_rmse_rad_s": 0.49501260829639077,
+            "window_speed_below_0_2_fraction": 0.0,
+            "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+            "negative_voltage_command_fraction": 0.0,
+            "voltage_command_mean_V": 0.1396258283429136,
+            "negative_unslewed_pid_request_fraction": null,
+            "relative_window_tracking_rmse": 0.24750630414819538
+          },
+          "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.455132 run_abs_peak_rad_s=3.957855",
+          "abi": {
+            "callbacks": 3294.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 3294.0,
+            "encoder_count_delta": 3294.0
+          },
+          "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199849 calls=31168 q_slew_limited_fraction=0.002579 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.000063 rms_q_error_nominal_A=0.028430 mean_requested_minus_applied_q_V=0.000004 max_requested_applied_q_difference_V=0.005094",
+          "voltage_vector_max_V": 0.2582007759264096,
+          "max_adc_age_us": 273.0,
+          "vbus_nominal_V": {
+            "min": 11.1989990234375,
+            "max": 11.215738932291668,
+            "mean": 11.206531982421888,
+            "rms": 11.206532689962877
+          }
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed2-I480-v87-03.log",
+          "metrics": {
+            "covered_start_us": 804033.0,
+            "covered_end_us": 2999832.0,
+            "mean_encoder_velocity_rad_s": 2.0051662287850567,
+            "command_direction": 1,
+            "mean_speed_in_command_direction_rad_s": 2.0051662287850567,
+            "target_magnitude_rad_s": 2.0,
+            "filtered_tracking_rmse_rad_s": 0.5296333960479365,
+            "window_tracking_rmse_rad_s": 0.4878691161651186,
+            "window_speed_below_0_2_fraction": 0.0,
+            "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+            "negative_voltage_command_fraction": 0.0,
+            "voltage_command_mean_V": 0.14247820428919034,
+            "negative_unslewed_pid_request_fraction": null,
+            "relative_window_tracking_rmse": 0.2439345580825593
+          },
+          "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.135594 run_abs_peak_rad_s=3.885402",
+          "abi": {
+            "callbacks": 3289.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 3289.0,
+            "encoder_count_delta": 3289.0
+          },
+          "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199821 calls=31162 q_slew_limited_fraction=0.003574 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.000349 rms_q_error_nominal_A=0.028614 mean_requested_minus_applied_q_V=0.000006 max_requested_applied_q_difference_V=0.006689",
+          "voltage_vector_max_V": 0.26712303544247173,
+          "max_adc_age_us": 212.0,
+          "vbus_nominal_V": {
+            "min": 11.190629069010416,
+            "max": 11.207368977864583,
+            "mean": 11.199721883137988,
+            "rms": 11.19972272700405
+          }
+        }
+      ],
+      "mean_run_RMS_rad_s": 0.4891653142324884
+    },
+    {
+      "condition": "I7.2",
+      "trials": [
+        {
+          "log": "2026-11-18-current-velocity-speed2-I720-v87-01.log",
+          "metrics": {
+            "covered_start_us": 803920.0,
+            "covered_end_us": 2999829.0,
+            "mean_encoder_velocity_rad_s": 2.005781660351135,
+            "command_direction": 1,
+            "mean_speed_in_command_direction_rad_s": 2.005781660351135,
+            "target_magnitude_rad_s": 2.0,
+            "filtered_tracking_rmse_rad_s": 0.5032309616125666,
+            "window_tracking_rmse_rad_s": 0.4572658772253084,
+            "window_speed_below_0_2_fraction": 0.0,
+            "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+            "negative_voltage_command_fraction": 0.0,
+            "voltage_command_mean_V": 0.13174114642273427,
+            "negative_unslewed_pid_request_fraction": null,
+            "relative_window_tracking_rmse": 0.2286329386126542
+          },
+          "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.721697 run_abs_peak_rad_s=4.080694",
+          "abi": {
+            "callbacks": 3299.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 3299.0,
+            "encoder_count_delta": 3299.0
+          },
+          "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199766 calls=31163 q_slew_limited_fraction=0.004582 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.000284 rms_q_error_nominal_A=0.030655 mean_requested_minus_applied_q_V=0.000007 max_requested_applied_q_difference_V=0.005560",
+          "voltage_vector_max_V": 0.26098565592001416,
+          "max_adc_age_us": 272.0,
+          "vbus_nominal_V": {
+            "min": 11.1989990234375,
+            "max": 11.215738932291668,
+            "mean": 11.204667765299469,
+            "rms": 11.204668704387652
+          }
+        },
+        {
+          "log": "2026-11-18-current-velocity-speed2-I720-v87-02.log",
+          "metrics": {
+            "covered_start_us": 803652.0,
+            "covered_end_us": 2999855.0,
+            "mean_encoder_velocity_rad_s": 2.005513151562037,
+            "command_direction": 1,
+            "mean_speed_in_command_direction_rad_s": 2.005513151562037,
+            "target_magnitude_rad_s": 2.0,
+            "filtered_tracking_rmse_rad_s": 0.4919707850762698,
+            "window_tracking_rmse_rad_s": 0.45843885632481607,
+            "window_speed_below_0_2_fraction": 0.0,
+            "reverse_window_speed_below_minus_0_2_fraction": 0.0,
+            "negative_voltage_command_fraction": 0.0,
+            "voltage_command_mean_V": 0.14115215975025985,
+            "negative_unslewed_pid_request_fraction": null,
+            "relative_window_tracking_rmse": 0.22921942816240803
+          },
+          "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=1.351080 run_abs_peak_rad_s=4.000114",
+          "abi": {
+            "callbacks": 3302.0,
+            "invalid": 0.0,
+            "duplicate": 0.0,
+            "reversals": 0.0,
+            "count_delta": 3302.0,
+            "encoder_count_delta": 3302.0
+          },
+          "current_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199884 calls=31167 q_slew_limited_fraction=0.003992 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.000198 rms_q_error_nominal_A=0.030058 mean_requested_minus_applied_q_V=0.000006 max_requested_applied_q_difference_V=0.009192",
+          "voltage_vector_max_V": 0.2580025009491187,
+          "max_adc_age_us": 272.0,
+          "vbus_nominal_V": {
+            "min": 11.190629069010416,
+            "max": 11.207368977864583,
+            "mean": 11.202232869466124,
+            "rms": 11.20223375293971
+          }
+        }
+      ],
+      "mean_run_RMS_rad_s": 0.45785236677506225
+    }
+  ],
+  "candidate_RMS_change_fraction": 0.0683909262673088,
+  "audit": "All five captures final stop acknowledged; nominal command, vector voltage, ADC and ABI checks passed. Same v87, P, target, ramp and current-loop settings.",
+  "decision": "I4.8 alone not adopted; no velocity-ripple improvement. Next compare lower P separately before stepping target to 3rad/s.",
+  "limitations": "Small groups, unknown physical temperature and independent true angle; CV unmeasured, currents nominal."
+}

@@ -1,0 +1,208 @@
+{
+  "scope": "Three protected edge-estimator attempts, no 3s completion or post-ramp data. These remain rejected experimental candidates.",
+  "runs": [
+    {
+      "log": "2026-11-18-current-velocity-speed60-edge-v107-01.log",
+      "stop": "STOP: invalid edge velocity estimate or control sample gap",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 405563,0.168075",
+      "control": "CONTROL P=0.1200 I=1.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0005",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=edge_period4_phase guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+      "edge_estimator": {
+        "configuration": "EDGE_ESTIMATOR_CONFIG counts_per_turn=4000 period_intervals=4 phase_gain_s_inv=200 prediction_count_bound=1 sample_gap_limit_us=5000 no_edge_decay=gap_to_2gap isr=integer_only",
+        "clock_check": null,
+        "clock_fault": null,
+        "invalid": 0.0,
+        "samples": 5.0,
+        "signed_count": -79.0,
+        "span_us": 6678.0
+      },
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0010 d_LPF_s=0.0010 velocity_LPF_s=0.0005 q_P=0.6000 q_I=200.0000 velocity_P=0.1200 velocity_I=1.2000",
+      "reference_ramp": "REFERENCE_RAMP duration_us=2000000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=0.725343 run_abs_peak_rad_s=2.038993",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=2000000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 2000000,
+        "whole": {
+          "elapsed_us": 382720.0,
+          "sample_age_us": 15.0,
+          "adc_age_us": 101.0,
+          "guard_rad_s": 2.038993,
+          "control_rad_s": 1.687025,
+          "reference_rad_s": 1.202087,
+          "iq_applied_nominal_A": 0.036767,
+          "iq_next_nominal_A": 0.0447,
+          "iq_filtered_nominal_A": 0.001768,
+          "Uq_V": 0.049969,
+          "Ud_V": 0.000228,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": null
+      },
+      "post_ramp_2ms_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "ABI": {
+        "callbacks": 109.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 2.0,
+        "count_delta": 107.0,
+        "encoder_count_delta": 107.0
+      },
+      "nonfinite_sampled_control_speeds": 1,
+      "max_sampled_applied_Iq_command_nominal_A": 0.236329,
+      "max_adc_age_us": 245.0,
+      "frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "voltage_vector_max_V": 0.27080214962403826,
+      "finite_trace_voltages": true,
+      "host_final_stop_acknowledged": true,
+      "caution": "v107 detected a nonfinite control velocity after motor.move; the next current request is not logged and may be nonfinite. Do not claim every computed request was finite. The loop disables output before another current-loop application; recorded applied targets/voltages are finite."
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-edge-DWT-v108-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 1609242,3.829602",
+      "control": "CONTROL P=0.1200 I=1.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0005",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=edge_period4_phase guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+      "edge_estimator": {
+        "configuration": "EDGE_ESTIMATOR_CONFIG counts_per_turn=4000 period_intervals=4 phase_gain_s_inv=200 prediction_count_bound=1 sample_gap_limit_us=5000 no_edge_decay=gap_to_2gap isr=integer_only clock=DWT_elapsed cycles_per_us=170",
+        "clock_check": "EDGE_CLOCK_CHECK advancing=1 gates_off=1 cycles_per_us=170 core_regressions=9 maximum_core_backstep_us=999",
+        "clock_fault": "EDGE_CLOCK_FAULT reason=0 now_us=1609212 edge_us=1608939 age_us=273 update_gap_us=404",
+        "invalid": 0.0,
+        "samples": 5.0,
+        "signed_count": 2330.0,
+        "span_us": 2894.0
+      },
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0010 d_LPF_s=0.0010 velocity_LPF_s=0.0005 q_P=0.6000 q_I=200.0000 velocity_P=0.1200 velocity_I=1.2000",
+      "reference_ramp": "REFERENCE_RAMP duration_us=2000000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=2.875506 run_abs_peak_rad_s=6.685218",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=2000000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 2000000,
+        "whole": {
+          "elapsed_us": 1595605.0,
+          "sample_age_us": 23.0,
+          "adc_age_us": 156.0,
+          "guard_rad_s": 6.685218,
+          "control_rad_s": 6.561601,
+          "reference_rad_s": 5.012506,
+          "iq_applied_nominal_A": 0.073674,
+          "iq_next_nominal_A": 0.084161,
+          "iq_filtered_nominal_A": 0.020017,
+          "Uq_V": 0.078143,
+          "Ud_V": -0.008961,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": null
+      },
+      "post_ramp_2ms_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "ABI": {
+        "callbacks": 2438.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 2438.0,
+        "encoder_count_delta": 2438.0
+      },
+      "nonfinite_sampled_control_speeds": 0,
+      "max_sampled_applied_Iq_command_nominal_A": 0.45,
+      "max_adc_age_us": 232.0,
+      "frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "voltage_vector_max_V": 0.2899001139168455,
+      "finite_trace_voltages": true,
+      "host_final_stop_acknowledged": true,
+      "caution": null
+    },
+    {
+      "log": "2026-11-18-current-velocity-speed60-edge-P075-v109-01.log",
+      "stop": "STOP: reference speed envelope exceeded",
+      "run_summary": "RUN_SUMMARY elapsed_us,displacement_rad: 447154,0.152367",
+      "control": "CONTROL P=0.0750 I=1.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0005",
+      "estimator": "CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow | ESTIMATOR controller=edge_period4_phase guard=original_window2ms_LPF2ms guard_limit_rad_s=8.5 guard_profile=reference_envelope",
+      "edge_estimator": {
+        "configuration": "EDGE_ESTIMATOR_CONFIG counts_per_turn=4000 period_intervals=4 phase_gain_s_inv=200 prediction_count_bound=1 sample_gap_limit_us=5000 no_edge_decay=gap_to_2gap isr=integer_only clock=DWT_elapsed cycles_per_us=170",
+        "clock_check": "EDGE_CLOCK_CHECK advancing=1 gates_off=1 cycles_per_us=170 core_regressions=9 maximum_core_backstep_us=999",
+        "clock_fault": "EDGE_CLOCK_FAULT reason=0 now_us=447120 edge_us=446917 age_us=203 update_gap_us=390",
+        "invalid": 0.0,
+        "samples": 5.0,
+        "signed_count": -55.0,
+        "span_us": 1635.0
+      },
+      "current_active": "CURRENT_ACTIVE q_LPF_s=0.0010 d_LPF_s=0.0010 velocity_LPF_s=0.0005 q_P=0.6000 q_I=200.0000 velocity_P=0.0750 velocity_I=1.2000",
+      "reference_ramp": "REFERENCE_RAMP duration_us=2000000 target_rad_s=6.283185 trace_target=final_goal origin=trace_start",
+      "guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=3.441493 run_abs_peak_rad_s=3.441493",
+      "peak_snapshots": {
+        "configuration": "GUARD_PEAK_CONFIG steady_start_us=2000000 observation=post_move current_voltage=previous_FOC iq_next=post_move sample_age=velocity_call UART=after_stop",
+        "steady_start_us": 2000000,
+        "whole": {
+          "elapsed_us": 447142.0,
+          "sample_age_us": 23.0,
+          "adc_age_us": 145.0,
+          "guard_rad_s": 3.441493,
+          "control_rad_s": 3.792811,
+          "reference_rad_s": 1.404502,
+          "iq_applied_nominal_A": 0.03373,
+          "iq_next_nominal_A": 0.017064,
+          "iq_filtered_nominal_A": 0.050909,
+          "Uq_V": 0.073426,
+          "Ud_V": -0.000366,
+          "correction_nominal_A": 0.0
+        },
+        "after_ramp": null
+      },
+      "post_ramp_2ms_stats": {
+        "available": false,
+        "complete_run": false,
+        "scope": "no_post_ramp_samples",
+        "raw_summary": "VELOCITY_STATS valid=0 invalid=0 samples=0"
+      },
+      "ABI": {
+        "callbacks": 97.0,
+        "invalid": 0.0,
+        "duplicate": 0.0,
+        "reversals": 0.0,
+        "count_delta": 97.0,
+        "encoder_count_delta": 97.0
+      },
+      "nonfinite_sampled_control_speeds": 0,
+      "max_sampled_applied_Iq_command_nominal_A": 0.31913,
+      "max_adc_age_us": 217.0,
+      "frame_difference_range": [
+        0.0,
+        0.0
+      ],
+      "voltage_vector_max_V": 0.22872347655848535,
+      "finite_trace_voltages": true,
+      "host_final_stop_acknowledged": true,
+      "caution": null
+    }
+  ],
+  "total_comparison_records": 188,
+  "unchanged_prior_records": 185,
+  "all_prior_fields_identical": true,
+  "CSV_width_and_rows_match": true,
+  "all_final_stops_acknowledged": true,
+  "CV_measured": false,
+  "motor_temperature_measured": false,
+  "clock_observation": "Two disabled checks of masked core micros each recorded 9 backward steps, maximum999us. DWT-controlled runs report no edge-clock fault. This does not identify v107 exact fault or the pre-existing speed ripple cause.",
+  "native_tests": [
+    "2026-11-18-edge-estimator-native-fixture01.txt",
+    "2026-11-18-edge-estimator-native-fixture02.txt"
+  ],
+  "goal_complete": false,
+  "next_step": "Add a bounded DWT raw edge-time log, preferably reusing inactive manual storage without enabling manual.active during drive; verify ownership and dump before buffer reuse. Raw edge sequence logging is not implemented yet."
+}

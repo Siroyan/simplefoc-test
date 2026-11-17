@@ -1,0 +1,24 @@
+{
+  "firmware_version": 93,
+  "PWM_Hz": 12500,
+  "build_flags": [
+    "-DDIAG_PWM_HZ=12500",
+    "-DHAL_OPAMP_MODULE_ENABLED"
+  ],
+  "RAM_bytes": 30160,
+  "Flash_bytes": 95780,
+  "supply_set_V": 11.1,
+  "supply_current_limit_A": 0.8,
+  "supply_CV_measured": false,
+  "fixture": "User changed sensor fixture and reduced magnet-sensor gap by 0.5mm; absolute gap unknown; no further mechanical adjustment reported.",
+  "SHA256": {
+    "src/main.cpp": "d73ca2b0fa8062ac4b1d9374a31c8a2e7fb96de373fcf8f855acddd3575dde27",
+    "tools/capture_test.py": "3fcc7272d704c06b226525dc8dc3ad0b05ad359149dfe8d9be7647df28d729cd",
+    "test/trace_speed_metrics.py": "b45722682f15e4fb944d78db0dd5c0e6760b5da6cee902f9bd9e00984e958da4",
+    "test/dense_dynamics.py": "f7a1fa622c7931cf63b4f59e258f32ba12b1accff69518f3903a3c2c8f39ed10",
+    "test/adaptive_harmonic.cpp": "67771c0ea7c64345cec79d1eafacd4463d11eebe667706261a3db0c49ae29f5b",
+    ".pio/observer-build/disco_b_g431b_esc1/firmware.elf": "51fad93c04785750c206c0fd9c7aad759e0b97d21517cff836ae3fac07bf10cb"
+  },
+  "latest_idle_log": "2026-11-18-profile-v93-idle-01.log",
+  "goal_complete": false
+}

@@ -1,0 +1,72 @@
+{
+  "firmware": 117,
+  "RAM_bytes": 30672,
+  "Flash_bytes": 109556,
+  "PWM_hz": 12500,
+  "nominal_dead_time_ns": 800,
+  "supply_settings": {
+    "voltage_V": 11.1,
+    "current_limit_A": 0.8,
+    "CV_measured": false,
+    "motor_temperature_measured": false
+  },
+  "accepted_as_smooth": false,
+  "completed_repetitions": 3,
+  "candidate_command": ";",
+  "q_PI": {
+    "P": 0.6,
+    "I": 400,
+    "tracking_s": 0.005
+  },
+  "d_PI": {
+    "P": 0.2,
+    "I": 50,
+    "tracking_s": 0
+  },
+  "velocity_PI": {
+    "P": 0.12,
+    "I": 1.2,
+    "LPF_s": 0.0005
+  },
+  "current_LPF_s": 0.001,
+  "reference": {
+    "target_rad_s": 6.283185,
+    "ramp_us": 800000
+  },
+  "bounds": {
+    "nominal_Iq_setpoint_A": 0.45,
+    "voltage_command_vector_V": 0.5,
+    "duration_s": 3,
+    "independent_window_us": 2000,
+    "independent_LPF_s": 0.002,
+    "reference_deviation_rad_s": 2,
+    "filtered_absolute_ceiling_rad_s": 8.5,
+    "ADC_age_us": 2000,
+    "frame_skew": 1
+  },
+  "build_flags": "-DDIAG_PWM_HZ=12500 -DHAL_OPAMP_MODULE_ENABLED",
+  "idle_log": "2026-11-18-profile-v117-idle-01.log",
+  "shaft_fixture": "same fixture with gap reduced .5mm; absolute gap unmeasured",
+  "sha256": {
+    "src/main.cpp": "1dd6808f30d8adc468a864a0514cc79cd71243acdc62d2a444f2e07f86f80d66",
+    "include/TrackingCurrentPI.h": "27c33cfc806cb85dce5ebf33997451444c7d26eab20acbf3a16cf4829398e231",
+    "include/BoundedBLDCMotor.h": "026da2382f51a62cf71165be126a7fd2f2389b25fdf1090801b5f387e0deae92",
+    "include/EdgeVelocity.h": "6b3b1f55fd754e3fd72c6ea3a150da59245aca5eb2b48e0d3005c41569cbb667",
+    "include/ShortRunClock.h": "629aa27bce5c91949039102867893965798b72b6223719d7881c8443a368ea16",
+    "include/RunEdgeCapture.h": "d9373712b403d09856952f348acdd6e556a0921d9496c68b498171bbbc34d231",
+    "tools/capture_test.py": "e02d3acea36097e9eadd3228fa0e0d8b64ddcc1bba38f625bbfa784f39e0dc4d",
+    "tools/current_tracking.py": "3de0321043f7132470027be43fbd01cc786771e9d379edecbdb9389dd8782b2f",
+    "tools/speed_range.py": "cf13cda7dc02d0c5ebd6d7cef6004f01390ed137b35515f363f91cbfd53bc85a",
+    "tools/edge_estimator.py": "72feda3a685385aaf70001c62e996f12c72d33957a09f7380ba8c795f84c628c",
+    "tools/analyze_index_harmonics.py": "0e806ffa359a956496b5613ea44f1f5849dcec17e0c5132e4b9bd76a82633c15",
+    "tools/compare_runs.py": "8c82ee51fb06dc6159949538c01a83551941bc3c9577309b9ff4353f9b4d74d4",
+    "test/current_tracking_time.cpp": "a74a2c77d4afda332092b7d9d626e25fd805b30dbdabd0efc3e5b01fd3e9add0",
+    "test/current_tracking_metadata.py": "327e512e547950a6e3c5852f02dcafdb0aba905ef17cbc81f424af0cdd521faf",
+    "test/index_harmonics.py": "0986b83d29dc9c9f930d16e5785998a7a62db07d5fcd9d218c26cfb4642ddeec",
+    ".pio/observer-build/disco_b_g431b_esc1/firmware.elf": "c0f95306118fd551f4cda4ed2ce2c09598bf1447382bdc6f817ad088eb8883e1",
+    ".pio/observer-build/disco_b_g431b_esc1/firmware.bin": "ca8cc0d48c58ca5bef5456b321ea815a9b5c258fe731150eaea99f5d5d25260e",
+    ".pio/build-v117.log": "499162bc37cb6280e00b374a19e0536d088622e9e0186e4b9c3d266d0a09dbf5",
+    ".pio/upload-v117.log": "6159614ac9dbb0ecbe9858e549ba2f1a08c6dfa7f802a1bd34507ed7282cd26e",
+    "docs\\experiment-logs\\2026-11-18-profile-v117-idle-01.log": "948a4897511a6be1b4c5d94d7498def83c18177c0f1108b47fbec517b78cdb4c"
+  }
+}

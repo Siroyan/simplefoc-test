@@ -1,0 +1,5 @@
+model_cases_improved=12/12 mean_late_ratio=0.626198; not bench validation
+stress_cases_improved=12/16; physical response remains unverified
+zero_lag_cases_improved=16/16 mean_late_ratio=0.646557; not a universal phase identification
+P020_cases_improved=16/16 mean_RMS_ratio=0.810642 peak_velocity=1.29593; bounded model envelope, not bench validation
+PASS: limits, projection, sum clipping, invalid inputs, control gap, clock wrap and coupled model checks

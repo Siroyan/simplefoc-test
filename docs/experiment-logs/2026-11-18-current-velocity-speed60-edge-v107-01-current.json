@@ -1,0 +1,191 @@
+{
+  "log": "2026-11-18-current-velocity-speed60-edge-v107-01.log",
+  "samples": 195,
+  "offsets_adc": [
+    2530.312,
+    2537.132,
+    2541.844
+  ],
+  "voltage_vector_max_V": 0.27080214962403826,
+  "current_control_error_full_trace": {
+    "min": -0.170009,
+    "max": 0.09749,
+    "mean": -0.004276297435897436,
+    "rms": 0.02581413837713446
+  },
+  "last_current_control_sample": {
+    "trace_us": 405580.0,
+    "iq_target_nominal_A": 0.174606,
+    "iq_filtered_nominal_A": 0.142916,
+    "id_filtered_nominal_A": 0.002767,
+    "Uq_V": 0.1166,
+    "Ud_V": -0.000798
+  },
+  "max_adc_age_us": 245.0,
+  "frame_difference_range": [
+    0.0,
+    0.0
+  ],
+  "metrics_after_0_8s": null,
+  "metrics_full_trace": {
+    "ia_nominal_A": {
+      "min": -0.1670745849609405,
+      "max": 0.09728393554687201,
+      "mean": -0.012978421724762629,
+      "rms": 0.051276642852273846
+    },
+    "ib_nominal_A": {
+      "min": -0.14298858642577944,
+      "max": 0.29760894775390806,
+      "mean": 0.07361970559144797,
+      "rms": 0.10301847084721827
+    },
+    "ic_nominal_A": {
+      "min": -0.21019439697265474,
+      "max": 0.11291046142578275,
+      "mean": -0.06393107878856043,
+      "rms": 0.0872281174169085
+    },
+    "sum_nominal_A": {
+      "min": -0.22652587890624967,
+      "max": 0.2140716552734378,
+      "mean": -0.0032897949218746816,
+      "rms": 0.07211039976116745
+    },
+    "id_nominal_A": {
+      "min": -0.051549341197402294,
+      "max": 0.10050178618976698,
+      "mean": 0.018871735507520748,
+      "rms": 0.0367199322695889
+    },
+    "iq_nominal_A": {
+      "min": -0.14553518664468498,
+      "max": 0.29414569355689174,
+      "mean": 0.08294965126380338,
+      "rms": 0.10675520445059816
+    },
+    "vbus_nominal_V": {
+      "min": 11.182259114583335,
+      "max": 11.1989990234375,
+      "mean": 11.190071072048589,
+      "rms": 11.1900720694578
+    }
+  },
+  "temperature_adc_range": [
+    1709.0,
+    1712.0
+  ],
+  "groups_after_0_8s": {
+    "slow": {
+      "samples": 0,
+      "iq": null,
+      "uq": null
+    },
+    "moving": {
+      "samples": 0,
+      "iq": null,
+      "uq": null
+    },
+    "fast": {
+      "samples": 0,
+      "iq": null,
+      "uq": null
+    }
+  },
+  "current_tracking_after_0_4s": {
+    "covered_start_us": 400677.0,
+    "covered_end_us": 405580.0,
+    "filtered_iq_nominal_A": {
+      "min": 0.110199,
+      "max": 0.152475,
+      "mean": 0.13745975,
+      "rms": 0.1384062880462806
+    },
+    "target_nominal_A": {
+      "min": 0.136131,
+      "max": 0.184759,
+      "mean": 0.15795425000000002,
+      "rms": 0.15948213655375326
+    },
+    "filtered_id_nominal_A": {
+      "min": -0.007894,
+      "max": 0.002767,
+      "mean": -0.00243175,
+      "rms": 0.004647940753710185
+    },
+    "filtered_iq_error_nominal_A": {
+      "min": -0.03228400000000001,
+      "max": 0.008117999999999986,
+      "mean": -0.02049450000000001,
+      "rms": 0.026432808988073903
+    },
+    "max_voltage_vector_V": 0.27080214962403826,
+    "Ud_range_V": [
+      -0.003454,
+      0.000972
+    ]
+  },
+  "phase_permutation_diagnostics": [
+    {
+      "order": [
+        "ia_nominal_A",
+        "ib_nominal_A",
+        "ic_nominal_A"
+      ],
+      "id": null,
+      "iq": null,
+      "uq_iq_correlation": null
+    },
+    {
+      "order": [
+        "ia_nominal_A",
+        "ic_nominal_A",
+        "ib_nominal_A"
+      ],
+      "id": null,
+      "iq": null,
+      "uq_iq_correlation": null
+    },
+    {
+      "order": [
+        "ib_nominal_A",
+        "ia_nominal_A",
+        "ic_nominal_A"
+      ],
+      "id": null,
+      "iq": null,
+      "uq_iq_correlation": null
+    },
+    {
+      "order": [
+        "ib_nominal_A",
+        "ic_nominal_A",
+        "ia_nominal_A"
+      ],
+      "id": null,
+      "iq": null,
+      "uq_iq_correlation": null
+    },
+    {
+      "order": [
+        "ic_nominal_A",
+        "ia_nominal_A",
+        "ib_nominal_A"
+      ],
+      "id": null,
+      "iq": null,
+      "uq_iq_correlation": null
+    },
+    {
+      "order": [
+        "ic_nominal_A",
+        "ib_nominal_A",
+        "ia_nominal_A"
+      ],
+      "id": null,
+      "iq": null,
+      "uq_iq_correlation": null
+    }
+  ],
+  "note": "Nominal scaling, sample-based statistics; permutation fits are hypotheses, not phase/sign calibration. Uq is a command. VBUS is not a CV flag."
+}

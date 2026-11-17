@@ -1,0 +1,285 @@
+{
+  "analysis_format_version": 2,
+  "log": "2026-11-18-current-velocity-speed2-dense-v94-01.log",
+  "samples": 320,
+  "control": "CONTROL P=0.1500 I=7.2000 D=0.0000 output_ramp_V_s=0.0000 velocity_LPF_s=0.0010",
+  "trace_configuration": [
+    "TRACE_CONFIG period_us=2000 capacity=320 loop_us_saturation=65535 window_age_us_saturation=65535 window_span_us_nominal=10000",
+    "TRACE_SCOPE retained_tail_only=1 nominal_span_us=640000 whole_run_guard_stats=1 velocity_window_us=10000"
+  ],
+  "whole_run_guard": "STOP_GUARD source=original_window2ms_LPF2ms_shadow last_observed_rad_s=2.115845 run_abs_peak_rad_s=3.711035",
+  "whole_run_actuator": "CURRENT_ACTUATOR_STATS start_us=800000 covered_us=2199686 calls=31222 q_slew_limited_fraction=0.010982 q_vector_limited_fraction=0.000000 mean_q_error_nominal_A=0.001371 rms_q_error_nominal_A=0.031583 mean_requested_minus_applied_q_V=0.000027 max_requested_applied_q_difference_V=0.014806",
+  "covered_start_us": 2349513.0,
+  "covered_end_us": 2999679.0,
+  "intervals": 319,
+  "interval_us_range": [
+    1942.0,
+    2085.0
+  ],
+  "elapsed_s": 0.6501659999999998,
+  "signed_mean_velocity_rad_s": 2.005274037707294,
+  "interval_velocity_tracking_rms_rad_s": 0.6772971471479062,
+  "frequency_resolution_scale_Hz": 1.542809888794263,
+  "peak_components": [
+    {
+      "frequency_Hz": 8.0,
+      "velocity_single_frequency_R2": 0.13204167118255783,
+      "interval_velocity_amplitude_rad_s": 0.3534364518418737,
+      "approx_angle_amplitude_rad": 0.0070313947974368525,
+      "iq_target_amplitude_nominal_A": 0.07207101520253542,
+      "iq_filtered_amplitude_nominal_A": 0.07057616300112865,
+      "closed_loop_current_component_ratio": 0.9792586215525629,
+      "closed_loop_current_phase_deg": -9.556026177765357,
+      "constant_speed_quantization_null_amplitude_max_rad_s": 0.0028233562389171794
+    },
+    {
+      "frequency_Hz": 4.0,
+      "velocity_single_frequency_R2": 0.07212383707159908,
+      "interval_velocity_amplitude_rad_s": 0.26113427323513555,
+      "approx_angle_amplitude_rad": 0.010390202599020362,
+      "iq_target_amplitude_nominal_A": 0.08240902707750336,
+      "iq_filtered_amplitude_nominal_A": 0.08134300472374756,
+      "closed_loop_current_component_ratio": 0.9870642526485209,
+      "closed_loop_current_phase_deg": -4.45894420242546,
+      "constant_speed_quantization_null_amplitude_max_rad_s": 0.0011734539514224958
+    },
+    {
+      "frequency_Hz": 26.0,
+      "velocity_single_frequency_R2": 0.06565731957696896,
+      "interval_velocity_amplitude_rad_s": 0.24919783605687726,
+      "approx_angle_amplitude_rad": 0.001525425669855991,
+      "iq_target_amplitude_nominal_A": 0.03858595555121457,
+      "iq_filtered_amplitude_nominal_A": 0.03235661598116597,
+      "closed_loop_current_component_ratio": 0.8385594063679339,
+      "closed_loop_current_phase_deg": -21.838292234529753,
+      "constant_speed_quantization_null_amplitude_max_rad_s": 0.0058948242686332215
+    },
+    {
+      "frequency_Hz": 14.5,
+      "velocity_single_frequency_R2": 0.05751872965236282,
+      "interval_velocity_amplitude_rad_s": 0.23323986451835269,
+      "approx_angle_amplitude_rad": 0.0025600880940813654,
+      "iq_target_amplitude_nominal_A": 0.03825344558274917,
+      "iq_filtered_amplitude_nominal_A": 0.03477763759585075,
+      "closed_loop_current_component_ratio": 0.9091373879150411,
+      "closed_loop_current_phase_deg": -13.862972492480173,
+      "constant_speed_quantization_null_amplitude_max_rad_s": 0.004505996687252468
+    },
+    {
+      "frequency_Hz": 157.0,
+      "velocity_single_frequency_R2": 0.031704011452780234,
+      "interval_velocity_amplitude_rad_s": 0.17305908276959994,
+      "approx_angle_amplitude_rad": 0.00017543444885179162,
+      "iq_target_amplitude_nominal_A": 0.0006012654163249601,
+      "iq_filtered_amplitude_nominal_A": 0.0005865551809068404,
+      "closed_loop_current_component_ratio": null,
+      "closed_loop_current_phase_deg": null,
+      "constant_speed_quantization_null_amplitude_max_rad_s": 0.03785774682007037
+    },
+    {
+      "frequency_Hz": 92.5,
+      "velocity_single_frequency_R2": 0.02713609004918216,
+      "interval_velocity_amplitude_rad_s": 0.16016874572538004,
+      "approx_angle_amplitude_rad": 0.0002755853795786283,
+      "iq_target_amplitude_nominal_A": 0.009580128741500422,
+      "iq_filtered_amplitude_nominal_A": 0.005793393213507313,
+      "closed_loop_current_component_ratio": 0.6047302045546376,
+      "closed_loop_current_phase_deg": -52.95129865835176,
+      "constant_speed_quantization_null_amplitude_max_rad_s": 0.04768679540563472
+    },
+    {
+      "frequency_Hz": 70.0,
+      "velocity_single_frequency_R2": 0.02586517933427246,
+      "interval_velocity_amplitude_rad_s": 0.15641215587433388,
+      "approx_angle_amplitude_rad": 0.0003556252538151468,
+      "iq_target_amplitude_nominal_A": 0.019989215157930076,
+      "iq_filtered_amplitude_nominal_A": 0.011645776547538627,
+      "closed_loop_current_component_ratio": 0.5826029914395383,
+      "closed_loop_current_phase_deg": -41.183595619445576,
+      "constant_speed_quantization_null_amplitude_max_rad_s": 0.023204770738014358
+    },
+    {
+      "frequency_Hz": 147.0,
+      "velocity_single_frequency_R2": 0.023307799653774275,
+      "interval_velocity_amplitude_rad_s": 0.14855645238299597,
+      "approx_angle_amplitude_rad": 0.00016084009336700397,
+      "iq_target_amplitude_nominal_A": 0.003429774070772079,
+      "iq_filtered_amplitude_nominal_A": 0.0015655388420136081,
+      "closed_loop_current_component_ratio": null,
+      "closed_loop_current_phase_deg": null,
+      "constant_speed_quantization_null_amplitude_max_rad_s": 0.04629804203553717
+    }
+  ],
+  "spatial_components": [
+    {
+      "cycles_per_mechanical_turn": 7,
+      "velocity_single_order_R2": 0.009987909948818485,
+      "interval_velocity_amplitude_rad_s": 0.10401102504356727,
+      "equivalent_frequency_at_tail_mean_Hz": 2.234044927484717,
+      "iq_target_amplitude_nominal_A": 0.03380510866127838,
+      "iq_filtered_amplitude_nominal_A": 0.0323865487981609,
+      "closed_loop_current_component_ratio": 0.958037115711379,
+      "current_component_phase_in_angle_basis_deg": -0.8751643624420835,
+      "interval_fraction_over_half_spatial_cycle": 0.0
+    },
+    {
+      "cycles_per_mechanical_turn": 14,
+      "velocity_single_order_R2": 0.061798426895393055,
+      "interval_velocity_amplitude_rad_s": 0.23567096290766248,
+      "equivalent_frequency_at_tail_mean_Hz": 4.468089854969434,
+      "iq_target_amplitude_nominal_A": 0.07610988839440727,
+      "iq_filtered_amplitude_nominal_A": 0.07633451188821137,
+      "closed_loop_current_component_ratio": 1.0029513049952206,
+      "current_component_phase_in_angle_basis_deg": -4.605044705651861,
+      "interval_fraction_over_half_spatial_cycle": 0.0
+    },
+    {
+      "cycles_per_mechanical_turn": 28,
+      "velocity_single_order_R2": 0.11944012706564588,
+      "interval_velocity_amplitude_rad_s": 0.3424035920185043,
+      "equivalent_frequency_at_tail_mean_Hz": 8.936179709938868,
+      "iq_target_amplitude_nominal_A": 0.06921775717280162,
+      "iq_filtered_amplitude_nominal_A": 0.06755430707595009,
+      "closed_loop_current_component_ratio": 0.9759678706043777,
+      "current_component_phase_in_angle_basis_deg": -8.75002822036177,
+      "interval_fraction_over_half_spatial_cycle": 0.0
+    },
+    {
+      "cycles_per_mechanical_turn": 42,
+      "velocity_single_order_R2": 0.019759525608320283,
+      "interval_velocity_amplitude_rad_s": 0.13426142366944843,
+      "equivalent_frequency_at_tail_mean_Hz": 13.404269564908303,
+      "iq_target_amplitude_nominal_A": 0.016213762069900276,
+      "iq_filtered_amplitude_nominal_A": 0.017015723457423786,
+      "closed_loop_current_component_ratio": 1.0494617710600487,
+      "current_component_phase_in_angle_basis_deg": -21.55933746080551,
+      "interval_fraction_over_half_spatial_cycle": 0.0
+    },
+    {
+      "cycles_per_mechanical_turn": 84,
+      "velocity_single_order_R2": 0.1152824917473646,
+      "interval_velocity_amplitude_rad_s": 0.3342915726526383,
+      "equivalent_frequency_at_tail_mean_Hz": 26.808539129816605,
+      "iq_target_amplitude_nominal_A": 0.05267365580863886,
+      "iq_filtered_amplitude_nominal_A": 0.04439684946364542,
+      "closed_loop_current_component_ratio": 0.8428663016088591,
+      "current_component_phase_in_angle_basis_deg": -19.13191742181366,
+      "interval_fraction_over_half_spatial_cycle": 0.0
+    },
+    {
+      "cycles_per_mechanical_turn": 168,
+      "velocity_single_order_R2": 0.00311762019974815,
+      "interval_velocity_amplitude_rad_s": 0.05436195755354532,
+      "equivalent_frequency_at_tail_mean_Hz": 53.61707825963321,
+      "iq_target_amplitude_nominal_A": 0.00963087004672829,
+      "iq_filtered_amplitude_nominal_A": 0.006536240600859598,
+      "closed_loop_current_component_ratio": 0.6786760250264231,
+      "current_component_phase_in_angle_basis_deg": -58.58301130575165,
+      "interval_fraction_over_half_spatial_cycle": 0.0
+    }
+  ],
+  "spatial_fit_basis": "Hann-weighted single-order fits at interval midpoint ABI angle; local phase only, no absolute angle or cause identification",
+  "dominant_components_in_bands": [
+    {
+      "band_Hz": [
+        3,
+        20
+      ],
+      "frequency_Hz": 8.0,
+      "velocity_single_frequency_R2": 0.13204167118255783,
+      "interval_velocity_amplitude_rad_s": 0.3534364518418737,
+      "approx_angle_amplitude_rad": 0.0070313947974368525,
+      "iq_target_amplitude_nominal_A": 0.07207101520253542,
+      "iq_filtered_amplitude_nominal_A": 0.07057616300112865,
+      "closed_loop_current_component_ratio": 0.9792586215525629,
+      "closed_loop_current_phase_deg": -9.556026177765357
+    },
+    {
+      "band_Hz": [
+        40,
+        100
+      ],
+      "frequency_Hz": 92.5,
+      "velocity_single_frequency_R2": 0.02713609004918216,
+      "interval_velocity_amplitude_rad_s": 0.16016874572538004,
+      "approx_angle_amplitude_rad": 0.0002755853795786283,
+      "iq_target_amplitude_nominal_A": 0.009580128741500422,
+      "iq_filtered_amplitude_nominal_A": 0.005793393213507313,
+      "closed_loop_current_component_ratio": 0.6047302045546376,
+      "closed_loop_current_phase_deg": -52.95129865835176
+    }
+  ],
+  "selected_components": [
+    {
+      "frequency_Hz": 7.5,
+      "velocity_single_frequency_R2": 0.10715828119104653,
+      "interval_velocity_amplitude_rad_s": 0.31831967163096486,
+      "approx_angle_amplitude_rad": 0.006754953229794271,
+      "iq_target_amplitude_nominal_A": 0.06529480559539522,
+      "iq_filtered_amplitude_nominal_A": 0.06362604898565481,
+      "closed_loop_current_component_ratio": 0.9744427356123702,
+      "closed_loop_current_phase_deg": -9.768715547495038
+    },
+    {
+      "frequency_Hz": 13.0,
+      "velocity_single_frequency_R2": 0.029746202764406093,
+      "interval_velocity_amplitude_rad_s": 0.16773356033332784,
+      "approx_angle_amplitude_rad": 0.002053509634573214,
+      "iq_target_amplitude_nominal_A": 0.028168829530102083,
+      "iq_filtered_amplitude_nominal_A": 0.024693428021313014,
+      "closed_loop_current_component_ratio": 0.8766224381075135,
+      "closed_loop_current_phase_deg": -11.056983775259212
+    },
+    {
+      "frequency_Hz": 20.0,
+      "velocity_single_frequency_R2": 0.009156298437614674,
+      "interval_velocity_amplitude_rad_s": 0.0930601801952854,
+      "approx_angle_amplitude_rad": 0.0007405493841551087,
+      "iq_target_amplitude_nominal_A": 0.013900359043235402,
+      "iq_filtered_amplitude_nominal_A": 0.010720807133549318,
+      "closed_loop_current_component_ratio": 0.7712611667226388,
+      "closed_loop_current_phase_deg": -22.602241186670984
+    },
+    {
+      "frequency_Hz": 40.0,
+      "velocity_single_frequency_R2": 0.0009280155013093871,
+      "interval_velocity_amplitude_rad_s": 0.029626662035061407,
+      "approx_angle_amplitude_rad": 0.00011788074275482537,
+      "iq_target_amplitude_nominal_A": 0.008987446476712152,
+      "iq_filtered_amplitude_nominal_A": 0.006887513778799645,
+      "closed_loop_current_component_ratio": 0.766348238806901,
+      "closed_loop_current_phase_deg": -13.144335278044634
+    },
+    {
+      "frequency_Hz": 58.0,
+      "velocity_single_frequency_R2": 0.004410844626454691,
+      "interval_velocity_amplitude_rad_s": 0.06458767201402049,
+      "approx_angle_amplitude_rad": 0.00017723184937636953,
+      "iq_target_amplitude_nominal_A": 0.012090605690578812,
+      "iq_filtered_amplitude_nominal_A": 0.007207999559187768,
+      "closed_loop_current_component_ratio": 0.5961652992127892,
+      "closed_loop_current_phase_deg": -24.68167964959729
+    },
+    {
+      "frequency_Hz": 80.0,
+      "velocity_single_frequency_R2": 0.005047611678359543,
+      "interval_velocity_amplitude_rad_s": 0.06908441152616171,
+      "approx_angle_amplitude_rad": 0.00013743906981229182,
+      "iq_target_amplitude_nominal_A": 0.011514878880207278,
+      "iq_filtered_amplitude_nominal_A": 0.0062671383116271896,
+      "closed_loop_current_component_ratio": 0.5442643710651324,
+      "closed_loop_current_phase_deg": -45.79901582174558
+    },
+    {
+      "frequency_Hz": 100.0,
+      "velocity_single_frequency_R2": 0.013530152161238318,
+      "interval_velocity_amplitude_rad_s": 0.11312863111153003,
+      "approx_angle_amplitude_rad": 0.00018004980846619581,
+      "iq_target_amplitude_nominal_A": 0.003976836240081411,
+      "iq_filtered_amplitude_nominal_A": 0.0022031340534338227,
+      "closed_loop_current_component_ratio": null,
+      "closed_loop_current_phase_deg": null
+    }
+  ],
+  "note": "Only the retained RAM tail is analyzed. Interval differentiation increases ABI quantization noise. Fits use Hann time weights and irregular sample times; peaks are exploratory and selected after searching. Current ratios are coherent closed-loop components, not an independent current-loop transfer measurement or proof of cause. The constant-speed quantization null cannot exclude aliasing in nonuniform motion. No compensation is exported."
+}
