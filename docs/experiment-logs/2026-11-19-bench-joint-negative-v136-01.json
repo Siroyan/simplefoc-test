@@ -1,0 +1,100 @@
+{
+  "analysis_version": 2,
+  "log": "docs/experiment-logs/2026-11-19-bench-joint-negative-v136-01.log",
+  "stop": "STOP: bench joint sequence complete",
+  "profile": {
+    "amplitude_nominal_A": 0.0,
+    "iq_limit_nominal_A": 0.22,
+    "vector_limit_V": 0.5,
+    "pulse_duration_us": 0.0,
+    "trace_period_us": 10000.0,
+    "run_phase_limit_A": 0.35,
+    "align_phase_limit_A": 2.2,
+    "phase_frames": 3.0,
+    "dq_limit_A": 0.25,
+    "dq_delay_us": 2000.0,
+    "align_deadline_us": 18000000.0,
+    "motor_only": 1.0,
+    "ratio_for_analysis": 8.0
+  },
+  "alignment": {
+    "origin_motor_rad": 0.0,
+    "initial_pull_complete": 1.0,
+    "initial_pull_motor_rad": -0.007854,
+    "minimum_delta_motor_rad": -0.007854,
+    "maximum_delta_motor_rad": 2.667212,
+    "peak_phase_nominal_A": 1.781558
+  },
+  "alignment_joint_degrees": {
+    "initial_pull_motor_rad": -0.056250131536968576,
+    "minimum_delta_motor_rad": -0.056250131536968576,
+    "maximum_delta_motor_rad": 19.102498833330916
+  },
+  "alignment_check_pass": true,
+  "guard": {
+    "fault": 0.0,
+    "peak_phase_nominal_A": 0.359384,
+    "peak_iq_nominal_A": 0.248485,
+    "peak_id_nominal_A": 0.051195
+  },
+  "abi": {
+    "callbacks": 3485.0,
+    "invalid": 0.0,
+    "duplicate": 0.0,
+    "net_signed_count": -31.0
+  },
+  "samples": 270,
+  "duration_us": 2700064.0,
+  "first_sample_us": 81.0,
+  "vbus_min_V": 11.17388916015625,
+  "vbus_max_V": 11.1989990234375,
+  "max_vector_V": 0.1412,
+  "max_abs_iq_A": 0.248485,
+  "max_abs_id_A": 0.031028,
+  "max_adc_age_us": 237.0,
+  "joint": {
+    "direction": -1.0,
+    "amplitude_deg": 0.5,
+    "ramp_us": 100000.0,
+    "duration_us": 2700000.0,
+    "trace_period_us": 10000.0,
+    "position_P": 30.0,
+    "velocity_P": 0.05,
+    "velocity_I": 3.0,
+    "velocity_feedforward": 1.0,
+    "velocity_command_limit_deg_s": 5.0,
+    "position_limit_deg": 3.0,
+    "guard_window_us": 20000.0,
+    "guard_limit_deg_s": 15.0,
+    "error_limit_deg": 1.0,
+    "error_delay_us": 100000.0,
+    "control_gap_us": 5000.0,
+    "nominal_iq_limit_A": 0.22,
+    "enter_deg": 0.05,
+    "exit_deg": 0.1
+  },
+  "holds": [
+    {
+      "start_us": 1000000,
+      "samples": 30,
+      "pass": true,
+      "max_error_deg": 0.08374616183745695,
+      "ripple_peak_to_peak_deg": 0.0,
+      "current_limit_fraction": 0,
+      "mean_iq_A": 0.00040746666666666663
+    },
+    {
+      "start_us": 2400000,
+      "samples": 31,
+      "pass": false,
+      "max_error_deg": 0.19125331201466877,
+      "ripple_peak_to_peak_deg": 0.01122997278456414,
+      "current_limit_fraction": 1,
+      "mean_iq_A": 0.22332793548387098
+    }
+  ],
+  "max_joint_displacement_deg": 0.45000105229574855,
+  "max_abs_joint_velocity_deg_s": 7.038500034284597,
+  "complete": true,
+  "pass": false
+}

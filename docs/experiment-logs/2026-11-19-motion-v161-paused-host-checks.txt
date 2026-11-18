@@ -1,0 +1,23 @@
+﻿PASS: saved full-range positive/negative response, protection stop excluded, missing stop/trace and corrupt ABI rejected
+PASS: exact standalone-motor profiles and current-loop/voltage/filter/current/ADC protection metadata
+PASS: actual joint direction, position/speed/error/gap guards and memory-layout metadata
+PASS: coast/active braking mode, signed bounds, trigger, deadlines and trace layout
+PASS: matched initial speeds, normalized forward travel, zero/unqualified baselines and multiple changed factors
+PASS: forward stopping distance uses the maximum; later reversal cannot cancel it; incomplete windows rejected
+PASS: delayed transition sample and stale pre-disable voltage payload rejected
+PASS: every command has a single firmware route, including all standalone bench profiles
+PASS: trajectory stages/signs, partial protective stop retained, missing stop/trace and invalid all-loop voltage rejected
+PASS virtual serial: normal
+PASS virtual serial: live
+PASS virtual serial: bad_metadata
+PASS virtual serial: alignment_abort
+PASS virtual serial: timeout
+PASS virtual serial: missing_ack
+PASS virtual serial: protect_before_timer
+PASS virtual serial: protect_race
+PASS virtual serial: not_moving
+PASS virtual serial: bad_lock
+PASS virtual serial: bad_gate
+PASS: no real serial/reset/upload calls; protection-stop races cannot masquerade as live-stop proof; verification faults end with acknowledged stop
+PASS: stale host profile rejected before opening serial
+PASS: complete portable condition archive verified without .pio; corrupted hashes/stop/gates and misclassified real runs rejected

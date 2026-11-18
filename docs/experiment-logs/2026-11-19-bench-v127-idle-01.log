@@ -1,0 +1,23 @@
+HOST lock start=2026-11-19T00:50:19.215326+09:00; sends only s/h/x
+STOP: serial stop
+MANUAL_BEGIN: gates OFF; all drive commands locked until reset; x=end capture.
+CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator=window10ms; raw=legacy_shadow
+PWM hz=12500 dead_zone=0.010000 system_clock_Hz=170000000 tim1_cr1=209 tim1_psc=0 tim1_arr=6799 tim1_bdtr=34948 rcc_cfgr=15 gate_inputs_low=1
+FIRMWARE diag_version=127
+MANUAL ms,angle_rad,raw_rad_s,filtered_rad_s,window_rad_s,signed_count,invalid,duplicate,reversals,A_edges,B_edges,index
+MANUAL_INTEGRALS angle_rad,corrected_input_rad,filtered_rad,legacy_filtered_rad: 0.000000,0.000000,0.000000,0.000000
+MANUAL_SUMMARY count,invalid,duplicate,reversals,index_overflow: 0,0,0,0,0
+EDGE_STATS previous_AB,samples,min_us,max_us,mean_us
+0,0,0,0,0.000
+1,0,0,0,0.000
+2,0,0,0,0.000
+3,0,0,0,0.000
+INDEX us,A_edges,B_edges,signed_count
+EDGES_LAST us,signed_count,AB_state
+MANUAL_END: gates OFF; drive locked until reset.
+140107,0,1722,1719,0,0.00157,0.00000,0.0000
+140307,0,1722,1719,0,0.00157,0.00000,0.0000
+140507,0,1722,1719,0,0.00157,0.00000,0.0000
+140707,0,1722,1719,0,0.00157,0.00000,0.0000
+140907,0,1722,1719,0,0.00157,0.00000,0.0000
+HOST verified: STOP acknowledged, drive locked until reset, five output-OFF rows

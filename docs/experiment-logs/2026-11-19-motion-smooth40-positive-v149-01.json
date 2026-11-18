@@ -1,0 +1,173 @@
+{
+  "analysis_version": 2,
+  "log": "docs\\experiment-logs\\2026-11-19-motion-smooth40-positive-v149-01.log",
+  "stop": "STOP: unexpected velocity",
+  "profile": {
+    "amplitude_nominal_A": 0.0,
+    "iq_limit_nominal_A": 0.3,
+    "vector_limit_V": 0.5,
+    "pulse_duration_us": 0.0,
+    "trace_period_us": 10000.0,
+    "run_phase_limit_A": 0.6,
+    "align_phase_limit_A": 2.2,
+    "phase_frames": 3.0,
+    "dq_limit_A": 0.35,
+    "dq_delay_us": 2000.0,
+    "align_deadline_us": 18000000.0,
+    "motor_only": 1.0,
+    "ratio_for_analysis": 8.0
+  },
+  "alignment": {
+    "origin_motor_rad": 0.0,
+    "initial_pull_complete": 1.0,
+    "initial_pull_motor_rad": -0.012566,
+    "minimum_delta_motor_rad": -0.012566,
+    "maximum_delta_motor_rad": 2.660929,
+    "peak_phase_nominal_A": 1.790221
+  },
+  "alignment_joint_degrees": {
+    "initial_pull_motor_rad": -0.08999734567017406,
+    "minimum_delta_motor_rad": -0.08999734567017406,
+    "maximum_delta_motor_rad": 19.057500160495827
+  },
+  "alignment_check_pass": true,
+  "guard": {
+    "fault": 0.0,
+    "peak_phase_nominal_A": 0.409683,
+    "peak_iq_nominal_A": 0.317992,
+    "peak_id_nominal_A": 0.049351
+  },
+  "abi": {
+    "callbacks": 3993.0,
+    "invalid": 0.0,
+    "duplicate": 0.0,
+    "net_signed_count": 149.0
+  },
+  "samples": 202,
+  "duration_us": 874853.0,
+  "first_sample_us": 82.0,
+  "vbus_min_V": 11.182259114583333,
+  "vbus_max_V": 11.207368977864583,
+  "max_vector_V": 0.24540051345504557,
+  "max_abs_iq_A": 0.312251,
+  "max_abs_id_A": 0.038169,
+  "max_adc_age_us": 1159.0,
+  "motion": {
+    "direction": 1.0,
+    "rpm": 40.0,
+    "shape": 0.0,
+    "move_us": 234375.0,
+    "duration_us": 1468750.0,
+    "speed_limit_rad_s": 6.18879,
+    "amplitude_motor_deg": 30.0,
+    "initial_us": 100000.0,
+    "hold_us": 400000.0,
+    "final_us": 500000.0,
+    "position_limit_joint_deg": 6.0,
+    "error_limit_joint_deg": 1.0,
+    "error_delay_us": 100000.0,
+    "control_gap_us": 5000.0,
+    "position_P": 30.0,
+    "velocity_P": 0.12,
+    "velocity_I": 1.2,
+    "velocity_limit": 1.25,
+    "hold_enter_deg": 0.05,
+    "hold_exit_deg": 0.075
+  },
+  "active_config": {
+    "q_LPF_s": 0.001,
+    "d_LPF_s": 0.001,
+    "velocity_LPF_s": 0.001,
+    "q_P": 0.6,
+    "q_I": 400.0,
+    "velocity_P": 0.2,
+    "velocity_I": 0.15
+  },
+  "estimator": "ESTIMATOR controller=edge_period4_phase guard=original_window2ms_LPF2ms guard_limit=BENCH_MOTION",
+  "whole_trace": false,
+  "all_loop_stats": [
+    {
+      "phase": 1.0,
+      "samples": 2497.0,
+      "max_error_joint_rad": 0.005808,
+      "error_square": 0.031933186,
+      "iq_error_square": 3.87903,
+      "peak_velocity_motor_rad_s": 5.485697,
+      "vector_limited": 0.0,
+      "slew_limited": 1356.0,
+      "near_iq_limit": 441.0,
+      "max_vector_V": 0.24594,
+      "vbus_min_V": 11.18226,
+      "vbus_max_V": 11.21574
+    },
+    {
+      "phase": 3.0,
+      "samples": 1515.0,
+      "max_error_joint_rad": 0.0161765,
+      "error_square": 0.126893281,
+      "iq_error_square": 3.0222237,
+      "peak_velocity_motor_rad_s": 6.821182,
+      "vector_limited": 0.0,
+      "slew_limited": 762.0,
+      "near_iq_limit": 480.0,
+      "max_vector_V": 0.232837,
+      "vbus_min_V": 11.18226,
+      "vbus_max_V": 11.20737
+    }
+  ],
+  "moving": [
+    {
+      "phase": 1,
+      "FOC_samples": 2497,
+      "trace_samples": 95,
+      "max_error_joint_deg": 0.3327738874119821,
+      "rms_error_joint_deg": 0.20489647480918144,
+      "rms_iq_error_nominal_A": 0.039414162066517246,
+      "peak_motor_rpm": 52.38454763126286,
+      "vector_limited_fraction": 0.0,
+      "slew_limited_fraction": 0.5430516619943933,
+      "near_iq_limit_fraction": 0.1766119343211854,
+      "max_vector_V": 0.24594,
+      "vbus_min_V": 11.18226,
+      "vbus_max_V": 11.21574,
+      "pass": false
+    },
+    {
+      "phase": 3,
+      "FOC_samples": 1515,
+      "trace_samples": 58,
+      "max_error_joint_deg": 0.9268451772933761,
+      "rms_error_joint_deg": 0.5243673344259284,
+      "rms_iq_error_nominal_A": 0.044663935436914555,
+      "peak_motor_rpm": 65.13748998176766,
+      "vector_limited_fraction": 0.0,
+      "slew_limited_fraction": 0.502970297029703,
+      "near_iq_limit_fraction": 0.31683168316831684,
+      "max_vector_V": 0.232837,
+      "vbus_min_V": 11.18226,
+      "vbus_max_V": 11.20737,
+      "pass": false
+    }
+  ],
+  "holds": [
+    {
+      "start_us": 334375,
+      "samples": 39,
+      "tail_samples": 15,
+      "pass": false,
+      "tail_max_error_joint_deg": 0.2062560371158579,
+      "tail_peak_to_peak_joint_deg": 0.056264455481846554,
+      "overshoot_joint_deg": 0,
+      "settling_us": 260408.0,
+      "tail_near_iq_limit_fraction": 0.06666666666666667
+    },
+    {
+      "start_us": 968750,
+      "samples": 0,
+      "tail_samples": 0,
+      "pass": false
+    }
+  ],
+  "scope": "Same-ABI motor/8 tracking and repeatability; no external absolute-angle or loaded validation.",
+  "pass": false
+}

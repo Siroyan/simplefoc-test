@@ -1,0 +1,14 @@
+{
+  "scope": "Host-only cache/stop-ack fix; board v161 firmware and approved limits unchanged; no position trial occurred in rejected attempt.",
+  "archive_directory": ".pio\\motion-v161-host-cache-fix",
+  "sha256": {
+    "tools/capture_motion.py": "66032a2af333b9c93dce726b9d995683d7d6a0c0775f0f43dd894f83174876cd",
+    "tools/motion_profile.py": "41a93b32a9b107923bb29a1992658c2a594b75c5948de0be1cac9d0bb8a0d6b0",
+    "tools/bench_metadata.py": "c641a808365c3b189a943a4edcf8732d8e1a0004a4f7057e79c6cac93f37278b",
+    "tools/analyze_motion.py": "815025d4e38cfd6396d94cf588d2221cf3bb99c7526075788b3006b3353302c2",
+    "test/motion_capture_protocol.py": "98af4aff9dbefcd6e35202a4628f1804694a340225eafd67222f3e1dd010166b",
+    "docs/experiment-logs/2026-11-19-motion-sharp60-positive-v161-01.log": "aa112ef4d416d7edd09681b00350f6058c9ba3c5fba16ded56a2043a4b0627e1",
+    "docs/experiment-logs/2026-11-19-motion-range-v161-recovery-idle-01.log": "5336aaf4fa49b7eb269bb024f1f868ed02e30ee38b838e5ae4f1d50fb63eb5c0",
+    "docs/experiment-logs/2026-11-19-motion-stop-protocol-cache-fix.txt": "52cac1b33d5c3d16991b53745c8877e9d02b3215648819880c3c9a324d926cbb"
+  }
+}

@@ -1,0 +1,88 @@
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -30,7 +30,7 @@
+ #include <BenchMotionStats.h>
+ #include <TraceSample.h>
+ 
+-constexpr int kDiagVersion = 153;
++constexpr int kDiagVersion = 160;
+ enum class CurrentTrial { none, fixed015, fixed025, velocity, velocityCompensated, velocityRolling, velocityProbe, staticProbe, staticProbe10, velocityFastIntegral, velocityReverse, velocityCoverage, velocityLongWindow, velocityLowerFilter, velocityDense, velocityDenseLowerP, velocityHigherI, velocityHigherIReverse, velocityStrongerI, velocityStrongerIReverse, velocityHigherIDense, velocityStrongerIDense, velocityAdaptive, velocityAdaptiveZero, velocityResponseProbe, velocityResponseProbeInverse, velocityAdaptiveFlat, velocityHigherP, velocitySpeed2, velocitySpeed2LowerI, velocitySpeed2LowerP, velocitySpeed3LowerP, velocitySpeed2LowerFilter, velocitySpeed25LowerFilter, velocitySpeed3LowerFilter, velocitySpeed25HalfFilter, velocitySpeed25Dense, velocitySpeed2Dense, velocitySpeed25Adaptive, velocitySpeed25AdaptiveZero, velocitySpeed3Adaptive, velocitySpeed25SlowRamp, velocitySpeed60, velocitySpeed60CurrentFilter, velocitySpeed60LowGain, velocitySpeed60ModerateI, velocitySpeed60Balanced, velocitySpeed60Damped, velocitySpeed60HalfCurrent, velocitySpeed60MidP, velocitySpeed60Edge, velocitySpeed60EdgeCycles, velocitySpeed60EdgeLowerP, velocitySpeed60EdgeFast, velocitySpeed60EdgeTracking, velocitySpeed60EdgeTrackingLowerP, velocitySpeed60EdgeTracking5, velocitySpeed60EdgeTracking5CurrentI, velocitySpeed60Response, velocitySpeed60ResponseInverse, velocitySpeed60Adaptive14, benchPulse05, benchPulse10, benchJointPositive, benchJointNegative, benchCoast, benchBrakeActive, benchMotionPositive, benchMotionNegative };
+ constexpr int kEncoderPpr = 1000; // Two measured index intervals: 4000 signed counts each.
+ constexpr int kMotorPolePairs = 7; // Motor datasheet: 12N14P.
+@@ -1136,7 +1136,7 @@
+     Serial.print(" amplitude_nominal_A=");Serial.print(benchDriveTest && !benchPositionTest && !benchBrakeTest ? benchPulseAmplitude:0,3);
+     Serial.print(benchBrakeTest ? " iq_limit_nominal_A=.22 vector_limit_V=.5 pulse_duration_us=" : benchPositionTest ? " iq_limit_nominal_A=.30 vector_limit_V=.5 pulse_duration_us=" : " iq_limit_nominal_A=.15 vector_limit_V=.5 pulse_duration_us=");Serial.print(benchPositionTest || benchBrakeTest ? 0:300000);
+     Serial.print(" trace_period_us=");Serial.print(benchBrakeTest ? 2000 : benchPositionTest ? 10000:1000);
+-    Serial.println(" run_phase_limit_A=.60 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.35 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc");
++    Serial.println(" run_phase_limit_A=.60 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.50 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc");
+   }
+   if (benchBrakeTest) {
+     Serial.print("BENCH_BRAKE active=");Serial.print(benchBrake.active ? 1:0);
+--- a/include/BenchCurrentGuard.h
++++ b/include/BenchCurrentGuard.h
+@@ -26,7 +26,7 @@
+     }
+     if(driving){
+       peakIq=std::max(peakIq,std::abs(iq));peakId=std::max(peakId,std::abs(id));
+-      if(std::abs(iq)>.35f || std::abs(id)>.35f){
++      if(std::abs(iq)>.50f || std::abs(id)>.50f){
+         if(!dqOutside){dqOutside=true;dqSince=now;}
+         if(now-dqSince>=2000){fault=dq_overcurrent;return false;}
+       }else dqOutside=false;
+@@ -37,7 +37,7 @@
+     switch(fault){
+       case nonfinite:return "nonfinite bench current";
+       case phase_overcurrent:return "bench nominal phase current exceeded limit for 3 fresh frames";
+-      case dq_overcurrent:return "bench nominal dq current exceeded .35A for 2ms";
++      case dq_overcurrent:return "bench nominal dq current exceeded .50A for 2ms";
+       default:return "no bench current fault";
+     }
+   }
+--- a/tools/bench_metadata.py
++++ b/tools/bench_metadata.py
+@@ -1,5 +1,5 @@
+ """Strict metadata for the standalone-motor bench; no hardware access."""
+-PROFILE_SUFFIX=' iq_limit_nominal_A=.15 vector_limit_V=.5 pulse_duration_us=300000 trace_period_us=1000 run_phase_limit_A=.60 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.35 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc'
++PROFILE_SUFFIX=' iq_limit_nominal_A=.15 vector_limit_V=.5 pulse_duration_us=300000 trace_period_us=1000 run_phase_limit_A=.60 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.50 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc'
+ 
+ def verify_bench_profile(line,command):
+     if command not in ('/','&','*',',','.','#','-'):raise ValueError('Unknown bench command')
+--- a/tools/motion_profile.py
++++ b/tools/motion_profile.py
+@@ -44,4 +44,4 @@
+     if abs(actual.get('speed_limit_rad_s',0)-limit)>2e-6:raise RuntimeError('Motion independent speed limit mismatch')
+     if re.sub(r'speed_limit_rad_s=\S+','speed_limit_rad_s=CHECKED',line)!=re.sub(r'speed_limit_rad_s=\S+','speed_limit_rad_s=CHECKED',expected):raise RuntimeError('Motion trajectory/controller/guard mismatch')
+ 
+-PROFILE=('BENCH_PROFILE kind=motion amplitude_nominal_A=0.000 iq_limit_nominal_A=.30 vector_limit_V=.5 pulse_duration_us=0 trace_period_us=10000 run_phase_limit_A=.60 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.35 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc')
++PROFILE=('BENCH_PROFILE kind=motion amplitude_nominal_A=0.000 iq_limit_nominal_A=.30 vector_limit_V=.5 pulse_duration_us=0 trace_period_us=10000 run_phase_limit_A=.60 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.50 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc')
+--- a/test/bench_current.cpp
++++ b/test/bench_current.cpp
+@@ -22,14 +22,15 @@
+   }
+   require(std::isnan(BenchCurrentPulse::target(50000,.15f)),"unapproved larger pulse rejected");
+   BenchCurrentGuard g;
++  require(g.check(0,1,0,0,0,.49f,0,true) && g.check(2500,2,0,0,0,.49f,0,true),"new .50A dq range accepts .49A without changing phase bound");g.reset();
+   require(g.check(0,1,.7f,0,0,0,0,true),"first overcurrent frame");
+   require(g.check(10,1,.7f,0,0,0,0,true),"same ADC frame cannot increment overcurrent counter");
+   require(g.check(20,2,.7f,0,0,0,0,true),"second fresh frame");
+   require(!g.check(30,3,.7f,0,0,0,0,true)&&g.fault==BenchCurrentGuard::phase_overcurrent,"third fresh frame faults");
+   require(!g.check(40,4,0,0,0,0,0,true),"fault latches");
+   g.reset();require(g.check(0,1,1.8f,0,0,NAN,NAN,false),"alignment phase limit and no pre-alignment dq assumption");
+-  g.reset();require(g.check(0xfffffff0u,1,0,0,0,.4f,0,true),"dq timer starts");
+-  require(!g.check(1984,2,0,0,0,.4f,0,true)&&g.fault==BenchCurrentGuard::dq_overcurrent,"dq timing works over clock wrap");
++  g.reset();require(g.check(0xfffffff0u,1,0,0,0,.55f,0,true),"dq timer starts");
++  require(!g.check(1984,2,0,0,0,.55f,0,true)&&g.fault==BenchCurrentGuard::dq_overcurrent,"dq timing works over clock wrap");
+   g.reset();require(!g.check(0,1,NAN,0,0,0,0,false),"invalid phase fails closed");
+   g.reset();require(!g.check(0,1,0,0,0,NAN,0,true),"invalid running dq fails closed");
+   g.reset();g.check(0,1,.7f,0,0,0,0,true);g.check(1,2,0,0,0,0,0,true);
+--- a/test/bench_motion.cpp
++++ b/test/bench_motion.cpp
+@@ -23,6 +23,8 @@
+   b.reset(0,1);b.update(1,0,6.1f*BenchMotion::degree,0,0);check(b.fault==BenchMotion::position,"position guard");
+   b.reset(0,1);b.update(1,0,0,0,BenchMotion::speedLimit+.01f);check(b.fault==BenchMotion::speed,"independent speed guard");
+   b.reset(0,1);for(uint32_t t=1000;t<=102000;t+=1000)b.update(t,0,2*BenchMotion::degree,0,0);check(b.fault==BenchMotion::tracking,"persistent tracking error guard");
++  b.reset(0,1);b.update(1000,0,0,100,0);check(b.currentTarget==-BenchMotion::currentLimit,"signed negative torque clamp");
++  b.reset(0,1);b.update(1000,0,0,-100,0);check(b.currentTarget==BenchMotion::currentLimit,"signed positive torque clamp");
+   BenchMotionStats stats;stats.observe(1,.01f,2,.03f,.3f,.3f,.4f,11,true,false);
+   check(stats.segments[0].samples==1 && stats.segments[0].nearCurrent==1 && stats.segments[0].limited==1 && std::abs(stats.segments[0].maxVector-.5f)<1e-6f,"all-loop limit/current/voltage statistics");
+   stats.observe(1,NAN,0,0,0,0,0,11,false,false);check(stats.invalid,"nonfinite statistics latch");

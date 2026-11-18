@@ -1,0 +1,5 @@
+{
+  "archive": "docs\\experiment-logs\\2026-11-19-motion-range-proposal-archive.zip",
+  "sha256": "65587fd7647247f655c5a842ff3f775859745c9f2c75ecb6addcd43891705296",
+  "scope": "Exact reviewed v160/v161 proposal code, patches, ELF and build logs; promoted binaries later matched byte-for-byte."
+}

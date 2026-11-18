@@ -1,0 +1,106 @@
+{
+  "log": "docs/experiment-logs/2026-11-19-bench-pulse10-v123-01.log",
+  "stop": "STOP: bench pulse sequence complete",
+  "profile": {
+    "amplitude_nominal_A": 0.1,
+    "iq_limit_nominal_A": 0.15,
+    "vector_limit_V": 0.5,
+    "pulse_duration_us": 300000.0,
+    "trace_period_us": 1000.0,
+    "run_phase_limit_A": 0.35,
+    "align_phase_limit_A": 2.2,
+    "phase_frames": 3.0,
+    "dq_limit_A": 0.25,
+    "dq_delay_us": 2000.0,
+    "align_deadline_us": 18000000.0,
+    "motor_only": 1.0,
+    "ratio_for_analysis": 8.0
+  },
+  "alignment": {
+    "origin_motor_rad": 0.0,
+    "initial_pull_complete": 1.0,
+    "initial_pull_motor_rad": 0.0,
+    "minimum_delta_motor_rad": 0.0,
+    "maximum_delta_motor_rad": 2.671925,
+    "peak_phase_nominal_A": 1.822664
+  },
+  "alignment_joint_degrees": {
+    "initial_pull_motor_rad": 0.0,
+    "minimum_delta_motor_rad": 0.0,
+    "maximum_delta_motor_rad": 19.13625320943656
+  },
+  "alignment_check_pass": true,
+  "guard": {
+    "fault": 0.0,
+    "peak_phase_nominal_A": 0.238822,
+    "peak_iq_nominal_A": 0.120869,
+    "peak_id_nominal_A": 0.030924
+  },
+  "abi": {
+    "callbacks": 3436.0,
+    "invalid": 0.0,
+    "duplicate": 0.0,
+    "net_signed_count": 2.0
+  },
+  "samples": 288,
+  "duration_us": 300080.0,
+  "first_sample_us": 61.0,
+  "vbus_min_V": 11.17388916015625,
+  "vbus_max_V": 11.207368977864583,
+  "max_vector_V": 0.08350198665900112,
+  "max_abs_iq_A": 0.118685,
+  "max_abs_id_A": 0.025641,
+  "max_adc_age_us": 1131.0,
+  "complete": true,
+  "pulses": [
+    {
+      "nominal_onset_us": 40000,
+      "sign": 1,
+      "samples": 19,
+      "pass": true,
+      "actual_onset_us": 40769.0,
+      "t90_us": 5204.0,
+      "late_mean_iq_A": 0.104547,
+      "late_mean_error_A": -0.0045469999999999955,
+      "vector_limited_samples": 0,
+      "slew_limited_samples": 8
+    },
+    {
+      "nominal_onset_us": 110000,
+      "sign": -1,
+      "samples": 19,
+      "pass": true,
+      "actual_onset_us": 110925.0,
+      "t90_us": 5227.0,
+      "late_mean_iq_A": -0.1067896,
+      "late_mean_error_A": 0.006789599999999993,
+      "vector_limited_samples": 0,
+      "slew_limited_samples": 7
+    },
+    {
+      "nominal_onset_us": 180000,
+      "sign": 1,
+      "samples": 19,
+      "pass": true,
+      "actual_onset_us": 181061.0,
+      "t90_us": 5223.0,
+      "late_mean_iq_A": 0.103663,
+      "late_mean_error_A": -0.0036629999999999996,
+      "vector_limited_samples": 0,
+      "slew_limited_samples": 9
+    },
+    {
+      "nominal_onset_us": 250000,
+      "sign": -1,
+      "samples": 19,
+      "pass": true,
+      "actual_onset_us": 251100.0,
+      "t90_us": 4176.0,
+      "late_mean_iq_A": -0.1003016,
+      "late_mean_error_A": 0.0003015999999999991,
+      "vector_limited_samples": 0,
+      "slew_limited_samples": 9
+    }
+  ],
+  "pass": true
+}

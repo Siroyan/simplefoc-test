@@ -1,0 +1,20 @@
+{
+  "all_six_pass": true,
+  "logs": [
+    "docs/experiment-logs/2026-11-19-range-joint-negative-v140-01.log",
+    "docs/experiment-logs/2026-11-19-range-joint-negative-v140-02.log",
+    "docs/experiment-logs/2026-11-19-range-joint-negative-v140-03.log",
+    "docs/experiment-logs/2026-11-19-range-joint-positive-v140-01.log",
+    "docs/experiment-logs/2026-11-19-range-joint-positive-v140-02.log",
+    "docs/experiment-logs/2026-11-19-range-joint-positive-v140-03.log"
+  ],
+  "max_hold_error_deg": 0.18002333923010463,
+  "max_hold_peak_to_peak_deg": 0.13504615231233502,
+  "max_hold_current_limit_fraction": 0,
+  "max_nominal_phase_A": 0.393849,
+  "max_nominal_iq_A": 0.28135,
+  "max_sampled_vector_V": 0.1691102181448537,
+  "max_adc_age_us": 1136.0,
+  "source_sha256": "6ebda8405cd397d3f6f44d2eed9e69ee7e2800ed26f1e6f5030021d3d949a933",
+  "elf_sha256": "3c2ac268a1f3b6c053d0cb088d2a27567862042868ba77e771dfb1503d040a26"
+}

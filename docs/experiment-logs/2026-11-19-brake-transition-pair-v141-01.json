@@ -1,0 +1,10 @@
+{
+  "coast": "docs/experiment-logs/2026-11-19-brake-transition-coast-v141-01.log",
+  "active": "docs/experiment-logs/2026-11-19-brake-transition-active-v141-01.log",
+  "speed_relative_difference": 0.01203987666060711,
+  "guard_relative_difference": 0.04077040284498999,
+  "normalized_forward_20ms_ratio": 0.8234019914482388,
+  "opposition_samples": 5,
+  "pass": false,
+  "scope": "Bare-motor low-energy comparison only; not a calibrated torque or loaded landing/regen qualification."
+}

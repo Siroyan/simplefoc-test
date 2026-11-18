@@ -1,0 +1,82 @@
+{
+  "log": "docs/experiment-logs/2026-11-19-bench-pulse05-v121-01.log",
+  "stop": "STOP: bench nominal phase current exceeded limit for 3 fresh frames",
+  "profile": {
+    "amplitude_nominal_A": 0.05,
+    "iq_limit_nominal_A": 0.15,
+    "vector_limit_V": 0.5,
+    "pulse_duration_us": 300000.0,
+    "trace_period_us": 1000.0,
+    "run_phase_limit_A": 0.35,
+    "align_phase_limit_A": 2.2,
+    "phase_frames": 3.0,
+    "dq_limit_A": 0.25,
+    "dq_delay_us": 2000.0,
+    "align_deadline_us": 18000000.0,
+    "motor_only": 1.0,
+    "ratio_for_analysis": 8.0
+  },
+  "alignment": {
+    "origin_motor_rad": 0.0,
+    "initial_pull_complete": 1.0,
+    "initial_pull_motor_rad": -0.001571,
+    "minimum_delta_motor_rad": -0.001571,
+    "maximum_delta_motor_rad": 2.664071,
+    "peak_phase_nominal_A": 1.811161
+  },
+  "alignment_joint_degrees": {
+    "initial_pull_motor_rad": -0.01125145870188154,
+    "minimum_delta_motor_rad": -0.01125145870188154,
+    "maximum_delta_motor_rad": 19.080003077899594
+  },
+  "alignment_check_pass": true,
+  "guard": {
+    "fault": 2.0,
+    "peak_phase_nominal_A": 0.528466,
+    "peak_iq_nominal_A": 0.069057,
+    "peak_id_nominal_A": 0.045543
+  },
+  "abi": {
+    "callbacks": 3397.0,
+    "invalid": 0.0,
+    "duplicate": 0.0,
+    "net_signed_count": -1.0
+  },
+  "samples": 2,
+  "duration_us": 6188.0,
+  "first_sample_us": 5612.0,
+  "vbus_min_V": 11.182259114583333,
+  "vbus_max_V": 11.190629069010416,
+  "max_vector_V": 0.3904971652253061,
+  "max_abs_iq_A": 0.103449,
+  "max_abs_id_A": 0.045387,
+  "max_adc_age_us": 89.0,
+  "complete": false,
+  "pulses": [
+    {
+      "nominal_onset_us": 40000,
+      "sign": 1,
+      "samples": 0,
+      "pass": false
+    },
+    {
+      "nominal_onset_us": 110000,
+      "sign": -1,
+      "samples": 0,
+      "pass": false
+    },
+    {
+      "nominal_onset_us": 180000,
+      "sign": 1,
+      "samples": 0,
+      "pass": false
+    },
+    {
+      "nominal_onset_us": 250000,
+      "sign": -1,
+      "samples": 0,
+      "pass": false
+    }
+  ],
+  "pass": false
+}

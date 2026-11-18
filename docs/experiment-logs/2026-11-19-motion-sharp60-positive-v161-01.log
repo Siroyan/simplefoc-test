@@ -1,0 +1,44 @@
+HOST start=2026-11-19T08:22:06.932260+09:00 port=COM10
+HOST supply=11.1V current_limit=0.8A; nominal phase/Iq limits are separate; CV and temperature unmeasured
+46900,0,0,0,0,0.00000,0.00000,0.0000
+47100,0,0,0,0,0.00000,0.00000,0.0000
+47300,0,0,0,0,0.00000,0.00000,0.0000
+PWM hz=12500 dead_zone=0.010000 system_clock_Hz=170000000 tim1_cr1=193 tim1_psc=0 tim1_arr=6799 tim1_bdtr=34948 rcc_cfgr=15 gate_inputs_low=1
+HOST sending one command=" rpm=60 shape=1 direction=1
+FIRMWARE diag_version=161
+EDGE_CLOCK_CHECK advancing=1 gates_off=1 cycles_per_us=170 core_regressions=22 maximum_core_backstep_us=999
+CURRENT_INIT: driver disabled, calibrate observer before alignment; no current control.
+SENSE_OFFSETS_ADC 2530.070,2536.606,2540.771
+CURRENT_CONFIG observer_only=0 bus_low_V=10.3917 bus_high_V=11.9561 deviation_delay_us=20000 max_age_us=2000 nominal_ADC_ref_V=3.3 shunt_ohm=.003 gain=-64/7
+CONFIG encoder_ppr=1000 counts_per_turn=4000 estimator_window_us=2000 trace_window_us=10000 raw=legacy_shadow
+ESTIMATOR controller=edge_period4_phase guard=original_window2ms_LPF2ms guard_limit=BENCH_MOTION
+EDGE_ESTIMATOR_CONFIG counts_per_turn=4000 period_intervals=4 phase_gain_s_inv=200 prediction_count_bound=1 sample_gap_limit_us=5000 no_edge_decay=gap_to_2gap isr=integer_only clock=DWT_elapsed cycles_per_us=170
+PWM hz=12500 dead_zone=0.010000 system_clock_Hz=170000000 tim1_cr1=209 tim1_psc=0 tim1_arr=6799 tim1_bdtr=34948 rcc_cfgr=15 gate_inputs_low=1
+FIRMWARE diag_version=161
+BENCH_PROFILE kind=motion amplitude_nominal_A=0.000 iq_limit_nominal_A=.45 vector_limit_V=.5 pulse_duration_us=0 trace_period_us=10000 run_phase_limit_A=.60 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.50 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc
+HOST sent final s; test_command_sent=True
+BENCH_MOTION direction=1 rpm=60 shape=1 move_us=145833 duration_us=1291666 speed_limit_rad_s=8.283186 amplitude_motor_deg=30 initial_us=100000 hold_us=400000 final_us=500000 position_limit_joint_deg=6 error_limit_joint_deg=1 error_delay_us=100000 control_gap_us=5000 position_P=30 velocity_P=.12 velocity_I=1.2 velocity_limit=peak_motor hold_enter_deg=.05 hold_exit_deg=.075 reference_update=loop_direct trace=moving96_hold10ms stats=all_FOC_samples
+DRIVE fixed_iq_nominal_A=0.0000 ramp_us=300000 speed_target=none speed_PID=off current_control=on legacy_raw_velocity=not_recorded
+CURRENT_LOOP q_P=0.60 q_I=400.0 d_P=.20 d_I=50 D=0 q_voltage_build_up_V_s=100.0 current_LPF_s=0.0010 vector_voltage_limit_V=.5 release=immediate reversal=via_zero; nominal current scaling
+CURRENT_ENGINE project_tracking_PI=1 actuator_feedback=applied_dq stock_current_PI=unused
+CURRENT_TRACKING q_backcalc_s=0.0050 d_backcalc_s=0.0000
+CURRENT_SLEW positive_q_V_s=100.0 negative_q_V_s=100.0 d_V_s=3 release=immediate reversal=via_zero
+CURRENT_TELEMETRY running_stream_CSV=off trace=RAM period_us=10000 stop_and_commands=enabled
+CONTROL P=0.2000 I=0.1500 D=0.0000 output_ramp_V_s=3.0000 velocity_LPF_s=0.0010
+TRACE_CONFIG period_us=10000 capacity=320 loop_us_saturation=65535 window_age_us_saturation=65535 window_span_us_nominal=10000
+ALIGNING: slow 0.7 V, 3 electrical turns each way, with settling.
+MOT:Init
+MOT:Enable driver.
+ALIGN_PROFILE cycles=3 step_ms=4 voltage_V=.7 max_alignment_us=0
+STOP: slow alignment aborted or pole-pair check failed
+BENCH_ALIGNMENT origin_motor_rad=0.000000 initial_pull_complete=0 initial_pull_motor_rad=0.000000 minimum_delta_motor_rad=0.000000 maximum_delta_motor_rad=0.000000 peak_phase_nominal_A=0.060804
+BENCH_CURRENT_STATUS fault=0 peak_phase_nominal_A=0.060804 peak_iq_nominal_A=0.000000 peak_id_nominal_A=0.000000
+BENCH_STARTUP first_pi_elapsed_us=0
+MOTION_STATUS independent_peak_rad_s=0.000000
+MOTION_STATS phase=1 samples=0 max_error_joint_rad=0.0000000 error_square=0.000000000 iq_error_square=0.0000000 peak_velocity_motor_rad_s=0.000000 vector_limited=0 slew_limited=0 near_iq_limit=0 max_vector_V=0.000000 vbus_min_V=100.00000 vbus_max_V=0.00000
+MOTION_STATS phase=3 samples=0 max_error_joint_rad=0.0000000 error_square=0.000000000 iq_error_square=0.0000000 peak_velocity_motor_rad_s=0.000000 vector_limited=0 slew_limited=0 near_iq_limit=0 max_vector_V=0.000000 vbus_min_V=100.00000 vbus_max_V=0.00000
+50758,0,0,0,0,0.00000,0.00000,0.0000
+50958,0,0,0,0,0.00000,0.00000,0.0000
+51158,0,0,0,0,0.00000,0.00000,0.0000
+51358,0,0,0,0,0.00000,0.00000,0.0000
+HOST final_stop_acknowledged=False

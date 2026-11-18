@@ -1,0 +1,4 @@
+﻿PASS: complete signed pulse timing, caps, alignment/run separation, fresh-frame and timed dq current guards, wrap/reset/nonfinite/latching
+PASS: trajectory, virtual joint scaling, signed bounded PI, independent speed/position, gaps, invalids, clock wrap
+PASS: bounded signed current/trigger, coast/active separation, reversal release, wrap, deadlines and failed prerequisites
+PASS motion rpm=60 shape=1: waveform, whole trace, caps, wraps and independent faults

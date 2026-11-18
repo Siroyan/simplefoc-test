@@ -1,0 +1,27 @@
+{
+  "scope": "Isolated unapproved proposals. No upload performed. Active hardware/source stay v153 with Iq .30 and dq .35.",
+  "stages": [
+    {
+      "version": 160,
+      "dq_limit_A": 0.5,
+      "motion_iq_limit_A": 0.3
+    },
+    {
+      "version": 161,
+      "dq_limit_A": 0.5,
+      "motion_iq_limit_A": 0.45
+    }
+  ],
+  "sha256": {
+    "docs/experiment-logs/2026-11-19-motion-range160-stage1.patch": "7f58e6ac8183eea2e45cbaf6574c23d04305f6d777cc5ecf66a68eeae2e2ac81",
+    "docs/experiment-logs/2026-11-19-motion-range161-stage2.patch": "070b7d71bff12c2954aa7017e7d8512455882bbbcb509941e5e950516331cf56",
+    ".pio/mrange153/src/main.cpp": "e9c4acd25ac75d5cf28d5d51ba193f6e0848022125bd673a2a6246b61c87f9cb",
+    ".pio/mrange154/src/main.cpp": "5829deda6d54fdbd22b3fa6351bd1d30f597629c652b8d5b56172a801d8b0f1e",
+    ".pio/mrange153/include/BenchCurrentGuard.h": "9945d4f0411baafe86c594519b8cd9e72f43e903aebe00b10f48602b57acd4f7",
+    ".pio/mrange154/include/BenchMotion.h": "cfe23e0330e132175b4ed1f82fd9a1b329df675db6abaf9ee4a317a2b222fb98",
+    ".pio/mr153b/disco_b_g431b_esc1/firmware.elf": "899c8e3c4730bcb6d9203714c1a3efbf5e4e39a3fad51d639a24192c8bc7e35e",
+    ".pio/mr154b/disco_b_g431b_esc1/firmware.elf": "bcdf0b9239710a47dc4413a1b1ea56a3aa5cec0896378d17390a2a6d085a1f92",
+    ".pio/proposal-build-v160.log": "9fe0fa2e7acc8e9a6be8af972a73901c0dd65338248b63d21096ffc7e54598e4",
+    ".pio/proposal-build-v161.log": "99157241931739a50c95935a9a289aa829bc432961835cef4a63ae079c5197a8"
+  }
+}

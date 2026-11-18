@@ -1,0 +1,2 @@
+# Checkpoint evidence is hashed as raw bytes, including original CRLF/spacing.
+docs/experiment-logs/2026-11-19-* -text -whitespace

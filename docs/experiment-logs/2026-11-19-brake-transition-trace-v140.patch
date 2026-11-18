@@ -1,0 +1,57 @@
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -28,7 +28,7 @@
+ #include <BenchBrake.h>
+ #include <TraceSample.h>
+ 
+-constexpr int kDiagVersion = 139;
++constexpr int kDiagVersion = 140;
+ enum class CurrentTrial { none, fixed015, fixed025, velocity, velocityCompensated, velocityRolling, velocityProbe, staticProbe, staticProbe10, velocityFastIntegral, velocityReverse, velocityCoverage, velocityLongWindow, velocityLowerFilter, velocityDense, velocityDenseLowerP, velocityHigherI, velocityHigherIReverse, velocityStrongerI, velocityStrongerIReverse, velocityHigherIDense, velocityStrongerIDense, velocityAdaptive, velocityAdaptiveZero, velocityResponseProbe, velocityResponseProbeInverse, velocityAdaptiveFlat, velocityHigherP, velocitySpeed2, velocitySpeed2LowerI, velocitySpeed2LowerP, velocitySpeed3LowerP, velocitySpeed2LowerFilter, velocitySpeed25LowerFilter, velocitySpeed3LowerFilter, velocitySpeed25HalfFilter, velocitySpeed25Dense, velocitySpeed2Dense, velocitySpeed25Adaptive, velocitySpeed25AdaptiveZero, velocitySpeed3Adaptive, velocitySpeed25SlowRamp, velocitySpeed60, velocitySpeed60CurrentFilter, velocitySpeed60LowGain, velocitySpeed60ModerateI, velocitySpeed60Balanced, velocitySpeed60Damped, velocitySpeed60HalfCurrent, velocitySpeed60MidP, velocitySpeed60Edge, velocitySpeed60EdgeCycles, velocitySpeed60EdgeLowerP, velocitySpeed60EdgeFast, velocitySpeed60EdgeTracking, velocitySpeed60EdgeTrackingLowerP, velocitySpeed60EdgeTracking5, velocitySpeed60EdgeTracking5CurrentI, velocitySpeed60Response, velocitySpeed60ResponseInverse, velocitySpeed60Adaptive14, benchPulse05, benchPulse10, benchJointPositive, benchJointNegative, benchCoast, benchBrakeActive };
+ constexpr int kEncoderPpr = 1000; // Two measured index intervals: 4000 signed counts each.
+ constexpr int kMotorPolePairs = 7; // Motor datasheet: 12N14P.
+@@ -1121,7 +1121,7 @@
+   }
+   if (benchBrakeTest) {
+     Serial.print("BENCH_BRAKE active=");Serial.print(benchBrake.active ? 1:0);
+-    Serial.println(" acceleration_iq_A=.22 acceleration_ramp_us=10000 zero_us=40000 trigger_velocity_rad_s=2 trigger_guard_rad_s=2 trigger_earliest_us=50000 acceleration_deadline_us=400000 brake_iq_A=-.20 brake_release_rad_s=.1 brake_duration_us=150000 trace_period_us=2000 position_limit_motor_rad=.418879 control_gap_us=5000 trace_layout=brake_ab_union");
++    Serial.println(" acceleration_iq_A=.22 acceleration_ramp_us=10000 zero_us=40000 trigger_velocity_rad_s=2 trigger_guard_rad_s=2 trigger_earliest_us=50000 acceleration_deadline_us=400000 brake_iq_A=-.20 brake_release_rad_s=.1 brake_duration_us=150000 trace_period_us=2000 position_limit_motor_rad=.418879 control_gap_us=5000 trace_layout=brake_ab_union transition_trace=forced");
+   }
+   if (benchPositionTest) {
+     Serial.print("BENCH_JOINT direction=");Serial.print(benchJoint.direction);
+@@ -1498,6 +1498,7 @@
+     } else if (currentIqTest) {
+       commandedVelocity = currentVelocityTest ? velocityReference(currentVelocityGoal,micros()-traceStartUs,currentSpeedRampUs) : 0;
+       const float appliedTarget = motor.current_sp;
++      const unsigned brakePhaseBefore=benchBrake.phase;
+       const bool firstBench=benchDriveTest && benchStartupPending;
+       if (firstBench) {
+         encoder.update();startAngle=encoder.getAngle();runStart=millis();beginTrace();
+@@ -1519,7 +1520,7 @@
+       motor.move(benchBrakeTest ? benchBrake.update(micros(),micros()-traceStartUs,static_cast<int>(motor.sensor_direction)*(encoder.getAngle()-startAngle),motor.shaft_velocity,encoder.guardVelocity*static_cast<int>(motor.sensor_direction)) : benchPositionTest ? benchJoint.update(micros(),micros()-traceStartUs,static_cast<int>(motor.sensor_direction)*(encoder.getAngle()-startAngle)/8,motor.shaft_velocity/8) : benchDriveTest ? BenchCurrentPulse::target(micros()-traceStartUs,benchPulseAmplitude) : currentVelocityTest ? commandedVelocity : nominalIqRamp(fixedIqGoal, micros() - traceStartUs));
+       if (benchBrakeTest && benchBrake.coast()) {if(motor.enabled)motor.disable();motor.current_sp=motor.voltage.q=motor.voltage.d=0;}
+       measuredVelocity = motor.shaft_velocity;
+-      if (firstBench) recordTrace(true,motor.voltage.q);
++      if (firstBench || (benchBrakeTest && brakePhaseBefore<2 && benchBrake.phase==2)) recordTrace(true,motor.voltage.q);
+     } else {
+       commandedVelocity = fixedUqTest > 0 ? 0.0f : kTargetVelocity;
+       motor.loopFOC();
+--- a/tools/bench_metadata.py
++++ b/tools/bench_metadata.py
+@@ -23,5 +23,5 @@
+ 
+ def verify_bench_brake(line,command):
+     active=1 if command=='-' else 0
+-    expected=f'BENCH_BRAKE active={active} acceleration_iq_A=.22 acceleration_ramp_us=10000 zero_us=40000 trigger_velocity_rad_s=2 trigger_guard_rad_s=2 trigger_earliest_us=50000 acceleration_deadline_us=400000 brake_iq_A=-.20 brake_release_rad_s=.1 brake_duration_us=150000 trace_period_us=2000 position_limit_motor_rad=.418879 control_gap_us=5000 trace_layout=brake_ab_union'
++    expected=f'BENCH_BRAKE active={active} acceleration_iq_A=.22 acceleration_ramp_us=10000 zero_us=40000 trigger_velocity_rad_s=2 trigger_guard_rad_s=2 trigger_earliest_us=50000 acceleration_deadline_us=400000 brake_iq_A=-.20 brake_release_rad_s=.1 brake_duration_us=150000 trace_period_us=2000 position_limit_motor_rad=.418879 control_gap_us=5000 trace_layout=brake_ab_union transition_trace=forced'
+     if line!=expected:raise RuntimeError('Bench braking bounds/mode mismatch; stopping')
+--- a/test/bench_metadata.py
++++ b/test/bench_metadata.py
+@@ -27,7 +27,7 @@
+ for command,active in (('#',0),('-',1)):
+     suffix=PROFILE_SUFFIX.replace('iq_limit_nominal_A=.15','iq_limit_nominal_A=.22').replace('pulse_duration_us=300000 trace_period_us=1000','pulse_duration_us=0 trace_period_us=2000')
+     verify_bench_profile('BENCH_PROFILE kind=brake amplitude_nominal_A=0.000'+suffix,command)
+-    line=f'BENCH_BRAKE active={active} acceleration_iq_A=.22 acceleration_ramp_us=10000 zero_us=40000 trigger_velocity_rad_s=2 trigger_guard_rad_s=2 trigger_earliest_us=50000 acceleration_deadline_us=400000 brake_iq_A=-.20 brake_release_rad_s=.1 brake_duration_us=150000 trace_period_us=2000 position_limit_motor_rad=.418879 control_gap_us=5000 trace_layout=brake_ab_union'
++    line=f'BENCH_BRAKE active={active} acceleration_iq_A=.22 acceleration_ramp_us=10000 zero_us=40000 trigger_velocity_rad_s=2 trigger_guard_rad_s=2 trigger_earliest_us=50000 acceleration_deadline_us=400000 brake_iq_A=-.20 brake_release_rad_s=.1 brake_duration_us=150000 trace_period_us=2000 position_limit_motor_rad=.418879 control_gap_us=5000 trace_layout=brake_ab_union transition_trace=forced'
+     verify_bench_brake(line,command)
+     try:verify_bench_brake(line.replace('trigger_guard_rad_s=2','trigger_guard_rad_s=1'),command)
+     except RuntimeError:pass

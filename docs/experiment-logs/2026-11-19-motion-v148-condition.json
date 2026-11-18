@@ -1,0 +1,24 @@
+{
+  "version": 148,
+  "rpm": 40,
+  "shape": 0,
+  "supply_V": 11.1,
+  "input_current_limit_A": 0.8,
+  "build_flags": "-DDIAG_PWM_HZ=12500 -DHAL_OPAMP_MODULE_ENABLED -DBENCH_MOTION_RPM=40 -DBENCH_MOTION_SHAPE=0",
+  "snapshot_directory": ".pio\\motion-v148-snapshot",
+  "sha256": {
+    "src/main.cpp": "8e54e05d0267be501f91af6ae88b6a3d143fcc46d4df9cb524492c5a874cd9ea",
+    "include/BenchMotion.h": "44f69b0fd8be45a4afae84f14f5b0ee30686e0ff98b8f49734f0c21be46787b5",
+    "include/BenchMotionStats.h": "f044809c7f00491997b356001608aec758265f18b50e1b7897f7a7750fc5f827",
+    "include/BenchJoint.h": "3f135c229712da647acf921a46671e88e6d17ae8c5f0614249fdbc8f2a382688",
+    "include/BenchCurrentGuard.h": "8c815ff9b13d2b694a6f6ac6dbd1075acb0feaca9391e12fc2cf41f1ab37a469",
+    "include/BoundedBLDCMotor.h": "ae4fba4d6e4aa3f5864070497f28d6f31312583a326646107be8547539b6d205",
+    "include/TrackingCurrentPI.h": "df67f14315c01a75c5c8f2f3b87f013c714c40879e90b7545f9830db4eeac4bd",
+    "include/TraceSample.h": "b61c31bf8cdb8c4683253217e7a25ecf907759593ad818045b7d8d0cd0591b8b",
+    ".pio/observer-build/disco_b_g431b_esc1/firmware.elf": "fcc56538112166b99b8ffd2dcfbd7ef9e950e33da0d223afc3d105c9165a24ee",
+    ".pio/observer-build/disco_b_g431b_esc1/firmware.bin": "ecb1a8fdc8c6e275db10780b4ab95479a28934fc80c03ee6526f00737f599f7c",
+    "tools/capture_motion.py": "e3df34655def2ea96c983f33542edbc30a3f30ae7d35709acc7cf68fc6842d46",
+    "tools/motion_profile.py": "ac11e9a1401e08a698be862e38007a166667fd0c3b6336289b281defceb32d1e",
+    "tools/analyze_motion.py": "8d1dfc7981b75d5687780158707622adc5c14cd803fc47916989580ccaf1907d"
+  }
+}

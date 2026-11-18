@@ -1,0 +1,27 @@
+Processing disco_b_g431b_esc1 (platform: ststm32@20.0.0; board: disco_b_g431b_esc1; framework: arduino)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/ststm32/disco_b_g431b_esc1.html
+PLATFORM: ST STM32 (20.0.0) > ST B-G431B-ESC1 Discovery
+HARDWARE: STM32G431CBU6 170MHz, 32KB RAM, 128KB Flash
+DEBUG: Current (stlink) On-board (stlink) External (blackmagic, cmsis-dap, jlink)
+PACKAGES: 
+ - framework-arduinoststm32 @ 4.21200.0 (2.12.0) 
+ - framework-cmsis @ 2.60300.0 (6.3.0) 
+ - framework-cmsis-dsp @ 1.16.2 
+ - toolchain-gccarmnoneeabi @ 1.120301.0 (12.3.1)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 15 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- Simple FOC @ 2.4.0
+Building in release mode
+Compiling .pio\observer-build\disco_b_g431b_esc1\src\main.cpp.o
+Linking .pio\observer-build\disco_b_g431b_esc1\firmware.elf
+Checking size .pio\observer-build\disco_b_g431b_esc1\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [========= ]  95.0% (used 31116 bytes from 32768 bytes)
+Flash: [========= ]  94.0% (used 123252 bytes from 131072 bytes)
+Building .pio\observer-build\disco_b_g431b_esc1\firmware.bin
+========================= [SUCCESS] Took 7.00 seconds =========================

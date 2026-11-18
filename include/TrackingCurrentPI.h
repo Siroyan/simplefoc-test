@@ -10,6 +10,7 @@ class TrackingCurrentPI {
   float P = .20f, I = 50.0f;
   float trackingTimeS=0; // Zero preserves the original instantaneous tracking.
   bool invalid = false;
+  uint32_t elapsedUs() const {return lastElapsedUs;}
   void reset(uint32_t now) {
     previousUs = now; lastElapsedUs=0;integral = error = requested = 0; invalid = false;
   }

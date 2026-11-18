@@ -1,0 +1,16 @@
+{
+  "scope": "Virtual serial and virtual clock only; no board/reset/upload/drive access. Does not certify physical high-speed stop.",
+  "scenarios": 10,
+  "configurations": 3,
+  "all_30_passed": true,
+  "active_firmware_source_and_elf_unchanged": 153,
+  "sha256": {
+    "tools/capture_motion.py": "a21569b08ae159b9b6bd7794c1cc5aa0ac3ac7c02199f5b7ba095e65ba06f942",
+    "test/motion_capture_protocol.py": "df7cd2557e4c4a8b8c704bb573640387088ea4eba75f16d7217b70d69a6efecc",
+    ".pio/mrange153/tools/capture_motion.py": "a21569b08ae159b9b6bd7794c1cc5aa0ac3ac7c02199f5b7ba095e65ba06f942",
+    ".pio/mrange154/tools/capture_motion.py": "a21569b08ae159b9b6bd7794c1cc5aa0ac3ac7c02199f5b7ba095e65ba06f942",
+    "docs/experiment-logs/2026-11-19-motion-stop-protocol-current.txt": "8b745d0733551db582f69813da18f8ff6fa041c04c4e603a4b1f94e202f92578",
+    "docs/experiment-logs/2026-11-19-motion-stop-protocol-proposal160.txt": "8b745d0733551db582f69813da18f8ff6fa041c04c4e603a4b1f94e202f92578",
+    "docs/experiment-logs/2026-11-19-motion-stop-protocol-proposal161.txt": "8b745d0733551db582f69813da18f8ff6fa041c04c4e603a4b1f94e202f92578"
+  }
+}

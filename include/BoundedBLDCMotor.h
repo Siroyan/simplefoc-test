@@ -10,6 +10,7 @@ class BoundedBLDCMotor : public BLDCMotor {
   bool vectorBoundEnabled = false;
   bool asymmetricCurrentVoltage = false;
   bool trackingCurrentControl = false;
+  bool lastVectorLimited=false,lastSlewLimited=false;
   TrackingCurrentPI qPI, dPI;
   MagnitudeSlew qSlew{30.0f}, dSlew{3.0f};
   VoltageVectorBound vectorBound;
@@ -39,13 +40,16 @@ class BoundedBLDCMotor : public BLDCMotor {
         d = dPI.request(-current.d, now);
         if (qPI.invalid || dPI.invalid) vectorBound.invalid = true;
       }
-      const float qRequested=q;
+      const float qRequested=q,dRequested=d;
       vectorBound.apply(q, d, angle, voltage_limit);
       q = vectorBound.q; d = vectorBound.d; angle = vectorBound.angle;
+      lastVectorLimited=std::abs(qRequested-q)>1e-6f || std::abs(dRequested-d)>1e-6f;
       const float qBeforeSlew=q;
+      const float dBeforeSlew=d;
       if (asymmetricCurrentVoltage && !vectorBound.invalid) {
         q = qSlew.update(q, now); d = dSlew.update(d, now);
       }
+      lastSlewLimited=std::abs(qBeforeSlew-q)>1e-6f || std::abs(dBeforeSlew-d)>1e-6f;
       if (trackingCurrentControl) { qPI.track(q); dPI.track(d); }
       if (trackingCurrentControl) actuatorStats.record(now,qRequested,qBeforeSlew,q,current_sp-current.q);
       voltage.q = q; voltage.d = d; // Log the applied vector, not the pre-limit request.

@@ -1,0 +1,10 @@
+{
+  "coast": "docs/experiment-logs/2026-11-19-bench-coast-v133-01.log",
+  "active": "docs/experiment-logs/2026-11-19-bench-active-brake-v133-01.log",
+  "speed_relative_difference": 0.18291580680986239,
+  "guard_relative_difference": 0.21914147970517212,
+  "normalized_forward_20ms_ratio": null,
+  "opposition_samples": 4,
+  "pass": false,
+  "scope": "Bare-motor low-energy comparison only; not a calibrated torque or loaded landing/regen qualification."
+}

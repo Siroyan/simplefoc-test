@@ -1,0 +1,66 @@
+--- a/include/BenchCurrentGuard.h
++++ b/include/BenchCurrentGuard.h
+@@ -18,7 +18,7 @@
+        (driving&&(!std::isfinite(iq)||!std::isfinite(id)))){fault=nonfinite;return false;}
+     const float phase=std::max(std::abs(a),std::max(std::abs(b),std::abs(c)));
+     peakPhase=std::max(peakPhase,phase);
+-    const float phaseLimit=driving ? .35f:2.2f; // Free-motor .7V alignment measured ~1.73A in saved survey.
++    const float phaseLimit=driving ? .60f:2.2f; // Free-motor .7V alignment measured ~1.73A in saved survey.
+     if(!frameValid || frame!=lastFrame){
+       frameValid=true;lastFrame=frame;
+       phaseFrames=phase>phaseLimit ? phaseFrames+1:0;
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -28,7 +28,7 @@
+ #include <BenchBrake.h>
+ #include <TraceSample.h>
+ 
+-constexpr int kDiagVersion = 136;
++constexpr int kDiagVersion = 137;
+ enum class CurrentTrial { none, fixed015, fixed025, velocity, velocityCompensated, velocityRolling, velocityProbe, staticProbe, staticProbe10, velocityFastIntegral, velocityReverse, velocityCoverage, velocityLongWindow, velocityLowerFilter, velocityDense, velocityDenseLowerP, velocityHigherI, velocityHigherIReverse, velocityStrongerI, velocityStrongerIReverse, velocityHigherIDense, velocityStrongerIDense, velocityAdaptive, velocityAdaptiveZero, velocityResponseProbe, velocityResponseProbeInverse, velocityAdaptiveFlat, velocityHigherP, velocitySpeed2, velocitySpeed2LowerI, velocitySpeed2LowerP, velocitySpeed3LowerP, velocitySpeed2LowerFilter, velocitySpeed25LowerFilter, velocitySpeed3LowerFilter, velocitySpeed25HalfFilter, velocitySpeed25Dense, velocitySpeed2Dense, velocitySpeed25Adaptive, velocitySpeed25AdaptiveZero, velocitySpeed3Adaptive, velocitySpeed25SlowRamp, velocitySpeed60, velocitySpeed60CurrentFilter, velocitySpeed60LowGain, velocitySpeed60ModerateI, velocitySpeed60Balanced, velocitySpeed60Damped, velocitySpeed60HalfCurrent, velocitySpeed60MidP, velocitySpeed60Edge, velocitySpeed60EdgeCycles, velocitySpeed60EdgeLowerP, velocitySpeed60EdgeFast, velocitySpeed60EdgeTracking, velocitySpeed60EdgeTrackingLowerP, velocitySpeed60EdgeTracking5, velocitySpeed60EdgeTracking5CurrentI, velocitySpeed60Response, velocitySpeed60ResponseInverse, velocitySpeed60Adaptive14, benchPulse05, benchPulse10, benchJointPositive, benchJointNegative, benchCoast, benchBrakeActive };
+ constexpr int kEncoderPpr = 1000; // Two measured index intervals: 4000 signed counts each.
+ constexpr int kMotorPolePairs = 7; // Motor datasheet: 12N14P.
+@@ -1117,7 +1117,7 @@
+     Serial.print(" amplitude_nominal_A=");Serial.print(benchDriveTest && !benchPositionTest && !benchBrakeTest ? benchPulseAmplitude:0,3);
+     Serial.print(benchBrakeTest ? " iq_limit_nominal_A=.22 vector_limit_V=.5 pulse_duration_us=" : benchPositionTest ? " iq_limit_nominal_A=.22 vector_limit_V=.5 pulse_duration_us=" : " iq_limit_nominal_A=.15 vector_limit_V=.5 pulse_duration_us=");Serial.print(benchPositionTest || benchBrakeTest ? 0:300000);
+     Serial.print(" trace_period_us=");Serial.print(benchBrakeTest ? 2000 : benchPositionTest ? 10000:1000);
+-    Serial.println(" run_phase_limit_A=.35 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.25 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc");
++    Serial.println(" run_phase_limit_A=.60 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.25 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc");
+   }
+   if (benchBrakeTest) {
+     Serial.print("BENCH_BRAKE active=");Serial.print(benchBrake.active ? 1:0);
+--- a/tools/bench_metadata.py
++++ b/tools/bench_metadata.py
+@@ -1,5 +1,5 @@
+ """Strict metadata for the standalone-motor bench; no hardware access."""
+-PROFILE_SUFFIX=' iq_limit_nominal_A=.15 vector_limit_V=.5 pulse_duration_us=300000 trace_period_us=1000 run_phase_limit_A=.35 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.25 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc'
++PROFILE_SUFFIX=' iq_limit_nominal_A=.15 vector_limit_V=.5 pulse_duration_us=300000 trace_period_us=1000 run_phase_limit_A=.60 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.25 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc'
+ 
+ def verify_bench_profile(line,command):
+     if command not in ('/','&','*',',','.','#','-'):raise ValueError('Unknown bench command')
+--- a/test/bench_current.cpp
++++ b/test/bench_current.cpp
+@@ -22,17 +22,17 @@
+   }
+   require(std::isnan(BenchCurrentPulse::target(50000,.15f)),"unapproved larger pulse rejected");
+   BenchCurrentGuard g;
+-  require(g.check(0,1,.4f,0,0,0,0,true),"first overcurrent frame");
+-  require(g.check(10,1,.4f,0,0,0,0,true),"same ADC frame cannot increment overcurrent counter");
+-  require(g.check(20,2,.4f,0,0,0,0,true),"second fresh frame");
+-  require(!g.check(30,3,.4f,0,0,0,0,true)&&g.fault==BenchCurrentGuard::phase_overcurrent,"third fresh frame faults");
++  require(g.check(0,1,.7f,0,0,0,0,true),"first overcurrent frame");
++  require(g.check(10,1,.7f,0,0,0,0,true),"same ADC frame cannot increment overcurrent counter");
++  require(g.check(20,2,.7f,0,0,0,0,true),"second fresh frame");
++  require(!g.check(30,3,.7f,0,0,0,0,true)&&g.fault==BenchCurrentGuard::phase_overcurrent,"third fresh frame faults");
+   require(!g.check(40,4,0,0,0,0,0,true),"fault latches");
+   g.reset();require(g.check(0,1,1.8f,0,0,NAN,NAN,false),"alignment phase limit and no pre-alignment dq assumption");
+   g.reset();require(g.check(0xfffffff0u,1,0,0,0,.3f,0,true),"dq timer starts");
+   require(!g.check(1984,2,0,0,0,.3f,0,true)&&g.fault==BenchCurrentGuard::dq_overcurrent,"dq timing works over clock wrap");
+   g.reset();require(!g.check(0,1,NAN,0,0,0,0,false),"invalid phase fails closed");
+   g.reset();require(!g.check(0,1,0,0,0,NAN,0,true),"invalid running dq fails closed");
+-  g.reset();g.check(0,1,.4f,0,0,0,0,true);g.check(1,2,0,0,0,0,0,true);
+-  require(g.check(2,3,.4f,0,0,0,0,true)&&g.phaseFrames==1,"healthy frame resets consecutive counter");
++  g.reset();g.check(0,1,.7f,0,0,0,0,true);g.check(1,2,0,0,0,0,0,true);
++  require(g.check(2,3,.7f,0,0,0,0,true)&&g.phaseFrames==1,"healthy frame resets consecutive counter");
+   std::cout<<"PASS: complete signed pulse timing, caps, alignment/run separation, fresh-frame and timed dq current guards, wrap/reset/nonfinite/latching\n";
+ }

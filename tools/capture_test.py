@@ -8,6 +8,7 @@ import time
 import serial
 from guard_peak import verify_guard_peak_config
 from current_tracking import verify_current_tracking
+from bench_metadata import verify_bench_profile,verify_bench_current_loop,verify_bench_joint,verify_bench_brake
 from speed_range import verify_speed_guard_config,verify_velocity_stats_config
 from edge_estimator import ESTIMATOR as EDGE_ESTIMATOR, verify_edge_estimator_config,verify_edge_clock_check
 from run_edge_log import verify_run_edge_config,verify_run_edge_active,verify_run_edge_observer,verify_run_edge_alignment,OPEN as RAW_OPEN,HIGH_OPEN as RAW_HIGH_OPEN,HIGH_ESTIMATOR,HIGH_DRIVE,FAST_DRIVE
@@ -123,7 +124,9 @@ def candidate_velocity_profile(command):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", required=True)
-    parser.add_argument("--command", choices=("t", "o", "a", "b", "d", "j", "k", "r", "n", "m", "f", "g", "w", "z", "y", "q", "Q", "C", "H", "L", "D", "E", "I", "R", "B", "S", "M", "N", "A", "Z", "T", "U", "F", "V", "W", "J", "K", "X", "Y", "O", "P", "2", "5", "6", "7", "8", "9", "0", "G", "1", "3", "4", "=", ">", "<", "~", "[", "]", "{", "}", "!", "+", "_", "@", "%", ":", ";", "(", ")", "?", "^", "e", "l", "p", "u", "v"), required=True)
+    parser.add_argument('--stop-after-ms',type=int,help='One live serial s after RUN BENCH JOINT; stop verification only')
+    parser.add_argument('--verify-drive-lock',action='store_true',help='After final stop, confirm the same drive command is rejected without reset')
+    parser.add_argument("--command", choices=("t", "o", "a", "b", "d", "j", "k", "r", "n", "m", "f", "g", "w", "z", "y", "q", "Q", "C", "H", "L", "D", "E", "I", "R", "B", "S", "M", "N", "A", "Z", "T", "U", "F", "V", "W", "J", "K", "X", "Y", "O", "P", "2", "5", "6", "7", "8", "9", "0", "G", "1", "3", "4", "=", ">", "<", "~", "[", "]", "{", "}", "!", "+", "_", "@", "%", ":", ";", "(", ")", "?", "^", "/", "&", "*", ",", ".", "#", "-", "e", "l", "p", "u", "v"), required=True)
     parser.add_argument("--current-limit", type=float, required=True,
                         help="User-confirmed supply current limit in A (metadata only)")
     parser.add_argument('--expect-response-hz',type=float,choices=(13.5,17.5),default=13.5,
@@ -133,12 +136,13 @@ def main():
     parser.add_argument("--expect-pwm-hz", type=int, choices=(25000, 12500),
                         help="Query c and verify timer period, clock and unchanged 800ns dead time before drive")
     args = parser.parse_args()
+    if args.stop_after_ms is not None and (args.command not in (",",".") or not 100<=args.stop_after_ms<=2000):parser.error("Live stop is limited to 100..2000ms in bench joint tests")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     # Exclusive creation prevents overwriting experiment evidence.
     with args.output.open("x", encoding="utf-8", buffering=1) as log:
         def record(line):
             if not args.quiet or line.startswith(("HOST", "STOP", "RUN", "ALIGN", "CONTROL", "PWM", "CONFIG",
-                                                  "LIMITER", "OUTPUT", "DRIVE", "CURRENT", "ADAPTIVE", "SENSE", "FIRMWARE", "ESTIMATOR", "EDGE_", "RUN_EDGE", "REFERENCE", "GUARD", "SPEED", "VELOCITY", "INDEX_REFERENCE", "ABI_QUALITY", "Rejected:", "ERROR:", "TRACE_END")):
+                                                  "LIMITER", "OUTPUT", "DRIVE", "CURRENT", "ADAPTIVE", "BENCH", "SENSE", "FIRMWARE", "ESTIMATOR", "EDGE_", "RUN_EDGE", "REFERENCE", "GUARD", "SPEED", "VELOCITY", "INDEX_REFERENCE", "ABI_QUALITY", "Rejected:", "ERROR:", "TRACE_END")):
                 print(line, flush=True)
             log.write(line + "\n")
 
@@ -167,6 +171,12 @@ def main():
         raw_high_estimator_confirmed=raw_high_drive_confirmed=False
         raw_alignment_confirmed=False
         tracking_config_confirmed=tracking_active_confirmed=False
+        bench_profile_confirmed=False
+        bench_joint_confirmed=False
+        bench_brake_confirmed=False
+        live_stop_deadline=None
+        live_stop_sent=False
+        bench_alignment_reported=bench_current_status_reported=False
         guard_peak_config_confirmed=False
         speed_guard_confirmed=velocity_stats_confirmed=False
         q_p = q_i = None
@@ -224,14 +234,36 @@ def main():
             sent = True
             off_rows = 0
             # j adds a 2s ADC zero calibration and a larger dump AFTER output OFF.
-            deadline = time.monotonic() + (35 if args.command in ("C","}","!","+") else 30 if args.command in ("j", "r", "n", "m", "f", "g", "w", "z", "y", "q", "Q", "H", "L", "D", "E", "I", "R", "B", "S", "M", "N", "A", "Z", "T", "U", "F", "V", "W", "J", "K", "X", "Y", "O", "P", "2", "5", "6", "7", "8", "9", "0", "G", "1", "3", "4", "=", ">", "<", "~", "[", "]", "{", "}", "!", "+", "_", "@", "%", ":", ";", "(", ")", "?", "^", "e", "l") else 25)
+            deadline = time.monotonic() + (35 if args.command in ("C","}","!","+") else 30 if args.command in ("j", "r", "n", "m", "f", "g", "w", "z", "y", "q", "Q", "H", "L", "D", "E", "I", "R", "B", "S", "M", "N", "A", "Z", "T", "U", "F", "V", "W", "J", "K", "X", "Y", "O", "P", "2", "5", "6", "7", "8", "9", "0", "G", "1", "3", "4", "=", ">", "<", "~", "[", "]", "{", "}", "!", "+", "_", "@", "%", ":", ";", "(", ")", "?", "^", "/", "&", "*", ",", ".", "#", "-", "e", "l") else 25)
             while time.monotonic() < deadline:
+                if live_stop_deadline is not None and not live_stop_sent and time.monotonic()>=live_stop_deadline:
+                    link.write(b's');link.flush();live_stop_sent=True;record('HOST live serial stop sent')
                 for line in read_lines():
-                    if args.command in ('@','%',':',';','(',')','?','^') and line.startswith('CURRENT_TRACKING '):
-                        verify_current_tracking(line,q_time=.005 if args.command in (':',';','(',')','?','^') else .002);tracking_config_confirmed=True
-                    if args.command in ('@','%',':',';','(',')','?','^') and line.startswith('CURRENT_TRACKING_ACTIVE '):
-                        verify_current_tracking(line,True,.005 if args.command in (':',';','(',')','?','^') else .002);tracking_active_confirmed=True
-                    if args.command in ('@','%',':',';','(',')','?','^') and line.startswith('RUN CURRENT VELOCITY:') and not (tracking_config_confirmed and tracking_active_confirmed):
+                    if args.command in ('/','&','*',',','.','#','-') and line.startswith('SENSE_BEGIN:'):
+                        raise RuntimeError('Bench command routed to ADC-only mode; stopping')
+                    if args.command in ('#','-') and line.startswith('BENCH_BRAKE '):
+                        verify_bench_brake(line,args.command);bench_brake_confirmed=True
+                    if args.command in ('#','-') and line.startswith('RUN BENCH BRAKE:') and not (bench_profile_confirmed and bench_brake_confirmed and tracking_config_confirmed and tracking_active_confirmed and active_filters_confirmed):
+                        raise RuntimeError('Missing actual braking controls; stopping')
+                    if args.command in (',','.') and line.startswith('BENCH_JOINT '):
+                        verify_bench_joint(line,args.command);bench_joint_confirmed=True
+                    if args.command in (',','.') and line.startswith('RUN BENCH JOINT:'):
+                        if not (bench_profile_confirmed and bench_joint_confirmed and tracking_config_confirmed and tracking_active_confirmed and active_filters_confirmed):
+                            raise RuntimeError('Missing actual bench joint metadata; stopping')
+                        if args.stop_after_ms is not None:live_stop_deadline=time.monotonic()+args.stop_after_ms/1000
+                    if args.command in ('/','&','*',',','.','#','-') and line.startswith('BENCH_PROFILE '):
+                        verify_bench_profile(line,args.command);bench_profile_confirmed=True
+                    if args.command in ('/','&','*',',','.','#','-') and line.startswith('BENCH_ALIGNMENT '):bench_alignment_reported=True
+                    if args.command in ('/','&','*',',','.','#','-') and line.startswith('BENCH_CURRENT_STATUS '):bench_current_status_reported=True
+                    if args.command in ('/','&',',','.','#','-') and line.startswith('CURRENT_LOOP '):
+                        verify_bench_current_loop(line)
+                    if args.command in ('/','&',',','.','#','-') and line.startswith('RUN BENCH CURRENT:') and not (bench_profile_confirmed and tracking_config_confirmed and tracking_active_confirmed and active_filters_confirmed):
+                        raise RuntimeError('Missing bench current profile or actual controls; stopping')
+                    if args.command in ('@','%',':',';','(',')','?','^','/','&',',','.','#','-') and line.startswith('CURRENT_TRACKING '):
+                        verify_current_tracking(line,q_time=.005 if args.command in (':',';','(',')','?','^','/','&',',','.','#','-') else .002);tracking_config_confirmed=True
+                    if args.command in ('@','%',':',';','(',')','?','^','/','&',',','.','#','-') and line.startswith('CURRENT_TRACKING_ACTIVE '):
+                        verify_current_tracking(line,True,.005 if args.command in (':',';','(',')','?','^','/','&',',','.','#','-') else .002);tracking_active_confirmed=True
+                    if args.command in ('@','%',':',';','(',')','?','^','/','&',',','.','#','-') and line.startswith('RUN CURRENT VELOCITY:') and not (tracking_config_confirmed and tracking_active_confirmed):
                         raise RuntimeError('Missing actual current tracking timing; stopping')
                     if args.command in ('}','!','+') and line.startswith('ALIGN_PROFILE '):
                         verify_run_edge_alignment(line);raw_alignment_confirmed=True
@@ -358,6 +390,8 @@ def main():
                             raise RuntimeError("Nonzero voltage command after stop")
                         off_rows += 1
                 if stopped and trace_end and off_rows >= 3 and (args.command not in ('}','!','+') or raw_end):
+                    if args.command in ('/','&','*',',','.','#','-') and not (bench_profile_confirmed and bench_alignment_reported and bench_current_status_reported):
+                        raise RuntimeError('Incomplete bench alignment/current-protection report')
                     record("HOST completed: STOP + TRACE_END + disabled telemetry confirmed")
                     return
                 if stopped and not trace_end and off_rows >= 3:
@@ -376,6 +410,22 @@ def main():
                         if line == "STOP: serial stop":
                             acknowledged = True
                 record(f"HOST final_stop_acknowledged={acknowledged}")
+                if acknowledged and args.verify_drive_lock:
+                    link.write(args.command.encode('ascii'));link.flush()
+                    rejected=False;deadline=time.monotonic()+2
+                    while time.monotonic()<deadline:
+                        for line in read_lines():
+                            if line=='Rejected: unavailable or already attempted; reset for another test.':rejected=True
+                            if line.startswith(('ALIGNING:','RUN BENCH')):
+                                link.write(b's');link.flush();raise RuntimeError('Drive lock did not reject repeat')
+                    record(f'HOST drive_lock_verified={rejected}')
+                    if not rejected:raise RuntimeError('Missing drive lock rejection')
+                    link.write(b'c');link.flush();gates_off=False;deadline=time.monotonic()+2
+                    while time.monotonic()<deadline:
+                        for line in read_lines():
+                            if line.startswith('PWM ') and 'gate_inputs_low=1' in line:gates_off=True
+                    record(f'HOST gate_off_verified={gates_off}')
+                    if not gates_off:raise RuntimeError('No output-OFF gate register confirmation')
                 link.close()
 
 

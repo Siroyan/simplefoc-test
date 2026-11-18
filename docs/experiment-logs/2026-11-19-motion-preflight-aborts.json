@@ -1,0 +1,14 @@
+{
+  "records": [
+    {
+      "log": "docs/experiment-logs/2026-11-19-motion-sharp60-positive-v161-01.log",
+      "classification": "host_preflight_abort_before_position_or_alignment_sweep",
+      "reason": "Source PROFILE .45/.50 but equal-size same-mtime copy2 left stale .30/.50 Python bytecode; raw log preserved.",
+      "recovery_log": "docs/experiment-logs/2026-11-19-motion-range-v161-recovery-idle-01.log",
+      "position_motion_started": false,
+      "first_foc_elapsed_us": 0,
+      "final_stop_acknowledged_in_capture": false,
+      "recovery_stop_acknowledged": true
+    }
+  ]
+}

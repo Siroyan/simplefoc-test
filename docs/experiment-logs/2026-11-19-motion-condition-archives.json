@@ -1,0 +1,20 @@
+{
+  "archive": "docs\\experiment-logs\\2026-11-19-motion-condition-archives.zip",
+  "sha256": "cb44c3cd0414af29b75d423d776206f25f92fe721a16b10aea2923a75e411ee3",
+  "conditions": [
+    "2026-11-19-motion-v143-condition.json",
+    "2026-11-19-motion-v144-condition.json",
+    "2026-11-19-motion-v145-condition.json",
+    "2026-11-19-motion-v146-condition.json",
+    "2026-11-19-motion-v147-condition.json",
+    "2026-11-19-motion-v148-condition.json",
+    "2026-11-19-motion-v149-condition.json",
+    "2026-11-19-motion-v150-condition.json",
+    "2026-11-19-motion-v151-condition.json",
+    "2026-11-19-motion-v152-condition.json",
+    "2026-11-19-motion-v153-condition.json",
+    "2026-11-19-motion-v160-condition.json",
+    "2026-11-19-motion-v161-condition.json"
+  ],
+  "scope": "Exact per-version snapshots originally in ignored .pio; includes all condition-manifest source/header/ELF/bin/tool hashes."
+}

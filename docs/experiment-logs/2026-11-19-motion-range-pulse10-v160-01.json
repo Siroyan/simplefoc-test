@@ -1,0 +1,107 @@
+{
+  "analysis_version": 2,
+  "log": "docs\\experiment-logs\\2026-11-19-motion-range-pulse10-v160-01.log",
+  "stop": "STOP: bench pulse sequence complete",
+  "profile": {
+    "amplitude_nominal_A": 0.1,
+    "iq_limit_nominal_A": 0.15,
+    "vector_limit_V": 0.5,
+    "pulse_duration_us": 300000.0,
+    "trace_period_us": 1000.0,
+    "run_phase_limit_A": 0.6,
+    "align_phase_limit_A": 2.2,
+    "phase_frames": 3.0,
+    "dq_limit_A": 0.5,
+    "dq_delay_us": 2000.0,
+    "align_deadline_us": 18000000.0,
+    "motor_only": 1.0,
+    "ratio_for_analysis": 8.0
+  },
+  "alignment": {
+    "origin_motor_rad": 0.0,
+    "initial_pull_complete": 1.0,
+    "initial_pull_motor_rad": -0.150796,
+    "minimum_delta_motor_rad": -0.15708,
+    "maximum_delta_motor_rad": 2.541548,
+    "peak_phase_nominal_A": 1.782835
+  },
+  "alignment_joint_degrees": {
+    "initial_pull_motor_rad": -1.0799967959318453,
+    "minimum_delta_motor_rad": -1.1250026307393715,
+    "maximum_delta_motor_rad": 18.20249672873942
+  },
+  "alignment_check_pass": true,
+  "guard": {
+    "fault": 0.0,
+    "peak_phase_nominal_A": 0.21454,
+    "peak_iq_nominal_A": 0.118507,
+    "peak_id_nominal_A": 0.060548
+  },
+  "abi": {
+    "callbacks": 3568.0,
+    "invalid": 0.0,
+    "duplicate": 0.0,
+    "net_signed_count": -100.0
+  },
+  "samples": 291,
+  "duration_us": 300075.0,
+  "first_sample_us": 76.0,
+  "vbus_min_V": 11.17388916015625,
+  "vbus_max_V": 11.1989990234375,
+  "max_vector_V": 0.08660456293406255,
+  "max_abs_iq_A": 0.113762,
+  "max_abs_id_A": 0.060548,
+  "max_adc_age_us": 1154.0,
+  "complete": true,
+  "pulses": [
+    {
+      "nominal_onset_us": 40000,
+      "sign": 1,
+      "samples": 19,
+      "pass": true,
+      "actual_onset_us": 40894.0,
+      "t90_us": 6241.0,
+      "late_mean_iq_A": 0.1053846,
+      "late_mean_error_A": -0.005384599999999989,
+      "vector_limited_samples": 0,
+      "slew_limited_samples": 7
+    },
+    {
+      "nominal_onset_us": 110000,
+      "sign": -1,
+      "samples": 19,
+      "pass": true,
+      "actual_onset_us": 110610.0,
+      "t90_us": 6146.0,
+      "late_mean_iq_A": -0.0968506,
+      "late_mean_error_A": -0.0031494000000000105,
+      "vector_limited_samples": 0,
+      "slew_limited_samples": 8
+    },
+    {
+      "nominal_onset_us": 180000,
+      "sign": 1,
+      "samples": 19,
+      "pass": true,
+      "actual_onset_us": 180556.0,
+      "t90_us": 9341.0,
+      "late_mean_iq_A": 0.1037764,
+      "late_mean_error_A": -0.003776399999999999,
+      "vector_limited_samples": 0,
+      "slew_limited_samples": 7
+    },
+    {
+      "nominal_onset_us": 250000,
+      "sign": -1,
+      "samples": 19,
+      "pass": true,
+      "actual_onset_us": 250366.0,
+      "t90_us": 6149.0,
+      "late_mean_iq_A": -0.0939765,
+      "late_mean_error_A": -0.006023500000000001,
+      "vector_limited_samples": 0,
+      "slew_limited_samples": 13
+    }
+  ],
+  "pass": true
+}

@@ -1,0 +1,47 @@
+{
+  "log": "docs/experiment-logs/2026-11-19-bench-alignment-v121-01.log",
+  "stop": "STOP: alignment survey complete",
+  "profile": {
+    "amplitude_nominal_A": 0.0,
+    "iq_limit_nominal_A": 0.15,
+    "vector_limit_V": 0.5,
+    "pulse_duration_us": 300000.0,
+    "trace_period_us": 1000.0,
+    "run_phase_limit_A": 0.35,
+    "align_phase_limit_A": 2.2,
+    "phase_frames": 3.0,
+    "dq_limit_A": 0.25,
+    "dq_delay_us": 2000.0,
+    "align_deadline_us": 18000000.0,
+    "motor_only": 1.0,
+    "ratio_for_analysis": 8.0
+  },
+  "alignment": {
+    "origin_motor_rad": 0.0,
+    "initial_pull_complete": 1.0,
+    "initial_pull_motor_rad": 0.0,
+    "minimum_delta_motor_rad": 0.0,
+    "maximum_delta_motor_rad": 2.671925,
+    "peak_phase_nominal_A": 1.805345
+  },
+  "alignment_joint_degrees": {
+    "initial_pull_motor_rad": 0.0,
+    "minimum_delta_motor_rad": 0.0,
+    "maximum_delta_motor_rad": 19.13625320943656
+  },
+  "alignment_check_pass": true,
+  "guard": {
+    "fault": 0.0,
+    "peak_phase_nominal_A": 1.805345,
+    "peak_iq_nominal_A": 0.0,
+    "peak_id_nominal_A": 0.0
+  },
+  "abi": {
+    "callbacks": 3402.0,
+    "invalid": 0.0,
+    "duplicate": 0.0,
+    "net_signed_count": 8.0
+  },
+  "alignment_samples": 305,
+  "pass": true
+}
