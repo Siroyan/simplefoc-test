@@ -3,6 +3,7 @@ import argparse,csv,hashlib,json,re,zipfile
 from pathlib import Path
 from analyze_motion import analyze_motion
 from analyze_bench import analyze
+from verify_motion_stop import verify_stop
 
 def recovered_preflight(root,path,entry):
     text=path.read_text(encoding='utf-8');recovery=root/entry['recovery_log'];off=recovery.read_text(encoding='utf-8')
@@ -25,17 +26,23 @@ def verify_condition(root,data):
         for name,h in data['sha256'].items():
             if digest(directory/Path(name).name)!=h:raise ValueError('Archived condition hash mismatch')
     else:
-        with zipfile.ZipFile(archive) as z:
-            for name,h in data['sha256'].items():
-                key=str(relative.relative_to('.pio')/Path(name.replace('\\','/')).name).replace('\\','/')
-                if hashlib.sha256(z.read(key)).hexdigest()!=h:raise ValueError('Portable condition archive hash mismatch')
+        candidates=sorted((root/'docs/experiment-logs').glob('20??-??-??-motion-condition-archives.zip'))
+        for archive in candidates:
+            with zipfile.ZipFile(archive) as z:
+                keys={name:str(relative.relative_to('.pio')/Path(name.replace('\\','/')).name).replace('\\','/') for name in data['sha256']}
+                if not all(key in z.namelist() for key in keys.values()):continue
+                for name,h in data['sha256'].items():
+                    if hashlib.sha256(z.read(keys[name])).hexdigest()!=h:raise ValueError('Portable condition archive hash mismatch')
+                return
+        raise ValueError('Missing condition snapshot and portable archive')
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--csv',required=True);args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--csv',required=True);p.add_argument('--date');args=p.parse_args()
     root=Path(__file__).resolve().parents[1];records=[]
-    registry=root/'docs/experiment-logs/2026-11-19-motion-preflight-aborts.json'
-    exceptions={v['log']:v for v in json.loads(registry.read_text(encoding='utf-8'))['records']} if registry.exists() else {}
-    for path in sorted((root/'docs/experiment-logs').glob('2026-11-19-motion-*.log')):
+    exceptions={}
+    for registry in (root/'docs/experiment-logs').glob('20??-??-??-motion-preflight-aborts.json'):
+        exceptions.update({v['log']:v for v in json.loads(registry.read_text(encoding='utf-8'))['records']})
+    for path in sorted((root/'docs/experiment-logs').glob(f'{args.date or "20??-??-??"}-motion-*.log')):
         text=path.read_text(encoding='utf-8')
         if 'HOST sending one command=' not in text:continue
         key=str(path.relative_to(root)).replace('\\','/')
@@ -43,12 +50,15 @@ def main():
         else:
             if 'HOST final_stop_acknowledged=True' not in text.splitlines():raise ValueError(f'Unfinished motion capture: {path.name}')
             pulse='BENCH_PROFILE kind=current_pulse ' in text
-            result=analyze(path) if pulse else analyze_motion(path)
-            result['kind']='current_pulse' if pulse else 'motion';result['final_stop_acknowledged']=True
+            stop_test='HOST live serial stop sent' in text
+            result=verify_stop(path) if stop_test else analyze(path) if pulse else analyze_motion(path)
+            result['kind']='serial_stop_test' if stop_test else 'current_pulse' if pulse else 'motion';result['final_stop_acknowledged']=True
         result['log']=str(path.relative_to(root));result['sha256']=hashlib.sha256(path.read_bytes()).hexdigest()
         result['firmware_version']=int(re.search(r'FIRMWARE diag_version=(\d+)',text)[1])
         if result['kind']=='motion':result['profile_text']=next(s for s in text.splitlines() if s.startswith('BENCH_MOTION '))
-        condition=root/f"docs/experiment-logs/2026-11-19-motion-v{result['firmware_version']}-condition.json"
+        conditions=list((root/'docs/experiment-logs').glob(f"20??-??-??-motion-v{result['firmware_version']}-condition.json"))
+        if len(conditions)!=1:raise ValueError('Missing/ambiguous firmware condition')
+        condition=conditions[0]
         condition_data=json.loads(condition.read_text(encoding='utf-8'));verify_condition(root,condition_data)
         result['condition']=str(condition.relative_to(root))
         records.append(result)

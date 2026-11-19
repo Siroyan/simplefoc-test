@@ -1,4 +1,8 @@
 #pragma once
+#ifdef BENCH_HIGH_SPEED_RPM
+#include <BenchHighSpeedMotion.h>
+using BenchMotion = BenchHighSpeedMotion;
+#else
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
@@ -74,3 +78,4 @@ class BenchMotion {
   static float clip(float v,float l){return std::max(-l,std::min(l,v));}
   float fail(Fault f){invalid=true;fault=f;return currentTarget=0;}
 };
+#endif

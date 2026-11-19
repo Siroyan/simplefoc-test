@@ -1,0 +1,8 @@
+PASS high-speed rpm=120: signed waveform, nonzero takeoff, separate brake, 3s/SRAM bounds, current/velocity caps, clock wrap and each fault
+PASS high-speed rpm=240: signed waveform, nonzero takeoff, separate brake, 3s/SRAM bounds, current/velocity caps, clock wrap and each fault
+PASS high-speed rpm=360: signed waveform, nonzero takeoff, separate brake, 3s/SRAM bounds, current/velocity caps, clock wrap and each fault
+PASS high-speed rpm=600: signed waveform, nonzero takeoff, separate brake, 3s/SRAM bounds, current/velocity caps, clock wrap and each fault
+PASS high-speed rpm=1200: signed waveform, nonzero takeoff, separate brake, 3s/SRAM bounds, current/velocity caps, clock wrap and each fault
+PASS high-speed rpm=2400: signed waveform, nonzero takeoff, separate brake, 3s/SRAM bounds, current/velocity caps, clock wrap and each fault
+PASS high-speed rpm=3733: signed waveform, nonzero takeoff, separate brake, 3s/SRAM bounds, current/velocity caps, clock wrap and each fault
+PASS motion rpm=60 shape=1: waveform, whole trace, caps, wraps and independent faults

@@ -1,0 +1,138 @@
+{
+  "analysis_version": 2,
+  "log": "docs\\experiment-logs\\2026-11-20-fast-240-positive-v173-01.log",
+  "stop": "STOP: bench motion sequence complete",
+  "profile": {
+    "amplitude_nominal_A": 0.0,
+    "iq_limit_nominal_A": 0.4,
+    "vector_limit_V": 0.7,
+    "pulse_duration_us": 0.0,
+    "trace_period_us": 10000.0,
+    "run_phase_limit_A": 0.6,
+    "align_phase_limit_A": 2.2,
+    "phase_frames": 3.0,
+    "dq_limit_A": 0.5,
+    "dq_delay_us": 2000.0,
+    "align_deadline_us": 18000000.0,
+    "motor_only": 1.0,
+    "ratio_for_analysis": 8.0
+  },
+  "alignment": {
+    "origin_motor_rad": 0.0,
+    "initial_pull_complete": 1.0,
+    "initial_pull_motor_rad": -0.400553,
+    "minimum_delta_motor_rad": -0.442965,
+    "maximum_delta_motor_rad": 2.28865,
+    "peak_phase_nominal_A": 1.830215
+  },
+  "alignment_joint_degrees": {
+    "initial_pull_motor_rad": -2.868749546412958,
+    "minimum_delta_motor_rad": -3.1725031215015638,
+    "maximum_delta_motor_rad": 16.39124822282698
+  },
+  "alignment_check_pass": true,
+  "guard": {
+    "fault": 0.0,
+    "peak_phase_nominal_A": 0.578385,
+    "peak_iq_nominal_A": 0.475158,
+    "peak_id_nominal_A": 0.126717
+  },
+  "abi": {
+    "callbacks": 12000.0,
+    "invalid": 0.0,
+    "duplicate": 0.0,
+    "net_signed_count": 7958.0
+  },
+  "samples": 288,
+  "duration_us": 1527836.0,
+  "first_sample_us": 86.0,
+  "vbus_min_V": 11.17388916015625,
+  "vbus_max_V": 11.207368977864583,
+  "max_vector_V": 0.6093254039681917,
+  "max_abs_iq_A": 0.430484,
+  "max_abs_id_A": 0.117722,
+  "max_adc_age_us": 1115.0,
+  "kind": "fast_motion",
+  "motion": {
+    "direction": 1.0,
+    "rpm": 240.0,
+    "shape": 2.0,
+    "move_us": 777778.0,
+    "duration_us": 1527778.0,
+    "speed_limit_rad_s": 32.159282,
+    "peak_motor_rad_s": 25.132734,
+    "final_joint_deg": 92.499992,
+    "position_limit_joint_deg": 97.499992,
+    "amplitude_motor_deg": 560.0,
+    "initial_us": 100000.0,
+    "brake_us": 250000.0,
+    "final_us": 400000.0,
+    "absolute_error_limit_joint_deg": 3.0,
+    "error_limit_joint_deg": 1.0,
+    "error_delay_us": 20000.0,
+    "control_period_us": 250.0,
+    "control_gap_us": 1000.0,
+    "position_P": 30.0,
+    "velocity_P": 0.12,
+    "velocity_I": 1.2,
+    "hold_enter_deg": 0.05,
+    "hold_exit_deg": 0.075
+  },
+  "voltage_limit_V": 0.7,
+  "whole_trace": true,
+  "normal_complete": true,
+  "advance_candidate": true,
+  "moving": [
+    {
+      "phase": 1,
+      "FOC_samples": 7552,
+      "max_error_joint_deg": 0.6022359384620083,
+      "rms_error_joint_deg": 0.1861420832910861,
+      "rms_iq_error_nominal_A": 0.1079102264032194,
+      "peak_motor_rpm": 293.5605222230764,
+      "vector_limited_fraction": 0.009269067796610169,
+      "slew_limited_fraction": 0.6430084745762712,
+      "near_iq_limit_fraction": 0.12910487288135594,
+      "max_vector_V": 0.657932,
+      "vbus_min_V": 11.17389,
+      "vbus_max_V": 11.20737
+    },
+    {
+      "phase": 3,
+      "FOC_samples": 2355,
+      "max_error_joint_deg": 0.6776314547232734,
+      "rms_error_joint_deg": 0.36580969091243026,
+      "rms_iq_error_nominal_A": 0.11918894863915448,
+      "peak_motor_rpm": 278.3169800836208,
+      "vector_limited_fraction": 0.0118895966029724,
+      "slew_limited_fraction": 0.6386411889596603,
+      "near_iq_limit_fraction": 0.15796178343949044,
+      "max_vector_V": 0.656702,
+      "vbus_min_V": 11.17389,
+      "vbus_max_V": 11.20737
+    }
+  ],
+  "takeoff": {
+    "samples": 3,
+    "window_us": 14583,
+    "reached": true,
+    "mean_motor_rpm": 231.9331626802119,
+    "reference_mean_motor_rpm": 239.92116663747362,
+    "achieved_fraction": 0.9667057139258922,
+    "max_error_joint_deg": 0.5884276555993555
+  },
+  "hold": {
+    "samples": 16,
+    "reached": true,
+    "max_error_joint_deg": 0.1262481501717474,
+    "peak_to_peak_joint_deg": 0.02251724134863764,
+    "max_abs_motor_rpm": 2.0458413004804594
+  },
+  "control": {
+    "control_updates": 5165.0,
+    "max_control_gap_us": 378.0,
+    "fault": 0.0
+  },
+  "inside_position_envelope": true,
+  "scope": "Bare motor acceleration/braking with same-ABI motor/8 angle and nominal currents; not loaded takeoff or jump validation."
+}

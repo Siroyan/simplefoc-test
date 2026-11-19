@@ -1,0 +1,8 @@
+﻿PASS motion rpm=10 shape=0: waveform, whole trace, caps, wraps and independent faults
+PASS motion rpm=10 shape=1: waveform, whole trace, caps, wraps and independent faults
+PASS motion rpm=20 shape=0: waveform, whole trace, caps, wraps and independent faults
+PASS motion rpm=20 shape=1: waveform, whole trace, caps, wraps and independent faults
+PASS motion rpm=40 shape=0: waveform, whole trace, caps, wraps and independent faults
+PASS motion rpm=40 shape=1: waveform, whole trace, caps, wraps and independent faults
+PASS motion rpm=60 shape=0: waveform, whole trace, caps, wraps and independent faults
+PASS motion rpm=60 shape=1: waveform, whole trace, caps, wraps and independent faults

@@ -1,0 +1,224 @@
+--- v174/src/main.cpp
++++ v175/src/main.cpp
+@@ -30,7 +30,7 @@
+ #include <BenchMotionStats.h>
+ #include <TraceSample.h>
+ 
+-constexpr int kDiagVersion = 174;
++constexpr int kDiagVersion = 175;
+ enum class CurrentTrial { none, fixed015, fixed025, velocity, velocityCompensated, velocityRolling, velocityProbe, staticProbe, staticProbe10, velocityFastIntegral, velocityReverse, velocityCoverage, velocityLongWindow, velocityLowerFilter, velocityDense, velocityDenseLowerP, velocityHigherI, velocityHigherIReverse, velocityStrongerI, velocityStrongerIReverse, velocityHigherIDense, velocityStrongerIDense, velocityAdaptive, velocityAdaptiveZero, velocityResponseProbe, velocityResponseProbeInverse, velocityAdaptiveFlat, velocityHigherP, velocitySpeed2, velocitySpeed2LowerI, velocitySpeed2LowerP, velocitySpeed3LowerP, velocitySpeed2LowerFilter, velocitySpeed25LowerFilter, velocitySpeed3LowerFilter, velocitySpeed25HalfFilter, velocitySpeed25Dense, velocitySpeed2Dense, velocitySpeed25Adaptive, velocitySpeed25AdaptiveZero, velocitySpeed3Adaptive, velocitySpeed25SlowRamp, velocitySpeed60, velocitySpeed60CurrentFilter, velocitySpeed60LowGain, velocitySpeed60ModerateI, velocitySpeed60Balanced, velocitySpeed60Damped, velocitySpeed60HalfCurrent, velocitySpeed60MidP, velocitySpeed60Edge, velocitySpeed60EdgeCycles, velocitySpeed60EdgeLowerP, velocitySpeed60EdgeFast, velocitySpeed60EdgeTracking, velocitySpeed60EdgeTrackingLowerP, velocitySpeed60EdgeTracking5, velocitySpeed60EdgeTracking5CurrentI, velocitySpeed60Response, velocitySpeed60ResponseInverse, velocitySpeed60Adaptive14, benchPulse05, benchPulse10, benchJointPositive, benchJointNegative, benchCoast, benchBrakeActive, benchMotionPositive, benchMotionNegative };
+ constexpr int kEncoderPpr = 1000; // Two measured index intervals: 4000 signed counts each.
+ constexpr int kMotorPolePairs = 7; // Motor datasheet: 12N14P.
+@@ -41,7 +41,7 @@
+ #endif
+ constexpr float kFastVoltageLimit=BENCH_FAST_VOLTAGE_LIMIT;
+ constexpr float kFastCurrentQLpfS=.0005f;
+-static_assert(kFastVoltageLimit==.5f || kFastVoltageLimit==.7f,"reviewed fast voltage levels only");
++static_assert(kFastVoltageLimit==.5f || kFastVoltageLimit==.7f || kFastVoltageLimit==1.f,"reviewed fast voltage levels only");
+ #ifndef BENCH_HIGH_SPEED_RPM
+ static_assert(kFastVoltageLimit==.5f,"higher fast voltage is forbidden for old small-angle trials");
+ #endif
+@@ -896,6 +896,9 @@
+   }
+ #endif
+   benchMotionTest=currentTrial==CurrentTrial::benchMotionPositive || currentTrial==CurrentTrial::benchMotionNegative;
++#if defined(BENCH_HIGH_SPEED_RPM) && BENCH_HIGH_SPEED_RPM==360
++  if(benchMotionTest && BenchMotion::currentLimit==.40f && kFastVoltageLimit==.7f && kFastCurrentQLpfS==.0005f){Serial.println("Rejected: failed 360rpm/.7V condition; no identical retry.");return;}
++#endif
+   benchMotion.reset(micros(),currentTrial==CurrentTrial::benchMotionNegative ? -1:1);benchMotionStats={};
+   benchPositionTest=benchMotionTest || currentTrial==CurrentTrial::benchJointPositive || currentTrial==CurrentTrial::benchJointNegative;
+   benchBrakeTest=currentTrial==CurrentTrial::benchCoast || currentTrial==CurrentTrial::benchBrakeActive;
+@@ -1158,7 +1161,7 @@
+   if (benchTest) {
+     Serial.print("BENCH_PROFILE kind=");Serial.print(benchMotionTest ? "motion" : benchBrakeTest ? "brake" : benchPositionTest ? "position" : benchDriveTest ? "current_pulse":"alignment");
+     Serial.print(" amplitude_nominal_A=");Serial.print(benchDriveTest && !benchPositionTest && !benchBrakeTest ? benchPulseAmplitude:0,3);
+-    if(benchMotionTest){Serial.print(BenchMotion::currentLimit==.40f ? " iq_limit_nominal_A=.40 vector_limit_V=":" iq_limit_nominal_A=.45 vector_limit_V=");Serial.print(kFastVoltageLimit==.7f ? ".7":".5");Serial.print(" pulse_duration_us=");}
++    if(benchMotionTest){Serial.print(BenchMotion::currentLimit==.40f ? " iq_limit_nominal_A=.40 vector_limit_V=":" iq_limit_nominal_A=.45 vector_limit_V=");Serial.print(kFastVoltageLimit==1.f ? "1.0":kFastVoltageLimit==.7f ? ".7":".5");Serial.print(" pulse_duration_us=");}
+     else Serial.print(benchBrakeTest ? " iq_limit_nominal_A=.22 vector_limit_V=.5 pulse_duration_us=" : benchPositionTest ? " iq_limit_nominal_A=.30 vector_limit_V=.5 pulse_duration_us=" : " iq_limit_nominal_A=.15 vector_limit_V=.5 pulse_duration_us=");
+     Serial.print(benchPositionTest || benchBrakeTest ? 0:300000);
+     Serial.print(" trace_period_us=");Serial.print(benchBrakeTest ? 2000 : benchPositionTest ? 10000:1000);
+@@ -1203,7 +1206,7 @@
+     Serial.print(projectTracking ? motor.qSlew.riseRateVPerS : 3.0f, 1);
+     Serial.print(" current_LPF_s="); Serial.print(motor.LPF_current_q.Tf, 4);
+     Serial.print(" vector_voltage_limit_V=");
+-    if(benchMotionTest)Serial.print(kFastVoltageLimit==.7f ? ".7":".5");else Serial.print(".5");
++    if(benchMotionTest)Serial.print(kFastVoltageLimit==1.f ? "1.0":kFastVoltageLimit==.7f ? ".7":".5");else Serial.print(".5");
+     Serial.print(" release=");
+     Serial.println(projectTracking ? "immediate reversal=via_zero; nominal current scaling" : "symmetric; nominal current scaling");
+     if (projectTracking) Serial.println("CURRENT_ENGINE project_tracking_PI=1 actuator_feedback=applied_dq stock_current_PI=unused");
+--- v174/include/TrackingCurrentPI.h
++++ v175/include/TrackingCurrentPI.h
+@@ -42,7 +42,7 @@
+     }
+   }
+  private:
+-  bool validLimit()const{return std::isfinite(voltageLimit) && voltageLimit>0 && voltageLimit<=.7f;}
++  bool validLimit()const{return std::isfinite(voltageLimit) && voltageLimit>0 && voltageLimit<=1.f;}
+   uint32_t previousUs = 0,lastElapsedUs=0;
+   float integral = 0, error = 0, requested = 0;
+ };
+--- v174/include/MagnitudeSlew.h
++++ v175/include/MagnitudeSlew.h
+@@ -20,7 +20,7 @@
+     const uint32_t elapsed = now - previousUs;
+     previousUs = now;
+     if (invalid || !std::isfinite(request) || !std::isfinite(riseRateVPerS) ||
+-        !std::isfinite(negativeRiseRateVPerS) || !std::isfinite(voltageLimit) || voltageLimit<=0 || voltageLimit>.7f || riseRateVPerS <= 0 || negativeRiseRateVPerS <= 0) {
++        !std::isfinite(negativeRiseRateVPerS) || !std::isfinite(voltageLimit) || voltageLimit<=0 || voltageLimit>1.f || riseRateVPerS <= 0 || negativeRiseRateVPerS <= 0) {
+       invalid = true;
+       return value = 0;
+     }
+--- v174/tools/capture_motion.py
++++ v175/tools/capture_motion.py
+@@ -17,7 +17,7 @@
+     p.add_argument('--port',default='COM10');p.add_argument('--rpm',type=int,required=True)
+     p.add_argument('--shape',type=int,choices=(0,1,2),default=0);p.add_argument('--direction',type=int,choices=(-1,1),required=True)
+     p.add_argument('--fast',action='store_true');p.add_argument('--firmware-version',type=int)
+-    p.add_argument('--vector-limit',type=float,choices=(.5,.7),default=.5)
++    p.add_argument('--vector-limit',type=float,choices=(.5,.7,1.),default=.5)
+     p.add_argument('--iq-limit',type=float,choices=(.4,.45),default=.45)
+     p.add_argument('--q-lpf',type=float,choices=(.001,.0005),default=.001)
+     p.add_argument('--output',type=Path,required=True);p.add_argument('--stop-after-ms',type=int)
+@@ -116,7 +116,7 @@
+                         if s.startswith('FAST_VOLTAGE_ACTIVE '):
+                             v=fields(s)
+                             if not args.fast or set(v)!={'vector_limit_V','q_integrator_limit_V','d_integrator_limit_V','q_slew_limit_V','d_slew_limit_V'} or any(abs(value-args.vector_limit)>1e-7 for value in v.values()):raise RuntimeError('Applied fast voltage/integrator/slew ceiling mismatch')
+-                            if args.vector_limit==.7:verified.add('fast_voltage')
++                            if args.vector_limit>.5:verified.add('fast_voltage')
+                         if s.startswith('FAST_CURRENT_ACTIVE '):
+                             if not args.fast or fields(s)!={'iq_limit_nominal_A':args.iq_limit}:raise RuntimeError('Applied fast current command limit mismatch')
+                             if args.iq_limit==.4:verified.add('fast_current')
+@@ -129,7 +129,7 @@
+                             verified.add('active')
+                         if s.startswith('RUN BENCH MOTION:'):
+                             required={'profile','motion','loop','tracking','active','observer','estimator'}|({'edgeclock','edgeconfig'} if args.estimator=='edge' else set())
+-                            if args.vector_limit==.7:required.add('fast_voltage')
++                            if args.vector_limit>.5:required.add('fast_voltage')
+                             if args.iq_limit==.4:required.add('fast_current')
+                             if verified!=required:raise RuntimeError('Motion started without complete verified metadata')
+                             if args.stop_after_ms is not None:stop_deadline=time.monotonic()+args.stop_after_ms/1000
+--- v174/tools/bench_metadata.py
++++ v175/tools/bench_metadata.py
+@@ -18,10 +18,11 @@
+     if line!=expected:raise RuntimeError('Bench joint settings mismatch; stopping')
+ 
+ def verify_bench_current_loop(line,vector_limit=.5,q_lpf=.001):
+-    if vector_limit not in (.5,.7):raise ValueError('Unreviewed voltage ceiling')
++    if vector_limit not in (.5,.7,1.):raise ValueError('Unreviewed voltage ceiling')
+     if q_lpf not in (.001,.0005):raise ValueError('Unreviewed q current filter')
+     expected='CURRENT_LOOP q_P=0.60 q_I=400.0 d_P=.20 d_I=50 D=0 q_voltage_build_up_V_s=100.0 current_LPF_s=0.0010 vector_voltage_limit_V=.5 release=immediate reversal=via_zero; nominal current scaling'
+     if vector_limit==.7:expected=expected.replace('vector_voltage_limit_V=.5','vector_voltage_limit_V=.7')
++    if vector_limit==1.:expected=expected.replace('vector_voltage_limit_V=.5','vector_voltage_limit_V=1.0')
+     if q_lpf==.0005:expected=expected.replace('current_LPF_s=0.0010','current_LPF_s=0.0005')
+     if line!=expected:raise RuntimeError('Bench current gains/filter/actuator mismatch; stopping')
+ 
+--- v174/tools/fast_motion_profile.py
++++ v175/tools/fast_motion_profile.py
+@@ -24,8 +24,8 @@
+     return direction*math.radians(p['final_joint_deg']),0,4
+ 
+ def electrical_profile(vector_limit=.5,iq_limit=.45):
+-    if vector_limit not in (.5,.7) or iq_limit not in (.4,.45):raise ValueError('Unreviewed high-speed voltage/current command ceiling')
+-    text=PROFILE.replace('vector_limit_V=.5','vector_limit_V=.7') if vector_limit==.7 else PROFILE
++    if vector_limit not in (.5,.7,1.) or iq_limit not in (.4,.45):raise ValueError('Unreviewed high-speed voltage/current command ceiling')
++    text=PROFILE.replace('vector_limit_V=.5','vector_limit_V='+{.5:'.5',.7:'.7',1.:'1.0'}[vector_limit])
+     return text.replace('iq_limit_nominal_A=.45','iq_limit_nominal_A=.40') if iq_limit==.4 else text
+ 
+ def verify_candidate(rpm,shape,velocity_p=.12,velocity_i=1.2,velocity_lpf=.001,estimator='edge',velocity_limit='peak_motor',vector_limit=.5,iq_limit=.45,q_lpf=.001):
+@@ -35,6 +35,7 @@
+         raise ValueError('Unqualified high-speed controller configuration')
+     if q_lpf not in (.001,.0005):raise ValueError('Unreviewed q current filter')
+     if rpm==240 and q_lpf==.001 and (iq_limit==.45 or iq_limit==.4 and vector_limit==.7):raise RuntimeError('Known protective-stop v170/v171/v172 240rpm/1ms-current-filter condition: identical retry refused before serial access')
++    if rpm==360 and vector_limit==.7 and iq_limit==.4 and q_lpf==.0005:raise RuntimeError('Known protective-stop v174 360rpm/.7V condition: identical retry refused before serial access')
+ 
+ def verify_motion(line,rpm,shape,direction,velocity_p=None,velocity_i=None,velocity_limit=None):
+     actual=fields(line);p=parameters(rpm,shape)
+--- v174/tools/analyze_bench.py
++++ v175/tools/analyze_bench.py
+@@ -12,7 +12,7 @@
+     return max(0,max(v['angle_rad'] for v in rows if v['trace_us']<=end)-base['angle_rad'])
+ 
+ def analyze(path,vector_limit=.5):
+-    if vector_limit not in (.5,.7):raise ValueError('Unknown analysis voltage bound')
++    if vector_limit not in (.5,.7,1.):raise ValueError('Unknown analysis voltage bound')
+     lines=Path(path).read_text(encoding='utf-8').splitlines()
+     def one(prefix):
+         found=[v for v in lines if v.startswith(prefix)]
+--- v174/tools/analyze_fast_motion.py
++++ v175/tools/analyze_fast_motion.py
+@@ -13,12 +13,12 @@
+         if len(rows)!=1:raise ValueError('Expected exactly one '+prefix)
+         return rows[0]
+     vector_limit=fields(one('BENCH_PROFILE '))['vector_limit_V']
+-    if vector_limit not in (.5,.7):raise ValueError('Unknown fast voltage ceiling')
++    if vector_limit not in (.5,.7,1.):raise ValueError('Unknown fast voltage ceiling')
+     iq_limit=fields(one('BENCH_PROFILE '))['iq_limit_nominal_A']
+     expected_profile=electrical_profile(vector_limit,iq_limit)
+     if one('BENCH_PROFILE ')!=expected_profile:raise ValueError('Electrical limits changed')
+     if iq_limit==.4 and fields(one('FAST_CURRENT_ACTIVE '))!={'iq_limit_nominal_A':.4}:raise ValueError('Missing/inconsistent applied current command limit')
+-    if vector_limit==.7:
++    if vector_limit>.5:
+         active_voltage=fields(one('FAST_VOLTAGE_ACTIVE '))
+         if set(active_voltage)!={'vector_limit_V','q_integrator_limit_V','d_integrator_limit_V','q_slew_limit_V','d_slew_limit_V'} or any(abs(v-vector_limit)>1e-7 for v in active_voltage.values()):raise ValueError('Missing/inconsistent applied voltage ceilings')
+     result=analyze(path,vector_limit)
+--- v174/tools/save_fast_condition.py
++++ v175/tools/save_fast_condition.py
+@@ -6,7 +6,7 @@
+ 
+ def main():
+     p=argparse.ArgumentParser();p.add_argument('--version',type=int,required=True);p.add_argument('--rpm',type=int,required=True)
+-    p.add_argument('--vector-limit',type=float,choices=(.5,.7),default=.5);p.add_argument('--proposal',action='store_true')
++    p.add_argument('--vector-limit',type=float,choices=(.5,.7,1.),default=.5);p.add_argument('--proposal',action='store_true')
+     p.add_argument('--iq-limit',type=float,choices=(.4,.45),default=.45)
+     p.add_argument('--q-lpf',type=float,choices=(.001,.0005),default=.001)
+     p.add_argument('--build-dir',type=Path,default=Path('.pio/observer-build'));args=p.parse_args()
+@@ -21,7 +21,7 @@
+         for path in files:z.write(path,path.relative_to(root).as_posix())
+     data={'version':args.version,'rpm_stage':args.rpm,'trajectory':parameters(args.rpm),'supply_V':11.1,'input_current_limit_A':.8,'vector_limit_V':args.vector_limit,'iq_limit_nominal_A':args.iq_limit,'q_current_LPF_s':args.q_lpf,
+         'state':'built_not_flashed' if args.proposal else 'firmware_condition',
+-        'build_flags':f'-DDIAG_PWM_HZ=12500 -DHAL_OPAMP_MODULE_ENABLED -DBENCH_HIGH_SPEED_RPM={args.rpm}'+(' -DBENCH_FAST_VOLTAGE_LIMIT=.7f' if args.vector_limit==.7 else ''),
++        'build_flags':f'-DDIAG_PWM_HZ=12500 -DHAL_OPAMP_MODULE_ENABLED -DBENCH_HIGH_SPEED_RPM={args.rpm}'+(' -DBENCH_FAST_VOLTAGE_LIMIT=1.0f' if args.vector_limit==1. else ' -DBENCH_FAST_VOLTAGE_LIMIT=.7f' if args.vector_limit==.7 else ''),
+         'source_sha256':hashes,'archive_sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),
+         'host_source_fingerprint':hashlib.sha256(b''.join(p.read_bytes() for p in sorted((root/'tools').glob('*.py')))).hexdigest()}
+     with (folder/(stem+'.json')).open('x',encoding='utf-8') as f:json.dump(data,f,indent=2)
+--- v174/test/fast_voltage_upgrade.py
++++ v175/test/fast_voltage_upgrade.py
+@@ -0,0 +1,38 @@
++"""One-volt candidate checks; imports existing virtual protocols, never COM."""
++import contextlib,io,re,sys,tempfile,types
++from pathlib import Path
++from unittest.mock import patch
++import fast_voltage_proposal as previous
++import capture_motion
++import fast_motion_profile as fast
++legacy=previous.legacy
++active='FAST_VOLTAGE_ACTIVE vector_limit_V=1.0000 q_integrator_limit_V=1.0000 d_integrator_limit_V=1.0000 q_slew_limit_V=1.0000 d_slew_limit_V=1.0000'
++for scenario in ('normal','missing_voltage','wrong_slew','wrong_declared_voltage','wrong_applied_current','wrong_filter'):
++    prefix=[]
++    for s in previous.original:
++        if s.startswith('BENCH_MOTION '):s=fast.metadata(360,1)
++        if s.startswith('BENCH_PROFILE '):
++            s=s.replace('iq_limit_nominal_A=.45','iq_limit_nominal_A=.40')
++            if scenario!='wrong_declared_voltage':s=s.replace('vector_limit_V=.5','vector_limit_V=1.0')
++        if s.startswith('CURRENT_LOOP '):s=s.replace('vector_voltage_limit_V=.5','vector_voltage_limit_V=1.0').replace('current_LPF_s=0.0010','current_LPF_s=0.0005')
++        if s.startswith('CURRENT_ACTIVE ') and scenario!='wrong_filter':s=re.sub(r'q_LPF_s=\S+','q_LPF_s=0.0005',s)
++        if s.startswith('RUN BENCH MOTION:'):
++            if scenario!='missing_voltage':prefix.append(active.replace('q_slew_limit_V=1.0000','q_slew_limit_V=.7000') if scenario=='wrong_slew' else active)
++            prefix.append('FAST_CURRENT_ACTIVE iq_limit_nominal_A='+('.4500' if scenario=='wrong_applied_current' else '.4000'))
++        prefix.append(s)
++    legacy.prefix=prefix;port=legacy.VirtualPort('normal');append=port.append
++    port.append=lambda t:append(t.replace('diag_version=153','diag_version=175'))
++    with tempfile.TemporaryDirectory() as temp:
++        output=Path(temp)/'capture.log';args=['capture_motion.py','--fast','--rpm','360','--shape','2','--direction','1','--firmware-version','175','--vector-limit','1.0','--iq-limit','.4','--q-lpf','.0005','--output',str(output)]
++        error=None
++        with patch.object(sys,'argv',args),patch.object(capture_motion.serial,'Serial',return_value=port),patch.object(capture_motion.list_ports,'comports',return_value=[types.SimpleNamespace(device='COM10',vid=0x0483,pid=0x374b)]),patch.object(capture_motion.time,'monotonic',side_effect=lambda:port.clock),contextlib.redirect_stdout(io.StringIO()):
++            try:capture_motion.main()
++            except (RuntimeError,ValueError) as exc:error=str(exc)
++        assert (error is None)==(scenario=='normal'),(scenario,error)
++        assert 'HOST final_stop_acknowledged=True' in output.read_text()
++    print('PASS one-volt virtual:',scenario)
++legacy.prefix=previous.original
++try:fast.verify_candidate(360,2,vector_limit=.7,iq_limit=.4,q_lpf=.0005)
++except RuntimeError as exc:assert 'v174' in str(exc)
++else:raise AssertionError('Failed .7V candidate accepted')
++print('PASS: one-volt declared/applied vector, PI, slew, current and filter checked; failed .7V candidate refused; no hardware access')

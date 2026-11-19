@@ -11,7 +11,8 @@ def max_forward_excursion(rows):
     if rows[-1]['trace_us']<end:return None
     return max(0,max(v['angle_rad'] for v in rows if v['trace_us']<=end)-base['angle_rad'])
 
-def analyze(path):
+def analyze(path,vector_limit=.5):
+    if vector_limit not in (.5,.7,1.):raise ValueError('Unknown analysis voltage bound')
     lines=Path(path).read_text(encoding='utf-8').splitlines()
     def one(prefix):
         found=[v for v in lines if v.startswith(prefix)]
@@ -55,7 +56,7 @@ def analyze(path):
         raise ValueError('Run ABI/count inconsistency')
     if any(v['adc_age_us']>2000 or abs(v['adc1_frames']-v['adc2_frames'])>1 for v in rows):
         raise ValueError('ADC stale/incoherent')
-    if any(math.hypot(v['Uq_V'],v['Ud_V'])>.5001 or abs(v['iq_target_nominal_A'])>profile['iq_limit_nominal_A']+.000001 for v in rows):
+    if any(math.hypot(v['Uq_V'],v['Ud_V'])>vector_limit+.0001 or abs(v['iq_target_nominal_A'])>profile['iq_limit_nominal_A']+.000001 for v in rows):
         raise ValueError('Applied command bound violated')
     result.update(samples=len(rows),duration_us=times[-1],first_sample_us=times[0],
         vbus_min_V=min(v['vbus_adc']*scale for v in rows),vbus_max_V=max(v['vbus_adc']*scale for v in rows),

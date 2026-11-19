@@ -17,8 +17,13 @@ def verify_bench_joint(line,command):
     expected=f'BENCH_JOINT direction={direction} amplitude_deg=.5 ramp_us=100000 duration_us=2700000 trace_period_us=10000 position_P=30 velocity_P=.05 velocity_I=3.0 velocity_feedforward=1 velocity_command_limit_deg_s=5 position_limit_deg=3 guard_window_us=20000 guard_limit_deg_s=15 error_limit_deg=1 error_delay_us=100000 control_gap_us=5000 nominal_iq_limit_A=.30 trace_layout=joint_ab_union integral_policy=clear_opposing_position hold_policy=velocity_damping enter_deg=.05 exit_deg=.075'
     if line!=expected:raise RuntimeError('Bench joint settings mismatch; stopping')
 
-def verify_bench_current_loop(line):
+def verify_bench_current_loop(line,vector_limit=.5,q_lpf=.001):
+    if vector_limit not in (.5,.7,1.):raise ValueError('Unreviewed voltage ceiling')
+    if q_lpf not in (.001,.0005):raise ValueError('Unreviewed q current filter')
     expected='CURRENT_LOOP q_P=0.60 q_I=400.0 d_P=.20 d_I=50 D=0 q_voltage_build_up_V_s=100.0 current_LPF_s=0.0010 vector_voltage_limit_V=.5 release=immediate reversal=via_zero; nominal current scaling'
+    if vector_limit==.7:expected=expected.replace('vector_voltage_limit_V=.5','vector_voltage_limit_V=.7')
+    if vector_limit==1.:expected=expected.replace('vector_voltage_limit_V=.5','vector_voltage_limit_V=1.0')
+    if q_lpf==.0005:expected=expected.replace('current_LPF_s=0.0010','current_LPF_s=0.0005')
     if line!=expected:raise RuntimeError('Bench current gains/filter/actuator mismatch; stopping')
 
 def verify_bench_brake(line,command):

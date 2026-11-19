@@ -12,6 +12,11 @@ with tempfile.TemporaryDirectory() as directory:
     archive='2026-11-19-motion-condition-archives.zip';shutil.copyfile(root/'docs/experiment-logs'/archive,target/archive)
     condition=json.loads((root/'docs/experiment-logs/2026-11-19-motion-v161-condition.json').read_text(encoding='utf-8'))
     verify_condition(temporary,condition) # No .pio exists here: clean-checkout path.
+    current_archive='2026-11-20-motion-condition-archives.zip'
+    shutil.copyfile(root/'docs/experiment-logs'/current_archive,target/current_archive)
+    new_conditions=list((root/'docs/experiment-logs').glob('2026-11-20-motion-v*-condition.json'))
+    assert len(new_conditions)==7
+    for source in new_conditions:verify_condition(temporary,json.loads(source.read_text(encoding='utf-8')))
     for separator in ('/','\\'):
         foreign=dict(condition);foreign['snapshot_directory']=condition['snapshot_directory'].replace('\\','/').replace('/',separator)
         verify_condition(temporary,foreign)
@@ -31,4 +36,4 @@ with tempfile.TemporaryDirectory() as directory:
     try:recovered_preflight(temporary,fake,entry)
     except ValueError:pass
     else:raise AssertionError('A real position trial excluded as preflight-only')
-print('PASS: complete portable condition archive verified without .pio; corrupted hashes/stop/gates and misclassified real runs rejected')
+print('PASS: both dated archives and all seven new conditions verified without .pio; corrupted hashes/stop/gates and misclassified real runs rejected')

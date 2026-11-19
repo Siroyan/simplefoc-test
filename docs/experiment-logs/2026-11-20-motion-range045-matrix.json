@@ -1,0 +1,217 @@
+{
+  "scope": "Same control/current range, both trajectories. Partial fault intervals retained; cancelled trials never counted as completed. No loaded or independent absolute-angle qualification.",
+  "groups": [
+    {
+      "rpm": 10,
+      "shape": 0,
+      "versions": [
+        165
+      ],
+      "normal_trials": 2,
+      "protective_stops": 1,
+      "cancelled_trials": 3,
+      "performance_pass_trials": 0,
+      "max_moving_error_joint_deg": 1.4535996558248498,
+      "max_moving_iq_rms_nominal_A": 0.07886534089408928,
+      "max_phase_nominal_A": 0.590095,
+      "max_vector_V": 0.2937,
+      "vector_limit_events": 0,
+      "vbus_min_V": 11.17389,
+      "vbus_max_V": 11.20737,
+      "logs": [
+        "docs\\experiment-logs\\2026-11-20-motion-smooth10-positive-v165-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth10-negative-v165-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth10-positive-v165-02.log"
+      ],
+      "fault_logs": [
+        "docs\\experiment-logs\\2026-11-20-motion-smooth10-positive-v165-02.log"
+      ]
+    },
+    {
+      "rpm": 20,
+      "shape": 0,
+      "versions": [
+        164
+      ],
+      "normal_trials": 6,
+      "protective_stops": 0,
+      "cancelled_trials": 0,
+      "performance_pass_trials": 0,
+      "max_moving_error_joint_deg": 1.0918799406028585,
+      "max_moving_iq_rms_nominal_A": 0.1011276481340201,
+      "max_phase_nominal_A": 0.596908,
+      "max_vector_V": 0.308681,
+      "vector_limit_events": 0,
+      "vbus_min_V": 11.17389,
+      "vbus_max_V": 11.20737,
+      "logs": [
+        "docs\\experiment-logs\\2026-11-20-motion-smooth20-positive-v164-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth20-negative-v164-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth20-positive-v164-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth20-negative-v164-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth20-positive-v164-03.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth20-negative-v164-03.log"
+      ],
+      "fault_logs": []
+    },
+    {
+      "rpm": 40,
+      "shape": 0,
+      "versions": [
+        163
+      ],
+      "normal_trials": 6,
+      "protective_stops": 0,
+      "cancelled_trials": 0,
+      "performance_pass_trials": 0,
+      "max_moving_error_joint_deg": 0.8366444316059306,
+      "max_moving_iq_rms_nominal_A": 0.07323957080030342,
+      "max_phase_nominal_A": 0.563763,
+      "max_vector_V": 0.316237,
+      "vector_limit_events": 0,
+      "vbus_min_V": 11.17389,
+      "vbus_max_V": 11.21574,
+      "logs": [
+        "docs\\experiment-logs\\2026-11-20-motion-smooth40-positive-v163-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth40-negative-v163-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth40-positive-v163-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth40-negative-v163-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth40-positive-v163-03.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth40-negative-v163-03.log"
+      ],
+      "fault_logs": []
+    },
+    {
+      "rpm": 60,
+      "shape": 0,
+      "versions": [
+        162
+      ],
+      "normal_trials": 6,
+      "protective_stops": 0,
+      "cancelled_trials": 0,
+      "performance_pass_trials": 0,
+      "max_moving_error_joint_deg": 0.6040178372048651,
+      "max_moving_iq_rms_nominal_A": 0.1020108145611295,
+      "max_phase_nominal_A": 0.565025,
+      "max_vector_V": 0.345615,
+      "vector_limit_events": 0,
+      "vbus_min_V": 11.17389,
+      "vbus_max_V": 11.20737,
+      "logs": [
+        "docs\\experiment-logs\\2026-11-20-motion-smooth60-positive-v162-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth60-negative-v162-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth60-positive-v162-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth60-negative-v162-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth60-positive-v162-03.log",
+        "docs\\experiment-logs\\2026-11-20-motion-smooth60-negative-v162-03.log"
+      ],
+      "fault_logs": []
+    },
+    {
+      "rpm": 10,
+      "shape": 1,
+      "versions": [
+        166
+      ],
+      "normal_trials": 0,
+      "protective_stops": 1,
+      "cancelled_trials": 5,
+      "performance_pass_trials": 0,
+      "max_moving_error_joint_deg": 1.197882862280012,
+      "max_moving_iq_rms_nominal_A": 0.03898156014760648,
+      "max_phase_nominal_A": 0.465596,
+      "max_vector_V": 0.262577,
+      "vector_limit_events": 0,
+      "vbus_min_V": 11.17389,
+      "vbus_max_V": 11.20737,
+      "logs": [
+        "docs\\experiment-logs\\2026-11-20-motion-sharp10-positive-v166-01.log"
+      ],
+      "fault_logs": [
+        "docs\\experiment-logs\\2026-11-20-motion-sharp10-positive-v166-01.log"
+      ]
+    },
+    {
+      "rpm": 20,
+      "shape": 1,
+      "versions": [
+        167
+      ],
+      "normal_trials": 6,
+      "protective_stops": 0,
+      "cancelled_trials": 0,
+      "performance_pass_trials": 0,
+      "max_moving_error_joint_deg": 1.0747828799961547,
+      "max_moving_iq_rms_nominal_A": 0.09662466396090383,
+      "max_phase_nominal_A": 0.570676,
+      "max_vector_V": 0.309695,
+      "vector_limit_events": 0,
+      "vbus_min_V": 11.17389,
+      "vbus_max_V": 11.20737,
+      "logs": [
+        "docs\\experiment-logs\\2026-11-20-motion-sharp20-positive-v167-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp20-negative-v167-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp20-positive-v167-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp20-negative-v167-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp20-positive-v167-03.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp20-negative-v167-03.log"
+      ],
+      "fault_logs": []
+    },
+    {
+      "rpm": 40,
+      "shape": 1,
+      "versions": [
+        168
+      ],
+      "normal_trials": 6,
+      "protective_stops": 0,
+      "cancelled_trials": 0,
+      "performance_pass_trials": 0,
+      "max_moving_error_joint_deg": 0.698555873401451,
+      "max_moving_iq_rms_nominal_A": 0.07403244862896269,
+      "max_phase_nominal_A": 0.565347,
+      "max_vector_V": 0.325703,
+      "vector_limit_events": 0,
+      "vbus_min_V": 11.17389,
+      "vbus_max_V": 11.21574,
+      "logs": [
+        "docs\\experiment-logs\\2026-11-20-motion-sharp40-positive-v168-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp40-negative-v168-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp40-positive-v168-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp40-negative-v168-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp40-positive-v168-03.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp40-negative-v168-03.log"
+      ],
+      "fault_logs": []
+    },
+    {
+      "rpm": 60,
+      "shape": 1,
+      "versions": [
+        161
+      ],
+      "normal_trials": 6,
+      "protective_stops": 0,
+      "cancelled_trials": 0,
+      "performance_pass_trials": 0,
+      "max_moving_error_joint_deg": 0.5189565229397431,
+      "max_moving_iq_rms_nominal_A": 0.09059558509516161,
+      "max_phase_nominal_A": 0.602021,
+      "max_vector_V": 0.33583,
+      "vector_limit_events": 0,
+      "vbus_min_V": 11.15715,
+      "vbus_max_V": 11.21574,
+      "logs": [
+        "docs\\experiment-logs\\2026-11-19-motion-sharp60-positive-v161-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp60-negative-v161-01.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp60-repeat-positive-v161-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp60-repeat-negative-v161-02.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp60-repeat-positive-v161-03.log",
+        "docs\\experiment-logs\\2026-11-20-motion-sharp60-repeat-negative-v161-03.log"
+      ],
+      "fault_logs": []
+    }
+  ]
+}

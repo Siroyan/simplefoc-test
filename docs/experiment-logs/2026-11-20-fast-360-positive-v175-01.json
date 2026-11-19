@@ -1,0 +1,135 @@
+{
+  "analysis_version": 2,
+  "log": "docs\\experiment-logs\\2026-11-20-fast-360-positive-v175-01.log",
+  "stop": "STOP: fast motion tracking exceeded 3deg or 1deg for 20ms",
+  "profile": {
+    "amplitude_nominal_A": 0.0,
+    "iq_limit_nominal_A": 0.4,
+    "vector_limit_V": 1.0,
+    "pulse_duration_us": 0.0,
+    "trace_period_us": 10000.0,
+    "run_phase_limit_A": 0.6,
+    "align_phase_limit_A": 2.2,
+    "phase_frames": 3.0,
+    "dq_limit_A": 0.5,
+    "dq_delay_us": 2000.0,
+    "align_deadline_us": 18000000.0,
+    "motor_only": 1.0,
+    "ratio_for_analysis": 8.0
+  },
+  "alignment": {
+    "origin_motor_rad": 0.0,
+    "initial_pull_complete": 1.0,
+    "initial_pull_motor_rad": 0.150796,
+    "minimum_delta_motor_rad": 0.0,
+    "maximum_delta_motor_rad": 2.816438,
+    "peak_phase_nominal_A": 1.830566
+  },
+  "alignment_joint_degrees": {
+    "initial_pull_motor_rad": 1.0799967959318453,
+    "minimum_delta_motor_rad": 0.0,
+    "maximum_delta_motor_rad": 20.171251332533323
+  },
+  "alignment_check_pass": true,
+  "guard": {
+    "fault": 0.0,
+    "peak_phase_nominal_A": 0.56752,
+    "peak_iq_nominal_A": 0.481318,
+    "peak_id_nominal_A": 0.136117
+  },
+  "abi": {
+    "callbacks": 10874.0,
+    "invalid": 0.0,
+    "duplicate": 0.0,
+    "net_signed_count": 7442.0
+  },
+  "samples": 176,
+  "duration_us": 641544.0,
+  "first_sample_us": 82.0,
+  "vbus_min_V": 11.182259114583333,
+  "vbus_max_V": 11.207368977864583,
+  "max_vector_V": 0.7775182624485422,
+  "max_abs_iq_A": 0.474349,
+  "max_abs_id_A": 0.129292,
+  "max_adc_age_us": 280.0,
+  "kind": "fast_motion",
+  "motion": {
+    "direction": 1.0,
+    "rpm": 360.0,
+    "shape": 2.0,
+    "move_us": 518519.0,
+    "duration_us": 1268519.0,
+    "speed_limit_rad_s": 47.238895,
+    "peak_motor_rad_s": 37.699077,
+    "final_joint_deg": 103.749969,
+    "position_limit_joint_deg": 108.749969,
+    "amplitude_motor_deg": 560.0,
+    "initial_us": 100000.0,
+    "brake_us": 250000.0,
+    "final_us": 400000.0,
+    "absolute_error_limit_joint_deg": 3.0,
+    "error_limit_joint_deg": 1.0,
+    "error_delay_us": 20000.0,
+    "control_period_us": 250.0,
+    "control_gap_us": 1000.0,
+    "position_P": 30.0,
+    "velocity_P": 0.12,
+    "velocity_I": 1.2,
+    "hold_enter_deg": 0.05,
+    "hold_exit_deg": 0.075
+  },
+  "voltage_limit_V": 1.0,
+  "whole_trace": false,
+  "normal_complete": false,
+  "advance_candidate": false,
+  "moving": [
+    {
+      "phase": 1,
+      "FOC_samples": 4848,
+      "max_error_joint_deg": 1.0194179682526634,
+      "rms_error_joint_deg": 0.30726691335601747,
+      "rms_iq_error_nominal_A": 0.12880868739984103,
+      "peak_motor_rpm": 410.03457228232975,
+      "vector_limited_fraction": 0.0,
+      "slew_limited_fraction": 0.6753300330033003,
+      "near_iq_limit_fraction": 0.2268976897689769,
+      "max_vector_V": 0.847316,
+      "vbus_min_V": 11.18226,
+      "vbus_max_V": 11.21574
+    },
+    {
+      "phase": 3,
+      "FOC_samples": 182,
+      "max_error_joint_deg": 1.1571627517800644,
+      "rms_error_joint_deg": 1.0965927946766023,
+      "rms_iq_error_nominal_A": 0.19792847248382486,
+      "peak_motor_rpm": 395.71120991115083,
+      "vector_limited_fraction": 0.04395604395604396,
+      "slew_limited_fraction": 0.7527472527472527,
+      "near_iq_limit_fraction": 0.35714285714285715,
+      "max_vector_V": 0.827192,
+      "vbus_min_V": 11.18226,
+      "vbus_max_V": 11.20737
+    }
+  ],
+  "takeoff": {
+    "samples": 3,
+    "window_us": 10000,
+    "reached": true,
+    "mean_motor_rpm": 339.00387396916216,
+    "reference_mean_motor_rpm": 359.8784778372531,
+    "achieved_fraction": 0.9419954091349386,
+    "max_error_joint_deg": 0.9955714648193218
+  },
+  "hold": {
+    "samples": 0,
+    "reached": false
+  },
+  "control": {
+    "control_updates": 2126.0,
+    "max_control_gap_us": 406.0,
+    "fault": 5.0
+  },
+  "inside_position_envelope": true,
+  "scope": "Bare motor acceleration/braking with same-ABI motor/8 angle and nominal currents; not loaded takeoff or jump validation."
+}

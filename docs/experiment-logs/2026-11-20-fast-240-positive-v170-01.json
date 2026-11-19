@@ -1,0 +1,120 @@
+{
+  "analysis_version": 2,
+  "log": "docs\\experiment-logs\\2026-11-20-fast-240-positive-v170-01.log",
+  "stop": "STOP: fast motion tracking exceeded 3deg or 1deg for 20ms",
+  "profile": {
+    "amplitude_nominal_A": 0.0,
+    "iq_limit_nominal_A": 0.45,
+    "vector_limit_V": 0.5,
+    "pulse_duration_us": 0.0,
+    "trace_period_us": 10000.0,
+    "run_phase_limit_A": 0.6,
+    "align_phase_limit_A": 2.2,
+    "phase_frames": 3.0,
+    "dq_limit_A": 0.5,
+    "dq_delay_us": 2000.0,
+    "align_deadline_us": 18000000.0,
+    "motor_only": 1.0,
+    "ratio_for_analysis": 8.0
+  },
+  "alignment": {
+    "origin_motor_rad": 0.0,
+    "initial_pull_complete": 1.0,
+    "initial_pull_motor_rad": 0.33615,
+    "minimum_delta_motor_rad": 0.0,
+    "maximum_delta_motor_rad": 2.99708,
+    "peak_phase_nominal_A": 1.81403
+  },
+  "alignment_joint_degrees": {
+    "initial_pull_motor_rad": 2.407497035415328,
+    "minimum_delta_motor_rad": 0.0,
+    "maximum_delta_motor_rad": 21.465004357883593
+  },
+  "alignment_check_pass": true,
+  "guard": {
+    "fault": 0.0,
+    "peak_phase_nominal_A": 0.590375,
+    "peak_iq_nominal_A": 0.462245,
+    "peak_id_nominal_A": 0.234619
+  },
+  "abi": {
+    "callbacks": 9012.0,
+    "invalid": 0.0,
+    "duplicate": 0.0,
+    "net_signed_count": 5596.0
+  },
+  "samples": 157,
+  "duration_us": 813491.0,
+  "first_sample_us": 81.0,
+  "vbus_min_V": 11.17388916015625,
+  "vbus_max_V": 11.190629069010416,
+  "max_vector_V": 0.5000389236059529,
+  "max_abs_iq_A": 0.455806,
+  "max_abs_id_A": 0.219673,
+  "max_adc_age_us": 266.0,
+  "kind": "fast_motion",
+  "motion": {
+    "direction": 1.0,
+    "rpm": 240.0,
+    "shape": 2.0,
+    "move_us": 777778.0,
+    "duration_us": 1527778.0,
+    "speed_limit_rad_s": 32.159282,
+    "peak_motor_rad_s": 25.132734,
+    "final_joint_deg": 92.499992,
+    "position_limit_joint_deg": 97.499992,
+    "amplitude_motor_deg": 560.0,
+    "initial_us": 100000.0,
+    "brake_us": 250000.0,
+    "final_us": 400000.0,
+    "absolute_error_limit_joint_deg": 3.0,
+    "error_limit_joint_deg": 1.0,
+    "error_delay_us": 20000.0,
+    "control_period_us": 250.0,
+    "control_gap_us": 1000.0,
+    "position_P": 30.0,
+    "velocity_P": 0.12,
+    "velocity_I": 1.2,
+    "hold_enter_deg": 0.05,
+    "hold_exit_deg": 0.075
+  },
+  "whole_trace": false,
+  "normal_complete": false,
+  "advance_candidate": false,
+  "moving": [
+    {
+      "phase": 1,
+      "FOC_samples": 7094,
+      "max_error_joint_deg": 1.3157460103163738,
+      "rms_error_joint_deg": 0.32675606054477174,
+      "rms_iq_error_nominal_A": 0.11736511239767777,
+      "peak_motor_rpm": 269.43864572409507,
+      "vector_limited_fraction": 0.21215111361714126,
+      "slew_limited_fraction": 0.5881026219340287,
+      "near_iq_limit_fraction": 0.1629546095291796,
+      "max_vector_V": 0.5,
+      "vbus_min_V": 11.17389,
+      "vbus_max_V": 11.199
+    },
+    {
+      "phase": 3,
+      "FOC_samples": 0
+    }
+  ],
+  "takeoff": {
+    "samples": 0,
+    "window_us": 14583,
+    "reached": false
+  },
+  "hold": {
+    "samples": 0,
+    "reached": false
+  },
+  "control": {
+    "control_updates": 2725.0,
+    "max_control_gap_us": 366.0,
+    "fault": 5.0
+  },
+  "inside_position_envelope": true,
+  "scope": "Bare motor acceleration/braking with same-ABI motor/8 angle and nominal currents; not loaded takeoff or jump validation."
+}

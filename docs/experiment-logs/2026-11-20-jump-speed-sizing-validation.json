@@ -1,0 +1,18 @@
+{
+  "scope": "Offline polynomial differentiation, endpoints and numerical velocity integration; not motor/robot validation.",
+  "samples_per_profile": 20001,
+  "profiles": [
+    {
+      "normalized_travel_integral": 1.0,
+      "peak_velocity_factor": 1.875,
+      "endpoint_velocity_factor": 0.0
+    },
+    {
+      "normalized_travel_integral": 1.0,
+      "peak_velocity_factor": 2.0,
+      "endpoint_velocity_factor": 2.0
+    }
+  ],
+  "invalid_cases_rejected": 4,
+  "source_sha256": "01b5751d0985efb857b26ab779321ae88c4455710b527ae97b0a80d6db9e2f5f"
+}

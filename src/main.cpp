@@ -30,12 +30,21 @@
 #include <BenchMotionStats.h>
 #include <TraceSample.h>
 
-constexpr int kDiagVersion = 161;
+constexpr int kDiagVersion = 177;
 enum class CurrentTrial { none, fixed015, fixed025, velocity, velocityCompensated, velocityRolling, velocityProbe, staticProbe, staticProbe10, velocityFastIntegral, velocityReverse, velocityCoverage, velocityLongWindow, velocityLowerFilter, velocityDense, velocityDenseLowerP, velocityHigherI, velocityHigherIReverse, velocityStrongerI, velocityStrongerIReverse, velocityHigherIDense, velocityStrongerIDense, velocityAdaptive, velocityAdaptiveZero, velocityResponseProbe, velocityResponseProbeInverse, velocityAdaptiveFlat, velocityHigherP, velocitySpeed2, velocitySpeed2LowerI, velocitySpeed2LowerP, velocitySpeed3LowerP, velocitySpeed2LowerFilter, velocitySpeed25LowerFilter, velocitySpeed3LowerFilter, velocitySpeed25HalfFilter, velocitySpeed25Dense, velocitySpeed2Dense, velocitySpeed25Adaptive, velocitySpeed25AdaptiveZero, velocitySpeed3Adaptive, velocitySpeed25SlowRamp, velocitySpeed60, velocitySpeed60CurrentFilter, velocitySpeed60LowGain, velocitySpeed60ModerateI, velocitySpeed60Balanced, velocitySpeed60Damped, velocitySpeed60HalfCurrent, velocitySpeed60MidP, velocitySpeed60Edge, velocitySpeed60EdgeCycles, velocitySpeed60EdgeLowerP, velocitySpeed60EdgeFast, velocitySpeed60EdgeTracking, velocitySpeed60EdgeTrackingLowerP, velocitySpeed60EdgeTracking5, velocitySpeed60EdgeTracking5CurrentI, velocitySpeed60Response, velocitySpeed60ResponseInverse, velocitySpeed60Adaptive14, benchPulse05, benchPulse10, benchJointPositive, benchJointNegative, benchCoast, benchBrakeActive, benchMotionPositive, benchMotionNegative };
 constexpr int kEncoderPpr = 1000; // Two measured index intervals: 4000 signed counts each.
 constexpr int kMotorPolePairs = 7; // Motor datasheet: 12N14P.
 constexpr float kBusVoltage = 11.1f;
 constexpr float kVoltageLimit = 0.5f;
+#ifndef BENCH_FAST_VOLTAGE_LIMIT
+#define BENCH_FAST_VOLTAGE_LIMIT .5f
+#endif
+constexpr float kFastVoltageLimit=BENCH_FAST_VOLTAGE_LIMIT;
+constexpr float kFastCurrentQLpfS=.0005f;
+static_assert(kFastVoltageLimit==.5f || kFastVoltageLimit==.7f || kFastVoltageLimit==1.f,"reviewed fast voltage levels only");
+#ifndef BENCH_HIGH_SPEED_RPM
+static_assert(kFastVoltageLimit==.5f,"higher fast voltage is forbidden for old small-angle trials");
+#endif
 constexpr float kAlignVoltage = 0.7f;
 constexpr float kTargetVelocity = 1.0f; // rad/s, approximately 9.55 rpm.
 constexpr float kOpenTargetVelocity = 1.0f; // Compare open-loop at the same nominal speed as closed-loop.
@@ -633,6 +642,11 @@ void stopMotor(const char* reason) {
     Serial.print("BENCH_STARTUP first_pi_elapsed_us=");Serial.println(benchFirstPiElapsedUs);
     if(benchMotionTest){
       Serial.print("MOTION_STATUS independent_peak_rad_s=");Serial.println(runGuardAbsPeak,6);
+#ifdef BENCH_HIGH_SPEED_RPM
+      Serial.print("FAST_MOTION_STATUS control_updates=");Serial.print(benchMotion.controlUpdates);
+      Serial.print(" max_control_gap_us=");Serial.print(benchMotion.maxControlGap);
+      Serial.print(" fault=");Serial.println(static_cast<int>(benchMotion.fault));
+#endif
       for(unsigned p=0;p<2;++p){const auto& v=benchMotionStats.segments[p];
         Serial.print("MOTION_STATS phase=");Serial.print(p==0 ? 1:3);Serial.print(" samples=");Serial.print(v.samples);
         Serial.print(" max_error_joint_rad=");Serial.print(v.maxError,7);Serial.print(" error_square=");Serial.print(v.errorSquare,9);
@@ -876,7 +890,16 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
     return;
   }
   attempted = true;
+#if defined(BENCH_HIGH_SPEED_RPM) && BENCH_HIGH_SPEED_RPM==240
+  if ((currentTrial==CurrentTrial::benchMotionPositive || currentTrial==CurrentTrial::benchMotionNegative) && kFastCurrentQLpfS==.001f && (BenchMotion::currentLimit==.45f || (BenchMotion::currentLimit==.40f && kFastVoltageLimit==.7f))) {
+    Serial.println("Rejected: failed 240rpm/1ms-current-filter condition; no identical retry.");return;
+  }
+#endif
   benchMotionTest=currentTrial==CurrentTrial::benchMotionPositive || currentTrial==CurrentTrial::benchMotionNegative;
+#if defined(BENCH_HIGH_SPEED_RPM) && BENCH_HIGH_SPEED_RPM==360
+  if(benchMotionTest && BenchMotion::currentLimit==.40f && kFastVoltageLimit==.7f && kFastCurrentQLpfS==.0005f){Serial.println("Rejected: failed 360rpm/.7V condition; no identical retry.");return;}
+  if(benchMotionTest && BenchMotion::currentLimit==.40f && kFastVoltageLimit==1.0f && kFastCurrentQLpfS==.0005f && BenchMotion::velocityCommandFactor==1.0f){Serial.println("Rejected: failed v175 peak-only velocity command; no identical retry.");return;}
+#endif
   benchMotion.reset(micros(),currentTrial==CurrentTrial::benchMotionNegative ? -1:1);benchMotionStats={};
   benchPositionTest=benchMotionTest || currentTrial==CurrentTrial::benchJointPositive || currentTrial==CurrentTrial::benchJointNegative;
   benchBrakeTest=currentTrial==CurrentTrial::benchCoast || currentTrial==CurrentTrial::benchBrakeActive;
@@ -1086,6 +1109,8 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
     motor.trackingCurrentControl = projectTracking;
     if (projectTracking) {
       motor.qPI.P = .60f; motor.qPI.I = benchDriveTest || trackingCurrentITrial ? 400.0f : currentStaticProbeTest || currentFastIntegralTest ? 200.0f : 100.0f;
+      motor.qPI.voltageLimit=motor.dPI.voltageLimit=benchMotionTest ? kFastVoltageLimit:kVoltageLimit;
+      motor.qSlew.voltageLimit=motor.dSlew.voltageLimit=benchMotionTest ? kFastVoltageLimit:kVoltageLimit;
       motor.qPI.trackingTimeS=benchDriveTest || tracking5Trial ? .005f : trackingTimeTrial ? .002f:0;motor.dPI.trackingTimeS=0;
       motor.qSlew.riseRateVPerS = motor.qSlew.negativeRiseRateVPerS = currentFeedforwardTest ? 30.0f : 100.0f;
     }
@@ -1096,6 +1121,9 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
       motor.PID_current_q.I = motor.PID_current_d.I = 0;
     }
     motor.LPF_current_q.Tf = motor.LPF_current_d.Tf = benchDriveTest ? .001f : halfHighCurrentTrial ? .0005f : fastCurrentTrial ? .001f : .002f;
+#ifdef BENCH_HIGH_SPEED_RPM
+    if(benchMotionTest)motor.LPF_current_q.Tf=kFastCurrentQLpfS;
+#endif
     if (benchDriveTest) motor.LPF_velocity.Tf=benchMotionTest ? .001f:.005f;
     if (currentFeedforwardTest) {
       motor.controller = MotionControlType::custom;
@@ -1134,7 +1162,9 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
   if (benchTest) {
     Serial.print("BENCH_PROFILE kind=");Serial.print(benchMotionTest ? "motion" : benchBrakeTest ? "brake" : benchPositionTest ? "position" : benchDriveTest ? "current_pulse":"alignment");
     Serial.print(" amplitude_nominal_A=");Serial.print(benchDriveTest && !benchPositionTest && !benchBrakeTest ? benchPulseAmplitude:0,3);
-    Serial.print(benchMotionTest ? " iq_limit_nominal_A=.45 vector_limit_V=.5 pulse_duration_us=" : benchBrakeTest ? " iq_limit_nominal_A=.22 vector_limit_V=.5 pulse_duration_us=" : benchPositionTest ? " iq_limit_nominal_A=.30 vector_limit_V=.5 pulse_duration_us=" : " iq_limit_nominal_A=.15 vector_limit_V=.5 pulse_duration_us=");Serial.print(benchPositionTest || benchBrakeTest ? 0:300000);
+    if(benchMotionTest){Serial.print(BenchMotion::currentLimit==.40f ? " iq_limit_nominal_A=.40 vector_limit_V=":" iq_limit_nominal_A=.45 vector_limit_V=");Serial.print(kFastVoltageLimit==1.f ? "1.0":kFastVoltageLimit==.7f ? ".7":".5");Serial.print(" pulse_duration_us=");}
+    else Serial.print(benchBrakeTest ? " iq_limit_nominal_A=.22 vector_limit_V=.5 pulse_duration_us=" : benchPositionTest ? " iq_limit_nominal_A=.30 vector_limit_V=.5 pulse_duration_us=" : " iq_limit_nominal_A=.15 vector_limit_V=.5 pulse_duration_us=");
+    Serial.print(benchPositionTest || benchBrakeTest ? 0:300000);
     Serial.print(" trace_period_us=");Serial.print(benchBrakeTest ? 2000 : benchPositionTest ? 10000:1000);
     Serial.println(" run_phase_limit_A=.60 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.50 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc");
   }
@@ -1147,7 +1177,16 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
     Serial.print(" rpm=");Serial.print(BenchMotion::rpm);Serial.print(" shape=");Serial.print(BenchMotion::shape);
     Serial.print(" move_us=");Serial.print(BenchMotion::moveUs);Serial.print(" duration_us=");Serial.print(BenchMotion::durationUs);
     Serial.print(" speed_limit_rad_s=");Serial.print(BenchMotion::speedLimit,6);
+#ifdef BENCH_HIGH_SPEED_RPM
+    Serial.print(" peak_motor_rad_s=");Serial.print(BenchMotion::peakMotor,6);
+    Serial.print(" final_joint_deg=");Serial.print(BenchMotion::finalJoint/BenchMotion::degree,6);
+    Serial.print(" position_limit_joint_deg=");Serial.print(BenchMotion::positionLimit/BenchMotion::degree,6);
+    Serial.print(" velocity_command_factor=");Serial.print(BenchMotion::velocityCommandFactor,4);
+    Serial.print(" velocity_command_limit_rad_s=");Serial.print(BenchMotion::velocityCommandLimit,6);
+    Serial.println(" amplitude_motor_deg=560 initial_us=100000 brake_us=250000 final_us=400000 absolute_error_limit_joint_deg=3 error_limit_joint_deg=1 error_delay_us=20000 control_period_us=250 control_gap_us=1000 position_P=30 velocity_P=.12 velocity_I=1.2 velocity_limit=peak_motor_plus_10pct hold_enter_deg=.05 hold_exit_deg=.075 reference_update=loop_direct trajectory=quartic_accel_smooth_brake trace=moving160_80_hold10ms stats=all_FOC_samples");
+#else
     Serial.println(" amplitude_motor_deg=30 initial_us=100000 hold_us=400000 final_us=500000 position_limit_joint_deg=6 error_limit_joint_deg=1 error_delay_us=100000 control_gap_us=5000 position_P=30 velocity_P=.12 velocity_I=1.2 velocity_limit=peak_motor hold_enter_deg=.05 hold_exit_deg=.075 reference_update=loop_direct trace=moving96_hold10ms stats=all_FOC_samples");
+#endif
   }
   if (!benchMotionTest && benchPositionTest) {
     Serial.print("BENCH_JOINT direction=");Serial.print(benchJoint.direction);
@@ -1169,7 +1208,9 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
     Serial.print(" d_P=.20 d_I=50 D=0 q_voltage_build_up_V_s=");
     Serial.print(projectTracking ? motor.qSlew.riseRateVPerS : 3.0f, 1);
     Serial.print(" current_LPF_s="); Serial.print(motor.LPF_current_q.Tf, 4);
-    Serial.print(" vector_voltage_limit_V=.5 release=");
+    Serial.print(" vector_voltage_limit_V=");
+    if(benchMotionTest)Serial.print(kFastVoltageLimit==1.f ? "1.0":kFastVoltageLimit==.7f ? ".7":".5");else Serial.print(".5");
+    Serial.print(" release=");
     Serial.println(projectTracking ? "immediate reversal=via_zero; nominal current scaling" : "symmetric; nominal current scaling");
     if (projectTracking) Serial.println("CURRENT_ENGINE project_tracking_PI=1 actuator_feedback=applied_dq stock_current_PI=unused");
     if (trackingTimeTrial || benchDriveTest) {
@@ -1289,7 +1330,7 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
   }
   if (!motor.initFOC()) { stopMotor("FOC alignment failed"); return; }
   if (!motor.pp_check_result) { stopMotor("pole-pair check failed"); return; }
-  motor.updateVoltageLimit(kVoltageLimit);
+  motor.updateVoltageLimit(benchMotionTest ? kFastVoltageLimit:kVoltageLimit);
   if (currentIqTest) {
     motor.current_sp = motor.target = 0;
     motor.PID_current_q.reset(); motor.PID_current_d.reset();
@@ -1310,6 +1351,16 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
       Serial.print("CURRENT_TRACKING_ACTIVE q_backcalc_s=");Serial.print(motor.qPI.trackingTimeS,4);
       Serial.print(" d_backcalc_s=");Serial.println(motor.dPI.trackingTimeS,4);
     }
+#ifdef BENCH_HIGH_SPEED_RPM
+    if(benchMotionTest){
+      Serial.print("FAST_VOLTAGE_ACTIVE vector_limit_V=");Serial.print(motor.voltage_limit,4);
+      Serial.print(" q_integrator_limit_V=");Serial.print(motor.qPI.voltageLimit,4);
+      Serial.print(" d_integrator_limit_V=");Serial.print(motor.dPI.voltageLimit,4);
+      Serial.print(" q_slew_limit_V=");Serial.print(motor.qSlew.voltageLimit,4);
+      Serial.print(" d_slew_limit_V=");Serial.println(motor.dSlew.voltageLimit,4);
+      Serial.print("FAST_CURRENT_ACTIVE iq_limit_nominal_A=");Serial.println(motor.current_limit,4);
+    }
+#endif
   }
   if (benchDriveTest) benchCurrentGuard.reset();
   // initFOC's cached angle can age while UART metadata is emitted. Refresh
@@ -1325,7 +1376,13 @@ void startTest(bool openLoop = false, bool asymmetric = false, bool forwardOnly 
     Serial.println(currentHighSpeedTest ? "rad/s, nominal Iq limit +/-.45A, vector cap .5V; reference envelope/stall/3s guards." : "rad/s, nominal Iq limit +/-.45A, vector cap .5V; existing speed/stall/3s guards.");
   }
   else if (benchBrakeTest) Serial.println("RUN BENCH BRAKE: bounded acceleration, then coast or negative current; motor-only.");
-  else if(benchMotionTest)Serial.println("RUN BENCH MOTION: bounded 30deg motor trajectory; motor-only.");
+  else if(benchMotionTest){
+#ifdef BENCH_HIGH_SPEED_RPM
+    Serial.println("RUN BENCH MOTION: bounded 560deg motor acceleration plus separate smooth brake; motor-only.");
+#else
+    Serial.println("RUN BENCH MOTION: bounded 30deg motor trajectory; motor-only.");
+#endif
+  }
   else if (benchPositionTest) Serial.println("RUN BENCH JOINT: virtual motor/8 position; 2.7s; motor-only.");
   else if (benchDriveTest) Serial.println("RUN BENCH CURRENT: balanced signed pulses; nominal Iq cap .15A; vector .5V; run 300ms.");
   else if (currentIqTest) Serial.println("RUN CURRENT: 300ms ramp to nominal Iq target; vector cap .5V; existing speed/stall/3s guards.");
@@ -1569,7 +1626,7 @@ void loop() {
       BenchMotion::reference(t,benchMotion.direction,ref,feed,phase);
       benchMotionStats.observe(phase,ref-static_cast<int>(motor.sensor_direction)*(encoder.getAngle()-startAngle)/8,
           motor.shaft_velocity,currentControlTrace.target-currentControlTrace.iq,currentControlTrace.target,
-          motor.voltage.q,motor.voltage.d,BoardCurrentObserver::busVoltage(observedFrame.vbus),motor.lastVectorLimited,motor.lastSlewLimited);
+          motor.voltage.q,motor.voltage.d,BoardCurrentObserver::busVoltage(observedFrame.vbus),motor.lastVectorLimited,motor.lastSlewLimited,BenchMotion::currentLimit);
       tracePeriodUs=BenchMotion::tracePeriod(t);
     }
     recordTrace(false, motor.voltage.q);

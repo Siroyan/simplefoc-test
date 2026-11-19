@@ -1,0 +1,56 @@
+{
+  "scope": "Required kinematics for the supplied travel and duration; not a feasible-drive or jump-performance guarantee.",
+  "inputs": {
+    "joint_travel_deg": 70.0,
+    "duration_ms": 50.0,
+    "motor_to_joint_ratio": 8.0,
+    "mass_kg": 0.5,
+    "flight_COM_rise_m": 0.2,
+    "ABI_counts_per_motor_turn": 4000,
+    "pole_pairs": 7
+  },
+  "motor_travel_deg": 560.0,
+  "motor_travel_turns": 1.5555555555555556,
+  "mean_joint_deg_s": 1400.0,
+  "mean_motor_rpm": 1866.6666666666665,
+  "ideal_ballistic_takeoff_speed_m_s": 1.9805706248452741,
+  "ideal_flight_kinetic_energy_J": 0.980665,
+  "profiles": {
+    "quintic_rest_to_rest": {
+      "normalized_position_polynomial": "10*u^3 - 15*u^4 + 6*u^5",
+      "peak_to_mean_velocity_ratio": 1.875,
+      "peak_motor_rpm": 3499.9999999999995,
+      "peak_motor_rad_s": 366.51914291880917,
+      "peak_joint_deg_s": 2625.0,
+      "peak_motor_accel_rad_s2": 22571.725421581374,
+      "end_joint_rad_s": 0.0,
+      "end_motor_rpm": 0.0,
+      "peak_ABI_edges_per_s": 233333.3333333333,
+      "minimum_ABI_edge_interval_us": 4.2857142857142865,
+      "peak_electrical_Hz": 408.3333333333333,
+      "required_vertical_COM_jacobian_at_takeoff_m_per_rad": null
+    },
+    "quartic_accelerating_takeoff": {
+      "normalized_position_polynomial": "2*u^3 - u^4",
+      "peak_to_mean_velocity_ratio": 2.0,
+      "peak_motor_rpm": 3733.333333333333,
+      "peak_motor_rad_s": 390.95375244672977,
+      "peak_joint_deg_s": 2800.0,
+      "peak_motor_accel_rad_s2": 11728.612573401891,
+      "end_joint_rad_s": 48.86921905584122,
+      "end_motor_rpm": 3733.333333333333,
+      "peak_ABI_edges_per_s": 248888.88888888885,
+      "minimum_ABI_edge_interval_us": 4.017857142857143,
+      "peak_electrical_Hz": 435.5555555555555,
+      "required_vertical_COM_jacobian_at_takeoff_m_per_rad": 0.040527977796865185
+    }
+  },
+  "assumptions": [
+    "70 degrees denotes joint travel, not an absolute endpoint.",
+    "Trajectory time ends at takeoff for the accelerating candidate; its nonzero endpoint speed requires separate post-takeoff handling.",
+    "Flight height means COM rise from takeoff to apex. Air drag and losses are omitted.",
+    "COM height Jacobian and actual link geometry are not supplied. A required Jacobian is a consistency condition, not a measured property.",
+    "The measured ABI resolution and 7 pole pairs are used only for event-rate/electrical-frequency sizing.",
+    "No electrical/current/voltage/position/speed protection setting is changed by this calculation."
+  ]
+}

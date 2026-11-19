@@ -11,6 +11,7 @@ class MagnitudeSlew {
       : riseRateVPerS(rateVPerS), negativeRiseRateVPerS(negativeRateVPerS == 0 ? rateVPerS : negativeRateVPerS) {}
   float riseRateVPerS;
   float negativeRiseRateVPerS;
+  float voltageLimit=.5f;
   float value = 0;
   bool invalid = false;
   void reset(uint32_t now) { previousUs = now; value = 0; invalid = false; }
@@ -19,14 +20,14 @@ class MagnitudeSlew {
     const uint32_t elapsed = now - previousUs;
     previousUs = now;
     if (invalid || !std::isfinite(request) || !std::isfinite(riseRateVPerS) ||
-        !std::isfinite(negativeRiseRateVPerS) || riseRateVPerS <= 0 || negativeRiseRateVPerS <= 0) {
+        !std::isfinite(negativeRiseRateVPerS) || !std::isfinite(voltageLimit) || voltageLimit<=0 || voltageLimit>1.f || riseRateVPerS <= 0 || negativeRiseRateVPerS <= 0) {
       invalid = true;
       return value = 0;
     }
     if (elapsed > 500000) return value = 0;
     // Check finiteness before applying this policy so NaN cannot be masked.
     if (forwardOnly && request < 0) request = 0;
-    request = std::max(-0.5f, std::min(0.5f, request));
+    request = std::max(-voltageLimit, std::min(voltageLimit, request));
     if (value * request < 0) return value = 0;
     if (std::abs(request) <= std::abs(value)) return value = request;
     const float rate = request < 0 ? negativeRiseRateVPerS : riseRateVPerS;

@@ -45,3 +45,16 @@ def verify_motion(line,rpm,shape,direction,velocity_p=None,velocity_i=None,veloc
     if re.sub(r'speed_limit_rad_s=\S+','speed_limit_rad_s=CHECKED',line)!=re.sub(r'speed_limit_rad_s=\S+','speed_limit_rad_s=CHECKED',expected):raise RuntimeError('Motion trajectory/controller/guard mismatch')
 
 PROFILE=('BENCH_PROFILE kind=motion amplitude_nominal_A=0.000 iq_limit_nominal_A=.45 vector_limit_V=.5 pulse_duration_us=0 trace_period_us=10000 run_phase_limit_A=.60 align_phase_limit_A=2.2 phase_frames=3 dq_limit_A=.50 dq_delay_us=2000 align_deadline_us=18000000 motor_only=1 ratio_for_analysis=8 startup_clock=first_foc trace_clock=first_foc')
+
+def verify_live_candidate(rpm,shape,velocity_p=.12,velocity_i=1.2,velocity_lpf=.001,estimator='edge',velocity_limit='peak_motor'):
+    """Reject known failed baseline candidates before any reset or serial access.
+
+    Historical offline analysis remains available. This is a refusal filter,
+    not authorization for a different controller or wider operating range.
+    """
+    profile=fields(PROFILE)
+    baseline=(velocity_p,velocity_i,velocity_lpf,estimator,velocity_limit)==(.12,1.2,.001,'edge','peak_motor')
+    same_range=(profile['iq_limit_nominal_A'],profile['dq_limit_A'])==(.45,.50)
+    if rpm==10 and shape in (0,1) and baseline and same_range:
+        version=165 if shape==0 else 166
+        raise RuntimeError(f'Known protective-stop condition v{version}: identical 10rpm retry refused before reset/serial access')

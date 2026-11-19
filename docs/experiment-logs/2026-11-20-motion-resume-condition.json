@@ -1,0 +1,8 @@
+{
+  "firmware_version": 161,
+  "firmware_condition": "docs/experiment-logs/2026-11-19-motion-v161-condition.json",
+  "runtime_host_fingerprint": "1c9876adf0a0c9610292799abbea2cbd33ea6e3db6e3c37084c65936611f0206",
+  "archive": "docs\\experiment-logs\\2026-11-20-motion-resume-host.zip",
+  "archive_sha256": "b2bd38515e4d820c1c242418c74dbc0d15415dec331337580d248e4227a6efac",
+  "readiness": "User confirmed bare motor, fixed, no load/propeller, 11.1V/.8A, USB, hands off and no abnormalities on 2026-11-20."
+}

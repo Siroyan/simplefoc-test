@@ -1,0 +1,29 @@
+{
+  "version": 162,
+  "rpm": 60,
+  "shape": 0,
+  "supply_V": 11.1,
+  "input_current_limit_A": 0.8,
+  "build_flags": "-DDIAG_PWM_HZ=12500 -DHAL_OPAMP_MODULE_ENABLED -DBENCH_MOTION_RPM=60 -DBENCH_MOTION_SHAPE=0",
+  "snapshot_directory": ".pio\\motion-v162-snapshot",
+  "sha256": {
+    "src/main.cpp": "c41701f50f84632f1f27f60495dbaf18011ad9f8d2da7cd8b657702249d3bb71",
+    "include/BenchMotion.h": "cfe23e0330e132175b4ed1f82fd9a1b329df675db6abaf9ee4a317a2b222fb98",
+    "include/BenchMotionStats.h": "e7d370ac86b86aac5c79b7cb8e6384aa24c975738b7a1990a3b18117ca5e62fa",
+    "include/BenchJoint.h": "3f135c229712da647acf921a46671e88e6d17ae8c5f0614249fdbc8f2a382688",
+    "include/BenchCurrentGuard.h": "9945d4f0411baafe86c594519b8cd9e72f43e903aebe00b10f48602b57acd4f7",
+    "include/BoundedBLDCMotor.h": "ae4fba4d6e4aa3f5864070497f28d6f31312583a326646107be8547539b6d205",
+    "include/TrackingCurrentPI.h": "df67f14315c01a75c5c8f2f3b87f013c714c40879e90b7545f9830db4eeac4bd",
+    "include/TraceSample.h": "b61c31bf8cdb8c4683253217e7a25ecf907759593ad818045b7d8d0cd0591b8b",
+    "include/BoardCurrentObserver.h": "55fc1d941ad4be98ce4d03709b478eb34fcdeaff265cc0f6cd5d99db49e4c141",
+    "include/ObservationGuard.h": "c6f1c71578dbcae6d7d0d259d57a5c32283b22426ddb709157dab3a4d4976cf7",
+    ".pio/observer-build/disco_b_g431b_esc1/firmware.elf": "e855d8ffb5d3a9c829cc5b4499b693510d3cd8221fe01b8e39e8695a73fe2a11",
+    ".pio/observer-build/disco_b_g431b_esc1/firmware.bin": "25ec8a799184acfba95491842124159f2f5a26490b1343954d0ee220548ff93f",
+    "tools/capture_motion.py": "66032a2af333b9c93dce726b9d995683d7d6a0c0775f0f43dd894f83174876cd",
+    "tools/motion_profile.py": "41a93b32a9b107923bb29a1992658c2a594b75c5948de0be1cac9d0bb8a0d6b0",
+    "tools/analyze_motion.py": "815025d4e38cfd6396d94cf588d2221cf3bb99c7526075788b3006b3353302c2",
+    "tools/capture_test.py": "e8b165520b701f393d2a3f729134ccd153e4e6f23a51bd5fa333bfef6829ddd5",
+    "tools/bench_metadata.py": "c641a808365c3b189a943a4edcf8732d8e1a0004a4f7057e79c6cac93f37278b",
+    "tools/analyze_bench.py": "8f00a61ccfc50e3de7bc2105fd1d10362f2633bbe3957e70ed9cb23fe360d6f2"
+  }
+}
